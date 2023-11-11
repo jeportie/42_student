@@ -6,7 +6,7 @@
 /*   By: JeromeP <JeromeP@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 03:30:38 by JeromeP           #+#    #+#             */
-/*   Updated: 2023/11/11 13:30:45 by JeromeP          ###   ########.fr       */
+/*   Updated: 2023/11/11 14:31:45 by JeromeP          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_isspace(int c)
 {
-	if (c == 32 || (c >= 9 && c <= 13))
+	if (c == ' ' || (c >= 9 && c <= 13))
 		return (1);
 	return (0);
 }
@@ -42,11 +42,11 @@ int	ft_atoi(const char *nptr)
 	digit = 0;
 	result = 0;
 	sign = 1;
-	if (ft_isspace(nptr[i]))
+	while (ft_isspace(nptr[i]))
 		i++;
 	if (ft_issign(nptr[i], &sign))
 		i++;
-	while(nptr[i])
+	while (ft_isdigit(nptr[i]))
 	{
 		digit = nptr[i] - '0';
 		result = result * 10 + digit;
