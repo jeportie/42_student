@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_filesize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 18:04:57 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/11 22:19:22 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/12 19:28:06 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/12 20:44:28 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "filemanip.h"
 
-int	ft_toupper(int c)
+size_t	ft_filesize(const char *filepath)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - ('a' - 'A'));
-	return (c);
+	int		fd;
+	size_t	file_size;
+
+	fd = ft_fopen(filepath, O_RDONLY); 
+	file_size = lseek(fd, 0, SEEK_END);
+	ft_fclose(fd);
+	if (file_size == -1)
+		return (-1);
+	return (file_size);
 }

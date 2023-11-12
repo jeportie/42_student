@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_fopen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 18:04:57 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/11 22:19:22 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/12 17:17:37 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/12 17:28:51 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "filemanip.h"
 
-int	ft_toupper(int c)
+int	ft_fopen(const char *file_path, int option)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - ('a' - 'A'));
-	return (c);
+	int	fd;
+
+	fd = open(file_path, option);
+	if (fd == -1)
+	{
+		perror("Error opening file");
+		exit(EXIT_FAILURE);
+	}
+	return (fd);
 }

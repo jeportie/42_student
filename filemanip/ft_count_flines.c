@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_count_flines.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 18:04:57 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/11 22:19:22 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/12 18:43:12 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/12 20:45:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "filemanip.h"
 
-int	ft_toupper(int c)
+int	ft_count_flines(const char *filepath, size_t filesize)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - ('a' - 'A'));
-	return (c);
+	
 }

@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_fline_to_str.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 18:04:57 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/11 22:19:22 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/12 17:50:04 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/12 18:11:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "filemanip.h"
 
-int	ft_toupper(int c)
+char	*ft_fline_to_str(int fd)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - ('a' - 'A'));
-	return (c);
+	static char fline_buf[FLINE_BUFFER_SIZE];
+	int			bytes_read;
+	size_t		i;
+	char		*line;
+
+	i = 0;
+	if (fd < 0)
+		return (NULL);
+
 }

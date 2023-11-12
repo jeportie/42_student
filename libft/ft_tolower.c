@@ -6,8 +6,15 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 18:04:50 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/11 18:04:54 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/11 22:18:52 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (c + ('a' - 'A'));
+	return (c);
+}

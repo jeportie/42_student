@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_fclose.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 18:04:57 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/11 22:19:22 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/12 20:38:42 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/12 20:42:56 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "filemanip.h"
 
-int	ft_toupper(int c)
+void	ft_fclose(int fd)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - ('a' - 'A'));
-	return (c);
+	if (fd < 0)
+	{
+		perror("Invalid file descriptor.\n");
+		exit(EXIT_FAILURE);
+	}
+	if (close(fd) == -1)
+	{
+		perror("Error: closing file failed.");
+		exit(EXIT_FAILURE);	
+	}
+	return ;
 }
