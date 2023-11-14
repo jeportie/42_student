@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fline_to_str.c                                  :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 17:50:04 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/12 18:11:09 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/14 00:35:43 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/14 02:06:50 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filemanip.h"
+#include "libft.h"
 
-char	*ft_fline_to_str(int fd)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	static char fline_buf[FLINE_BUFFER_SIZE];
-	int			bytes_read;
-	size_t		i;
-	char		*line;
-
-	i = 0;
-	if (fd < 0)
+	void	*memory;
+	size_t	total_size;
+	
+	if (!nmemb || !size)
+	{
+		nmemb = 1;
+		size = 1;
+	}
+	if (SIZE_MAX / nmemb < size)
 		return (NULL);
-
+	total_size = nmemb * size;
+	memory = malloc(total_size);
+	if (!memory)
+		return (NULL);
+	ft_bzero(memory, total_size);
+	return (memory);
 }

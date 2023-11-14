@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_flines.c                                  :+:      :+:    :+:   */
+/*   ft_flines_to_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 18:43:12 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/14 00:12:30 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/13 23:25:34 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/14 00:05:20 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filemanip.h"
 
-int	ft_count_flines(const char *filepath)
+char	**ft_flines_to_str(const char *filepath)
 {
+	char	**data_array;
 	int		fd;
-	int		count;
 	size_t	filesize;
-	size_t	i;
 	char	*buffer;
 
 	fd = ft_fopen(filepath, O_RDONLY);
-	count = 0;
 	filesize = ft_filesize(filepath);
-	buffer = ft_fread(fd, filesize);
-	i = 0;
-	while (buffer[i])
-	{
-		if (buffer[i] == '\n')
-			count++;
-	}
-	count++;
+	buffer = (char *)malloc((sizeof(unsigned char) * filesize));
+	if (!buffer)
+		return (NULL);
+	buffer = ft_fread(fd, filesize); 
+	data_array = ft_split(buffer, '\n');
+	free(buffer);
 	ft_fclose(fd);
-	return (count);
+	return (data_array);
 }

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:03:38 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/12 20:46:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/13 23:22:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 //FUNCTION THAT OPEN AND CLOSES THE FILE INSIDE THE FUNCTION
 size_t	ft_filesize(const char *filepath);
-int		ft_count_flines(const char *filepath, size_t filesize);
-char	*ft_fline_to_str(int fd);
+int		ft_count_flines(const char *filepath);
+char	**ft_flines_to_str(const char *filepath);
 //FUNCTION THAT WORKS WITH THE FILE DESCRIPTOR OF AN OPEN FILE
 int		ft_fopen(const char *filepath, int option);
 char	*ft_fread(int fd, size_t len);
