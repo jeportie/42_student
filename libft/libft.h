@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/14 01:57:00 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:41:38 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <errno.h>
 
 typedef struct s_list
 {
@@ -39,7 +40,7 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-void	*ft_memmove(void *dest, const void *src, size_t len);
+void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *b, int c, size_t len);
 
 char	*ft_strchr(const char *s, int c);
@@ -47,8 +48,8 @@ char	*ft_strdup(const char *s);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcat(char *dst, const char *src, size_t size);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 
 //		Partie 2 - Fonctions supplementaires

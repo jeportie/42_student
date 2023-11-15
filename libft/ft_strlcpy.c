@@ -1,33 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 00:35:43 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/15 19:17:59 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/15 12:35:35 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/15 12:35:38 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*memory;
-	size_t	total_size;
-
-	if (!nmemb || !size)
-	{
-		nmemb = 1;
-		size = 1;
-	}
-	if (SIZE_MAX / nmemb < size)
-		return (NULL);
-	total_size = nmemb * size;
-	memory = malloc(total_size);
-	if (!memory)
-		return (NULL);
-	ft_bzero(memory, total_size);
-	return (memory);
-}

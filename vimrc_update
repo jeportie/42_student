@@ -20,11 +20,19 @@ set history=200
 set scrolloff=8
 set wildmenu
 
-let g:user42 = 'JeromeP'
-let g:mail42 = 'JeromeP@student.42.fr'
-
+let g:user42 = 'jeportie'
+let g:mail42 = 'jeportie@student.42.fr'
+let g:openai_api_key='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'
+let g:chat_gpt_max_tokens=8192
+let g:chat_gpt_model='gpt-4'
+"let g:chat_gpt_session_mode=0
+let g:chat_gpt_temperature = 0.7
+let g:chat_gpt_lang = 'English'
+"let g:chat_gpt_split_direction = 'vertical'
 "***********MAPPING*******************
 "VIM
+nnoremap <Leader>l :execute "normal! i#include \"libft.h\""<CR>
+nnoremap <F12> :execute "normal! iprintf(\"\\n\");"<CR>
 nnoremap <leader>u :NERDTreeRefreshRoot<CR>
 nnoremap <leader>bd :bdelete<CR>
 nnoremap <leader>s :split<CR>
@@ -35,7 +43,7 @@ nnoremap <leader>r :set relativenumber<CR>
 nnoremap <leader>nr :set norelativenumber<CR>
 nnoremap <Leader>cc :set colorcolumn=80<CR>
 nnoremap <Leader>ncc :set colorcolumn-=80<CR>
-nnoremap <leader>l :set list!<CR> 
+nnoremap <leader>L :set list!<CR> 
 nnoremap <c-h> :set hlsearch!<CR>
 "Plugins
 nnoremap <F2> :NERDTreeToggle<CR>

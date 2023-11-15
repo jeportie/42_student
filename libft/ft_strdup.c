@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 00:35:43 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/15 19:17:59 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/15 12:35:07 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/15 18:06:57 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strdup(const char *s)
 {
-	void	*memory;
-	size_t	total_size;
+	char	*new_str;
+	size_t	s_len;
 
-	if (!nmemb || !size)
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	new_str = (char *)malloc(sizeof(char) * (s_len + 1));
+	if (!new_str)
 	{
-		nmemb = 1;
-		size = 1;
+		errno = ENOMEM;
+		return (NULL);
 	}
-	if (SIZE_MAX / nmemb < size)
-		return (NULL);
-	total_size = nmemb * size;
-	memory = malloc(total_size);
-	if (!memory)
-		return (NULL);
-	ft_bzero(memory, total_size);
-	return (memory);
+	new_str = ft_memcpy(new_str, s, s_len + 1);
+	return (new_str);
 }
