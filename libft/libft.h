@@ -6,17 +6,19 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/15 21:41:38 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/16 16:23:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <unistd.h>
 # include <stddef.h>
 # include <stdlib.h>
 # include <stdint.h>
 # include <errno.h>
+# include <limits.h>
 
 typedef struct s_list
 {

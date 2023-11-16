@@ -6,68 +6,52 @@
 /*   By: JeromeP <JeromeP@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 23:54:37 by JeromeP           #+#    #+#             */
-/*   Updated: 2023/09/29 00:28:59 by JeromeP          ###   ########.fr       */
+/*   Updated: 2023/11/16 18:25:48 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	ft_intlen(int nb)
+static size_t	ft_intlen(long n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	if (nb == 0)
+	if (n == 0)
 		return (1);
-	while (nb)
+	while (n)
 	{
-		nb /= 10;
+		n /= 10;
 		i++;
 	}
 	return (i);
 }
 
-char	*ft_itoa(int nb)
+char	*ft_itoa(int n)
 {
-	char	*res;
+	char	*result;
 	long 	nbr;
-	int		len;
+	size_t	len;
 
-	nbr = (long)nb;
+	nbr = (long)n;
 	len = ft_intlen(nbr);
 	if (nbr < 0)
 		len++;
-	res = malloc(sizeof(char) * (len + 1));
-	if (!res)
+	result = malloc(sizeof(char) * (len + 1));
+	if (!result)
 		return (NULL);
-	res[len] = '\0';
+	result[len] = '\0';
 	if (nbr < 0)
 	{
-		res[0] = '-';
+		result[0] = '-';
 		nbr = -nbr;
 	}
 	if (nbr == 0)
-		res[0] = '0';
+		result[0] = '0';
 	while (nbr)
 	{
-		res[len - 1] = nbr % 10 + '0';
-		len--;
+		result[len-- - 1] = nbr % 10 + '0';
 		nbr /= 10;
 	}
-	return (res);
-}
-
-#include <stdio.h>
-#include <limits.h>
-
-int	main(void)
-{
-	char 	*res;
-	int		a;
-
-	a = 0;
-	res = ft_itoa(a);
-	printf("result : %s\n", res);
-	free(res);
-	return(0);
+	return (result);
 }
