@@ -19,9 +19,9 @@ Let's break down the behavior of ft_strlcat with a visual example for clarity.
 
 	- The function calculates the length of dst and src.
 
-	- It checks if total_size is 0 or if dst is already full (dst_len == total_size),
-	in which case it returns the total length dst would have after 
-	concatenation.
+	- It checks if total_size is 0 or if dst is already full 
+	(dst_len == total_size),in which case it returns the total length dst would 
+	have after concatenation.
 
 	- It then appends characters from src to dst, being careful not to write 
 	more characters than total_size - 1.
@@ -64,8 +64,8 @@ Now, let's apply ft_strlcat:
 
 	- The length of dst (strlen(dst)) is 5.
 
-	- The maximum number of characters to append is total_size - strlen(dst) - 1 =
-	10 - 5 - 1 = 4.
+	- The maximum number of characters to append is total_size - strlen(dst) - 1 
+	= 10 - 5 - 1 = 4.
 
 	- So, ft_strlcat will append at most 4 characters from src to dst.
 
@@ -91,3 +91,41 @@ Conclusion:
 	length of the string actually created. In the example, it would return 9 
 	(length of "Hello" + length of "World"), even though it only appended part 
 	of "World" due to size constraints.
+	
+# PASSING A POINTER BY REFERENCE 
+
+Example : ft_split
+In your ft_extract_word function, the use of **s instead of *s is related to how
+you want to modify the pointer s in the calling function (ft_split) from within 
+ft_extract_word. This is a common technique in C for modifying a pointer through
+a function call, often referred to as "passing a pointer by reference".
+
+Let's break it down:
+
+Pointer to a Pointer (**s): When you pass &s to ft_extract_word from ft_split, 
+you are passing a pointer to the pointer s. Inside ft_extract_word, s is then a 
+pointer to a pointer to char, or char **. This allows you to modify where the 
+original pointer s (in ft_split) is pointing.
+
+Dereferencing Once (*s): When you use *s inside ft_extract_word, you are 
+accessing the value that s points to, which is the original char * pointer in 
+ft_split. This is useful for reading or writing the data at the location pointed
+to by the original s.
+
+Dereferencing Twice (**s): When you use **s, you are accessing the value pointed
+to by the pointer that s points to. In this case, it's the actual characters in 
+the string that s is iterating over.
+
+Example:
+
+ft_split has a pointer s that points to the current character in the string.
+You want ft_extract_word to move this pointer s as it processes the string.
+To achieve this, you pass the address of s (&s, which is char **) to 
+ft_extract_word.
+Inside ft_extract_word, you use *s to access and work with the original string 
+and **s to access individual characters.
+When you modify *s (like *s += strlen), you're changing where the original s in 
+ft_split is pointing.
+This technique is essential when you need a function to modify the address that 
+a pointer is pointing to, rather than just modifying the data at the address the
+pointer is currently pointing to.

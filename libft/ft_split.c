@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:47:54 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/17 23:02:20 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/17 23:46:34 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static size_t	ft_count_words(char *str, char c)
 	return (nb_words);
 }
 
-static char	*ft_extract(const char **s, char c, char **tab, size_t *i)
+static char	*ft_extract(const char **s, char c, char **tab, size_t i)
 {
 	size_t	word_len;
 	char	*word;
@@ -62,7 +62,7 @@ static char	*ft_extract(const char **s, char c, char **tab, size_t *i)
 	word = (char *)malloc(sizeof(char) * (word_len + 1));
 	if (!word)
 	{
-		ft_free_memory(tab, *i);
+		ft_free_memory(tab, i);
 		return (NULL);
 	}
 	ft_strlcpy(word, *s, word_len + 1);
@@ -85,7 +85,7 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	while (i < words)
 	{
-		tab[i] = ft_extract(&s, c, tab, &i);
+		tab[i] = ft_extract(&s, c, tab, i);
 		if (!tab[i])
 			break;
 		i++;
