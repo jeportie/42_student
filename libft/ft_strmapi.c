@@ -6,15 +6,15 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:47:12 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/20 14:10:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:30:34 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char *	modified_str;
+	char	*modified_str;
 	size_t	strlen;
 	size_t	i;
 

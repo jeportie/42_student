@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 16:19:27 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/20 18:25:40 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:29:32 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*temp;
 
 	if (!lst || !del)
-		return;
+		return ;
 	while (*lst)
 	{
 		temp = (*lst)->next;

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:34:42 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/16 16:51:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:29:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_putnbr_fd(int n, int fd)
 	else if (n < 0)
 	{
 		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(-n, fd);	
+		ft_putnbr_fd(-n, fd);
 	}
 	else if (n > 9)
 	{

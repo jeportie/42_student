@@ -6,13 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:47:54 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/17 23:46:34 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:27:33 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	void	ft_free_memory(char **tab, size_t i)
+static void	ft_free_memory(char **tab, size_t i)
 {
 	while (i > 0)
 	{
@@ -55,7 +55,7 @@ static char	*ft_extract(const char **s, char c, char **tab, size_t i)
 {
 	size_t	word_len;
 	char	*word;
-	
+
 	while (**s && **s == c)
 		(*s)++;
 	word_len = ft_substr_len((char *)*s, c);
@@ -87,7 +87,7 @@ char	**ft_split(char const *s, char c)
 	{
 		tab[i] = ft_extract(&s, c, tab, i);
 		if (!tab[i])
-			break;
+			break ;
 		i++;
 	}
 	if (i != words)

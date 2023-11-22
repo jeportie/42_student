@@ -6,13 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:35:35 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/16 12:40:36 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:28:23 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	strlcpy(char *dst, const char *src,  size_t size)
+size_t	strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 

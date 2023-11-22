@@ -6,7 +6,7 @@
 /*   By: JeromeP <JeromeP@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 23:54:37 by JeromeP           #+#    #+#             */
-/*   Updated: 2023/11/16 18:25:48 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:30:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static size_t	ft_intlen(long n)
 char	*ft_itoa(int n)
 {
 	char	*result;
-	long 	nbr;
+	long	nbr;
 	size_t	len;
 
 	nbr = (long)n;
