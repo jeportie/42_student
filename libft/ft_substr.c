@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 12:43:41 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/16 14:45:18 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:24:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	src_len = ft_strlen(s);
-	if (start >= src_len - 1)
+	if (start >= src_len)
 		return (ft_strdup(""));
 	dst_len = len;
 	if (src_len - start < len)

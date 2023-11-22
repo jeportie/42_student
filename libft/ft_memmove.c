@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 00:36:10 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/17 23:16:06 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:44:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,27 @@
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char		*memloc_dest;
-	unsigned char		*memloc_end_dest;
 	const unsigned char	*memloc_src;
-	const unsigned char	*memloc_end_src;
 
+	if (dest == NULL && src == NULL)
+    	return NULL;
 	memloc_dest = (unsigned char *)dest;
 	memloc_src = (const unsigned char *)src;
-	memloc_end_dest = memloc_dest + (n - 1);
-	memloc_end_src = memloc_src + (n - 1);
 	if (memloc_dest < memloc_src)
-		ft_memcpy(dest, src, n);
-	else
+	{
 		while (n--)
-			*memloc_end_dest++ = *memloc_end_src++;
+			*memloc_dest++ = *memloc_src++;
+	}
+	else
+	{
+		memloc_dest += n;
+		memloc_src += n;
+		while (n--)
+		{
+			memloc_dest--;
+			memloc_src--;
+			*memloc_dest = *memloc_src;
+		}
+	}
 	return (dest);
 }

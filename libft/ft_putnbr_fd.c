@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:34:42 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/21 14:29:09 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:58:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == INT_MIN)
-		ft_putstr_fd("-2147483647", fd);
+		ft_putstr_fd("-2147483648", fd);
 	else if (n < 0)
 	{
 		ft_putchar_fd('-', fd);

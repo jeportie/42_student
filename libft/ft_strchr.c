@@ -6,17 +6,17 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:33:53 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/15 19:17:06 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:33:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*strchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	char	first_occurrence;
 
-	first_occurrence = (char)c;
+	first_occurrence = (unsigned char)c;
 	while (*s)
 	{
 		if (*s == first_occurrence)

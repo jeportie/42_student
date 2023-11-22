@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:47:54 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/21 14:27:33 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:23:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static size_t	ft_count_words(char *str, char c)
 	{
 		while (*str && *str == c)
 			str++;
-		if (*str != c)
+		if (*str && *str != c)
 		{
 			nb_words++;
 			while (*str && *str != c)

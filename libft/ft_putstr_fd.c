@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 15:29:12 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/16 15:31:19 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:09:25 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	len;
 
+	if (!fd || !s)
+		return ;
 	len = ft_strlen(s);
 	write(fd, s, len);
 }
