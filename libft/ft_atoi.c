@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:21:24 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/11 15:21:40 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:21:32 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	ft_atoi(const char *nptr)
 	int	i;
 
 	i = 0;
-	digit = 0;
 	result = 0;
 	sign = 1;
 	while (ft_isspace(nptr[i]))

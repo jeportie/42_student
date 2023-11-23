@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:47:54 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/22 16:23:22 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:07:54 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	ft_free_memory(char **tab, size_t i)
 		i--;
 		free(tab[i]);
 	}
-	free(tab);
 }
 
 static size_t	ft_substr_len(char *str, char c)
@@ -87,7 +86,10 @@ char	**ft_split(char const *s, char c)
 	{
 		tab[i] = ft_extract(&s, c, tab, i);
 		if (!tab[i])
-			break ;
+		{
+			free(tab);
+			return (NULL);
+		}
 		i++;
 	}
 	if (i != words)
