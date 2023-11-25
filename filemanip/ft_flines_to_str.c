@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 23:25:34 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/14 00:05:20 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:40:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,17 @@ char	**ft_flines_to_str(const char *filepath)
 
 	fd = ft_fopen(filepath, O_RDONLY);
 	filesize = ft_filesize(filepath);
-	buffer = (char *)malloc((sizeof(unsigned char) * filesize));
-	if (!buffer)
+	if (filesize == (size_t)-1)
+	{
+		ft_fclose(fd);
 		return (NULL);
+	}
 	buffer = ft_fread(fd, filesize); 
+	if (!buffer)
+	{
+		ft_fclose(fd);
+		return (NULL);
+	}
 	data_array = ft_split(buffer, '\n');
 	free(buffer);
 	ft_fclose(fd);

@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fopen.c                                         :+:      :+:    :+:   */
+/*   ft_parse_line_to_test.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 17:17:37 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/25 15:42:14 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/25 17:47:39 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/25 18:46:42 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filemanip.h"
 
-int	ft_fopen(const char *file_path, int option)
+t_tstlst	*ft_parse_line_to_test(const char *line)
 {
-	int	fd;
+	t_tstlst	*node;
+	char		**splits;
+	
 
-	fd = open(file_path, option);
-	if (fd == -1)
+	if (!line)
+		return (NULL);
+	splits = ft_split(line, ':');
+	if (!splits)
+		return (NULL);
+	if (!splits[0] || !splits[1] || !splits[2])
 	{
-		perror("Error opening test file:");
-		exit(EXIT_FAILURE);
+		ft_free_memory(splits, 3);
+		return (NULL);
 	}
-	return (fd);
+	node = ft_testlst_new(splits[0], splits[1], splits[2]);
+	ft_free_memory(splits, 3); /*assuming ft_testlst_new duplicates the strings*/
+	return (node);
 }

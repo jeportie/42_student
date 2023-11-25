@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fopen.c                                         :+:      :+:    :+:   */
+/*   ft_free_memory.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 17:17:37 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/25 15:42:14 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/25 17:03:21 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/25 17:17:29 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filemanip.h"
 
-int	ft_fopen(const char *file_path, int option)
+void	ft_free_memory(char **tab, size_t i)
 {
-	int	fd;
-
-	fd = open(file_path, option);
-	if (fd == -1)
+	while (i > 0)
 	{
-		perror("Error opening test file:");
-		exit(EXIT_FAILURE);
+		i--;
+		free(tab[i]);
 	}
-	return (fd);
+	free(tab);
 }

@@ -6,23 +6,23 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:38:42 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/12 20:42:56 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/25 15:40:52 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filemanip.h"
 
-void	ft_fclose(int fd)
+int	ft_fclose(int fd)
 {
 	if (fd < 0)
 	{
-		perror("Invalid file descriptor.\n");
-		exit(EXIT_FAILURE);
+		perror("Invalid file descriptor:");
+		return (0);
 	}
 	if (close(fd) == -1)
 	{
-		perror("Error: closing file failed.");
-		exit(EXIT_FAILURE);	
+		perror("Error closing test file:");
+		return (0);	
 	}
-	return ;
+	return (1);
 }

@@ -1,26 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fopen.c                                         :+:      :+:    :+:   */
+/*   ft_testlst_new.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 17:17:37 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/25 15:42:14 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/25 18:47:53 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/25 18:48:08 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filemanip.h"
 
-int	ft_fopen(const char *file_path, int option)
-{
-	int	fd;
 
-	fd = open(file_path, option);
-	if (fd == -1)
-	{
-		perror("Error opening test file:");
-		exit(EXIT_FAILURE);
-	}
-	return (fd);
-}

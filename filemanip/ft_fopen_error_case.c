@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fopen.c                                         :+:      :+:    :+:   */
+/*   ft_fopen_error_case.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/12 17:17:37 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/25 15:42:14 by jeportie         ###   ########.fr       */
+/*   Created: 2023/11/25 15:14:07 by jeportie          #+#    #+#             */
+/*   Updated: 2023/11/25 15:17:01 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filemanip.h"
 
-int	ft_fopen(const char *file_path, int option)
+void	ft_fopen_error_case(void)
 {
-	int	fd;
-
-	fd = open(file_path, option);
-	if (fd == -1)
-	{
-		perror("Error opening test file:");
-		exit(EXIT_FAILURE);
-	}
-	return (fd);
+	if (errno == ENOENT)
+		perror("Error: No such file or directory");
+	else if (errno == EACCES)
+		perror("Error: Permission denied");
+	else if (errno == EMFILE)
+		perror("Error: Too many open files");
+	else if (errno == ENFILE)
+		perror("Error: File table overflow");
+	else if (errno == EISDIR)
+		perror("Error: Is a directory");
+	else
+		perror("Error: Unknown file open error");
 }
