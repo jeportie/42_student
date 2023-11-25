@@ -1,0 +1,163 @@
+.TH FT_ATOI 3 "November 2023" "42 School" "42 Manual"
+.SH NAME
+ft_atoi \- convert a string to an integer
+.SH SYNOPSIS
+.B #include "libft.h"
+.br
+int ft_atoi(const char *nptr);
+.SH DESCRIPTION
+The
+.B ft_atoi
+function converts the initial portion of the string pointed to by
+.I nptr
+(number pointer) to an int representation.
+.P
+It begins by skipping any white-space characters, as identified by the internal function
+.IR ft_isspace .
+It then checks for any sign character ('+' or '-') using the internal function
+.IR ft_issign ,
+updating the sign of the result accordingly. After processing the sign, it converts the subsequent characters into an integer until a non-digit character is encountered.
+.P
+This function is designed to mimic the standard
+.IR atoi(3)
+function in libc specific to 42's coding standards.
+.SH RETURN VALUES
+The
+.B ft_atoi
+function returns the converted integer.
+.SH SCHEMATICS
+.RS
+.nf
++-------------------------+          +-------------------------+
+|      Input String       |          |    ft_atoi Execution    |
+|     (const char *nptr)  |          +-------------------------+
++-------------------------+          | 1. Iterate over nptr:   |
+| "  -42"                 |          |    Skip whitespaces     |
+|      ^                  |          |    -> nptr[0x02] ('-')  |
+|      |                  |          |                         |
+|    nptr                 |          | 2. Check for sign:      |
++-------------------------+          |    Found '-', sign = -1 |
+          |                          |                         |
+          v                          | 3. Convert digits:      |
++-------------------------+          |    nptr[0x03] = '4'     |
+|    Memory Layout        |          |    result = 4           |
++-------------------------+          |    nptr[0x04] = '2'     |
+| 0x00: ' '               |          |    result = 42          |
+| 0x01: ' '               |          |                         |
+| 0x02: '-'               |          | 4. Apply sign:          |
+| 0x03: '4'               |          |    result *= sign       |
+| 0x04: '2'               |          |    result = -42         |
+| 0x05: '\0' (End)         |          +-------------------------+
++-------------------------+          |     Final Output:       |
+                                     |        -42              |
+                                     +-------------------------+
+.fi
+.RE
+.SH CODE ANALYSIS
+.B ft_isspace
+checks for the standard white-space characters (' ', '\\t', '\\n', '\\v', '\\f', '\\r'). This mirrors the standard C library function
+.IR isspace ,
+but is re-implemented to follow the 42's norm.
+.P
+.B ft_issign
+is a utility function that checks for '+' or '-' signs and adjusts the
+.I sign
+variable accordingly. This is done to handle both positive and negative numbers.
+.P
+The main
+.B ft_atoi
+function iterates over the string
+.I nptr
+and converts each digit into its integer value. It accumulates the result by multiplying the current result by 10 (to shift the decimal place) and adding the new digit. This technique is a common and efficient way to convert a numeric string into an integer.
+.SH UNDEFINED BEHAVIOR
+The
+.B ft_atoi
+function has several scenarios where behavior is undefined, primarily related to input value and format.
+.P
+The function does not handle cases where the converted integer would overflow or underflow the limits of the
+.I int
+data type. For example:
+.IP \(bu 2
+If the string represents a value greater than INT_MAX (typically 2^31 - 1 on a 32-bit system), the result is undefined. An input like "2147483648" (which is INT_MAX + 1) might cause overflow.
+.IP \(bu 2
+Similarly, if the string represents a value less than INT_MIN (typically -2^31 on a 32-bit system), the result is also undefined. For example, "-2147483649" (which is INT_MIN - 1) might cause underflow.
+.P
+In both cases, the function might return incorrect results, or it may trigger runtime errors, depending on the system and compiler behavior.
+.P
+Non-standard numeric representations are not supported and lead to undefined behavior:
+.IP \(bu 2
+Hexadecimal (e.g., "0x1A"), octal (e.g., "023"), or binary (e.g., "0b1010") strings are not correctly interpreted and may yield unpredictable results.
+.P
+It's essential to validate the input format before using
+.I ft_atoi
+to ensure it contains a standard decimal numeric representation.
+
+.SH SEGMENTATION FAULT PROTECTION
+To ensure
+.B ft_atoi
+is robust against segmentation faults, several precautions should be taken:
+.P
+Always verify that the input pointer
+.I nptr
+is not NULL before dereferencing it. If
+.I nptr
+is NULL, the function should return 0 or an appropriate error code to signal the error condition:
+.IP \(bu 2
+int ft_atoi(const char *nptr) {
+.IP \(bu 4
+if (!nptr) return 0; // Or appropriate error handling
+.IP \(bu 2
+// ... rest of the function
+.IP \(bu 2
+}
+.P
+Prevent reading beyond the end of the string. The function should stop processing as soon as it encounters a non-digit character or reaches the string's null-terminating character ('\0'):
+.IP \(bu 2
+while (nptr[i] && ft_isdigit(nptr[i])) {
+.IP \(bu 4
+// Process the digit
+.IP \(bu 2
+}
+.P
+This approach ensures that the function does not access memory beyond the allocated string, thus avoiding segmentation faults caused by accessing invalid memory locations.
+.SH OPTIMIZATION
+The optimization of
+.B ft_atoi
+varies depending on the size of the input data. Below are detailed strategies for small, medium, and large data inputs.
+.P
+.SS "Small Data Input"
+Small inputs are typically less than 10 characters (e.g., "42", "-3"). Optimizations here focus on reducing overhead:
+.IP \(bu 2
+Inline small utility functions. Instead of calling
+.I ft_isspace
+and
+.I ft_issign
+, directly implement their logic within
+.I ft_atoi
+. This reduces function call overhead for short strings.
+.IP \(bu 2
+Loop unrolling: For known short strings, manually handling each character can be more efficient than a loop. For example, directly process each character in a 2-3 character string.
+.P
+.SS "Medium Data Input"
+Medium inputs range from 10 to 100 characters. Here, balance between overhead reduction and efficient looping is key:
+.IP \(bu 2
+Moderate loop unrolling: Partially unroll loops to strike a balance between code size and performance. For example, process characters in chunks of 4 or 8 in each iteration.
+.IP \(bu 2
+Character-to-digit conversion optimization: Use a static lookup table for converting characters to their integer values, reducing computational steps.
+.IP \(bu 2
+Branch prediction: Arrange conditional checks in a way that the most common cases (like processing digits) are handled first.
+.P
+.SS "Large Data Input"
+Large inputs are more than 100 characters. The focus here is on efficient memory access and parallel processing:
+.IP \(bu 2
+Memory prefetching: If the hardware supports it, prefetch data into the cache before processing to reduce cache misses.
+.IP \(bu 2
+Parallel processing: Divide the string into segments and process each segment in parallel. Each thread could convert a segment of the string and then combine the results. This is effective on multi-core processors.
+.IP \(bu 2
+Cache optimization: Organize data access patterns to minimize cache misses. For very long strings, consider techniques like blocking or tiling that access memory in a cache-friendly manner.
+.P
+Regardless of the input size, profiling with real-world data is crucial for effective optimization. It's important to identify actual bottlenecks and optimize based on practical usage scenarios and hardware capabilities.
+.SH SEE ALSO
+.IR atoi(3)
+.SH AUTHORS
+Written by jeportie.
