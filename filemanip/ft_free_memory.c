@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:03:21 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/25 17:17:29 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/28 03:49:57 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filemanip.h"
+#include "libfmanip.h"
 
 void	ft_free_memory(char **tab, size_t i)
 {

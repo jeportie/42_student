@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:36:52 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/25 17:25:32 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/28 04:30:47 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filemanip.h"
+#include "libfmanip.h"
 
 t_tstlst	*ft_load_tests(const char *filepath)
 {
@@ -40,3 +40,17 @@ t_tstlst	*ft_load_tests(const char *filepath)
 	ft_free_memory(fextract, lst_size);
 	return (data_lst); 
 }
+
+int	main(void)
+{
+	t_tstlst	*lst;
+
+	lst = ft_load_tests("ft_atoi_test_data.txt");
+	ft_print_testlst(lst);
+	return (0);
+}
+/*Redundant Reading of File: You're reading the file twice - once in 
+ *ft_flines_to_str and again in ft_count_flines. This could be optimized. 
+ *Ideally, you should read the file only once and then both count the lines 
+ *and split them. This optimization will improve efficiency, especially for 
+ *large files.*/

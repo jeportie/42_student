@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:19:05 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/12 18:31:51 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/28 04:18:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filemanip.h"
+#include "libfmanip.h"
 
 char	*ft_fread(int fd, size_t len)
 {
@@ -19,7 +19,7 @@ char	*ft_fread(int fd, size_t len)
 
 	if (fd < 0 || len == 0)
 		return (NULL);
-	buffer = (char *)malloc(len * sizeof(unsigned char));
+	buffer = (char *)malloc(sizeof(char) * (len + 1));
 	if (!buffer)
 		return (NULL);
 	bytes_read = read(fd, buffer, len);
@@ -28,7 +28,6 @@ char	*ft_fread(int fd, size_t len)
 		free(buffer);
 		return (NULL);
 	}
-	if (bytes_read < len)
-		buffer[bytes_read] = '\0';
+	buffer[bytes_read] = '\0';
 	return (buffer);
 }

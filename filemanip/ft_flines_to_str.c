@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 23:25:34 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/25 17:40:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/28 03:48:54 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filemanip.h"
+#include "libfmanip.h"
 
 char	**ft_flines_to_str(const char *filepath)
 {

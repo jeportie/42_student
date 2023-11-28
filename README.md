@@ -95,16 +95,16 @@ Conclusion:
 # PASSING A POINTER BY REFERENCE 
 
 Example : ft_split
-In your ft_extract_word function, the use of **s instead of *s is related to how
+In your ft_extract_word function, the use of "**s" instead of *s is related to how
 you want to modify the pointer s in the calling function (ft_split) from within 
 ft_extract_word. This is a common technique in C for modifying a pointer through
 a function call, often referred to as "passing a pointer by reference".
 
 Let's break it down:
 
-Pointer to a Pointer (**s): When you pass &s to ft_extract_word from ft_split, 
+Pointer to a Pointer ("**s"): When you pass &s to ft_extract_word from ft_split, 
 you are passing a pointer to the pointer s. Inside ft_extract_word, s is then a 
-pointer to a pointer to char, or char **. This allows you to modify where the 
+pointer to a pointer to char, or char "**". This allows you to modify where the 
 original pointer s (in ft_split) is pointing.
 
 Dereferencing Once (*s): When you use *s inside ft_extract_word, you are 
@@ -112,7 +112,7 @@ accessing the value that s points to, which is the original char * pointer in
 ft_split. This is useful for reading or writing the data at the location pointed
 to by the original s.
 
-Dereferencing Twice (**s): When you use **s, you are accessing the value pointed
+Dereferencing Twice ("**s"): When you use "**s", you are accessing the value pointed
 to by the pointer that s points to. In this case, it's the actual characters in 
 the string that s is iterating over.
 
@@ -120,12 +120,53 @@ Example:
 
 ft_split has a pointer s that points to the current character in the string.
 You want ft_extract_word to move this pointer s as it processes the string.
-To achieve this, you pass the address of s (&s, which is char **) to 
+To achieve this, you pass the address of s (&s, which is char "**") to 
 ft_extract_word.
 Inside ft_extract_word, you use *s to access and work with the original string 
-and **s to access individual characters.
+and "**s" to access individual characters.
 When you modify *s (like *s += strlen), you're changing where the original s in 
 ft_split is pointing.
 This technique is essential when you need a function to modify the address that 
 a pointer is pointing to, rather than just modifying the data at the address the
 pointer is currently pointing to.
+
+# HANDLE NEW_LST FUNCTIONS MEMORY ALLOCATION OR NOT
+
+hether to duplicate strings or directly assign pointers in a list node depends 
+on the context and design of your function. Let's break down these two scenarios:
+
+Defined Type (e.g., String):
+
+When your list node specifically expects a string (or any other defined data type),
+duplicating the string is often safer and more robust. This duplication ensures
+that the list node owns its data and is not affected by changes or deallocations
+outside the list.
+This approach isolates each node's data, making your code more predictable and 
+less prone to bugs related to shared memory or dangling pointers.
+Undefined Type (e.g., void *):
+
+When your list node is designed to hold a generic pointer (void *), it typically
+doesn't duplicate the data it's pointing to. This is because it's designed for 
+general use, and it doesn't know the specifics of what it's storing.
+In this case, the responsibility for managing the memory of the data 
+(like allocation and deallocation) lies outside the list. The list merely holds
+a reference to the data.
+This approach is flexible but requires careful memory management. 
+The code using the list must ensure that the memory pointed to by these generic
+pointers is correctly managed.
+
+Here's a quick summary:
+
+Duplicate in Defined Type: When the list node type is defined (like a string), 
+duplicating the data within the list node is a good practice. 
+This ensures that each node fully controls and manages its own data.
+
+Direct Assignment in Undefined Type: When the list node holds a void * for 
+generic data, it typically just stores the pointer passed to it. 
+The caller is responsible for managing the actual data's memory.
+
+This decision is about balancing memory efficiency, flexibility, and safety. 
+Duplicating data can prevent many issues but at the cost of additional memory 
+usage and processing. Directly assigning pointers is more efficient but requires
+careful memory management to avoid issues like memory leaks or dangling pointers.
+
