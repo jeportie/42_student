@@ -6,11 +6,12 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:36:52 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/28 04:30:47 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/11/29 00:54:32 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
+#include <stdlib.h>
 
 t_tstlst	*ft_load_tests(const char *filepath)
 {
@@ -41,16 +42,47 @@ t_tstlst	*ft_load_tests(const char *filepath)
 	return (data_lst); 
 }
 
+char	*ft_testfile_option_format(char *s)
+{
+//	if (!ft_strncmp("NULL", s, 5))
+//		return (NULL);
+	if (!ft_strncmp("EMPTY", s, 6))
+		return ("");
+	else if (!ft_strncmp("SPACE", s, 6))
+		return ("         ");
+	else
+		return (s);
+}
 int	main(void)
 {
 	t_tstlst	*lst;
+	int			ft_result;
+	int			result;
+	int		i;
 
 	lst = ft_load_tests("ft_atoi_test_data.txt");
-	ft_print_testlst(lst);
+	if (!lst)
+		exit(EXIT_FAILURE);
+	i = 1;
+	printf("FT_ATOI TEST:\n");
+	while (lst->next)
+	{
+		result = atoi(ft_testfile_option_format(lst->test_value));
+		ft_result = ft_atoi(ft_testfile_option_format(lst->test_value));
+		if (ft_result == result)
+			printf("Test%d: %s: OK!\n", i, lst->title);
+		else
+		{
+			printf("Test%d: %s: KO! -> %s\n", i,lst->title, lst->description);
+			printf("\tft_value:%i\n\tlibc_value:%i\n", ft_result, result);
+		}
+		i++;
+		lst = lst->next;
+	}
 	return (0);
 }
-/*Redundant Reading of File: You're reading the file twice - once in 
+/*Redundant Reading of File: Reading the file twice - once in 
  *ft_flines_to_str and again in ft_count_flines. This could be optimized. 
- *Ideally, you should read the file only once and then both count the lines 
+ *Ideally, should read the file only once and then both count the lines 
  *and split them. This optimization will improve efficiency, especially for 
  *large files.*/
