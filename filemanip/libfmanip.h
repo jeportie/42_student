@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filemanip.h                                        :+:      :+:    :+:   */
+/*   libfmanip.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:03:38 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/27 15:15:22 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:56:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 typedef struct s_tstlst
 {
 	char				*title;
-	char				*test_value;
+	char				**test_values;
 	char				*description;
 	struct s_tstlst		*next;
 }						t_tstlst;
@@ -41,7 +41,7 @@ int		ft_fclose(int fd);
 //TEST LIST FILE FUNCTIONS
 t_tstlst	*ft_load_tests(const char *filepath);
 t_tstlst	*ft_parse_line_to_test(const char *line);
-t_tstlst	*ft_testlst_new(char *title, char *value, char *description);
+t_tstlst	*ft_testlst_new(char *title, char **values, char *description);
 void		ft_testlst_add_back(t_tstlst **lst, t_tstlst *new);
 void		ft_testlst_delone(t_tstlst *lst, void (*del)(void*));
 void		ft_testlst_clear(t_tstlst **lst, void (*del)(void*));

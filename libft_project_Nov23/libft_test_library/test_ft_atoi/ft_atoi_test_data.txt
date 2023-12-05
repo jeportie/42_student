@@ -1,7 +1,6 @@
-# Small Input Data
 Null Pointer Test:NULL:Check for handling of NULL input without segmentation fault.
-Empty String Test::Check for correct handling of empty string.
-Whitespace Test:  :Check for correct handling of string with only whitespace.
+Empty String Test:EMPTY:Check for correct handling of empty string.
+Whitespace Test:SPACE:Check for correct handling of string with only whitespace.
 Newline Test:\n:Check for correct handling of string with newline character.
 Overflow Test:2147483648:Check for integer overflow with value just above INT_MAX.
 Underflow Test:-2147483649:Check for integer underflow with value just below INT_MIN.
@@ -10,8 +9,6 @@ Octal Test:023:Check for undefined behavior with octal input.
 Binary Test:0b1010:Check for undefined behavior with binary input.
 Large Number Test:9999999999:Check for handling of large numbers beyond int range.
 Large Negative Number Test:-9999999999:Check for handling of large negative numbers.
-
-# Medium Input Data
 Medium Length Test:1234567890:Check for correct conversion of 10-digit number.
 Medium Length With Space and Sign Test:  -123456789:Check for handling of spaces and sign with 10-digit number.
 INT_MAX With Leading Zeros Test:002147483647:Check for INT_MAX with leading zeros.
@@ -19,11 +16,9 @@ INT_MIN With Leading Zeros Test:-002147483648:Check for INT_MIN with leading zer
 Spaces Before Sign Test:      +123456789:Check for handling of multiple spaces before sign.
 Alphanumeric Test:123456789a123:Check for stopping conversion at non-digit character.
 20 Digits Test:12345678901234567890:Check for handling of 20-digit number.
-
-# Large Input Data
 30 Digits Test:123456789012345678901234567890:Check for correct conversion of 30-digit number.
 30 Digits Negative Test:-123456789012345678901234567890:Check for correct conversion of 30-digit negative number.
 40 Digits Test:1234567890123456789012345678901234567890:Check for handling of 40-digit number.
 40 Digits Negative Test:-1234567890123456789012345678901234567890:Check for handling of 40-digit negative number.
 50 Digits Test:12345678901234567890123456789012345678901234567890:Check for handling of 50-digit number.
-50 Digits Negative Test:-12345678901234567890123456789012345678901234567890:Check for handling of 50-digit negative number.
+50 Digits Negative Test:-12345678901234567890123456789012345678901234567890:Check for handling of 50-digit negative number.em

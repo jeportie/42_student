@@ -1,0 +1,114 @@
+.TH FT_BZERO 3 "November 2023" "42 School" "42 Manual"
+.SH NAME
+ft_bzero \- zero a byte string
+.SH SYNOPSIS
+.B #include "libft.h"
+.br
+void ft_bzero(void *s, size_t n);
+.SH DESCRIPTION
+The
+.B ft_bzero
+function sets the first
+.I n
+bytes of the byte area pointed to by
+.I s
+to zero (bytes containing '\\0').
+.P
+The function takes a pointer
+.I s
+to the memory area and a
+.I n
+size that determines how many bytes to zero out. The implementation uses an unsigned char pointer to iterate over the memory area and set each byte to '\\0'.
+.SH RETURN VALUES
+This function does not return a value.
+.SH SCHEMATICS
+.RS
+.nf
+              +------------------------+          +--------------------------+
+              |   Function Call with   |          |   ft_bzero Execution     |
+              |    Parameters          |          +--------------------------+
+              +------------------------+          | 1. Initialize pointer:   |
+              | ft_bzero(myarray, 10)  |          |    ptr = s (myarray)     |
+              |                        |          |                          |
+              | myarray: a memory area |          | 2. Iterate over n times: |
+              | n: number of bytes (10)|          |    -> Set byte to '\\0'   |
+              +------------------------+          |    -> Increment pointer  |
+                          |                       +--------------------------+
+                          v                       |  Memory after ft_bzero:  |
+              +------------------------+          |    myarray[0...9] = '\\0' |
+              |    Memory Layout       |          +--------------------------+
+              +------------------------+          |     No Return Value      |
+              | myarray[0...9]:        |          +--------------------------+
+              | Uninitialized data     |
+              +------------------------+
+.fi
+.RE
+
+.SH CODE ANALYSIS
+The function uses a while loop to iterate over the memory area. It decrements the
+.I n
+counter on each iteration, stopping when
+.I n
+reaches zero. Within the loop, it uses the pointer
+.I ptr
+(which points to
+.I s
+initially) to set each byte to '\\0'. This method ensures that exactly
+.I n
+bytes are set to zero, regardless of the data type or content of the memory area.
+.SH UNDEFINED BEHAVIOR
+The \fBft_bzero\fR function can exhibit undefined behavior primarily related to its input parameters.
+
+The function does not perform checks on the validity of the memory address provided in the \fIs\fR parameter. If this pointer points to an invalid or inaccessible memory location, the behavior is undefined. This can include:
+
+.IP \(bu 2
+Accessing memory that the program does not have permission to access, leading to a crash or other unpredictable behavior.
+
+.IP \(bu 2
+Attempting to zero a read-only or constant memory area, which may cause a segmentation fault or other access violations.
+
+Additionally, the function does not validate the size parameter \fIn\fR. If \fIn\fR is exceedingly large, it may lead to unintended memory access outside the intended buffer, causing data corruption or crashes.
+
+It is crucial to ensure that the pointer \fIs\fR points to a valid writable memory area and that \fIn\fR accurately represents the size of this memory area to avoid undefined behavior.
+
+.SH SEGMENTATION FAULT PROTECTION
+To protect \fBft_bzero\fR against segmentation faults, the following precautions are essential:
+
+.IP \(bu 2
+Always ensure that the pointer \fIs\fR is not NULL and points to a valid, writable memory region before passing it to \fBft_bzero\fR. If \fIs\fR is NULL or invalid, the function will attempt to write to a non-allocated memory address, leading to a segmentation fault.
+
+.IP \(bu 2
+The size parameter \fIn\fR should accurately reflect the size of the memory block pointed to by \fIs\fR. Overestimating \fIn\fR may cause the function to write beyond the allocated memory for \fIs\fR, resulting in data corruption or a segmentation fault.
+
+These safeguards help ensure that \fBft_bzero\fR operates safely on valid memory regions and do not attempt to access or modify memory outside the intended buffer.
+.SH OPTIMIZATION
+    The optimization of ft_bzero depends on the size of the memory area to be set to zero. Here are strategies for optimizing small, medium, and large memory areas.
+
+.SS "Small Memory Areas"
+        For small memory areas (typically less than 64 bytes), the following optimizations can be effective:
+
+        • Inline Expansion: Instead of a loop, use a series of statements to set each byte to zero. This approach, known as loop unrolling, can be more efficient for very small sizes.
+
+        • Use of Advanced Instructions: Some architectures have instructions that can set multiple bytes at once (e.g., SIMD instructions). When available, these can greatly speed up the operation.
+
+.SS "Medium Memory Areas"
+        For medium-sized areas (from 64 bytes to a few kilobytes):
+
+        • Loop Unrolling: Partial loop unrolling can be beneficial. Instead of setting byte by byte, set larger chunks (e.g., 4 or 8 bytes at a time) in each iteration of the loop.
+
+        • Prefetching: Implement data prefetching to move data into cache before it's processed, reducing the time waiting for data from RAM.
+
+.SS "Large Memory Areas"
+        For large memory areas (several kilobytes and larger):
+
+        • Parallel Processing: Utilize multiple threads to zero out different parts of the memory concurrently, especially effective on multi-core processors.
+
+        • Non-temporal Memory Access: If supported by the hardware, use non-temporal store instructions that bypass the cache, preventing cache pollution.
+
+        • Efficient Memory Access Patterns: Access memory in a cache-friendly pattern to minimize cache misses and reduce memory bandwidth usage.
+
+    Regardless of the area size, benchmarking and profiling with real-world data are essential. Optimizations should be targeted based on actual use cases and the specific characteristics of the target hardware.
+.SH SEE ALSO
+.IR ft_memset(3)
+.SH AUTHORS
+Written by jeportie.
