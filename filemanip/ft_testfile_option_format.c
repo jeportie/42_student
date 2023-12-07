@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_testlst.c                                 :+:      :+:    :+:   */
+/*   ft_testfile_option_format.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 15:45:24 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/07 13:41:10 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/07 16:26:43 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/07 17:35:06 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
-#include <stdio.h>
 
-void	ft_print_testlst(t_tstlst *lst)
+char	*ft_testfile_option_format(char *s)
 {
-	char	*value1;
-	char	*value2;
-	char	*value3;
 
-	printf("List display:\n\n");
-	while (lst->next)
-	{
-		value1 = lst->test_values[0];
-		value2 = lst->test_values[1];
-		value3 = lst->test_values[2];
-		printf("Test1:\nTitle:%s\nValue1:%s\nValue2:%s\nValue3:%s\nDescription:%s:\n", lst->title, value1, value2, value3, lst->description);
-		lst = lst->next;
-	}
+//	if (!ft_strncmp("NULL", s, 5))
+//		return (NULL);
+	if (!ft_strncmp("EMPTY", s, 6))
+		return ("");
+	else if (!ft_strncmp("SPACE", s, 6))
+		return ("         ");
+	else
+		return (s);
 }
+
+

@@ -1,24 +1,24 @@
-Null Pointer Test:NULL:Check for handling of NULL input without segmentation fault.
-Empty String Test:EMPTY:Check for correct handling of empty string.
-Whitespace Test:SPACE:Check for correct handling of string with only whitespace.
-Newline Test:\n:Check for correct handling of string with newline character.
-Overflow Test:2147483648:Check for integer overflow with value just above INT_MAX.
-Underflow Test:-2147483649:Check for integer underflow with value just below INT_MIN.
-Hexadecimal Test:0x1A:Check for undefined behavior with hexadecimal input.
-Octal Test:023:Check for undefined behavior with octal input.
-Binary Test:0b1010:Check for undefined behavior with binary input.
-Large Number Test:9999999999:Check for handling of large numbers beyond int range.
-Large Negative Number Test:-9999999999:Check for handling of large negative numbers.
-Medium Length Test:1234567890:Check for correct conversion of 10-digit number.
-Medium Length With Space and Sign Test:  -123456789:Check for handling of spaces and sign with 10-digit number.
-INT_MAX With Leading Zeros Test:002147483647:Check for INT_MAX with leading zeros.
-INT_MIN With Leading Zeros Test:-002147483648:Check for INT_MIN with leading zeros.
-Spaces Before Sign Test:      +123456789:Check for handling of multiple spaces before sign.
-Alphanumeric Test:123456789a123:Check for stopping conversion at non-digit character.
-20 Digits Test:12345678901234567890:Check for handling of 20-digit number.
-30 Digits Test:123456789012345678901234567890:Check for correct conversion of 30-digit number.
-30 Digits Negative Test:-123456789012345678901234567890:Check for correct conversion of 30-digit negative number.
-40 Digits Test:1234567890123456789012345678901234567890:Check for handling of 40-digit number.
-40 Digits Negative Test:-1234567890123456789012345678901234567890:Check for handling of 40-digit negative number.
-50 Digits Test:12345678901234567890123456789012345678901234567890:Check for handling of 50-digit number.
-50 Digits Negative Test:-12345678901234567890123456789012345678901234567890:Check for handling of 50-digit negative number.em
+Null Pointer Test:NULL:The program should not crash and should handle NULL pointers gracefully.
+Empty String Test:EMPTY:The program should return 0 or an appropriate value for empty string inputs.
+Whitespace Test:SPACE:The program should ignore leading whitespace and return an appropriate value.
+Newline Test:\n:The program should handle newline characters correctly, typically by ignoring them or treating them as end of input.
+Overflow Test:2147483648:The program should detect and handle integer overflow, possibly by clamping to INT_MAX or returning an error.
+Underflow Test:-2147483649:The program should detect and handle integer underflow, possibly by clamping to INT_MIN or returning an error.
+Hexadecimal Test:0x1A:The program should either process or reject hexadecimal input correctly, depending on specifications.
+Octal Test:023:The program should either process or reject octal input correctly, depending on specifications.
+Binary Test:0b1010:The program should either process or reject binary input correctly, depending on specifications.
+Large Number Test:9999999999:The program should handle very large numbers, possibly indicating overflow.
+Large Negative Number Test:-9999999999:The program should handle very large negative numbers, possibly indicating underflow.
+Medium Length Test:1234567890:The program should correctly convert medium-length numbers without overflow or error.
+Medium Length With Space and Sign Test:  -123456789:The program should handle spaces and signs correctly, interpreting them as part of the number.
+INT_MAX With Leading Zeros Test:002147483647:The program should recognize and handle INT_MAX value, ignoring leading zeros.
+INT_MIN With Leading Zeros Test:-002147483648:The program should recognize and handle INT_MIN value, ignoring leading zeros.
+Spaces Before Sign Test:      +123456789:The program should correctly interpret numbers with leading spaces and a sign.
+Alphanumeric Test:123456789a123:The program should stop number conversion at the first non-digit character.
+20 Digits Test:12345678901234567890:The program should correctly handle or report overflow for 20-digit numbers.
+30 Digits Test:123456789012345678901234567890:The program should correctly handle or report overflow for 30-digit numbers.
+30 Digits Negative Test:-123456789012345678901234567890:The program should correctly handle or report underflow for 30-digit negative numbers.
+40 Digits Test:1234567890123456789012345678901234567890:The program should correctly handle or report overflow for 40-digit numbers.
+40 Digits Negative Test:-1234567890123456789012345678901234567890:The program should correctly handle or report underflow for 40-digit negative numbers.
+50 Digits Test:12345678901234567890123456789012345678901234567890:The program should correctly handle or report overflow for 50-digit numbers.
+50 Digits Negative Test:-12345678901234567890123456789012345678901234567890:The program should correctly handle or report underflow for 50-digit negative numbers.

@@ -1,0 +1,83 @@
+.TH FT_CALLOC 3 "November 2023" "42 School" "42 Manual"
+.SH NAME
+ft_calloc \- allocate and zero-initialize array
+.SH SYNOPSIS
+.B #include "libft.h"
+.br
+void *ft_calloc(size_t nmemb, size_t size);
+.SH DESCRIPTION
+The
+.B ft_calloc
+function allocates memory for an array of
+.I nmemb
+elements of
+.I size
+bytes each and returns a pointer to the allocated memory. The memory is set to zero. If 
+.I nmemb
+or 
+.I size
+is 0, then 
+.B ft_calloc
+behaves as if the size was 1 for each parameter. If the multiplication of 
+.I nmemb
+and 
+.I size
+would result in integer overflow, 
+.B ft_calloc
+sets 
+.B errno
+to ENOMEM and returns NULL.
+.P
+This function is beneficial for initializing dynamic arrays where both memory allocation and zero initialization are required. It wraps the standard 
+.BR malloc 
+function and the 
+.B ft_bzero 
+function to achieve this functionality.
+.SH RETURN VALUES
+Returns a pointer to the allocated memory, which is suitably aligned for any kind of variable. On error, especially when the integer overflow occurs or memory cannot be allocated, NULL is returned.
+.SH SCHEMATICS
+.RS
+.nf
+                +------------------------+          +--------------------------+
+                |   Function Call with   |          |   ft_calloc Execution   |
+                |    Parameters          |          +--------------------------+
+                +------------------------+          | 1. Check for overflow:   |
+                | ft_calloc(5, sizeof(int)) |       |    (nmemb * size)       |
+                |                        |          |                          |
+                | nmemb: 5               |          | 2. Allocate memory:     |
+                | size: sizeof(int)      |          |    total_size = nmemb * size  |
+                +------------------------+          |    memory = malloc(total_size) |
+                            |                       +--------------------------+
+                            v                       | 3. Initialize memory:   |
+                +------------------------+          |    ft_bzero(memory, total_size) |
+                |    Memory Layout       |          +--------------------------+
+                +------------------------+          |     Return memory       |
+                | Allocated memory:      |          +--------------------------+
+                | Zero-initialized       |
+                +------------------------+
+.fi
+.RE
+.SH CODE ANALYSIS
+The function initially checks for possible integer overflow by comparing SIZE_MAX / nmemb with size. It then calculates the total memory size, allocates it using malloc, and sets the memory to zero using ft_bzero. This implementation ensures safe memory allocation and initialization while handling special cases like zero or very large values for nmemb and size.
+.SH UNDEFINED BEHAVIOR
+Passing extremely large values for nmemb or size can lead to integer overflow during size calculation, resulting in less memory allocation than expected. If this situation is not handled, the function might return a pointer to a smaller memory block than required, leading to potential buffer overflows and data corruption.
+.SH SEGMENTATION FAULT PROTECTION
+To prevent segmentation faults, ft_calloc:
+
+.IP \(bu 2
+Checks for integer overflow when multiplying nmemb and size.
+.IP \(bu 2
+Ensures that memory is only accessed if the malloc call is successful. If malloc fails, NULL is returned, preventing any attempt to access or initialize unallocated memory.
+.SH OPTIMIZATION
+Optimizing ft_calloc involves improving the efficiency of memory allocation and initialization:
+
+.IP \(bu 2
+Efficient Overflow Check: The overflow check should be lightweight and quick to avoid unnecessary overhead.
+.IP \(bu 2
+Memory Initialization: Using efficient zeroing techniques, especially for large memory blocks, can improve performance. This might include using optimized assembly code or hardware-accelerated operations if available.
+.SH SEE ALSO
+.IR malloc(3),
+.IR free(3),
+.IR ft_bzero(3)
+.SH AUTHORS
+Written by jeportie.

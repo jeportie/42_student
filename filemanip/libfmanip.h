@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:03:38 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/05 16:56:40 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:01:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "../libft_project_Nov23/libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_tstlst
 {
@@ -39,9 +39,10 @@ int		ft_fopen(const char *filepath, int option);
 char	*ft_fread(int fd, size_t len);
 int		ft_fclose(int fd);
 //TEST LIST FILE FUNCTIONS
+char		*ft_testfile_option_format(char *s);
 t_tstlst	*ft_load_tests(const char *filepath);
 t_tstlst	*ft_parse_line_to_test(const char *line);
-t_tstlst	*ft_testlst_new(char *title, char **values, char *description);
+t_tstlst	*ft_testlst_new(char *title, char **values, int num_values, char *description);
 void		ft_testlst_add_back(t_tstlst **lst, t_tstlst *new);
 void		ft_testlst_delone(t_tstlst *lst, void (*del)(void*));
 void		ft_testlst_clear(t_tstlst **lst, void (*del)(void*));

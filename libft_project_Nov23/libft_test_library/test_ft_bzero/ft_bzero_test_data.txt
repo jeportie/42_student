@@ -1,0 +1,17 @@
+Null Pointer Test:NULL,0:Check for handling of NULL input without segmentation fault.
+Zero Length Test:DATA,0:Check for correct handling when length is zero.
+Small Data Test:DATA,10:Check for setting a small amount of memory to zero.
+Medium Data Test:DATA,100:Check for setting a medium amount of memory to zero.
+Large Data Test:DATA,1000:Check for setting a large amount of memory to zero.
+All Zero Data Test:ZEROES,50:Check if already zeroed memory remains unchanged.
+Mixed Data Test:MIXED,50:Check for correctly zeroing memory with mixed contents.
+Leading Non-Zero Data Test:LEADNONZERO,50:Check for setting memory to zero after non-zero bytes.
+Trailing Non-Zero Data Test:TRAILNONZERO,50:Check for setting memory to zero before non-zero bytes.
+Full Buffer Test:FULLBUFFER,256:Check for setting a full buffer of varied data to zero.
+Partial Buffer Start Test:PARTIALSTART,30:Check for zeroing the beginning part of the buffer.
+Partial Buffer Middle Test:PARTIALMIDDLE,30:Check for zeroing the middle part of the buffer.
+Partial Buffer End Test:PARTIALEND,30:Check for zeroing the end part of the buffer.
+Odd Length Test:ODDLENGTH,33:Check for handling odd length of data.
+Even Length Test:EVENLENGTH,32:Check for handling even length of data.
+Single Byte Test:SINGLEBYTE,1:Check for setting a single byte to zero.
+Max Size Test:MAXSIZE,65535:Check for setting memory to zero up to the maximum size limit.
