@@ -1,0 +1,19 @@
+Alphanumeric Character Test:a:The function should return a non-zero value indicating true for alphanumeric characters.
+Numeric Character Test:5:The function should return a non-zero value indicating true for numeric characters.
+Uppercase Alphabetic Test:Z:The function should return a non-zero value indicating true for uppercase alphabetic characters.
+Lowercase Alphabetic Test:g:The function should return a non-zero value indicating true for lowercase alphabetic characters.
+Non-Alphanumeric Test:@:The function should return 0, indicating false for non-alphanumeric characters.
+Boundary Test 0:0:The function should correctly identify '0' as a numeric character.
+Boundary Test 9:9:The function should correctly identify '9' as a numeric character.
+Boundary Test A:A:The function should correctly identify 'A' as an uppercase alphabetic character.
+Boundary Test Z:Z:The function should correctly identify 'Z' as an uppercase alphabetic character.
+Boundary Test a:a:The function should correctly identify 'a' as a lowercase alphabetic character.
+Boundary Test z:z:The function should correctly identify 'z' as a lowercase alphabetic character.
+Space Character Test: :The function should return 0, indicating false for space characters.
+Tab Character Test:\t:The function should return 0, indicating false for tab characters.
+Newline Character Test:\n:The function should return 0, indicating false for newline characters.
+Special Character Test:%:The function should return 0, indicating false for special characters like %.
+Extended ASCII Test:ø:The function should return 0, indicating false for extended ASCII characters.
+Negative Value Test:-1:The function should return 0, indicating false for negative values.
+Max Int Test:INT_MAX:The function should handle the maximum int value like libc, 0 = protected -1 = SEGFAULT.
+Min Int Test:INT_MIN:The function should handle the minimum int value like libc, 0 = protected -1 = SEGFAULT.

@@ -15,10 +15,10 @@ INT_MAX With Leading Zeros Test:002147483647:The program should recognize and ha
 INT_MIN With Leading Zeros Test:-002147483648:The program should recognize and handle INT_MIN value, ignoring leading zeros.
 Spaces Before Sign Test:      +123456789:The program should correctly interpret numbers with leading spaces and a sign.
 Alphanumeric Test:123456789a123:The program should stop number conversion at the first non-digit character.
-20 Digits Test:12345678901234567890:The program should correctly handle or report overflow for 20-digit numbers.
-30 Digits Test:123456789012345678901234567890:The program should correctly handle or report overflow for 30-digit numbers.
-30 Digits Negative Test:-123456789012345678901234567890:The program should correctly handle or report underflow for 30-digit negative numbers.
-40 Digits Test:1234567890123456789012345678901234567890:The program should correctly handle or report overflow for 40-digit numbers.
-40 Digits Negative Test:-1234567890123456789012345678901234567890:The program should correctly handle or report underflow for 40-digit negative numbers.
-50 Digits Test:12345678901234567890123456789012345678901234567890:The program should correctly handle or report overflow for 50-digit numbers.
-50 Digits Negative Test:-12345678901234567890123456789012345678901234567890:The program should correctly handle or report underflow for 50-digit negative numbers.
+#20 Digits Test:12345678901234567890:The program should correctly handle or report overflow for 20-digit numbers.
+#30 Digits Test:123456789012345678901234567890:The program should correctly handle or report overflow for 30-digit numbers.
+#30 Digits Negative Test:-123456789012345678901234567890:The program should correctly handle or report underflow for 30-digit negative numbers.
+#40 Digits Test:1234567890123456789012345678901234567890:The program should correctly handle or report overflow for 40-digit numbers.
+#40 Digits Negative Test:-1234567890123456789012345678901234567890:The program should correctly handle or report underflow for 40-digit negative numbers.
+#50 Digits Test:12345678901234567890123456789012345678901234567890:The program should correctly handle or report overflow for 50-digit numbers.
+#50 Digits Negative Test:-12345678901234567890123456789012345678901234567890:The program should correctly handle or report underflow for 50-digit negative numbers.
