@@ -6,7 +6,7 @@
 /*   By: JeromeP <JeromeP@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 14:21:56 by JeromeP           #+#    #+#             */
-/*   Updated: 2023/12/08 18:59:56 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:54:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(void)
 	printf("FT_ATOI TEST:\n");
 	while (lst->next)
 	{
+		printf("Test %i: ", i);
         ft_test_function(lst, atoi, ft_atoi, ARG_STRING);
 		i++;
 		lst = lst->next;

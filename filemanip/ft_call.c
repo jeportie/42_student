@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_call.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 16:52:49 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/09 13:05:13 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/09 13:39:17 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/09 15:07:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../function_libraries/libfmanip.h"
-#include "../function_libraries/libft.h"
+#include "libfmanip.h"
 
-int	main(void)
+func_int_int ft_call_ft(const char *name, int lib)
 {
-	t_tstlst	*lst;
-	int		i;
+	int	i;
+	int	name_len;
 
-	lst = ft_load_tests("ft_isalpha_test_data.txt");
-	if (!lst)
-		exit(EXIT_FAILURE);
-	i = 1;
-	printf("FT_ISALPHA TEST:\n");
-	while (lst->next)
+	i = 0;
+	name_len = ft_strlen(name) + 1;
+	while (g_func_map_int_int[i].name)
 	{
-        ft_test_function(lst, isalpha, ft_isalpha, ARG_INT);
+		if (ft_strncmp(name, g_func_map_int_int[i].name, name_len))
+		{
+			if (lib == LIBC)
+				return (g_func_map_int_int[i].libc_func);
+			else
+				return (g_func_map_int_int[i].ft_func);
+		}
 		i++;
-		lst = lst->next;
 	}
-	ft_test_function(lst, isalpha, ft_isalpha, ARG_INT);
-    return (0);
+	return NULL;
 }
