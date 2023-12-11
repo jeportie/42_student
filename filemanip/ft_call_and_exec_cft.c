@@ -6,11 +6,14 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:06:54 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/09 15:07:42 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/10 18:48:04 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
+/*
+ * WAIT PRINTF TO UPGRADE TO VARIADIC FUNCTION 
+*/
 
 int	ft_call_and_exec_cft(const char *name, int arg, int lib)
 {
@@ -19,14 +22,14 @@ int	ft_call_and_exec_cft(const char *name, int arg, int lib)
 
 	i = 0;
 	name_len = ft_strlen(name) + 1;
-	while (g_func_map_int_int[i].name)
+	while (g_func_map_int[i].name)
 	{
-		if (!ft_strncmp(name, g_func_map_int_int[i].name, name_len))
+		if (!ft_strncmp(name, g_func_map_int[i].name, name_len))
 		{
 			if (lib == LIBC)
-				return (g_func_map_int_int[i].libc_func(arg));
+				return (g_func_map_int[i].libc_func(arg));
 			else
-				return (g_func_map_int_int[i].ft_func(arg));
+				return (g_func_map_int[i].ft_func(arg));
 		}
 		i++;
 	}

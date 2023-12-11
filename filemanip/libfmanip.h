@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:03:38 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/09 15:16:38 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:09:33 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <ctype.h>
 # include <signal.h>
 # include <sys/wait.h>
+# include <string.h>
 # include "../libft/libft.h"
 
 typedef struct s_tstlst
@@ -38,28 +39,50 @@ typedef struct s_tstlst
 typedef enum
 {
 	ARG_INT,
-	ARG_STRING
-}t_arg;
+	ARG_STRING,
+	ARG_CONST_VOID,
+	ARG_CONST_STRING,
+	ARG_SIZE_T,
+	ARG_UNKNOWN = -1
+}	t_arg;
 
-// Function pointer type for int func(int)
-typedef int (*func_int_int)(int);
+typedef enum
+{
+	SEGFAULT = -666
+}	t_segfault;
+
+// Function pointer type to be more easy to handle.
+typedef int		(*func_int)();
+typedef char	*(*func_char)();
 
 // Function map structure
-typedef struct s_funcmap_int_int
+typedef struct s_funcmap_int
 {
-    const char		*name;
-    func_int_int	ft_func;
-    func_int_int	libc_func;
-} 					t_funcmap_int_int;
+    const char	*name;
+    func_int	ft_func;
+    func_int	libc_func;
+	t_arg		*arg_types;
+} 				t_funcmap_int;
+
+typedef struct s_funcmap_char
+{
+	const char	*name;
+	func_char	ft_func;
+	func_char	libc_func;
+	t_arg		*arg_types;
+}				t_funcmap_char;
 
 // Function Map Array
-extern t_funcmap_int_int g_func_map_int_int[]; 
+extern			t_funcmap_int g_func_map_int[]; 
+extern			t_funcmap_char g_func_map_char[]; 
 
-//FUNCTION THAT OPEN AND CLOSES THE FILE INSIDE THE FUNCTION
+//EXTRA LIBFT
+void 			ft_strtoupper(char *str);
+
+//FUNCTIONS FILE MANIP
 size_t		    ft_filesize(const char *filepath);
 int			    ft_count_flines(const char *filepath);
 char		    **ft_flines_to_str(const char *filepath);
-//FUNCTION THAT WORKS WITH THE FILE DESCRIPTOR OF AN OPEN FILE
 int			    ft_fopen(const char *filepath, int option);
 char		    *ft_fread(int fd, size_t len);
 int			    ft_fclose(int fd);
@@ -74,8 +97,18 @@ void		    ft_testlst_clear(t_tstlst **lst, void (*del)(void*));
 void		    ft_print_testlst(t_tstlst *lst);
 void		    ft_free_memory(char **tab, size_t i);
 void		    ft_free_node(void *node);
-void 		    ft_test_function(t_tstlst *lst, int (*libc_func)(), int (*ft_func)(),t_arg arg_type);
+//TEST MANIP
 int	            ft_call_and_exec_cft(const char *name, int arg, int lib);
-func_int_int    ft_call_ft(const char *name, int lib);
+func_int	    ft_call_ft(const char *name, int lib);
+t_arg			*ft_find_ftparam_type(const char *name);
+int				ft_run_test(const char *func_name);
+void 			ft_test_for_int(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
+void			ft_test_for_str(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
+void 			ft_test_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
+void 			ft_test_for_ccz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
+int  			ft_tester_int(int (*f)(), int value);
+int  			ft_tester_str(int (*f)(), char *value);
+int  			ft_tester_vvz(int (*f)(), void *value1, void *value2, size_t value3);
+int  			ft_tester_ssz(int (*f)(), char *value1, char *value2, size_t value3);
 
 #endif /*FILEMANIP_H*/

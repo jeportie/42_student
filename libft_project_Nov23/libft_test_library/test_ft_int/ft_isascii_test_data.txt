@@ -1,0 +1,13 @@
+ASCII Character Test 1:0:The function should return a non-zero value indicating true for ASCII characters.
+ASCII Character Test 2:127:The function should return a non-zero value indicating true for ASCII characters.
+Non-ASCII Character Test 1:128:The function should return 0, indicating false for non-ASCII characters.
+Non-ASCII Character Test 2:255:The function should return 0, indicating false for non-ASCII characters.
+Lower Boundary Test:0:The function should correctly identify the lower boundary of ASCII characters.
+Upper Boundary Test:127:The function should correctly identify the upper boundary of ASCII characters.
+Extended ASCII Test:ø:The function should return 0, indicating false for extended ASCII characters.
+Space Character Test: :The function should return a non-zero value for space characters, which are part of ASCII.
+Tab Character Test:\t:The function should return a non-zero value for tab characters, which are part of ASCII.
+Newline Character Test:\n:The function should return a non-zero value for newline characters, which are part of ASCII.
+Special Character Test:%:The function should return a non-zero value for special characters like %, which are part of ASCII.
+Max Int Test:INT_MAX:The function should handle the maximum int value correctly.
+Min Int Test:INT_MIN:The function should handle the minimum int value correctly.

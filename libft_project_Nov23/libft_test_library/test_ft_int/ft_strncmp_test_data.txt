@@ -1,0 +1,29 @@
+Equal Strings Test:abcdef,abcdef,3:The function should return 0, indicating the first 3 characters of the strings are equal.
+Unequal Strings Test:abcdef,abcxyz,3:The function should return 0, indicating the first 3 characters are equal despite later differences.
+Partial Match Test:abc,abcdef,6:The function should return a non-zero value as the first string is shorter.
+No Match Test:abc,xyz,3:The function should return a non-zero value as the strings are completely different.
+Empty String Test:EMPTY,xyz,3:The function should return a non-zero value as an empty string and 'xyz' are different.
+Empty String Equal Test:abc,EMPTY,3:The function should return a non-zero value as 'abc' and an empty string are different.
+Both Empty Strings Test:EMPTY,EMPTY,0:The function should return 0 as both strings are empty.
+Non-Printable Characters Test:\0\0\0,\0\0\0,3:The function should return 0 as non-printable characters match.
+Different Length First Shorter Test:ab,abc,3:The function should return a non-zero value as the first string is shorter.
+Different Length Second Shorter Test:abc,ab,3:The function should return a non-zero value as the second string is shorter.
+Max Int Length Test:abc,abc,INT_MAX:The function should handle comparison up to maximum integer length safely.
+Min Int Length Test:abc,abc,INT_MIN:The function should handle negative length as an error or zero comparison.
+NULL Pointer First Test:NULL,abc,3:The function should handle null pointer dereferencing.
+NULL Pointer Second Test:abc,NULL,3:The function should handle null pointer dereferencing.
+Zero Length Test:abc,xyz,0:The function should return 0 as the length of comparison is zero.
+Case Sensitivity Test:abc,ABC,3:The function should return a non-zero value, showing that strncmp is case-sensitive.
+Length Longer Than String Test:abc,abcdef,6:The function should handle cases where the comparison length exceeds the actual string length, potentially returning non-zero.
+Unicode Characters Test:ümlaut,ümlaut,7:The function should correctly compare strings with Unicode characters.
+Identical Non-String Data Test:\x01\x02\x03,\x01\x02\x03,3:The function should return 0 for non-string but identical data.
+Different Non-String Data Test:\x01\x02\x03,\x01\x02\x04,3:The function should return a non-zero value for non-string and different data.
+Negative Length with Non-Empty Strings Test:abc,def,-3:The function should handle negative length with non-empty strings as an error or zero comparison.
+Boundary Test with Non-Printable Characters:\x00\x01\x02,\x00\x01\x02,3:The function should return 0 for matching non-printable character sequences.
+Substring Test:abcdefg,abcde,5:The function should return 0 as the first 5 characters match.
+Different Case Sensitivity Test:abcde,ABCDE,5:The function should return a non-zero value, indicating case sensitivity.
+Special Characters Test:abc#def,abc#xyz,7:The function should return a non-zero value, indicating different special characters.
+White Space Test:abc def,abc def,7:The function should return 0, indicating white space is handled.
+Tab Character Test:abc\tdef,abc\tdef,7:The function should return 0, indicating tab characters are handled.
+Newline Character Test:abc\ndef,abc\ndef,7:The function should return 0, indicating newline characters are handled.
+Length Zero with Different Strings:abc,xyz,0:The function should return 0, as no characters are compared.

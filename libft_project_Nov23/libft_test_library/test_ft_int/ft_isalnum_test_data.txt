@@ -15,5 +15,5 @@ Newline Character Test:\n:The function should return 0, indicating false for new
 Special Character Test:%:The function should return 0, indicating false for special characters like %.
 Extended ASCII Test:ø:The function should return 0, indicating false for extended ASCII characters.
 Negative Value Test:-1:The function should return 0, indicating false for negative values.
-Max Int Test:INT_MAX:The function should handle the maximum int value like libc, 0 = protected -1 = SEGFAULT.
-Min Int Test:INT_MIN:The function should handle the minimum int value like libc, 0 = protected -1 = SEGFAULT.
+Max Int Test:INT_MAX:The function should handle the maximum int value like libc.
+Min Int Test:INT_MIN:The function should handle the minimum int value like libc.

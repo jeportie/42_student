@@ -1,0 +1,18 @@
+Numeric Character Test 0:0:The function should return a non-zero value indicating true for numeric characters.
+Numeric Character Test 1:1:The function should return a non-zero value indicating true for numeric characters.
+Numeric Character Test 2:2:The function should return a non-zero value indicating true for numeric characters.
+Numeric Character Test 3:3:The function should return a non-zero value indicating true for numeric characters.
+Numeric Character Test 4:4:The function should return a non-zero value indicating true for numeric characters.
+Numeric Character Test 5:5:The function should return a non-zero value indicating true for numeric characters.
+Numeric Character Test 6:6:The function should return a non-zero value indicating true for numeric characters.
+Numeric Character Test 7:7:The function should return a non-zero value indicating true for numeric characters.
+Numeric Character Test 8:8:The function should return a non-zero value indicating true for numeric characters.
+Numeric Character Test 9:9:The function should return a non-zero value indicating true for numeric characters.
+Non-Numeric Character Test A:A:The function should return 0, indicating false for non-numeric characters.
+Non-Numeric Character Test z:z:The function should return 0, indicating false for non-numeric characters.
+Non-Numeric Character Test @:@:The function should return 0, indicating false for non-numeric characters.
+Space Character Test: :The function should return 0, indicating false for space characters.
+Tab Character Test:\t:The function should return 0, indicating false for tab characters.
+Newline Character Test:\n:The function should return 0, indicating false for newline characters.
+Max Int Test:INT_MAX:The function should handle the maximum int value correctly.
+Min Int Test:INT_MIN:The function should handle the minimum int value correctly.

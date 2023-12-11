@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 16:52:49 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/09 13:05:13 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/08 12:37:04 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/10 18:45:37 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,10 @@
 
 int	main(void)
 {
-	t_tstlst	*lst;
-	int		i;
+	char	func_name[100];
 
-	lst = ft_load_tests("ft_isalpha_test_data.txt");
-	if (!lst)
-		exit(EXIT_FAILURE);
-	i = 1;
-	printf("FT_ISALPHA TEST:\n");
-	while (lst->next)
-	{
-        ft_test_function(lst, isalpha, ft_isalpha, ARG_INT);
-		i++;
-		lst = lst->next;
-	}
-	ft_test_function(lst, isalpha, ft_isalpha, ARG_INT);
-    return (0);
+	printf("Enter the function name :");
+	scanf("%99s", func_name);
+	ft_run_test(func_name);
+	return (0);
 }

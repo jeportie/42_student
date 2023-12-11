@@ -1,0 +1,14 @@
+Lowercase To Uppercase Test a:A:The function should convert lowercase 'a' to uppercase.
+Lowercase To Uppercase Test b:B:The function should convert lowercase 'b' to uppercase.
+Lowercase To Uppercase Test z:Z:The function should convert lowercase 'z' to uppercase.
+Uppercase Character Test A:A:The function should return the uppercase character unchanged.
+Uppercase Character Test Z:Z:The function should return the uppercase character unchanged.
+Non-Alphabetic Test 1:1:The function should return non-alphabetic characters unchanged.
+Non-Alphabetic Test @:@:The function should return non-alphabetic characters unchanged.
+Non-Alphabetic Test #:#:The function should return non-alphabetic characters unchanged.
+Space Character Test :SPACE:The function should return space character unchanged.
+Tab Character Test \t:\t:The function should return tab character unchanged.
+Newline Character Test \n:\n:The function should return newline character unchanged.
+Extended ASCII Test ø:ø:The function should handle extended ASCII characters correctly.
+Max Int Test INT_MAX:INT_MAX:The function should handle the maximum int value correctly.
+Min Int Test INT_MIN:INT_MIN:The function should handle the minimum int value correctly.
