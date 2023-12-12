@@ -6,13 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:07:14 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/11 17:35:04 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:47:59 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
 
-void ft_test_for_int(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
+void ft_inttest_for_int(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
 {
     int result; 
     int ft_result;
@@ -26,8 +26,8 @@ void ft_test_for_int(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
        value = INT_MAX;
     else
         value = ft_atoi(ft_testfile_option_format(lst->test_values[0]));
-    result = ft_tester_int(libc_func, value);
-    ft_result = ft_tester_int(ft_func, value);
+    result = ft_inttester_int(libc_func, value);
+    ft_result = ft_inttester_int(ft_func, value);
     if (ft_result == result)
         printf("%s: OK!\n", lst->title);
     if (result == SEGFAULT && ft_result == SEGFAULT)
@@ -47,7 +47,7 @@ void ft_test_for_int(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
     }
 }
 
-void ft_test_for_str(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
+void ft_inttest_for_str(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
 {
     int     result; 
     int     ft_result;
@@ -57,8 +57,8 @@ void ft_test_for_str(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
         value = NULL;
     else
         value = ft_testfile_option_format(lst->test_values[0]);
-    result = ft_tester_str(libc_func, value);
-    ft_result = ft_tester_str(ft_func, value);
+    result = ft_inttester_str(libc_func, value);
+    ft_result = ft_inttester_str(ft_func, value);
     if (ft_result == result)
         printf("%s: OK!\n", lst->title);
     if (result == SEGFAULT && ft_result == SEGFAULT)
@@ -78,7 +78,7 @@ void ft_test_for_str(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
     }
 }
 
-void ft_test_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
+void ft_inttest_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
 {
     int     result; 
     int     ft_result;
@@ -95,8 +95,8 @@ void ft_test_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
     else
         value2 = ft_testfile_option_format(lst->test_values[1]);
     value3 = ft_atoi(ft_testfile_option_format(lst->test_values[2]));
-    result = ft_tester_vvz(libc_func, value1, value2, value3);
-    ft_result = ft_tester_vvz(ft_func, value1, value2, value3);
+    result = ft_inttester_vvz(libc_func, value1, value2, value3);
+    ft_result = ft_inttester_vvz(ft_func, value1, value2, value3);
     if (ft_result == result)
         printf("%s: OK!\n", lst->title);
     if (result == SEGFAULT && ft_result == SEGFAULT)
@@ -116,7 +116,7 @@ void ft_test_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
     }
 }
 
-void ft_test_for_ccz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
+void ft_inttest_for_ssz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
 {
     int     result; 
     int     ft_result;
@@ -133,8 +133,8 @@ void ft_test_for_ccz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
     else
         value2 = ft_testfile_option_format(lst->test_values[1]);
     value3 = ft_atoi(ft_testfile_option_format(lst->test_values[2]));
-    result = ft_tester_vvz(libc_func, value1, value2, value3);
-    ft_result = ft_tester_vvz(ft_func, value1, value2, value3);
+    result = ft_inttester_vvz(libc_func, value1, value2, value3);
+    ft_result = ft_inttester_vvz(ft_func, value1, value2, value3);
     if (ft_result == result)
         printf("%s: OK!\n", lst->title);
     if (result == SEGFAULT && ft_result == SEGFAULT)

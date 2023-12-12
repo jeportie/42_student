@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/28 03:01:03 by jeportie          #+#    #+#              #
-#    Updated: 2023/12/10 18:51:53 by jeportie         ###   ########.fr        #
+#    Updated: 2023/12/12 14:26:16 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = ft_count_flines.c ft_fclose.c ft_filesize.c ft_flines_to_str.c \
       ft_testlst_new.c ft_testfile_option_format.c ft_test_function.c \
 	  ft_call.c ft_call_and_exec_cft.c libfmanip_globals.c\
 	  ft_find_ftparam_type.c ft_strtoupper.c ft_segfault_check.c ft_run_test.c\
+	  ft_char_test_functions.c ft_strtester.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,0 +1,21 @@
+Basic Duplication Test:hello:The function should return a new string that is a duplicate of 'hello'.
+Empty String Test:EMPTY:The function should return a new string that is a duplicate of an empty string.
+Long String Test:abcdeabcdefabcdefgabcdefghabcedfgabcedfggsddhisuhidwidgfeiwfiurgiuhoiuwiugiayufhrhfiuywgyduwhiuegyueowuhugqyusiwfouhruigiugeruyugyuegiuwgeigfiuhrit5645645645464654684864878fheuhuohuohouehuihruigyuggiuyguygweuhufiheiugwyeiufiugfiergirgrfiueguiwgeiugruiegurigeurgeugfyeyufgeyifgyweguifguegyfeyfgyegyfegfygygyugyuguygyufyufyufuyfyfuygyu76873784687378267483tryugreyugfyueyugyutyut7869698u8yuuyfyuftutruytuyruyjguihihguihuoijlnjnionktpmiotmyioijijgioreoithiorjgijeriohiogjerioghiorejgiojrpohjtiopjhitjiojyiotjiojiohiuohiohiorthuihriuthourouehiuhutihuihuihuihuiuihuihuihudgigwuihufhuihuihuibhuhguihuihuirhfihruibuhnuhuirhfuierhuifheruihuirhuirhuighruihuighuirhuihuirhguihruighuihguirhughrughuirhgurhguhuighreuighuierhruihurhguihreuighreuihgurhguierhuirehgurehguihrughruighruihguirehguiehruirhuihvuhuvhbuihuhiuhuichucihcuihcuihuifhuirehguierhguirhughuhuhuhfuehrhfhriogoijiojoinonijijkkjrgltrjhjjhjhkrhghhjghirhiorhohiojhiihijioghorhgorhgoijijooihgihgihroihoihrijiohirhirhoiuhiuhiuhuihiorihoihojiouhoehronjoghhihihifijivhu878784784758748%*^*&^%$%%^%%^%$#&&$$^$%$%$&^%^%*%&*$%^$&^%&*%*%IUHUIOhohoihroigjtoihiotrhiorhtioghtiohgtiorghiotghtiorhgiorhtgiohtioghtihgithgioghriohgithrioghtioghtoihroihgiobhtoitgo8ygoh^^(*^hioiohioyioyoiyioyioryioryioyrioyrioyrioryioryioyoioppotjhpiytmmpohttjiohjtpptojhpojthpojtophjijio(*&(&(*&*&jfjfjkhfjhfjkhfjfhhfjkhjkhjugfkhufhugdfukfhukrfkrukhukerhukehrueh))))x:The function should correctly duplicate a very long string without errors.
+Non-Printable Characters Test:\x01\x02\x03:The function should duplicate a string containing non-printable characters.
+Unicode Characters Test:こんにちは:The function should correctly duplicate a string with Unicode characters.
+NULL Pointer Test:NULL:The function should return NULL when the input string is a NULL pointer.
+Single Character Test:a:The function should duplicate a string consisting of a single character.
+Repeated Characters Test:aaaaa:The function should duplicate a string with repeated characters.
+Mixed Characters Test:1a2b3c:The function should duplicate a string with a mix of alphanumeric characters.
+All ASCII Characters Test: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹Œ�Ž��‘’“”•–—˜™š›œ�žŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ:The function should duplicate a string containing all ASCII characters.
+Newline Characters Test:\n\n\n:The function should duplicate a string containing newline characters.
+Tab Characters Test:\t\t\t:The function should duplicate a string containing tab characters.
+Space Characters Test:SPACES:The function should duplicate a string containing space characters.
+Special Characters Test:!@#$%^&*():The function should duplicate a string with special characters.
+Control Characters Test:\x01\x02\x03\x04\x05:The function should duplicate a string containing control characters.
+Extended ASCII Characters Test:øæåé:The function should duplicate a string with extended ASCII characters.
+Case Sensitivity Test:AbCdEf:The function should maintain case sensitivity in the duplicated string.
+Buffer Overflow Test:BUFFEROVERFLOW:The function should not cause buffer overflow when duplicating a string.
+Inverse Null Character Test:abc\0def:The function should stop duplicating at the null character, even if characters follow it.
+Embedded Null Character Test:ab\0cd:The function should stop duplicating at the first null character in the string.
+Very Short String Test:x:The function should correctly duplicate a very short string.

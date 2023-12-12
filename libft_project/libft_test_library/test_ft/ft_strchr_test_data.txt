@@ -1,0 +1,31 @@
+Character Found Test:abcdef,g:The function should return NULL as 'g' is not in the string.
+Character At Beginning Test:abcdef,a:The function should return a pointer to the beginning of the string, as 'a' is the first character.
+Character At End Test:abcdef,f:The function should return a pointer to the last character of the string, as 'f' is the last character.
+Character In Middle Test:abcdef,c:The function should return a pointer to the 'c' character within the string.
+Not Found Character Test:abcdef,x:The function should return NULL, as 'x' is not in the string.
+Empty String Test:EMPTY,a:The function should return NULL when searching in an empty string.
+Search Null Character Test:abc\0def,\0:The function should return a pointer to the null character within the string.
+Non-Printable Character Test:\x01\x02\x03,\x02:The function should return a pointer to the non-printable character '\x02' in the string.
+String Ending With Null Test:abcdef\0,g:The function should return NULL as 'g' is not in the string before the null terminator.
+Search For Null In Empty String:EMPTY,\0:The function should return a pointer to the null terminator in the empty string.
+First Occurrence Test:abacadae,a:The function should return a pointer to the first 'a' character.
+NULL Pointer String Test:NULL,a:The function should handle a NULL pointer for the string by returning NULL.
+Search Space Character Test:abc def, :The function should return a pointer to the space character in the string.
+Search Tab Character Test:abc\tdef,\t:The function should return a pointer to the tab character in the string.
+Search Newline Character Test:abc\ndef,\n:The function should return a pointer to the newline character in the string.
+Search Extended ASCII Test:abcødef,ø:The function should return a pointer to the extended ASCII character 'ø' in the string.
+Search First Character Test:abcdef,a:The function should return a pointer to the first character when searching for it.
+Search Last Character Test:abcdef,f:The function should return a pointer to the last character when searching for it.
+Search Beyond String Test:abcdef,z:The function should return NULL when searching for a character not present in the string.
+Repeated Character Test:aaaab, :The function should return a pointer to the first occurrence of ' ' in a string with repeated characters.
+Mixed Characters Test:1a2b3c4d,e:The function should return NULL as 'e' is not in the mixed characters string.
+Unicode Characters Test:こんにちは,に:The function should return a pointer to the 'に' character in a string with Unicode characters.
+Case Sensitivity Test:AbCdEf,G:The function should return NULL, highlighting case sensitivity in the search.
+Search First Occurrence Among Duplicates:banana,n:The function should return a pointer to the first 'n' character among duplicates.
+Search Character Not In ASCII Range:abc\x80\x81\x82,\x81:The function should return a pointer to the character not in the standard ASCII range.
+Buffer Overflow Test:abcde\0fghijklm,m:The function should not read beyond the null terminator, preventing buffer overflow.
+Inverse Null Character Test:abc\0def,a:The function should still find 'a' even if there's an earlier null character.
+Control Characters Test:\x01\x02\x03\x04\x05,x:The function should return NULL when searching for a normal character in a string of control characters.
+INT_MIN test:asigdsdius,INT_MIN:This function should properly handle INT_MIN.
+INT_MAX test:asigdsdius,INT_MAX:This function should properly handle INT_MAX.
+Long String Test (with hundreads of characters):abcdeabcdefabcdefgabcdefghabcedfgabcedfggsddhisuhidwidgfeiwfiurgiuhoiuwiugiayufhrhfiuywgyduwhiuegyueowuhugqyusiwfouhruigiugeruyugyuegiuwgeigfiuhrit5645645645464654684864878fheuhuohuohouehuihruigyuggiuyguygweuhufiheiugwyeiufiugfiergirgrfiueguiwgeiugruiegurigeurgeugfyeyufgeyifgyweguifguegyfeyfgyegyfegfygygyugyuguygyufyufyufuyfyfuygyu76873784687378267483tryugreyugfyueyugyutyut7869698u8yuuyfyuftutruytuyruyjguihihguihuoijlnjnionktpmiotmyioijijgioreoithiorjgijeriohiogjerioghiorejgiojrpohjtiopjhitjiojyiotjiojiohiuohiohiorthuihriuthourouehiuhutihuihuihuihuiuihuihuihudgigwuihufhuihuihuibhuhguihuihuirhfihruibuhnuhuirhfuierhuifheruihuirhuirhuighruihuighuirhuihuirhguihruighuihguirhughrughuirhgurhguhuighreuighuierhruihurhguihreuighreuihgurhguierhuirehgurehguihrughruighruihguirehguiehruirhuihvuhuvhbuihuhiuhuichucihcuihcuihuifhuirehguierhguirhughuhuhuhfuehrhfhriogoijiojoinonijijkkjrgltrjhjjhjhkrhghhjghirhiorhohiojhiihijioghorhgorhgoijijooihgihgihroihoihrijiohirhirhoiuhiuhiuhuihiorihoihojiouhoehronjoghhihihifijivhu878784784758748%*^*&^%$%%^%%^%$#&&$$^$%$%$&^%^%*%&*$%^$&^%&*%*%IUHUIOhohoihroigjtoihiotrhiorhtioghtiohgtiorghiotghtiorhgiorhtgiohtioghtihgithgioghriohgithrioghtioghtoihroihgiobhtoitgo8ygoh^^(*^hioiohioyioyoiyioyioryioryioyrioyrioyrioryioryioyoioppotjhpiytmmpohttjiohjtpptojhpojthpojtophjijio(*&(&(*&*&jfjfjkhfjhfjkhfjfhhfjkhjkhjugfkhufhugdfukfhukrfkrukhukerhukehrueh))))x,x:The function should correctly search within a very long string.

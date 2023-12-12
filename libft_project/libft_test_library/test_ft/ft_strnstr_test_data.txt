@@ -1,0 +1,24 @@
+Basic Search Test:hello,lo,5:The function should find 'lo' in 'hello'.
+Search at Start Test:hello,he,5:The function should find 'he' at the start of 'hello'.
+Search at End Test:hello,lo,5:The function should find 'lo' at the end of 'hello'.
+Search Entire String Test:hello,hello,5:The function should find 'hello' within itself.
+#Not Found Test:hello,world,5:The function should return NULL when 'world' is not found in 'hello'.
+Empty Needle Test:hello,EMPTY,5:The function should return the haystack when the needle is empty.
+#Empty Haystack Test:EMPTY,world,0:The function should return NULL when the haystack is empty.
+Long Needle Test:hello,longneedle,5:The function should return NULL when the needle is longer than the haystack.
+Long Haystack Test:verylonghaystack,lo,15:The function should find 'lo' in a longer haystack.
+Partial Match Test:hello,hellooo,5:The function should return NULL when the haystack partially matches the needle.
+Exact Length Test:hello,hello,5:The function should find 'hello' when the length matches exactly.
+NULL Haystack Test:NULL,lo,5:The function should return NULL when the haystack is NULL.
+NULL Needle Test:hello,NULL,5:The function should return NULL when the needle is NULL.
+Both NULL Test:NULL,NULL,0:The function should return NULL when both haystack and needle are NULL.
+Non-Printable Characters Test:\x01\x02\x03,\x02,3:The function should find non-printable characters in the haystack.
+Unicode Characters Test:こんにちは,にち,5:The function should find 'にち' in 'こんにちは'.
+Boundary Condition Test:abcdefg,cd,7:The function should find 'cd' near the boundary of the specified length.
+Length Zero Test:hello,lo,0:The function should return NULL when the length is zero.
+Length Exceeds Haystack Test:hello,lo,10:The function should find 'lo' even if the length exceeds the haystack length.
+Case Sensitivity Test:Hello,hello,5:The function should consider case sensitivity and return NULL for mismatched cases.
+Inverse Null Character Test:ab\0cd,cd,5:The function should stop at the null character and not find 'cd'.
+Embedded Null Character Test:ab\0cd,ab,5:The function should find 'ab' before the null character.
+Max Int Length Test:hello,lo,INT_MAX:The function should handle very large length values correctly.
+Min Int Length Test:hello,lo,INT_MIN:The function should handle negative length values as zero or error.

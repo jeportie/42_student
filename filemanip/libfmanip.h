@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:03:38 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/11 17:09:33 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/12 16:13:41 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <signal.h>
 # include <sys/wait.h>
 # include <string.h>
+# include <bsd/string.h>
 # include "../libft/libft.h"
 
 typedef struct s_tstlst
@@ -48,12 +49,19 @@ typedef enum
 
 typedef enum
 {
+	RETURN_INT,
+	RETURN_STR,
+	RETURN_VOID
+}	t_return;
+
+typedef enum
+{
 	SEGFAULT = -666
 }	t_segfault;
 
 // Function pointer type to be more easy to handle.
 typedef int		(*func_int)();
-typedef char	*(*func_char)();
+typedef char	*(*func_str)();
 
 // Function map structure
 typedef struct s_funcmap_int
@@ -64,17 +72,17 @@ typedef struct s_funcmap_int
 	t_arg		*arg_types;
 } 				t_funcmap_int;
 
-typedef struct s_funcmap_char
+typedef struct s_funcmap_str
 {
 	const char	*name;
-	func_char	ft_func;
-	func_char	libc_func;
+	func_str	ft_func;
+	func_str	libc_func;
 	t_arg		*arg_types;
-}				t_funcmap_char;
+}				t_funcmap_str;
 
 // Function Map Array
 extern			t_funcmap_int g_func_map_int[]; 
-extern			t_funcmap_char g_func_map_char[]; 
+extern			t_funcmap_str g_func_map_str[]; 
 
 //EXTRA LIBFT
 void 			ft_strtoupper(char *str);
@@ -99,16 +107,23 @@ void		    ft_free_memory(char **tab, size_t i);
 void		    ft_free_node(void *node);
 //TEST MANIP
 int	            ft_call_and_exec_cft(const char *name, int arg, int lib);
-func_int	    ft_call_ft(const char *name, int lib);
+func_int	    ft_call_func_int(const char *name, int lib);
+func_str 		ft_call_func_str(const char *name, int lib);
 t_arg			*ft_find_ftparam_type(const char *name);
+t_return		ft_find_ftreturn_type(const char *name);
 int				ft_run_test(const char *func_name);
-void 			ft_test_for_int(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
-void			ft_test_for_str(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
-void 			ft_test_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
-void 			ft_test_for_ccz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
-int  			ft_tester_int(int (*f)(), int value);
-int  			ft_tester_str(int (*f)(), char *value);
-int  			ft_tester_vvz(int (*f)(), void *value1, void *value2, size_t value3);
-int  			ft_tester_ssz(int (*f)(), char *value1, char *value2, size_t value3);
-
+void 			ft_inttest_for_int(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
+void			ft_inttest_for_str(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
+void 			ft_inttest_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
+void 			ft_inttest_for_ssz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
+int  			ft_inttester_int(int (*f)(), int value);
+int  			ft_inttester_str(int (*f)(), char *value);
+int  			ft_inttester_vvz(int (*f)(), void *value1, void *value2, size_t value3);
+int  			ft_inttester_ssz(int (*f)(), char *value1, char *value2, size_t value3);
+void 			ft_chartest_for_str(func_str libc_func, func_str ft_func, t_tstlst *lst);
+void 			ft_chartest_for_si(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst);
+void			ft_chartest_for_ssz(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst);
+char			*ft_strtester_str(char *(*f)(), char *value);
+char			*ft_strtester_si(char *(*f)(), char *value1, int value2);
+char			*ft_strtester_ssz(char *(*f)(), char *value1, char *value2, size_t value3);
 #endif /*FILEMANIP_H*/

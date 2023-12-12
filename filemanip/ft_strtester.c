@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_segfault_check.c                                :+:      :+:    :+:   */
+/*   ft_strtester.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 18:41:23 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/12 14:17:48 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/12 14:19:20 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/12 14:34:27 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
 
-int  ft_inttester_int(int (*f)(), int value)
+char *ft_strtester_str(char *(*f)(), char *value)
 {
     pid_t   pid;
     int     status;
@@ -33,13 +33,13 @@ int  ft_inttester_int(int (*f)(), int value)
     {
         waitpid(pid, &status, 0);
         if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
-            return (SEGFAULT);
+            return ("segfault");
         else
             return (f(value));
     }
 }
 
-int  ft_inttester_str(int (*f)(), char *value)
+char *ft_strtester_si(char *(*f)(), char *value1, int value2)
 {
     pid_t   pid;
     int     status;
@@ -53,20 +53,20 @@ int  ft_inttester_str(int (*f)(), char *value)
     else if (pid == 0)
     {
         signal(SIGSEGV, SIG_DFL);
-        f(value);
+        f(value1, value2);
         exit(EXIT_SUCCESS);
     }
     else
     {
         waitpid(pid, &status, 0);
         if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
-            return (SEGFAULT);
+            return ("segfault");
         else
-            return (f(value));
+            return (f(value1, value2));
     }
 }
 
-int  ft_inttester_vvz(int (*f)(), void *value1, void *value2, size_t value3)
+char	*ft_strtester_ssz(char *(*f)(), char *value1, char *value2, size_t value3)
 {
     pid_t   pid;
     int     status;
@@ -87,34 +87,7 @@ int  ft_inttester_vvz(int (*f)(), void *value1, void *value2, size_t value3)
     {
         waitpid(pid, &status, 0);
         if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
-            return (SEGFAULT);
-        else
-            return (f(value1, value2, value3));
-    }
-}
-
-int  ft_inttester_ssz(int (*f)(), char *value1, char *value2, size_t value3)
-{
-    pid_t   pid;
-    int     status;
-
-    pid = fork();
-    if (pid == -1)
-    {
-        perror("forking failed.");
-        exit(EXIT_FAILURE);
-    }
-    else if (pid == 0)
-    {
-        signal(SIGSEGV, SIG_DFL);
-        f(value1, value2, value3);
-        exit(EXIT_SUCCESS);
-    }
-    else
-    {
-        waitpid(pid, &status, 0);
-        if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
-            return (SEGFAULT);
+            return ("segfault");
         else
             return (f(value1, value2, value3));
     }
