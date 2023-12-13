@@ -2,9 +2,9 @@ Basic Search Test:hello,lo,5:The function should find 'lo' in 'hello'.
 Search at Start Test:hello,he,5:The function should find 'he' at the start of 'hello'.
 Search at End Test:hello,lo,5:The function should find 'lo' at the end of 'hello'.
 Search Entire String Test:hello,hello,5:The function should find 'hello' within itself.
-#Not Found Test:hello,world,5:The function should return NULL when 'world' is not found in 'hello'.
+Not Found Test:hello,world,5:The function should return NULL when 'world' is not found in 'hello'.
 Empty Needle Test:hello,EMPTY,5:The function should return the haystack when the needle is empty.
-#Empty Haystack Test:EMPTY,world,0:The function should return NULL when the haystack is empty.
+Empty Haystack Test:EMPTY,world,0:The function should return NULL when the haystack is empty.
 Long Needle Test:hello,longneedle,5:The function should return NULL when the needle is longer than the haystack.
 Long Haystack Test:verylonghaystack,lo,15:The function should find 'lo' in a longer haystack.
 Partial Match Test:hello,hellooo,5:The function should return NULL when the haystack partially matches the needle.

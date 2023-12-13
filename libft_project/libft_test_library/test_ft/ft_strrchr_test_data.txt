@@ -1,0 +1,20 @@
+Basic Search Test:hello,l:The function should find the last 'l' in 'hello'.
+Character at End Test:hello,o:The function should find 'o' at the end of 'hello'.
+Character at Start Test:hello,h:The function should find 'h' at the start of 'hello'.
+Character Not Found Test:hello,z:The function should return NULL when 'z' is not found in 'hello'.
+Multiple Occurrences Test:hello,l:The function should find the last 'l' in 'hello'.
+Single Occurrence Test:hello,h:The function should find the only 'h' in 'hello'.
+Non-Printable Character Test:\x01\x02\x03,\x02:The function should find the non-printable character '\x02'.
+Empty String Test:EMPTY,l:The function should return NULL when searching in an empty string.
+Search Null Character Test:hello,\0:The function should return a pointer to the null terminator.
+Null Character in Middle Test:he\0llo,l:The function should find 'l' before the null character.
+Unicode Characters Test:こんにちは,に:The function should find the last occurrence of 'に' in 'こんにちは'.
+NULL String Test:NULL,l:The function should return NULL when the string is NULL.
+Max Int Character Test:hello,2147483647:The function should return NULL for a character outside the ASCII range.
+Min Int Character Test:hello,-2147483648:The function should return NULL for a character outside the ASCII range.
+Search Space Character Test:hello world,d:The function should find 'd' in 'hello world'.
+Inverse Null Character Test:ab\0cd,b:The function should find 'b' before the null character.
+Search Non-Existent Unicode Char Test:こんにちは,あ:The function should return NULL when the character is not found.
+Full ASCII Range Test:All ASCII chars from 0 to 127,127:The function should find the character with ASCII code 127.
+Case Sensitivity Test:Hello,L:The function should return NULL as 'L' and 'l' are different characters.
+Boundary Condition Test:abcde,e:The function should find 'e' at the end of the string.
