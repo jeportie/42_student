@@ -6,11 +6,16 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:41:23 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/12 14:17:48 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/13 13:40:04 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
+
+/*
+ * Tests an integer-returning function for segmentation faults.
+ * Forks a process to isolate the function call and checks for a segfault signal.
+ */
 
 int  ft_inttester_int(int (*f)(), int value)
 {

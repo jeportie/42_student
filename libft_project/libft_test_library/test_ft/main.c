@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 12:37:04 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/10 18:45:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/13 13:01:25 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ int	main(void)
 {
 	char	func_name[100];
 
-	printf("Enter the function name :");
-	scanf("%99s", func_name);
-	ft_run_test(func_name);
+	while (1)
+	{
+		printf("Enter the function name :\n(Enter 'exit' to quit.)\n");
+		scanf("%99s", func_name);
+		if (!strcmp(func_name, "exit"))
+			break;
+		ft_run_test(func_name);		
+	}
 	return (0);
 }

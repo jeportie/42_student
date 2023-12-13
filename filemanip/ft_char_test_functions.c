@@ -6,11 +6,16 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:08:27 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/13 11:59:46 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/13 13:44:31 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
+
+/* 
+ * Tests string-returning functions with a single string argument.
+ * Compares the results of the libc and ft implementations, handling segfaults.
+ */
 
 void ft_chartest_for_str(func_str libc_func, func_str ft_func, t_tstlst *lst)
 {
@@ -46,6 +51,11 @@ void ft_chartest_for_str(func_str libc_func, func_str ft_func, t_tstlst *lst)
             printf("NULL\n");
     }
 }
+
+/*
+ * Tests string-returning functions with a string and an integer argument.
+ * Handles NULL inputs, compares results, and reports discrepancies.
+ */
 
 void ft_chartest_for_si(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst)
 {
@@ -84,6 +94,11 @@ void ft_chartest_for_si(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst)
             printf("NULL\n");
     }
 }
+
+/*
+ * Tests string-returning functions with two strings and a size_t argument.
+ * Handles NULL inputs and compares the results of libc and ft implementations.
+ */
 
 void ft_chartest_for_ssz(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst)
 {

@@ -6,11 +6,16 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:07:14 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/12 14:47:59 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/13 13:46:27 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
+
+/*
+ * Tests integer-returning functions with a single integer argument.
+ * Handles special values like NULL, INT_MIN, INT_MAX, and compares libc and ft function results.
+ */
 
 void ft_inttest_for_int(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
 {
@@ -47,6 +52,11 @@ void ft_inttest_for_int(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
     }
 }
 
+/*
+ * Tests integer-returning functions with a single string argument.
+ * Handles NULL inputs and compares the results from libc and ft implementations.
+ */
+
 void ft_inttest_for_str(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
 {
     int     result; 
@@ -77,6 +87,11 @@ void ft_inttest_for_str(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
             printf("%i\n", result);
     }
 }
+
+/*
+ * Tests integer-returning functions with two void pointers and a size_t argument.
+ * Handles NULL inputs for the void pointers and compares libc and ft function results.
+ */
 
 void ft_inttest_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
 {
@@ -115,6 +130,11 @@ void ft_inttest_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
             printf("%i\n", result);
     }
 }
+
+/* 
+ * Tests integer-returning functions with two strings and a size_t argument.
+ * Handles NULL inputs for the strings and compares libc and ft function results.
+ */
 
 void ft_inttest_for_ssz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
 {

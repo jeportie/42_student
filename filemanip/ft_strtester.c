@@ -6,11 +6,16 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:19:20 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/12 14:34:27 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/13 13:40:36 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
+
+/* 
+ * Tests a string-returning function for segmentation faults.
+ * Forks a process to isolate the function call and checks for a segfault signal.
+ */
 
 char *ft_strtester_str(char *(*f)(), char *value)
 {

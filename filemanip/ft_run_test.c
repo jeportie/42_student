@@ -6,11 +6,16 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:45:03 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/12 17:44:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/13 13:57:08 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
+
+/*
+ * Executes tests for a specified function by loading test data and determining the
+ * appropriate test to run based on the function's return type and argument types.
+ */
 
 int	ft_run_test(const char *func_name)
 {
@@ -19,7 +24,7 @@ int	ft_run_test(const char *func_name)
 	t_tstlst	*lst;
 	t_arg		*args;
 
-	ft_strlcpy(upper_name, func_name, sizeof(func_name));
+	ft_strlcpy(upper_name, func_name, sizeof(upper_name));
 	ft_strtoupper(upper_name);
 	sprintf(test_file_name, "ft_%s_test_data.txt", func_name);
 	args = ft_find_ftparam_type(func_name);
@@ -55,5 +60,6 @@ int	ft_run_test(const char *func_name)
 			lst = lst->next;
 		}
 	}
+	ft_testlst_clear(&lst, ft_free_node);
 	return (0);
 }
