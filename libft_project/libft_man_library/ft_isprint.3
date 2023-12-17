@@ -1,0 +1,73 @@
+.TH FT_ISPRINT 3 "November 2023" "42 School" "42 Manual"
+.SH NAME
+ft_isprint \- check for a printable character
+.SH SYNOPSIS
+.B #include "libft.h"
+.br
+int ft_isprint(int c);
+.SH DESCRIPTION
+The
+.B ft_isprint
+function checks if the character passed to it, represented by
+.I c,
+is a printable character. This includes all characters within the ASCII range from 32 (space) to 126 (tilde).
+.P
+The function tests whether
+.I c
+falls within this specified range, making it useful for determining if a character is suitable for display. It is part of the libft library, adhering to the coding standards of 42 School.
+.SH RETURN VALUES
+The
+.B ft_isprint
+function returns 1 if
+.I c
+is a printable character, and 0 if it is not.
+.SH SCHEMATICS
+.RS
+.nf
++-------------------------+          +-------------------------+
+|       Input Value       |          |  ft_isprint Execution   |
+|         (int c)         |          +-------------------------+
++-------------------------+          |1. Check printable range:|
+| ASCII Character: '#'    |          |    Is '#' in 32-126?    |
+| Numeric Value: 35       |          |    -> Yes, '#' is 35    |
++-------------------------+          |                         |
+          |                          | 2. Return:              |
+          v                          |   1 (true) for printable|
++-------------------------+          |    character,           |
+|    Function Logic       |          |    0 (false) otherwise  |
++-------------------------+          |    -> Final result: 1   |
+|if (c >= ' ' && c <= '~')|          |                         |
+|     return (1);         |          |                         |
+| return (0);             |          |                         |
++-------------------------+          +-------------------------+
+.fi
+.RE
+.SH CODE ANALYSIS
+.B ft_isprint
+efficiently checks if the given character
+.I c
+falls within the range of printable ASCII characters. This simple and direct approach ensures accurate identification of printable characters.
+.SH UNDEFINED BEHAVIOR
+There is no undefined behavior for
+.B ft_isprint
+as long as the input
+.I c
+is within the range of characters representable by an
+.I int.
+Characters outside the printable ASCII range will result in false (0).
+.SH SEGMENTATION FAULT PROTECTION
+.B ft_isprint
+does not involve memory dereferencing and operates on a single integer value, thereby avoiding the risk of segmentation faults.
+.SH OPTIMIZATION
+Optimization opportunities for
+.B ft_isprint
+are limited due to its straightforward nature. The function's efficiency is derived from its simple range checking.
+.SH SEE ALSO
+.IR ft_isalnum(3),
+.IR ft_isalpha(3),
+.IR ft_isascii(3),
+.IR ft_isdigit(3),
+.IR isprint(3)
+.SH AUTHORS
+Written by jeportie.
+

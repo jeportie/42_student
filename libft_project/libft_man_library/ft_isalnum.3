@@ -1,0 +1,85 @@
+.TH FT_ISALNUM 3 "November 2023" "42 School" "42 Manual"
+.SH NAME
+ft_isalnum \- check for an alphanumeric character
+.SH SYNOPSIS
+.B #include "libft.h"
+.br
+int ft_isalnum(int c);
+.SH DESCRIPTION
+The
+.B ft_isalnum
+function checks if the character passed to it, represented by
+.I c,
+is an alphanumeric character (either a letter or a digit).
+.P
+This function combines the checks of
+.IR ft_isalpha
+and
+.IR ft_isdigit,
+returning 1 (true) if
+.I c
+is a letter or a digit, and 0 (false) otherwise. It is a part of the libft library, following the coding standards of 42 School.
+.SH RETURN VALUES
+The
+.B ft_isalnum
+function returns 1 if
+.I c
+is an alphanumeric character, and 0 if it is not.
+.SH SCHEMATICS
+.RS
+.nf
++-------------------------+          +-------------------------+
+|       Input Value       |          |  ft_isalnum Execution   |
+|         (int c)         |          +-------------------------+
++-------------------------+          | 1. Check if c is alpha: |
+| ASCII Character: 'A'    |          |    ft_isalpha('A')      |
+| Numeric Value: 65       |          |    -> returns 1         |
++-------------------------+          |                         |
+          |                          | 2. OR check if c is     |
+          v                          |    digit:               |
++-------------------------+          |    ft_isdigit('A')      |
+|    Function Logic       |          |    -> returns 0         |
++-------------------------+          |                         |
+| if (ft_isalpha(c) ||    |          | 3. Return:              |
+|     ft_isdigit(c))      |          |    1 (true) for alpha,  |
+|     return (1);         |          |    0 (false) otherwise  |
+| return (0);             |          |    -> Final result: 1   |
++-------------------------+          +-------------------------+
+.fi
+.RE
+
+.SH CODE ANALYSIS
+.B ft_isalnum
+simply checks if
+.I c
+is an alphabetic character using
+.BR ft_isalpha ,
+or a numeric digit using
+.BR ft_isdigit .
+.P
+This implementation is efficient as it relies on existing, well-tested functions within the libft library, ensuring reliability and consistency.
+.SH UNDEFINED BEHAVIOR
+There is no undefined behavior for
+.B ft_isalnum
+as long as the input is within the valid range of characters representable by an
+.I int.
+Invalid inputs (like non-character integers) will result in false (0).
+.SH SEGMENTATION FAULT PROTECTION
+Since
+.B ft_isalnum
+operates on a single integer character, there is no risk of segmentation faults due to memory access violations commonly associated with pointer operations.
+.SH OPTIMIZATION
+Optimization for
+.B ft_isalnum
+is minimal, given its simplicity. The function's performance is inherently tied to that of
+.IR ft_isalpha
+and
+.IR ft_isdigit.
+.P
+Inlining these checks can be considered for performance-critical applications where function call overhead is a concern.
+.SH SEE ALSO
+.IR ft_isalpha(3),
+.IR ft_isdigit(3),
+.IR isalnum(3)
+.SH AUTHORS
+Written by jeportie.

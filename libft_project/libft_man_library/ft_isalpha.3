@@ -1,0 +1,68 @@
+.TH FT_ISALPHA 3 "November 2023" "42 School" "42 Manual"
+.SH NAME
+ft_isalpha \- check for an alphabetic character
+.SH SYNOPSIS
+.B #include "libft.h"
+.br
+int ft_isalpha(int c);
+.SH DESCRIPTION
+The
+.B ft_isalpha
+function checks if the character passed to it, represented by
+.I c,
+is an alphabetic character. This includes both uppercase and lowercase letters as defined by the ASCII character set.
+.P
+The function determines if
+.I c
+is within the ASCII ranges corresponding to uppercase (65-90) or lowercase (97-122) letters. It adheres to the coding standards of 42 School and is part of the libft library.
+.SH RETURN VALUES
+The
+.B ft_isalpha
+function returns 1 if
+.I c
+is an alphabetic character, and 0 if it is not.
+.SH SCHEMATICS
+.RS
+.nf
++-------------------------+          +-------------------------+
+|       Input Value       |          |  ft_isalpha Execution   |
+|         (int c)         |          +-------------------------+
++-------------------------+          | 1. Check ASCII range:   |
+| ASCII Character: 'A'    |          |    Is 'A' in 65-90 or   |
+| Numeric Value: 65       |          |    97-122?              |
++-------------------------+          |    -> Yes, 'A' is 65    |
+          |                          |                         |
+          v                          | 2. Return:              |
++-------------------------+          |    1 (true) for alpha,  |
+|    Function Logic       |          |    0 (false) otherwise  |
++-------------------------+          |    -> Final result: 1   |
+|if (c >= 'A' && c <= 'Z')|          |                         |
+|   (c >= 'a' && c <= 'z')|          |                         |
+|     return (1);         |          |                         |
+| return (0);             |          |                         |
++-------------------------+          +-------------------------+
+.fi
+.RE
+.SH CODE ANALYSIS
+.B ft_isalpha
+checks whether
+.I c
+is within the ASCII ranges for uppercase or lowercase letters. This simple check is efficient and straightforward, making the function reliable for character type determination.
+.SH UNDEFINED BEHAVIOR
+There is no undefined behavior for
+.B ft_isalpha
+as long as the input is within the range of characters representable by an
+.I int.
+Characters outside the alphabetic ASCII range will simply result in false (0).
+.SH SEGMENTATION FAULT PROTECTION
+.B ft_isalpha
+is immune to segmentation faults as it operates on a single integer value rather than pointers or arrays.
+.SH OPTIMIZATION
+Given the simplicity of
+.B ft_isalpha,
+optimization opportunities are limited. The function's efficiency is primarily due to its straightforward logic and lack of complex operations.
+.SH SEE ALSO
+.IR ft_isalnum(3),
+.IR isalpha(3)
+.SH AUTHORS
+Written by jeportie.

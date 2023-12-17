@@ -1,0 +1,68 @@
+.TH FT_ISASCII 3 "November 2023" "42 School" "42 Manual"
+.SH NAME
+ft_isascii \- check for an ASCII character
+.SH SYNOPSIS
+.B #include "libft.h"
+.br
+int ft_isascii(int c);
+.SH DESCRIPTION
+The
+.B ft_isascii
+function checks if the character passed to it, represented by
+.I c,
+is part of the ASCII character set. This set includes all characters with numeric values from 0 to 127.
+.P
+The function tests whether
+.I c
+falls within the range of 0 to 127, inclusive. This ensures compatibility with the standard ASCII character set. The function is a part of the libft library and adheres to the coding standards of 42 School.
+.SH RETURN VALUES
+The
+.B ft_isascii
+function returns 1 if
+.I c
+is an ASCII character, and 0 if it is not.
+.SH SCHEMATICS
+.RS
+.nf
++-------------------------+          +-------------------------+
+|       Input Value       |          |  ft_isascii Execution   |
+|         (int c)         |          +-------------------------+
++-------------------------+          | 1. Check ASCII range:   |
+| Character: 'A'          |          |    Is 'A' in 0-127?     |
+| Numeric Value: 65       |          |    -> Yes, 'A' is 65    |
++-------------------------+          |                         |
+          |                          | 2. Return:              |
+          v                          |    1 (true) for ASCII,  |
++-------------------------+          |    0 (false) otherwise  |
+|    Function Logic       |          |    -> Final result: 1   |
++-------------------------+          |                         |
+| if (c >= 0 && c <= 127) |          |                         |
+|     return (1);         |          |                         |
+| return (0);             |          |                         |
++-------------------------+          +-------------------------+
+.fi
+.RE
+.SH CODE ANALYSIS
+.B ft_isascii
+performs a straightforward check to determine if
+.I c
+falls within the standard ASCII range. This simplicity ensures a quick and reliable determination of ASCII character status.
+.SH UNDEFINED BEHAVIOR
+There is no undefined behavior for
+.B ft_isascii
+as long as the input is within the valid range for an
+.I int.
+Any integer value outside the 0-127 range will result in a return value of 0 (false).
+.SH SEGMENTATION FAULT PROTECTION
+.B ft_isascii
+is not susceptible to segmentation faults, as it operates on a single integer value and does not involve any memory dereferencing or array operations.
+.SH OPTIMIZATION
+Optimization for
+.B ft_isascii
+is minimal due to its inherent simplicity. The function's performance is primarily contingent on its direct and uncomplicated logic.
+.SH SEE ALSO
+.IR ft_isalnum(3),
+.IR ft_isalpha(3),
+.IR isascii(3)
+.SH AUTHORS
+Written by jeportie.
