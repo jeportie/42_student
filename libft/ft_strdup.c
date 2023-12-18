@@ -6,12 +6,10 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:35:07 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/23 16:51:21 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:39:33 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
 char	*ft_strdup(const char *s)

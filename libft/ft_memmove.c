@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 00:36:10 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/23 18:48:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/18 11:14:06 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	const unsigned char	*memloc_src;
 
 	if (dest == NULL && src == NULL)
-    	return NULL;
+		return (NULL);
 	memloc_dest = (unsigned char *)dest;
 	memloc_src = (const unsigned char *)src;
 	if (memloc_dest < memloc_src)

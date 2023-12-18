@@ -6,11 +6,11 @@
 /*   By: JeromeP <JeromeP@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 23:54:37 by JeromeP           #+#    #+#             */
-/*   Updated: 2023/11/21 14:30:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/18 13:39:53 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 static size_t	ft_intlen(long n)
 {

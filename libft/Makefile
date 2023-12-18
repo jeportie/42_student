@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 21:02:39 by jeportie          #+#    #+#              #
-#    Updated: 2023/11/23 17:06:50 by jeportie         ###   ########.fr        #
+#    Updated: 2023/12/18 11:25:22 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,9 @@ $(NAME): $(OBJ)
 bonus: $(OBJ) $(BONUS_OBJ)
 	ar rcs $(NAME) $(OBJ) $(BONUS_OBJ)
 
-#so:
-#	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
-#	gcc -nostartfiles -shared -o libft.so $(OBJ)
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)
 
 clean:
 	rm -f $(OBJ) $(BONUS_OBJ)

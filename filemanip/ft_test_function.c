@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:07:14 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/13 13:46:27 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:27:38 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,8 @@ void ft_inttest_for_ssz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)
     else
         value2 = ft_testfile_option_format(lst->test_values[1]);
     value3 = ft_atoi(ft_testfile_option_format(lst->test_values[2]));
-    result = ft_inttester_vvz(libc_func, value1, value2, value3);
-    ft_result = ft_inttester_vvz(ft_func, value1, value2, value3);
+    result = ft_inttester_ssz(libc_func, value1, value2, value3);
+    ft_result = ft_inttester_ssz(ft_func, value1, value2, value3);
     if (ft_result == result)
         printf("%s: OK!\n", lst->title);
     if (result == SEGFAULT && ft_result == SEGFAULT)
