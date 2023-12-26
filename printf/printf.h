@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:11:49 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/26 00:44:16 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/26 01:09:14 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,9 @@ t_format_spec	ft_parse_format(const char **format);
 void			ft_handle_char(t_format_spec spec, va_list args, char *buffer, int *index);
 void			ft_handle_string(t_format_spec spec, va_list args, char *buffer, int *index);
 void			ft_handle_pointer(t_format_spec spec, va_list args, char *buffer, int *index);
-void			ft_handle_decimal(t_format_spec spec, va_list args, char *buffer, int *index);
 void			ft_handle_int(t_format_spec spec, va_list args, char *buffer, int *index);
-void			ft_handle_unsigned_decimal(t_format_spec spec, va_list args, char *buffer, int *index);
+void			ft_handle_unsigned_int(t_format_spec spec, va_list args, char *buffer, int *index);
 void			ft_handle_hexadecimal(t_format_spec spec, va_list args, char *buffer, int *index);
-void			ft_handle_Hexadecimal(t_format_spec spec, va_list args, char *buffer, int *index);
 void			ft_handle_percent(t_format_spec spec, va_list args, char *buffer, int *index);
 //buffer management
 void			ft_buffer_add(char *buffer, int *index, char c);
