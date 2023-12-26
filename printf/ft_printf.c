@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 18:05:57 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/26 01:17:46 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/26 18:39:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			spec = ft_parse_format(&format);
-			ft_convert_spec(spec, args, buffer, &index);
+			if (ft_check_format(spec))
+				ft_convert_spec(spec, args, buffer, &index);
+			else
+				return (-1);
 		}
 		else
 			ft_buffer_add(buffer, &index, *format);

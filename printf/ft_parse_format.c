@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 23:29:21 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/26 00:25:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/26 23:33:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	ft_isflag(char c)
 {
-	if (c == '-' || c == '0' || c == '#' || c == ' ' || c == '+')
+	if (c == '-' || (c >= '0' && c <= '9') || c == '#' || c == ' ' || c == '+' 
+			|| c == '.')
 		return (1);
 	return (0);
 }
@@ -27,61 +28,72 @@ static int ft_isconvert_spec(char c)
 	return (0);
 }
 
-static void	ft_parse_flags(const char **format, t_format_spec *spec)
+static char	*ft_find_end(const char *start, t_format_spec *spec)
 {
-	while(ft_isflag(**format))
-	{
-		if (**format == '-')
-			spec->flag_minus = 1;
-		else if (**format == '0')
-			spec->flag_zero = 1;
-		else if (**format == '#')
-			spec->flag_hash = 1;
-		else if (**format == ' ')
-			spec->flag_space = 1;
-		else if (**format == '+')
-			spec->flag_plus = 1;
-		(*format)++;
-	}
+	char	*ptr;
+
+	ptr = (char *)start;
+	while (!ft_isconvert_spec(*ptr))
+		ptr++;
+	spec->type = *ptr;
+	return (ptr);
 }
 
-static void	ft_parse_width(const char **format, t_format_spec *spec)
+static void	ft_parse_width(const char *format, t_format_spec *spec, size_t *i)
 {
-	if (**format >= '0' && **format <= '9')
+	if (format[*i] >= '0' && format[*i] <= '9')
 	{
-		while (**format >= '0' && **format <= '9')
+		while (format[*i] >= '0' && format[*i] <= '9')
 		{
-			spec->width = spec->width * 10 + (**format - '0');
-			(*format)++;
+			spec->width = spec->width * 10 + (format[*i] - '0');
+			(*i)++;
 		}
 	}
 }
 
-static void	ft_parse_precision(const char **format, t_format_spec *spec)
+static void	ft_parse_precision(const char *format, t_format_spec *spec, size_t *i)
 {
-	if (**format == '.')
+	if (format[*i] == '.')
 	{
-		(*format)++;
+		(*i)++;
 		spec->precision = 0;
-		while (**format >= '0' && **format <= '9')
+		while (format[*i] >= '0' && format[*i] <= '9')
 		{
-			spec->precision = spec->precision * 10 + (**format - '0');
-			(*format)++;
+			spec->precision = spec->precision * 10 + (format[*i] - '0');
+			(*i)++;
 		}
 	}
 }
-static void	ft_parse_conversion(const char **format, t_format_spec *spec)
+
+static void	ft_parse_flags(const char *format, t_format_spec *spec)
 {
-	if (ft_isconvert_spec(**format))
+	size_t	i;
+
+	i = 0;
+	while(ft_isflag(format[i]) && format[i] != spec->type)
 	{
-		spec->type = **format;
-		(*format)++;
+		if ((format[0] == '0' || (format[0] == '-' && format[1] == '0')) && spec->type != 's')
+			spec->flag_zero = 1;
+		else if (*format == '-')
+			spec->flag_minus = 1;
+		else if (*format == '#')
+			spec->flag_hash = 1;
+		else if (*format == ' ')
+			spec->flag_space = 1;
+		else if (*format == '+')
+			spec->flag_plus = 1;
+		else if (*format >= '0' && *format <= '9')
+			ft_parse_width(format, spec, &i);	
+		else if (*format == '.')
+			ft_parse_precision(format, spec, &i);
+		i++;
 	}
 }
 
 t_format_spec	ft_parse_format(const char **format)
 {
 	t_format_spec	spec;
+	const	char	*format_spec_end;
 
 	spec.width = 0;
 	spec.precision = -1;
@@ -92,9 +104,8 @@ t_format_spec	ft_parse_format(const char **format)
 	spec.flag_plus = 0;
 	spec.type = '\0';
 	(*format)++;
-	ft_parse_flags(format, &spec);
-	ft_parse_width(format, &spec);
-	ft_parse_precision(format, &spec);
-	ft_parse_conversion(format, &spec);
+	format_spec_end = ft_find_end(*format, &spec);
+	ft_parse_flags(*format, &spec);
+	*format = format_spec_end; 
 	return (spec);
 }
