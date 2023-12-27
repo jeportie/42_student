@@ -6,11 +6,12 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 15:06:54 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/10 18:48:04 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/27 18:17:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
+
 /*
  * WAIT PRINTF TO UPGRADE TO VARIADIC FUNCTION 
 */

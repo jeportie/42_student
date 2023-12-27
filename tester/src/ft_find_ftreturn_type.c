@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_ftparam_type.c                             :+:      :+:    :+:   */
+/*   ft_find_ftreturn_type.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 12:56:00 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/27 18:36:12 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/27 18:25:15 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/27 18:25:28 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libfmanip.h"
 
-t_arg	*ft_find_ftparam_type(const char *name)
+t_return	ft_find_ftreturn_type(const char *name)
 {
 	int	i;
 	int	name_len;
@@ -22,21 +22,22 @@ t_arg	*ft_find_ftparam_type(const char *name)
 	while (g_func_map_int[i].name)
 	{
 		if (!ft_strncmp(name, g_func_map_int[i].name, name_len))
-			return (g_func_map_int[i].arg_types);
+			return (RETURN_INT);
 		i++;
 	}
 	i = 0;
 	while (g_func_map_size_t[i].name)
 	{
 		if (!ft_strncmp(name, g_func_map_size_t[i].name, name_len))
-			return (g_func_map_size_t[i].arg_types);
+			return (RETURN_SIZE_T);
 		i++;
 	}
+	i = 0;
 	while (g_func_map_str[i].name)
 	{
 		if (!ft_strncmp(name, g_func_map_str[i].name, name_len))
-			return (g_func_map_str[i].arg_types);
+			return (RETURN_STR);
 		i++;
 	}
-	return (NULL);
+	return (RETURN_VOID);
 }
