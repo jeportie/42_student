@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:01:12 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/18 14:28:45 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/27 13:23:00 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void ft_sizettest_for_ssz(size_t (*libc_func)(), size_t (*ft_func)(), t_tstlst *lst)
 {
-    size_t     result; 
-    size_t     ft_result;
+    int     result; 
+    int     ft_result;
     char    *value1;
     char    *value2;
     size_t  value3;
@@ -42,10 +42,10 @@ void ft_sizettest_for_ssz(size_t (*libc_func)(), size_t (*ft_func)(), t_tstlst *
         if (ft_result == SEGFAULT)
             printf("SEGFAULT\n\tlibcvalue: ");
         else
-            printf("%zu\n\tlibc_value: ", ft_result);
+            printf("%zu\n\tlibc_value: ", (size_t)ft_result);
         if (result == SEGFAULT)
             printf("SEGFAULT\n");
         else
-            printf("%zu\n", result);
+            printf("%zu\n", (size_t)result);
     }
 }

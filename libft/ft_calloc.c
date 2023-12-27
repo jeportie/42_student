@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 00:35:43 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/24 16:42:34 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:29:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		size = 1;
 	}
 	if (SIZE_MAX / nmemb < size)
-	{
-		errno = ENOMEM;
 		return (NULL);
-	}
 	total_size = nmemb * size;
 	memory = malloc(total_size);
 	if (!memory)

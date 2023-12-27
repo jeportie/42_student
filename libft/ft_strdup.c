@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 12:35:07 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/18 13:39:33 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/27 14:29:32 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ char	*ft_strdup(const char *s)
 	s_len = ft_strlen(s);
 	new_str = (char *)malloc(sizeof(char) * (s_len + 1));
 	if (!new_str)
-	{
-		errno = ENOMEM;
 		return (NULL);
-	}
 	new_str = ft_memcpy(new_str, s, s_len + 1);
 	return (new_str);
 }

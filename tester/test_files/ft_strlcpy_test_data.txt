@@ -1,0 +1,14 @@
+Copy String Test:abc,def,6:The function should copy 'abc' to 'def' with a buffer size of 6, and return the total length, which is 3.
+Copy Empty String Test:EMPTY,xyz,5:The function should copy an empty string to 'xyz' with a buffer size of 5, and return the total length, which is 0.
+Copy String with Larger Buffer Test:abc,def,10:The function should copy 'abc' to 'def' with a buffer size of 10, and return the total length, which is 3.
+Copy String with Equal Buffer Test:abc,def,3:The function should copy 'abc' to 'def' with a buffer size of 3, and return the total length, which is 2. This should demonstrate that null termination is handled correctly.
+Copy Empty Destination String Test:EMPTY,def,6:The function should copy an empty string to 'def' with a buffer size of 6, and return the total length, which is 0.
+Copy String to Empty Destination Test:abc,EMPTY,6:The function should copy 'abc' to an empty string with a buffer size of 6, and return the total length, which is 3.
+Copy NULL Source Pointer Test:NULL,def,6:The function should handle null source pointer and return 0.
+Copy String with Smaller Buffer Test:abc,def,3:The function should copy 'abc' to 'def' with a buffer size of 3, and return the total length, which is 2.
+Copy Long Strings Test:abcde...xyz,abcde...xyz,100:The function should handle long strings and copy them with a buffer size of 100, returning the total length.
+Copy Mixed Case Strings Test:AbC,DeF,6:The function should copy 'AbC' to 'DeF' with a buffer size of 6, and return the total length, which is 3.
+Copy Strings with Special Characters Test:abc#def,xyz,10:The function should copy 'abc#def' to 'xyz' with a buffer size of 10, and return the total length, which is 7.
+Copy Strings with White Space Test:abc def,xyz,10:The function should copy 'abc def' to 'xyz' with a buffer size of 10, and return the total length, which is 7.
+Copy Strings with Tab Character Test:abc\tdef,xyz,10:The function should copy 'abc\tdef' to 'xyz' with a buffer size of 10, and return the total length, which is 8.
+Copy Strings with Newline Character Test:abc\ndef,xyz,10:The function should copy 'abc\ndef' to 'xyz' with a buffer size of 10, and return the total length, which is 8.

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:56:00 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/12 13:53:29 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/27 10:37:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ t_arg	*ft_find_ftparam_type(const char *name)
 		i++;
 	}
 	i = 0;
+	while (g_func_map_size_t[i].name)
+	{
+		if (!ft_strncmp(name, g_func_map_size_t[i].name, name_len))
+			return (g_func_map_size_t[i].arg_types);
+		i++;
+	}
 	while (g_func_map_str[i].name)
 	{
 		if (!ft_strncmp(name, g_func_map_str[i].name, name_len))
@@ -46,6 +52,13 @@ t_return	ft_find_ftreturn_type(const char *name)
 	{
 		if (!ft_strncmp(name, g_func_map_int[i].name, name_len))
 			return (RETURN_INT);
+		i++;
+	}
+	i = 0;
+	while (g_func_map_size_t[i].name)
+	{
+		if (!ft_strncmp(name, g_func_map_size_t[i].name, name_len))
+			return (RETURN_SIZE_T);
 		i++;
 	}
 	i = 0;

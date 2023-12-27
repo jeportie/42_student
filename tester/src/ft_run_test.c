@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:45:03 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/13 13:57:08 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/27 13:35:39 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@ int	ft_run_test(const char *func_name)
 				ft_inttest_for_vvz(ft_call_func_int(func_name, LIBC), ft_call_func_int(func_name, LIBFT), lst);
 			if (args[0] == ARG_CONST_STRING && args[1] == ARG_CONST_STRING && args[2] == ARG_SIZE_T)
 				ft_inttest_for_ssz(ft_call_func_int(func_name, LIBC), ft_call_func_int(func_name, LIBFT), lst);
+			lst = lst->next;
+		}
+	}
+	else if (ft_find_ftreturn_type(func_name) == RETURN_SIZE_T)
+	{
+		while (lst)
+		{
+			if (args[0] == ARG_STRING && !args[1])
+		        ft_sizettest_for_str(ft_call_func_size_t(func_name, LIBC), ft_call_func_size_t(func_name, LIBFT), lst);
+			if (args[0] == ARG_CONST_STRING && args[1] == ARG_CONST_STRING && args[2] == ARG_SIZE_T)
+				ft_sizettest_for_ssz(ft_call_func_size_t(func_name, LIBC), ft_call_func_size_t(func_name, LIBFT), lst);
 			lst = lst->next;
 		}
 	}

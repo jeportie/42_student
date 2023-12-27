@@ -1,0 +1,16 @@
+Concatenate Strings Test:abc,def,6:The function should concatenate 'abc' and 'def' with a buffer size of 6, and return the total length, which is 6.
+Concatenate Empty Strings Test:EMPTY,xyz,5:The function should concatenate an empty string and 'xyz' with a buffer size of 5, and return the total length, which is 3.
+Buffer Size Larger than Combined Strings Test:abc,def,10:The function should concatenate 'abc' and 'def' with a buffer size of 10, and return the total length, which is 6.
+Buffer Size Equal to Combined Strings Test:abc,def,6:The function should concatenate 'abc' and 'def' with a buffer size of 6, and return the total length, which is 6.
+Buffer Size Smaller than Combined Strings Test:abc,def,3:The function should concatenate 'abc' and 'def' with a buffer size of 3, and return the total length, which is 6.
+Empty Destination String Test:EMPTY,def,6:The function should concatenate an empty string and 'def' with a buffer size of 6, and return the total length, which is 3.
+Empty Source String Test:abc,EMPTY,6:The function should concatenate 'abc' and an empty string with a buffer size of 6, and return the total length, which is 3.
+NULL Destination Pointer Test:NULL,def,6:The function should handle null destination pointer and return the total length, which is the length of 'def'.
+NULL Source Pointer Test:abc,NULL,6:The function should handle null source pointer and return the total length, which is 0.
+Overflow Test:abc,def,5:The function should concatenate 'abc' and 'def' with a buffer size of 5, and return the total length, which is 8. This should demonstrate buffer overflow.
+Long Strings Test:abcde...xyz,abcde...xyz,100:The function should handle long strings and concatenate them with a buffer size of 100, returning the total length.
+Mixed Case Strings Test:AbC,DeF,6:The function should concatenate 'AbC' and 'DeF' with a buffer size of 6, and return the total length, which is 6.
+Strings with Special Characters Test:abc#def,xyz,10:The function should concatenate 'abc#def' and 'xyz' with a buffer size of 10, and return the total length, which is 9.
+Strings with White Space Test:abc def,xyz,10:The function should concatenate 'abc def' and 'xyz' with a buffer size of 10, and return the total length, which is 10.
+Strings with Tab Character Test:abc\tdef,xyz,10:The function should concatenate 'abc\tdef' and 'xyz' with a buffer size of 10, and return the total length, which is 10.
+Strings with Newline Character Test:abc\ndef,xyz,10:The function should concatenate 'abc\ndef' and 'xyz' with a buffer size of 10, and return the total length, which is 10.
