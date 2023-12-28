@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_inttester_ssz.c                                 :+:      :+:    :+:   */
+/*   ft_strtester_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 18:32:03 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/28 12:38:33 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/28 12:27:09 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/28 12:40:24 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftest.h"
 
-int  ft_inttester_ssz(int (*f)(), char *value1, char *value2, size_t value3)
+/* 
+ * Tests a string-returning function for segmentation faults.
+ * Forks a process to isolate the function call and checks for a segfault signal.
+ */
+
+char *ft_strtester_str(char *(*f)(), char *value)
 {
     pid_t   pid;
     int     status;
@@ -26,15 +31,15 @@ int  ft_inttester_ssz(int (*f)(), char *value1, char *value2, size_t value3)
     else if (pid == 0)
     {
         signal(SIGSEGV, SIG_DFL);
-        f(value1, value2, value3);
+        f(value);
         exit(EXIT_SUCCESS);
     }
     else
     {
         waitpid(pid, &status, 0);
         if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
-            return (SEGFAULT);
+            return ("segfault");
         else
-            return (f(value1, value2, value3));
+            return (f(value));
     }
 }

@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:56:00 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/27 18:36:12 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/28 12:37:25 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libfmanip.h"
+#include "libftest.h"
 
 t_arg	*ft_find_ftparam_type(const char *name)
 {

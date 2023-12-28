@@ -6,11 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:30:02 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/27 18:30:18 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/28 12:38:41 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libfmanip.h"
+#include "libftest.h"
 
 int  ft_inttester_str(int (*f)(), char *value)
 {

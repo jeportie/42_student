@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_chartest_for_si.c                               :+:      :+:    :+:   */
+/*   ft_strtest_for_str.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 18:20:11 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/27 18:22:17 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/27 18:21:38 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/28 12:40:05 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libfmanip.h"
+#include "libftest.h"
 
-/*
- * Tests string-returning functions with a string and an integer argument.
- * Handles NULL inputs, compares results, and reports discrepancies.
+/* 
+ * Tests string-returning functions with a single string argument.
+ * Compares the results of the libc and ft implementations, handling segfaults.
  */
 
-void ft_chartest_for_si(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst)
+void ft_strtest_for_str(func_str libc_func, func_str ft_func, t_tstlst *lst)
 {
     char    *result; 
     char    *ft_result;
-    char    *value1;
-    int     value2;
+    char    *value;
 
     if (!ft_strncmp("NULL", lst->test_values[0], 4))
-        value1 = NULL;
+        value = NULL;
     else
-        value1 = ft_testfile_option_format(lst->test_values[0]);
-    value2 = ft_atoi(ft_testfile_option_format(lst->test_values[1]));
-
-    result = ft_strtester_si(libc_func, value1, value2);
-    ft_result = ft_strtester_si(ft_func, value1, value2);
+        value = ft_testfile_option_format(lst->test_values[0]);
+    result = ft_strtester_str(libc_func, value);
+    ft_result = ft_strtester_str(ft_func, value);
     if ((!ft_result && !result) || (ft_result && result && !strcmp(ft_result, result)))
         printf("%s: OK!\n", lst->title);
     if (result && !strcmp(result, "segfault") && ft_result && !strcmp(ft_result, "segfault"))

@@ -6,11 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:28:53 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/27 18:29:16 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/28 12:38:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libfmanip.h"
+#include "libftest.h"
 
 /*
  * Tests an integer-returning function for segmentation faults.

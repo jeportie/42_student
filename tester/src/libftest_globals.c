@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libfmanip_globals.c                                :+:      :+:    :+:   */
+/*   libftest_globals.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeportie <jeportie@student.42.fr          +#+  +:+       +#+        */
+/*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 15:15:27 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/13 15:09:26 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/28 12:30:15 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/28 12:42:59 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libfmanip.h"
+#include "libftest.h"
 
 /* Definition of argument type arrays for different function signatures. */
 t_arg argt_str[] = {ARG_STRING};

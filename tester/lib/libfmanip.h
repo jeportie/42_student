@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:03:38 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/27 14:47:17 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/28 12:44:47 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "../libft/libft.h"
+# include "libft.h"
 
 //EXTRA LIBFT
 void 			ft_strtoupper(char *str);

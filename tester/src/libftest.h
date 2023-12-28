@@ -6,12 +6,12 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:03:38 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/27 15:04:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/28 14:24:56 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILEMANIP_H
-# define FILEMANIP_H
+#ifndef LIBFTEST_H
+# define LIBFTEST_H
 
 # define FLINE_BUFFER_SIZE 512
 # define LIBC 1
@@ -27,8 +27,8 @@
 # include <sys/wait.h>
 # include <string.h>
 # include <bsd/string.h>
-# include "../libft/libft.h"
-# include "../../filemanip/libfmanip.h"
+# include "../lib/libft.h"
+# include "../lib/libfmanip.h"
 
 typedef struct s_tstlst
 {
@@ -123,9 +123,9 @@ void 			ft_inttest_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
 void 			ft_inttest_for_ssz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst);
 void			ft_sizettest_for_str(size_t (*libc_func)(), size_t (*ft_func)(), t_tstlst *lst);
 void 			ft_sizettest_for_ssz(size_t (*libc_func)(), size_t (*ft_func)(), t_tstlst *lst);
-void 			ft_chartest_for_str(func_str libc_func, func_str ft_func, t_tstlst *lst);
-void 			ft_chartest_for_si(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst);
-void			ft_chartest_for_ssz(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst);
+void 			ft_strtest_for_str(func_str libc_func, func_str ft_func, t_tstlst *lst);
+void 			ft_strtest_for_si(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst);
+void			ft_strtest_for_ssz(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst);
 char		    *ft_testfile_option_format(char *s);
 //FORKING PROCESS FOR FUNCTION TO EXECUTE
 int  			ft_inttester_int(int (*f)(), int value);
@@ -137,4 +137,4 @@ size_t			ft_sizettester_ssz(size_t (*f)(), char *value1, char *value2, size_t va
 char			*ft_strtester_str(char *(*f)(), char *value);
 char			*ft_strtester_si(char *(*f)(), char *value1, int value2);
 char			*ft_strtester_ssz(char *(*f)(), char *value1, char *value2, size_t value3);
-#endif /*FILEMANIP_H*/
+#endif /*LIBFTEST_H*/

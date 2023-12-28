@@ -6,11 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:14:03 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/27 18:14:21 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/28 12:37:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libfmanip.h"
+#include "libftest.h"
 
 /* 
  * Similar to 'ft_call_func_int' but for string-returning functions.

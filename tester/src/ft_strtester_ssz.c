@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_inttester_ssz.c                                 :+:      :+:    :+:   */
+/*   ft_strtester_ssz.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 18:32:03 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/28 12:38:33 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/28 12:26:29 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/28 12:40:18 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftest.h"
 
-int  ft_inttester_ssz(int (*f)(), char *value1, char *value2, size_t value3)
+char	*ft_strtester_ssz(char *(*f)(), char *value1, char *value2, size_t value3)
 {
     pid_t   pid;
     int     status;
@@ -33,7 +33,7 @@ int  ft_inttester_ssz(int (*f)(), char *value1, char *value2, size_t value3)
     {
         waitpid(pid, &status, 0);
         if (WIFSIGNALED(status) && WTERMSIG(status) == SIGSEGV)
-            return (SEGFAULT);
+            return ("segfault");
         else
             return (f(value1, value2, value3));
     }

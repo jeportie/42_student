@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:11:49 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/26 20:13:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/28 15:35:15 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_format_spec
 	int			flag_space;
 	int			flag_plus;
 	char		type;
+	t_format	*next;
 }				t_format_spec;
 
 int				ft_printf(const char *format, ...);

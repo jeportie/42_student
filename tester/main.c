@@ -6,12 +6,14 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 12:37:04 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/13 13:01:25 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/28 12:48:14 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../function_libraries/libfmanip.h"
-#include "../function_libraries/libft.h"
+#include "lib/libfmanip.h"
+#include "lib/libft.h"
+#include "src/libftest.h"
+#include <string.h>
 
 int	main(void)
 {

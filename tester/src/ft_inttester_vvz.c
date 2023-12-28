@@ -6,11 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:31:37 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/27 18:31:53 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/28 12:38:50 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libfmanip.h"
+#include "libftest.h"
 
 int  ft_inttester_vvz(int (*f)(), void *value1, void *value2, size_t value3)
 {

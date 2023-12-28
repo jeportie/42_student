@@ -6,11 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 18:12:51 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/27 18:13:51 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/28 12:37:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libfmanip.h"
+#include "libftest.h"
 
 /* 
  * Function to find the address of the function corresponding to the given name.
