@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 18:05:57 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/26 18:39:43 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/29 22:38:28 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ static void	ft_convert_spec(t_format_spec spec, va_list args, char *buffer, int 
 		ft_handle_string(spec, args, buffer, index);
 	else if (spec.type == 'p')
 		ft_handle_pointer(spec, args, buffer, index);
-	else if (spec.type == 'd' || spec.type == 'i')
+	else if (spec.type == 'd' || spec.type == 'i' || spec.type == 'u')
 		ft_handle_int(spec, args, buffer, index);
-	else if (spec.type == 'u')
-		ft_handle_unsigned_int(spec, args, buffer, index);
 	else if (spec.type == 'x' || spec.type == 'X')
 		ft_handle_hexadecimal(spec, args, buffer, index);
 	else if (spec.type == '%')
-		ft_handle_percent(spec, args, buffer, index);
+		ft_buffer_add(buffer, index, '%');
 }
 
 int	ft_printf(const char *format, ...)

@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_char.c                                   :+:      :+:    :+:   */
+/*   ft_handle_space_flag.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/26 20:12:16 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/29 14:48:08 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/29 21:25:19 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/29 23:00:17 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	ft_handle_char(t_format_spec spec, va_list args, char *buffer, int *index)
+/*
+**ATENTION ! SI + ou - est sur le dernier element qui a ete flush, risque de bug car pas dans la condition.
+*/
+void	ft_handle_space_flag(t_format_spec spec, char *buffer, int *index)
 {
-	char	c;
-	int		content_len;
-
-	c = (char)va_arg(args, int);
-	content_len = 1;
-	if (spec.flag_minus)
-		ft_buffer_add(buffer, index, c);
-	ft_apply_width(spec, buffer, index, content_len);
-	if (!spec.flag_minus)
-		ft_buffer_add(buffer, index, c);
+	if (spec.flag_space && (index > 0 && (buffer[*index - 1] != '-' || buffer[*index - 1] != '+')))
+		ft_buffer_add(buffer, index, ' ');
 }
