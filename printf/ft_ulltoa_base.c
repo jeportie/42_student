@@ -6,13 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 21:50:01 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/29 21:51:20 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/30 17:51:02 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static char	*ft_fill_base(unsigned long nbr, int size, char *base, char *res)
+static char	*ft_fill_base(unsigned long long nbr, int size, char *base, char *res)
 {
 	int	len;
 	int	i;

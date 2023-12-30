@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 23:29:21 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/28 15:35:38 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:51:53 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,3 @@ t_format_spec	ft_parse_format(const char **format)
 	*format = format_spec_end; 
 	return (spec);
 }
-
-
-ft_printf("%-010.5i), var")

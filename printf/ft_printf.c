@@ -6,54 +6,55 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 18:05:57 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/29 22:38:28 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:26:21 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static void	ft_convert_spec(t_format_spec spec, va_list args, char *buffer, int *index)
+static void	ft_convert_spec(t_format_spec spec, va_list args, t_buffer *buf_info)
 {
 	if (spec.type == 'c')
-		ft_handle_char(spec, args, buffer, index);
+		ft_handle_char(spec, args, buf_info);
 	else if (spec.type == 's')
-		ft_handle_string(spec, args, buffer, index);
+		ft_handle_string(spec, args, buf_info);
 	else if (spec.type == 'p')
-		ft_handle_pointer(spec, args, buffer, index);
+		ft_handle_pointer(spec, args, buf_info);
 	else if (spec.type == 'd' || spec.type == 'i' || spec.type == 'u')
-		ft_handle_int(spec, args, buffer, index);
+		ft_handle_int(spec, args, buf_info);
 	else if (spec.type == 'x' || spec.type == 'X')
-		ft_handle_hexadecimal(spec, args, buffer, index);
+		ft_handle_hexadecimal(spec, args, buf_info);
 	else if (spec.type == '%')
-		ft_buffer_add(buffer, index, '%');
+		ft_buffer_add(buf_info, '%');
 }
 
 int	ft_printf(const char *format, ...)
 {
-	int				nb_printed;
 	va_list			args;
 	t_format_spec	spec;
+	t_buffer		buf_info;
 	char			buffer[BUFFER_SIZE];
-	int				index;
 
-	index = 0;
+	buf_info.buffer = buffer;
+	buf_info.index = 0;
+	buf_info.nb_printed = 0;
 	va_start(args, format);
-	nb_printed = 0;
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			spec = ft_parse_format(&format);
 			if (ft_check_format(spec))
-				ft_convert_spec(spec, args, buffer, &index);
+				ft_convert_spec(spec, args, &buf_info);
 			else
 				return (-1);
 		}
 		else
-			ft_buffer_add(buffer, &index, *format);
+			ft_buffer_add(&buf_info, *format);
 		format++;
 	}
 	va_end(args);
-	ft_buffer_flush(buffer, &index);
-	return (nb_printed);
+	if (!ft_buffer_flush(&buf_info))
+		return (-1);
+	return (buf_info.nb_printed);
 }

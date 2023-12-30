@@ -6,13 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 14:56:22 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/29 22:57:05 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:50:12 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	ft_handle_string(t_format_spec spec, va_list args, char *buffer, int *index)
+void	ft_handle_string(t_format_spec spec, va_list args, t_buffer *buf_info)
 {
 	char	*str;
 	int		content_len;
@@ -27,16 +27,16 @@ void	ft_handle_string(t_format_spec spec, va_list args, char *buffer, int *index
 	{
 		while(str[i] && i < content_len)
 		{
-			ft_buffer_add(buffer, index, str[i]);	
+			ft_buffer_add(buf_info, str[i]);	
 			i++;
 		}
 	}
-	ft_apply_width(spec, buffer, index, content_len);
+	ft_apply_width(spec, buf_info, content_len);
 	if (!spec.flag_minus)
 	{
 		while(str[i] && i < content_len)
 		{
-			ft_buffer_add(buffer, index, str[i]);	
+			ft_buffer_add(buf_info, str[i]);	
 			i++;
 		}
 	}

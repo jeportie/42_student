@@ -6,13 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 14:21:49 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/29 14:35:49 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/30 19:44:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	ft_apply_width(t_format_spec spec, char *buffer, int *index, int content_len)
+void	ft_apply_width(t_format_spec spec, t_buffer *buf_info, int content_len)
 {
 	int		width;
 	char	pad;
@@ -23,7 +23,7 @@ void	ft_apply_width(t_format_spec spec, char *buffer, int *index, int content_le
 		pad = '0';
 	while (width > content_len)
 	{
-		ft_buffer_add(buffer, index, pad);
+		ft_buffer_add(buf_info, pad);
 		width--;
 	}
 }

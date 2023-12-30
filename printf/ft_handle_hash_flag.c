@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_plus_flag.c                              :+:      :+:    :+:   */
+/*   ft_handle_hash_flag.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/29 21:19:16 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/30 19:43:56 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/30 17:39:26 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/30 19:39:15 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	ft_handle_plus_flag(t_format_spec spec, int content, t_buffer *buf_info)
+void	ft_handle_hash_flag(t_format_spec spec, int content, t_buffer *buf_info)
 {
-	if (spec.flag_plus)
+	if (spec.flag_hash && content)
 	{
-		if (content < 0)
-			ft_buffer_add(buf_info, '-');
-		else
-			ft_buffer_add(buf_info, '+');
+		ft_buffer_add(buf_info, '0');
+		if (spec.type == 'X')
+			ft_buffer_add(buf_info, 'X');
+		if (spec.type == 'x')
+			ft_buffer_add(buf_info, 'x');
 	}
 }
