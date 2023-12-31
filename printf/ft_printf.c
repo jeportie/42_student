@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 18:05:57 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/30 19:26:21 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:30:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,26 @@ int	ft_printf(const char *format, ...)
 	buf_info.buffer = buffer;
 	buf_info.index = 0;
 	buf_info.nb_printed = 0;
+	buf_info.error = 0;
+	buf_info.buf_last = '\0';
 	va_start(args, format);
 	while (*format)
 	{
 		if (*format == '%')
 		{
 			spec = ft_parse_format(&format);
+			if (!spec.type)
+			{
+				ft_putstr_fd((char *)g_perror[ERNOWRITE], 2);
+				return (-1);
+			}
 			if (ft_check_format(spec))
 				ft_convert_spec(spec, args, &buf_info);
 			else
+			{
+				ft_putstr_fd((char *)g_perror[ERNOFORMAT], 2);
 				return (-1);
+			}
 		}
 		else
 			ft_buffer_add(&buf_info, *format);

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 23:29:21 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/30 19:51:53 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/31 11:58:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,16 @@ static char	*ft_find_end(const char *start, t_format_spec *spec)
 	char	*ptr;
 
 	ptr = (char *)start;
-	while (!ft_isconvert_spec(*ptr))
+	while (*ptr)
+	{
+		if (ft_isconvert_spec(*ptr))
+		{
+			spec->type = *ptr;
+			return (ptr);
+		}
 		ptr++;
-	spec->type = *ptr;
-	return (ptr);
+	}
+	return (NULL);
 }
 
 static void	ft_parse_width(const char *format, t_format_spec *spec, size_t *i)
@@ -103,8 +109,12 @@ t_format_spec	ft_parse_format(const char **format)
 	spec.flag_space = 0;
 	spec.flag_plus = 0;
 	spec.type = '\0';
+	if (!format)
+		return (spec);
 	(*format)++;
 	format_spec_end = ft_find_end(*format, &spec);
+	if (!format_spec_end)
+		return (spec);
 	ft_parse_flags(*format, &spec);
 	*format = format_spec_end; 
 	return (spec);

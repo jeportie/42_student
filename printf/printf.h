@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:11:49 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/30 19:10:59 by jeportie         ###   ########.fr       */
+/*   Updated: 2023/12/31 16:28:06 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 # define PRINTF_H
 
 
-#include <stdarg.h>
-#include <stdlib.h>
-#include "function_library/libft.h"
+# include <stdarg.h>
+# include <stdlib.h>
+# include "function_library/libft.h"
 
-#define BUFFER_SIZE 2048
+# define BUFFER_SIZE 2048
 
 typedef struct s_buffer
 {
 	char	*buffer;
 	int		index;
 	int		nb_printed;
+	int		error;
+	char	buf_last;
 }			t_buffer;
 
 typedef struct s_format_spec
@@ -38,6 +40,22 @@ typedef struct s_format_spec
 	int			flag_plus;
 	char		type;
 }				t_format_spec;
+
+typedef enum e_error
+{
+	NOERR,
+	ERNOWRITE,
+	ERNOMEM,
+	ERNOFORMAT,
+}	t_error;
+
+const char	*g_perror[] = 
+{
+	"Success",
+	"Error: Failed to write output",
+	"Error: Memory allocation failed",
+	"Error: Invalid format string",
+};
 
 int				ft_printf(const char *format, ...);
 //type conversion functions
