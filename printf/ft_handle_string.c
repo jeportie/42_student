@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 14:56:22 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/30 19:50:12 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/02 00:23:48 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,16 @@ void	ft_handle_string(t_format_spec spec, va_list args, t_buffer *buf_info)
 	int		i;
 
 	str = (char *)va_arg(args, char *);
-	content_len = ft_strlen(str);
+	if (!str)
+		str = "(null)";
+	content_len  = 0;
+	while (str[content_len] && (spec.precision < 0 || content_len < spec.precision))
+		content_len++;
 	i = 0;
-	if (spec.precision > 0)
-		content_len = spec.precision;
-	if (spec.flag_minus)
-	{
-		while(str[i] && i < content_len)
-		{
-			ft_buffer_add(buf_info, str[i]);	
-			i++;
-		}
-	}
-	ft_apply_width(spec, buf_info, content_len);
 	if (!spec.flag_minus)
-	{
-		while(str[i] && i < content_len)
-		{
-			ft_buffer_add(buf_info, str[i]);	
-			i++;
-		}
-	}
+		ft_apply_width(spec, buf_info, content_len);
+	while(str[i] && i < content_len)
+		ft_buffer_add(buf_info, str[i++]);	
+	if (spec.flag_minus)
+		ft_apply_width(spec, buf_info, content_len);
 }

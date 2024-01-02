@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_strings.c                                 :+:      :+:    :+:   */
+/*   printf_globals.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/24 14:16:08 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/24 14:16:39 by jeportie         ###   ########.fr       */
+/*   Created: 2024/01/02 03:49:22 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/02 03:49:48 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "libft.h"
+#include "printf.h"
 
-void	ft_print_strings(int count, ...)
+const char	*g_perror[] = 
 {
-	va_list args;
-	char	*str;
-	int		i;
-
-	if (!count)
-		return ;
-	va_start(args, count);
-	i = 0;
-	while (i < count)
-	{
-		str = va_arg(args, char *);
-		if (str)
-			ft_putstr_fd(str, 1);
-		i++;
-	}
-	va_end(args);
-}
+	"Success",
+	"Error: Failed to write output",
+	"Error: Memory allocation failed",
+	"Error: Invalid format string",
+};

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 23:29:21 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/01 19:44:51 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/01 19:23:08 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,31 +78,20 @@ static void	ft_parse_flags(const char *format, t_format_spec *spec)
 	i = 0;
 	while(ft_isflag(format[i]) && format[i] != spec->type)
 	{
-		if ((format[i] == '0' && !spec->flag_minus && !spec->width))
+		if ((format[i] == '0' && !spec->flag_minus && !spec->width)
 			spec->flag_zero = 1;
-		else if (format[i] == '-')
-		{
+		else if (*format == '-')
 			spec->flag_minus = 1;
-			spec->flag_zero = 0;
-		}
-		else if (format[i] == '+')
-		{
-			spec->flag_plus = 1;
-			spec->flag_space = 0;
-		}
-		else if (format[i] == ' ' && !spec->flag_plus)
-			spec->flag_space = 1;
-		else if (format[i] == '#')
+		else if (*format == '#')
 			spec->flag_hash = 1;
-		else if (format[i] >= '0' && format[i] <= '9')
+		else if (*format == ' ')
+			spec->flag_space = 1;
+		else if (*format == '+')
+			spec->flag_plus = 1;
+		else if (*format >= '0' && *format <= '9')
 			ft_parse_width(format, spec, &i);	
-		else if (format[i] == '.')
+		else if (*format == '.')
 			ft_parse_precision(format, spec, &i);
-		else 
-		{
-			spec->error = ERNOFORMAT;
-			break;
-		}
 		i++;
 	}
 }
@@ -127,42 +116,3 @@ t_format_spec	ft_parse_format(const char **format)
 	*format = end; 
 	return (spec);
 }
-
-/*
-Breakdown:
-Flag Checking (ft_isflag): Utilizes ft_strchr to efficiently check if a 
-character is a valid flag. This approach is concise and easy to understand.
-
-Conversion Specifier Checking (ft_isconvert_spec): Similar to ft_isflag, this 
-function efficiently checks for valid conversion specifiers.
-
-Finding the Format Specifier End (ft_find_end): Iterates through the string 
-until it finds a valid conversion specifier, handling the case where the 
-starting pointer is NULL.
-
-Parsing Width and Precision (ft_parse_width and ft_parse_precision): These 
-functions correctly parse numeric values for width and precision from the 
-format string.
-
-Parsing Flags (ft_parse_flags): This function is now well-structured to handle 
-various flags and their interactions, correctly prioritizing them and setting 
-error codes when unexpected characters are encountered.
-
-Main Parsing Function (ft_parse_format): Orchestrates the parsing process, 
-setting up the t_format_spec structure, and handling errors gracefully.
-
-Memory Initialization: You're using ft_memset to initialize the spec structure,
-which is a good practice to avoid any undefined behavior from uninitialized 
-values.
-
-Error Handling: Your code sets spec.error = ERNOFORMAT when unexpected 
-characters are encountered or when no valid conversion specifier is found, 
-which is excellent for robustness and error tracking.
-
-Pointer Checks: You're checking the validity of the format pointer at the 
-beginning of ft_parse_format, which is crucial to prevent segmentation faults.
-
-Consistency and Clarity: The code is consistent in its use of indexing 
-(format[i]) throughout the parsing process, making it easier to follow 
-and understand.
-*/
