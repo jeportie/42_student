@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 23:29:21 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/01 19:44:51 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:35:30 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_isflag(char c)
 
 static int ft_isconvert_spec(char c)
 {
-	if (ft_strchr("cspdiuxX", c))
+	if (ft_strchr("cspdiuxX%", c))
 		return (1);
 	return (0);
 }

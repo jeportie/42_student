@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 17:18:44 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/02 01:50:12 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:54:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	ft_handle_hexadecimal(t_format_spec spec, va_list args, t_buffer *buf_info)
 
 	content = va_arg(args, unsigned int);
 	if (spec.type == 'X')
-		formatted_content = ft_ulltoa_base(content, "0123456789ABCDEF");
+		formatted_content = ft_utoa_base(content, "0123456789ABCDEF");
 	if (spec.type == 'x')
-		formatted_content = ft_ulltoa_base(content, "0123456789abcdef");
+		formatted_content = ft_utoa_base(content, "0123456789abcdef");
 	if (!formatted_content)
 	{
 		buf_info->error = ERNOMEM;

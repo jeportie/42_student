@@ -6,28 +6,30 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 20:43:10 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/02 02:55:27 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/03 14:30:08 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+#include <stdio.h>
 
 int	ft_handle_int(t_format_spec spec, va_list args, t_buffer *buf_info)
 {
-	int		content;
-	char	*formatted_content;
-	int		formatted_len;
-	int		i;
+	long long	content;
+	char		*formatted_content;
+	int			formatted_len;
+	int			i;
 
-	if (spec.type == 'd' || spec.type == 'i')
-	{
+	content = 0;
+	if (spec.type == 'i' || spec.type == 'd')
+ 	{
 		content = (int)va_arg(args, int);
-		formatted_content = ft_itoa(content);
+		formatted_content = ft_itoa((int)content);
 	}
 	if (spec.type == 'u')
 	{
 		content = (unsigned int)va_arg(args, unsigned int);
-		formatted_content = ft_ulltoa_base(content, "0123456789");
+		formatted_content = ft_utoa_base((unsigned int)content, "0123456789");
 	}
 	if (!formatted_content)
 	{
@@ -35,8 +37,7 @@ int	ft_handle_int(t_format_spec spec, va_list args, t_buffer *buf_info)
 		return (0);
 	}
 	formatted_len = 0;
-	while (formatted_content[formatted_len] 
-			&& (spec.precision < 0 || formatted_len < spec.precision))
+	while (formatted_content[formatted_len] && (spec.precision < 0 || formatted_len < spec.precision))
 		formatted_len++;
 	i = 0;
 	if (!spec.flag_minus)

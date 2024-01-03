@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:11:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/02 03:50:14 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/03 14:54:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include "libft.h"
 
-# define BUFFER_SIZE 2048
+# define BUFFER_SIZE 128
 
 typedef struct s_buffer
 {
@@ -54,7 +54,9 @@ extern const char	*g_perror[];
 
 int				ft_printf(const char *format, ...);
 //type conversion functions
+char			*ft_utoa_base(unsigned int nbr, char *base);
 char			*ft_ulltoa_base(unsigned long long nbr, char *base);
+char			*ft_lltoa_base(long long nbr, char *base);
 //format spec functions
 t_format_spec	ft_parse_format(const char **format);
 int				ft_check_format(t_format_spec spec);
