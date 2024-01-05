@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:11:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/03 14:54:26 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/05 02:38:45 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ int				ft_printf(const char *format, ...);
 //type conversion functions
 char			*ft_utoa_base(unsigned int nbr, char *base);
 char			*ft_ulltoa_base(unsigned long long nbr, char *base);
-char			*ft_lltoa_base(long long nbr, char *base);
 //format spec functions
 t_format_spec	ft_parse_format(const char **format);
 int				ft_check_format(t_format_spec spec);
 void			ft_apply_width(t_format_spec spec, t_buffer *buf_info, int content_len);
+void			ft_apply_precision(t_format_spec spec, char **formatted_content);
 void			ft_handle_hash_flag(t_format_spec spec, int content, t_buffer *buf_info);
 void			ft_handle_space_flag(t_format_spec spec, int content, t_buffer *buf_info);
 void			ft_handle_plus_flag(t_format_spec spec, int content, t_buffer *buf_info);

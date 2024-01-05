@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 23:29:21 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/02 16:35:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/05 04:14:59 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*ft_find_end(const char *start, t_format_spec *spec)
 	if (!start)
 		return (NULL);
 	ptr = (char *)start;
-	while (*ptr)
+	while (*ptr && (ft_isflag(*ptr) || ft_isconvert_spec(*ptr)))
 	{
 		if (ft_isconvert_spec(*ptr))
 		{
@@ -47,13 +47,11 @@ static char	*ft_find_end(const char *start, t_format_spec *spec)
 
 static void	ft_parse_width(const char *format, t_format_spec *spec, size_t *i)
 {
-	if (format[*i] >= '0' && format[*i] <= '9')
+	spec->width = 0;
+	while (format[*i] >= '0' && format[*i] <= '9')
 	{
-		while (format[*i] >= '0' && format[*i] <= '9')
-		{
-			spec->width = spec->width * 10 + (format[*i] - '0');
-			(*i)++;
-		}
+		spec->width = spec->width * 10 + (format[*i] - '0');
+		(*i)++;
 	}
 }
 
@@ -79,31 +77,41 @@ static void	ft_parse_flags(const char *format, t_format_spec *spec)
 	while(ft_isflag(format[i]) && format[i] != spec->type)
 	{
 		if ((format[i] == '0' && !spec->flag_minus && !spec->width))
+		{
 			spec->flag_zero = 1;
+			i++;
+		}
 		else if (format[i] == '-')
 		{
 			spec->flag_minus = 1;
 			spec->flag_zero = 0;
+			i++;
 		}
 		else if (format[i] == '+')
 		{
 			spec->flag_plus = 1;
 			spec->flag_space = 0;
+			i++;
 		}
 		else if (format[i] == ' ' && !spec->flag_plus)
+		{
 			spec->flag_space = 1;
+			i++;
+		}
 		else if (format[i] == '#')
+		{
 			spec->flag_hash = 1;
+			i++;
+		}
 		else if (format[i] >= '0' && format[i] <= '9')
 			ft_parse_width(format, spec, &i);	
-		else if (format[i] == '.')
+		else if (format[i] == '.' && spec->type != 'p' && spec->type != 'c')
 			ft_parse_precision(format, spec, &i);
 		else 
 		{
 			spec->error = ERNOFORMAT;
 			break;
 		}
-		i++;
 	}
 }
 

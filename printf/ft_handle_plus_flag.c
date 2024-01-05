@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 21:19:16 by jeportie          #+#    #+#             */
-/*   Updated: 2023/12/30 19:43:56 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/05 03:48:32 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void	ft_handle_plus_flag(t_format_spec spec, int content, t_buffer *buf_info)
 {
 	if (spec.flag_plus)
 	{
-		if (content < 0)
-			ft_buffer_add(buf_info, '-');
-		else
+		if (content >= 0 && spec.type != 'u')
 			ft_buffer_add(buf_info, '+');
 	}
 }

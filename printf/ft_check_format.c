@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 19:02:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/02 00:41:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/05 04:07:19 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 int	ft_check_format(t_format_spec spec)
 {
 	if (spec.type == 'c')
-		return (spec.width >= 0 && spec.precision == -1 && !spec.flag_hash 
-				&& !spec.flag_space && !spec.flag_plus);
+	{
+		if (spec.width >= 0 && spec.precision == -1 && !spec.flag_hash && !spec.flag_space && !spec.flag_plus)
+			return (1);
+		spec.error = ERNOFORMAT;
+		return (0);
+	}	
 	else if (spec.type == 's')
 		return (spec.width >= 0 && !spec.flag_zero && !spec.flag_hash 
 				&& !spec.flag_space && !spec.flag_plus);

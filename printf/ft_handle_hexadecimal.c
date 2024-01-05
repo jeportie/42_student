@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 17:18:44 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/02 16:54:49 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/05 03:06:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,20 @@ int	ft_handle_hexadecimal(t_format_spec spec, va_list args, t_buffer *buf_info)
 		buf_info->error = ERNOMEM;
 		return (0);
 	}
-	formatted_len  = 0;
-	while (formatted_content[formatted_len] 
-			&& (spec.precision < 0 || formatted_len < spec.precision))
-		formatted_len++;
+	if (spec.precision != -1)
+		ft_apply_precision(spec, &formatted_content);
+	formatted_len  = ft_strlen(formatted_content);
 	if (spec.flag_hash && content)
 		formatted_len += 2;
 	i = 0;
 	if (!spec.flag_minus)
+	{
+		if (spec.flag_zero && spec.flag_hash)
+			ft_handle_hash_flag(spec, content, buf_info);
 		ft_apply_width(spec, buf_info, formatted_len);
-	ft_handle_hash_flag(spec, content, buf_info);
+	}
+	if (!spec.flag_zero)
+		ft_handle_hash_flag(spec, content, buf_info);
 	while(i < formatted_len && formatted_content[i])
 		ft_buffer_add(buf_info, formatted_content[i++]);	
 	if (spec.flag_minus)
