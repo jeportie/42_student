@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 18:22:11 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/02 01:38:46 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:40:17 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,12 @@ int	ft_handle_pointer(t_format_spec spec, va_list args, t_buffer *buf_info)
 		}
 	}
 	content_len = ft_strlen(adresse) + 2;
+	if (spec.flag_plus)
+		content_len++;
 	if (!spec.flag_minus)
 		ft_apply_width(spec, buf_info, content_len);
+	ft_handle_space_flag(spec, (unsigned long long)adresse, buf_info);
+	ft_handle_plus_flag(spec, (unsigned long long)ptr, buf_info);
 	ft_buffer_add(buf_info, '0');
 	ft_buffer_add(buf_info, 'x');
 	i = 0;

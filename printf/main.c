@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 03:32:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/05 03:56:55 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/05 20:01:35 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int main(void)
 
 
     ft_printf("SIMPLE SPECIFIER TEST:\n\n");
-
 
     // %c Tests
     ft_printf("Test 01 [ft_printf] - Simple character: %c\n", 'A');
@@ -385,8 +384,8 @@ int main(void)
     ft_printf("Test 115 [ft_printf] - Negative width and precision: %*.*d\n", -10, -5, 42);
     printf("Test 115 [printf   ] - Negative width and precision: %*.*d\n", -10, -5, 42);
     // Test 116: Mixed random characters in the format string
-    ft_printf("Test 116 [ft_printf] - Random characters: %jx %d%%%s####\n", 42, 42, "test");
-    printf("Test 116 [printf   ] - Random characters: %jx %d%%%s####\n", 42, 42, "test");
+    ft_printf("Test 116 [ft_printf] - Random characters: %x %d%%%s####\n", 42, 42, "test");
+    printf("Test 116 [printf   ] - Random characters: %x %d%%%s####\n", 42, 42, "test");
     // Test 117: Mixed valid and invalid specifiers
     ft_printf("Test 117 [ft_printf] - Mixed valid and invalid specifiers: %d %r %d\n", 42, 42);
     printf("Test 117 [printf   ] - Mixed valid and invalid specifiers: %d %r %d\n", 42, 42);
@@ -397,160 +396,158 @@ int main(void)
 
     ft_printf("\n INVALID FORMAT AND ERROR MESSAGES TEST:\n\n");
 
+    // Test 118: Passing an invalid format specifier (Undefined behavior)
+    ft_printf("Test 118 [ft_printf] - Invalid specifier: %y\n");
+    printf("Test 118 [printf   ] - Invalid specifier: %y\n");
+    // Test 119: Incorrect specifier combination (e.g., using a precision specifier with %c which is typically not used)
+    ft_printf("Test 119 [ft_printf] - Incorrect specifier combination: %.5c\n", 'A');
+    printf("Test 119 [printf   ] - Incorrect specifier combination: %.5c\n", 'A');
+    // Test 120: Precision specifier for %p (undefined in some implementations)
+    ft_printf("Test 120 [ft_printf] - Precision with pointer: %.5p\n", ptr2);
+    printf("Test 120 [printf   ] - Precision with pointer: %.5p\n", ptr2);
+    // Test 121: Using non-existent specifiers
+    ft_printf("Test 121 [ft_printf] - Non-existent specifier: %v\n");
+    printf("Test 121 [printf   ] - Non-existent specifier: %v\n");
+    // Test 122: Incomplete specifier at the end
+    ft_printf("Test 122 [ft_printf] - Incomplete specifier: %\n");
+    printf("Test 122 [printf   ] - Incomplete specifier: %\n");
+    // Test 123: Multiple percent signs
+    ft_printf("Test 123 [ft_printf] - Multiple percent signs: %%d%%\n", 42);
+    printf("Test 123 [printf   ] - Multiple percent signs: %%d%%\n", 42);
+    // Test 124: Reversed specifiers (should be ignored or treated as literals)
+    ft_printf("Test 124 [ft_printf] - Reversed specifiers: d%\n");
+    printf("Test 124 [printf   ] - Reversed specifiers: d%\n");
+    // Test 125: Character with plus flag (not typically permitted)
+    ft_printf("Test 125 [ft_printf] - Plus flag (not permitted): %+c\n", 'E');
+    printf("Test 125 [printf   ] - Plus flag (not permitted): %+c\n", 'E');
+    // Test 126: Character with space flag (not typically permitted)
+    ft_printf("Test 126 [ft_printf] - Space flag (not permitted): % c\n", 'F');
+    printf("Test 126 [printf   ] - Space flag (not permitted): % c\n", 'F');
+    // Test 127: Character with hash flag (not typically permitted)
+    ft_printf("Test 127 [ft_printf] - Hash flag (not permitted): %#c\n", 'G');
+    printf("Test 127 [printf   ] - Hash flag (not permitted): %#c\n", 'G');
+    // Test 128: Character with precision (not typically permitted)
+    ft_printf("Test 128 [ft_printf] - Precision (not permitted): %.2c\n", 'H');
+    printf("Test 128 [printf   ] - Precision (not permitted): %.2c\n", 'H');
+    // Test 129: Character with invalid flag combination
+    ft_printf("Test 129 [ft_printf] - Invalid flag combo: %-+ c\n", 'J');
+    printf("Test 129 [printf   ] - Invalid flag combo: %-+ c\n", 'J');
+    // Test 130: String with zero flag (not typically permitted)
+    ft_printf("Test 130 [ft_printf] - Zero flag (not permitted): %0s\n", sample);
+    printf("Test 130 [printf   ] - Zero flag (not permitted): %0s\n", sample);
+    // Test 131: String with plus flag (not typically permitted)
+    ft_printf("Test 131 [ft_printf] - Plus flag (not permitted): %+s\n", sample);
+    printf("Test 131 [printf   ] - Plus flag (not permitted): %+s\n", sample);
+    // Test 132: String with space flag (not typically permitted)
+    ft_printf("Test 132 [ft_printf] - Space flag (not permitted): % s\n", sample);
+    printf("Test 132 [printf   ] - Space flag (not permitted): % s\n", sample);
+    // Test 133: String with hash flag (not typically permitted)
+    ft_printf("Test 133 [ft_printf] - Hash flag (not permitted): %#s\n", sample);
+    printf("Test 133 [printf   ] - Hash flag (not permitted): %#s\n", sample);
+    // Test 134: String with length modifier (not typically permitted)
+    ft_printf("Test 134 [ft_printf] - Length modifier (not permitted): %s\n", sample);
+    printf("Test 134 [printf   ] - Length modifier (not permitted): %s\n", sample);
+    char *sample2 = "Sample Hello";
+    // Test 135: String with invalid flag combination
+    ft_printf("Test 135 [ft_printf] - Invalid flag combo: %-+ s\n", sample2);
+    printf("Test 135 [printf   ] - Invalid flag combo: %-+ s\n", sample2);
+    // Test 136: Pointer with plus flag (not typically permitted)
+    ft_printf("Test 136 [ft_printf] - Plus flag (not permitted): %+p\n", ptr3);
+    printf("Test 136 [printf   ] - Plus flag (not permitted): %+p\n", ptr3);
+    // Test 137: Pointer with space flag (not typically permitted)
+    ft_printf("Test 137 [ft_printf] - Space flag (not permitted): % p\n", ptr3);
+    printf("Test 137 [printf   ] - Space flag (not permitted): % p\n", ptr3);
+    // Test 138: Pointer with hash flag (not typically permitted)
+    ft_printf("Test 138 [ft_printf] - Hash flag (not permitted): %#p\n", ptr3);
+    printf("Test 138 [printf   ] - Hash flag (not permitted): %#p\n", ptr3);
+    // Test 139: Pointer with precision (not typically permitted)
+    ft_printf("Test 139 [ft_printf] - Precision (not permitted): %.5p\n", ptr3);
+    printf("Test 139 [printf   ] - Precision (not permitted): %.5p\n", ptr3);
+    // Test 140: Pointer with length modifier (not typically permitted)
+    ft_printf("Test 140 [ft_printf] - Length modifier (not permitted): %.5p\n", ptr3);
+    printf("Test 140 [printf   ] - Length modifier (not permitted): %.5p\n", ptr3);
+    // Test 141: Pointer with invalid flag combination
+    ft_printf("Test 141 [ft_printf] - Invalid flag combo: %-+ p\n", ptr3);
+    printf("Test 141 [printf   ] - Invalid flag combo: %-+ p\n", ptr3);
+    // Test 142: Integer with hash flag %d (not typically permitted)
+    ft_printf("Test 142 [ft_printf] - Integer with hash flag (not permitted): %#d\n", 42);
+    printf("Test 142 [printf   ] - Integer with hash flag (not permitted): %#d\n", 42);
+    // Test 143: Integer with non-existent specifier %w (should fail or be ignored)
+    ft_printf("Test 143 [ft_printf] - Non-existent specifier: %w\n", 42);
+    printf("Test 143 [printf   ] - Non-existent specifier: %w\n", 42);
+    // Test 144: Integer with excessive length modifiers %hhhhhd
+    ft_printf("Test 144 [ft_printf] - Excessive length modifiers: %hhhhhd\n", 42);
+    printf("Test 144 [printf   ] - Excessive length modifiers: %hhhhhhhd\n", 42);
+    // Test 145: Integer with mixed valid and invalid flags %d
+    ft_printf("Test 145 [ft_printf] - Mixed valid and invalid flags: %0+- 5d\n", 42);
+    printf("Test 145 [printf   ] - Mixed valid and invalid flags: %0+- 5d\n", 42);
+    // Test 146: Integer with reversed specifiers %d%
+    ft_printf("Test 146 [ft_printf] - Reversed specifiers: d%\n");
+    printf("Test 146 [printf   ] - Reversed specifiers: d%\n");
+    // Test 147: Integer %d with all non-permitted flags
+    ft_printf("Test 147 [ft_printf] - All non-permitted flags: %0#+ d\n", 42);
+    printf("Test 147 [printf   ] - All non-permitted flags: %0#+ d\n", 42);
+    // Test 148: Hexadecimal %x with plus flag (not typically permitted)
+    ft_printf("Test 148 [ft_printf] - Hexadecimal with plus (not permitted) (x): %+x\n", hexValue);
+    printf("Test 148 [printf   ] - Hexadecimal with plus (not permitted) (x): %+x\n", hexValue);
+    // Test 149: Hexadecimal %X with space flag (not typically permitted)
+    ft_printf("Test 149 [ft_printf] - Hexadecimal with space (not permitted) (X): % X\n", hexValue);
+    printf("Test 149 [printf   ] - Hexadecimal with space (not permitted) (X): % X\n", hexValue);
+    // Test 150: Percent sign %%
+    ft_printf("Test 150 [ft_printf] - Percent sign: %%\n");
+    printf("Test 150 [printf   ] - Percent sign: %%\n");
+    // Test 151: Percent sign with width %%
+    ft_printf("Test 151 [ft_printf] - Percent sign with width: %5%\n");
+    printf("Test 151 [printf   ] - Percent sign with width: %5%\n");
+    // Test 152: Percent sign with left-justified %%
+    ft_printf("Test 152 [ft_printf] - Percent sign left-justified: %-5%\n");
+    printf("Test 152 [printf   ] - Percent sign left-justified: %-5%\n");
+    // Test 153: Percent sign with invalid flag %%
+    ft_printf("Test 153 [ft_printf] - Invalid flag with percent: %+#%\n");
+    printf("Test 153 [printf   ] - Invalid flag with percent: %+#%\n");
+    // Test 154: Percent sign with zero padding %%
+    ft_printf("Test 154 [ft_printf] - Zero padding with percent: %05%\n");
+    printf("Test 154 [printf   ] - Zero padding with percent: %05%\n");
+    // Test 155: Multiple percent signs %%
+    ft_printf("Test 155 [ft_printf] - Multiple percent signs: %% %% %%\n");
+    printf("Test 155 [printf   ] - Multiple percent signs: %% %% %%\n");
+    // Test 156: Percent sign %%
+    ft_printf("Test 156 [ft_printf] - Percent sign: %%\n");
+    printf("Test 156 [printf   ] - Percent sign: %%\n");
+    // Test 157: %i with a large number (beyond int range) to check behavior
+    ft_printf("Test 157 [ft_printf] - Large number (i): %i\n", 21474836470);
+    printf("Test 157 [printf   ] - Large number (i): %i\n", 21474836470);
+    // Test 158: %i with a number just above INT_MAX (to see if it wraps around correctly)
+    ft_printf("Test 158 [ft_printf] - Above max int (i): %i\n", INT_MAX + 1);
+    printf("Test 158 [printf   ] - Above max int (i): %i\n", INT_MAX + 1);
+    // Test 159: %i with a number just below INT_MIN (to see if it wraps around correctly)
+    ft_printf("Test 159 [ft_printf] - Below min int (i): %i\n", INT_MIN - 1);
+    printf("Test 159 [printf   ] - Below min int (i): %i\n", INT_MIN - 1);
+    // Test 160: %d with a very large number (long long max for instance)
+    ft_printf("Test 160 [ft_printf] - Very large number (d): %d\n", large_num);
+    printf("Test 160 [printf   ] - Very large number (d): %d\n", large_num);
+    // Test 161: Integer overflow (Undefined behavior)
+    ft_printf("Test 161 [ft_printf] - Int overflow: %d\n", INT_MAX + 1);
+    printf("Test 161 [printf   ] - Int overflow: %d\n", INT_MAX + 1);
+    // Test 162: Integer underflow (Undefined behavior)
+    ft_printf("Test 162 [ft_printf] - Int underflow: %d\n", INT_MIN - 1);
+    printf("Test 162 [printf   ] - Int underflow: %d\n", INT_MIN - 1);
+    // Test 163: Passing wrong type (Undefined behavior)
+    ft_printf("Test 163 [ft_printf] - Wrong type for d: %d\n", "123");
+    printf("Test 163 [printf   ] - Wrong type for d: %d\n", "123");
+    // Test 164: Passing NULL for a %d specifier (may produce an error or unexpected behavior)
+    ft_printf("Test 164 [ft_printf] - NULL for integer: %d\n", NULL);
+    printf("Test 164 [printf   ] - NULL for integer: %d\n", NULL);
+    // Test 165: Passing a floating-point number to %d (may produce an error or unexpected behavior)
+    ft_printf("Test 165 [ft_printf] - Float to int: %d\n", 123.456);
+    printf("Test 165 [printf   ] - Float to int: %d\n", 123.456);
+    // Test 166: Passing a string to %d (may produce an error or unexpected behavior)
+    ft_printf("Test 166 [ft_printf] - String to int: %d\n", "123");
+    printf("Test 166 [printf   ] - String to int: %d\n", "123");
+    // Test 167: Missing argument for a specifier
+    ft_printf("Test 167 [ft_printf] - Missing argument: %d\n");
+    printf("Test 167 [printf   ] - Missing argument: %d\n");
 
-    // Test 13: Passing an invalid format specifier (Undefined behavior)
-    ft_printf("Test 13 [ft_printf] - Invalid specifier: %y\n");
-    printf("Test 13 [printf   ] - Invalid specifier: %y\n");
-    // Test 22: Incorrect specifier combination (e.g., using a precision specifier with %c which is typically not used)
-    ft_printf("Test 22 [ft_printf] - Incorrect specifier combination: %.5c\n", 'A');
-    printf("Test 22 [printf   ] - Incorrect specifier combination: %.5c\n", 'A');
-    // Test 27: Precision specifier for %p (undefined in some implementations)
-    ft_printf("Test 27 [ft_printf] - Precision with pointer: %.5p\n", ptr2);
-    printf("Test 27 [printf   ] - Precision with pointer: %.5p\n", ptr2);
-    // Test 30: Using non-existent specifiers
-    ft_printf("Test 30 [ft_printf] - Non-existent specifier: %z\n");
-    printf("Test 30 [printf   ] - Non-existent specifier: %z\n");
-    // Test 32: Incomplete specifier at the end
-    ft_printf("Test 32 [ft_printf] - Incomplete specifier: %\n");
-    printf("Test 32 [printf   ] - Incomplete specifier: %\n");
-    // Test 38: Multiple percent signs
-    ft_printf("Test 38 [ft_printf] - Multiple percent signs: %%d%%\n", 42);
-    printf("Test 38 [printf   ] - Multiple percent signs: %%d%%\n", 42);
-    // Test 40: Reversed specifiers (should be ignored or treated as literals)
-    ft_printf("Test 40 [ft_printf] - Reversed specifiers: d%\n");
-    printf("Test 40 [printf   ] - Reversed specifiers: d%\n");
-    // Test 45: Character with plus flag (not typically permitted)
-    ft_printf("Test 45 [ft_printf] - Plus flag (not permitted): %+c\n", 'E');
-    printf("Test 45 [printf   ] - Plus flag (not permitted): %+c\n", 'E');
-    // Test 46: Character with space flag (not typically permitted)
-    ft_printf("Test 46 [ft_printf] - Space flag (not permitted): % c\n", 'F');
-    printf("Test 46 [printf   ] - Space flag (not permitted): % c\n", 'F');
-    // Test 47: Character with hash flag (not typically permitted)
-    ft_printf("Test 47 [ft_printf] - Hash flag (not permitted): %#c\n", 'G');
-    printf("Test 47 [printf   ] - Hash flag (not permitted): %#c\n", 'G');
-    // Test 48: Character with precision (not typically permitted)
-    ft_printf("Test 48 [ft_printf] - Precision (not permitted): %.2c\n", 'H');
-    printf("Test 48 [printf   ] - Precision (not permitted): %.2c\n", 'H');
-    // Test 50: Character with invalid flag combination
-    ft_printf("Test 50 [ft_printf] - Invalid flag combo: %-+ c\n", 'J');
-    printf("Test 50 [printf   ] - Invalid flag combo: %-+ c\n", 'J');
-    // Test 55: String with zero flag (not typically permitted)
-    ft_printf("Test 55 [ft_printf] - Zero flag (not permitted): %0s\n", sample);
-    printf("Test 55 [printf   ] - Zero flag (not permitted): %0s\n", sample);
-    // Test 56: String with plus flag (not typically permitted)
-    ft_printf("Test 56 [ft_printf] - Plus flag (not permitted): %+s\n", sample);
-    printf("Test 56 [printf   ] - Plus flag (not permitted): %+s\n", sample);
-    // Test 57: String with space flag (not typically permitted)
-    ft_printf("Test 57 [ft_printf] - Space flag (not permitted): % s\n", sample);
-    printf("Test 57 [printf   ] - Space flag (not permitted): % s\n", sample);
-    // Test 58: String with hash flag (not typically permitted)
-    ft_printf("Test 58 [ft_printf] - Hash flag (not permitted): %#s\n", sample);
-    printf("Test 58 [printf   ] - Hash flag (not permitted): %#s\n", sample);
-    // Test 59: String with length modifier (not typically permitted)
-    ft_printf("Test 59 [ft_printf] - Length modifier (not permitted): %ls\n", sample);
-    printf("Test 59 [printf   ] - Length modifier (not permitted): %ls\n", sample);
-    // Test 60: String with invalid flag combination
-    ft_printf("Test 60 [ft_printf] - Invalid flag combo: %-+ s\n", sample);
-    printf("Test 60 [printf   ] - Invalid flag combo: %-+ s\n", sample);
-    // Test 65: Pointer with plus flag (not typically permitted)
-    ft_printf("Test 65 [ft_printf] - Plus flag (not permitted): %+p\n", ptr3);
-    printf("Test 65 [printf   ] - Plus flag (not permitted): %+p\n", ptr3);
-    // Test 66: Pointer with space flag (not typically permitted)
-    ft_printf("Test 66 [ft_printf] - Space flag (not permitted): % p\n", ptr3);
-    printf("Test 66 [printf   ] - Space flag (not permitted): % p\n", ptr3);
-    // Test 67: Pointer with hash flag (not typically permitted)
-    ft_printf("Test 67 [ft_printf] - Hash flag (not permitted): %#p\n", ptr3);
-    printf("Test 67 [printf   ] - Hash flag (not permitted): %#p\n", ptr3);
-    // Test 68: Pointer with precision (not typically permitted)
-    ft_printf("Test 68 [ft_printf] - Precision (not permitted): %.5p\n", ptr3);
-    printf("Test 68 [printf   ] - Precision (not permitted): %.5p\n", ptr3);
-    // Test 69: Pointer with length modifier (not typically permitted)
-    ft_printf("Test 69 [ft_printf] - Length modifier (not permitted): %lp\n", ptr3);
-    printf("Test 69 [printf   ] - Length modifier (not permitted): %lp\n", ptr3);
-    // Test 70: Pointer with invalid flag combination
-    ft_printf("Test 70 [ft_printf] - Invalid flag combo: %-+ p\n", ptr3);
-    printf("Test 70 [printf   ] - Invalid flag combo: %-+ p\n", ptr3);
-    // Test 79: Integer with hash flag %d (not typically permitted)
-    ft_printf("Test 79 [ft_printf] - Integer with hash flag (not permitted): %#d\n", 42);
-    printf("Test 79 [printf   ] - Integer with hash flag (not permitted): %#d\n", 42);
-    // Test 85: Integer with non-existent specifier %w (should fail or be ignored)
-    ft_printf("Test 85 [ft_printf] - Non-existent specifier: %w\n", 42);
-    printf("Test 85 [printf   ] - Non-existent specifier: %w\n", 42);
-    // Test 86: Integer with excessive length modifiers %hhhhhd
-    ft_printf("Test 86 [ft_printf] - Excessive length modifiers: %hhhhhhhd\n", 42);
-    printf("Test 86 [printf   ] - Excessive length modifiers: %hhhhhhhd\n", 42);
-    // Test 87: Integer with mixed valid and invalid flags %d
-    ft_printf("Test 87 [ft_printf] - Mixed valid and invalid flags: %0+- 5d\n", 42);
-    printf("Test 87 [printf   ] - Mixed valid and invalid flags: %0+- 5d\n", 42);
-    // Test 88: Integer with reversed specifiers %d%
-    ft_printf("Test 88 [ft_printf] - Reversed specifiers: d%\n");
-    printf("Test 88 [printf   ] - Reversed specifiers: d%\n");
-    // Test 90: Integer %d with all non-permitted flags
-    ft_printf("Test 90 [ft_printf] - All non-permitted flags: %0#+ d\n", 42);
-    printf("Test 90 [printf   ] - All non-permitted flags: %0#+ d\n", 42);
-   // Test 101: Hexadecimal %x with plus flag (not typically permitted)
-    ft_printf("Test 101 [ft_printf] - Hexadecimal with plus (not permitted) (x): %+x\n", hexValue);
-    printf("Test 101 [printf   ] - Hexadecimal with plus (not permitted) (x): %+x\n", hexValue);
-    // Test 102: Hexadecimal %X with space flag (not typically permitted)
-    ft_printf("Test 102 [ft_printf] - Hexadecimal with space (not permitted) (X): % X\n", hexValue);
-    printf("Test 102 [printf   ] - Hexadecimal with space (not permitted) (X): % X\n", hexValue);
-    // Test 105: Percent sign %%
-    ft_printf("Test 105 [ft_printf] - Percent sign: %%\n");
-    printf("Test 105 [printf   ] - Percent sign: %%\n");
-    // Test 106: Percent sign with width %%
-    ft_printf("Test 106 [ft_printf] - Percent sign with width: %5%\n");
-    printf("Test 106 [printf   ] - Percent sign with width: %5%\n");
-    // Test 107: Percent sign with left-justified %%
-    ft_printf("Test 107 [ft_printf] - Percent sign left-justified: %-5%\n");
-    printf("Test 107 [printf   ] - Percent sign left-justified: %-5%\n");
-    // Test 108: Percent sign with invalid flag %%
-    ft_printf("Test 108 [ft_printf] - Invalid flag with percent: %+#%\n");
-    printf("Test 108 [printf   ] - Invalid flag with percent: %+#%\n");
-    // Test 109: Percent sign with zero padding %%
-    ft_printf("Test 109 [ft_printf] - Zero padding with percent: %05%\n");
-    printf("Test 109 [printf   ] - Zero padding with percent: %05%\n");
-    // Test 110: Multiple percent signs %%
-    ft_printf("Test 110 [ft_printf] - Multiple percent signs: %% %% %%\n");
-    printf("Test 110 [printf   ] - Multiple percent signs: %% %% %%\n");
-    // Test 119: Percent sign %%
-    ft_printf("Test 119 [ft_printf] - Percent sign: %%\n");
-    printf("Test 119 [printf   ] - Percent sign: %%\n");
-    // Test 22: %i with a large number (beyond int range) to check behavior
-    ft_printf("Test 22 [ft_printf] - Large number (i): %i\n", 21474836470);
-    printf("Test 22 [printf   ] - Large number (i): %i\n", 21474836470);
-    // Test 23: %i with a number just above INT_MAX (to see if it wraps around correctly)
-    ft_printf("Test 23 [ft_printf] - Above max int (i): %i\n", INT_MAX + 1);
-    printf("Test 23 [printf   ] - Above max int (i): %i\n", INT_MAX + 1);
-    // Test 24: %i with a number just below INT_MIN (to see if it wraps around correctly)
-    ft_printf("Test 24 [ft_printf] - Below min int (i): %i\n", INT_MIN - 1);
-    printf("Test 24 [printf   ] - Below min int (i): %i\n", INT_MIN - 1);
-    // Test 32: %d with a very large number (long long max for instance)
-    ft_printf("Test 32 [ft_printf] - Very large number (d): %d\n", large_num);
-    printf("Test 32 [printf   ] - Very large number (d): %d\n", large_num);
-  // Test 14: Integer overflow (Undefined behavior)
-    ft_printf("Test 14 [ft_printf] - Int overflow: %d\n", INT_MAX + 1);
-    printf("Test 14 [printf   ] - Int overflow: %d\n", INT_MAX + 1);
-    // Test 15: Integer underflow (Undefined behavior)
-    ft_printf("Test 15 [ft_printf] - Int underflow: %d\n", INT_MIN - 1);
-    printf("Test 15 [printf   ] - Int underflow: %d\n", INT_MIN - 1);
-    // Test 16: Passing wrong type (Undefined behavior)
-    ft_printf("Test 16 [ft_printf] - Wrong type for d: %d\n", "123");
-    printf("Test 16 [printf   ] - Wrong type for d: %d\n", "123");
-    // Test 19: Passing NULL for a %d specifier (may produce an error or unexpected behavior)
-    ft_printf("Test 19 [ft_printf] - NULL for integer: %d\n", NULL);
-    printf("Test 19 [printf   ] - NULL for integer: %d\n", NULL);
-    // Test 20: Passing a floating-point number to %d (may produce an error or unexpected behavior)
-    ft_printf("Test 20 [ft_printf] - Float to int: %d\n", 123.456);
-    printf("Test 20 [printf   ] - Float to int: %d\n", 123.456);
-    // Test 24: Passing a string to %d (may produce an error or unexpected behavior)
-    ft_printf("Test 24 [ft_printf] - String to int: %d\n", "123");
-    printf("Test 24 [printf   ] - String to int: %d\n", "123");
-        // Test 25: Missing argument for a specifier
-    ft_printf("Test 25 [ft_printf] - Missing argument: %d\n");
-    printf("Test 25 [printf   ] - Missing argument: %d\n");
-    // Test 88: Complex mix with c, s, and d specifiers
-    ft_printf("Test 88 [ft_printf] - +05d: %+05d\n", 12345);
-    printf("Test 88 [printf   ] - +05d: %+05d\n", 12345);
 
     return 0;
 }
