@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 14:56:22 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/02 00:23:48 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/12 21:48:18 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@ void	ft_handle_string(t_format_spec spec, va_list args, t_buffer *buf_info)
 	str = (char *)va_arg(args, char *);
 	if (!str)
 		str = "(null)";
-	content_len  = 0;
-	while (str[content_len] && (spec.precision < 0 || content_len < spec.precision))
+	content_len = 0;
+	while (str[content_len] 
+		&& (spec.precision < 0 || content_len < spec.precision))
 		content_len++;
 	i = 0;
 	if (!spec.flag_minus)
 		ft_apply_width(spec, buf_info, content_len);
-	while(str[i] && i < content_len)
-		ft_buffer_add(buf_info, str[i++]);	
+	while (str[i] && i < content_len)
+		ft_buffer_add(buf_info, str[i++]);
 	if (spec.flag_minus)
 		ft_apply_width(spec, buf_info, content_len);
 }

@@ -6,23 +6,14 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 21:50:01 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/02 02:11:55 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/12 20:52:15 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static int	ft_nbr_len(unsigned long long nbr, int base_len)
-{
-	int	len;
-
-	len = 1;
-	while (nbr /= base_len)
-		len++;
-	return (len);
-}
-
-static char	*ft_fill_base(unsigned long long nbr, int size, char *base, char *res)
+static char	*ft_fill_base(unsigned long long nbr, int size, char *base,
+		char *res)
 {
 	int	len;
 	int	i;

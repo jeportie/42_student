@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 03:32:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/05 20:01:35 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/12 21:28:25 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "printf/printf.h"
 #include <stdio.h>
 #include <limits.h>
 
@@ -116,9 +116,18 @@ int main(void)
     void *ptr4 = &d;
     ft_printf("Test 30 [ft_printf] - Pointer, Int, and Char: %p, %i, %c\n", ptr4, -123, 'A');
     printf("Test 30 [printf   ] - Pointer, Int, and Char: %p, %i, %c\n", ptr4, -123, 'A');
+
+
+
+    // Test 31: Multiple specifiers - %d, %X, %s, and %c
+    ft_printf("Test 31 [ft_printf] - Int, Hex Uppercase, String, and Char: %d, %s, %c\n", 1000, "Hex", 'B');
+    printf("Test 31 [printf   ] - Int, Hex Uppercase, String, and Char: %d, %X, %s, %c\n", 1000, 0xBEEF, "Hex", 'B');
+
     // Test 31: Multiple specifiers - %d, %X, %s, and %c
     ft_printf("Test 31 [ft_printf] - Int, Hex Uppercase, String, and Char: %d, %X, %s, %c\n", 1000, 0xBEEF, "Hex", 'B');
     printf("Test 31 [printf   ] - Int, Hex Uppercase, String, and Char: %d, %X, %s, %c\n", 1000, 0xBEEF, "Hex", 'B');
+
+
     // Test 32: Multiple specifiers - %u, %p, %s, and %x
     ft_printf("Test 32 [ft_printf] - Unsigned, Pointer, String, and Hex: %u, %p, %s, %x\n", UINT_MAX, p, "Unsigned", 0x1234);
     printf("Test 32 [printf   ] - Unsigned, Pointer, String, and Hex: %u, %p, %s, %x\n", UINT_MAX, p, "Unsigned", 0x1234);
@@ -548,6 +557,7 @@ int main(void)
     ft_printf("Test 167 [ft_printf] - Missing argument: %d\n");
     printf("Test 167 [printf   ] - Missing argument: %d\n");
 
-
+    printf("%50d trop cool j'ai mon propre printf qui marche avec tout\n%50p\n",123,  ptr3);
+    ft_printf("%50d trop cool j'ai mon propre printf qui marche avec tout\n%50p\n", 123,  ptr3);
     return 0;
 }

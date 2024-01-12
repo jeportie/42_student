@@ -1,0 +1,1014 @@
+!<arch>
+//                                              326       `
+ft_apply_precision.c/
+ft_handle_char.c/
+ft_handle_pointer.c/
+ft_apply_width.c/
+ft_handle_hash_flag.c/
+ft_handle_space_flag.c/
+ft_parse_flags.c/
+ft_handle_hexadecimal.c/
+ft_handle_string.c/
+ft_parse_format.c/
+printf_globals.c/
+ft_buffer_flush.c/
+ft_isconvert_spec.c/
+ft_check_format.c/
+ft_handle_plus_flag.c/
+ft_ulltoa_base.c/
+/0              0           0     0     644     1931      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_apply_precision.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 17:30:05 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 18:02:53 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+static int	ft_setup_new_str(char **new_str, t_format_spec *spec, int total_len,
+		int is_negative)
+{
+	*new_str = (char *)malloc(sizeof(char) * (total_len + 1));
+	if (!(*new_str))
+	{
+		spec->error = ERNOMEM;
+		return (0);
+	}
+	ft_memset(*new_str, '0', total_len);
+	if (is_negative)
+		(*new_str)[0] = '-';
+	return (1);
+}
+
+void	ft_apply_precision(t_format_spec spec, char **formatted_content)
+{
+	int		len;
+	char	*new_str;
+	int		total_len;
+	int		copy_start;
+	int		is_negative;
+
+	is_negative = 0;
+	if ((*formatted_content)[0] == '-')
+		is_negative = 1;
+	len = ft_strlen(*formatted_content) - is_negative;
+	if (spec.precision <= len && spec.precision != -1)
+		return ;
+	if (is_negative)
+		total_len = spec.precision + 1;
+	else
+		total_len = spec.precision;
+	ft_setup_new_str(&new_str, &spec, total_len, is_negative);
+	if (spec.error == ERNOMEM)
+		return ;
+	copy_start = total_len - len;
+	ft_strlcpy(new_str + copy_start, *formatted_content + is_negative, len + 1);
+	free(*formatted_content);
+	*formatted_content = new_str;
+}
+
+/22             0           0     0     644     1219      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_handle_char.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/26 20:12:16 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/30 19:35:39 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+void	ft_handle_char(t_format_spec spec, va_list args, t_buffer *buf_info)
+{
+	char	c;
+	int		content_len;
+
+	c = (char)va_arg(args, int);
+	content_len = 1;
+	if (spec.flag_minus)
+		ft_buffer_add(buf_info, c);
+	ft_apply_width(spec, buf_info, content_len);
+	if (!spec.flag_minus)
+		ft_buffer_add(buf_info, c);
+}
+
+/40             0           0     0     644     2149      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_handle_pointer.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/29 18:22:11 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/12 17:40:08 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+static int	ft_prepare_pointer_content(va_list args, char **adresse,
+		t_buffer *buf_info)
+{
+	void	*ptr;
+
+	ptr = (void *)va_arg(args, void *);
+	if (!ptr)
+		*adresse = "0";
+	else
+	{
+		*adresse = ft_ulltoa_base((unsigned long long)ptr, "0123456789abcdef");
+		if (!*adresse)
+		{
+			buf_info->error = ERNOMEM;
+			return (0);
+		}
+	}
+	return (1);
+}
+
+static void	ft_process_formatted_pointer(t_format_spec spec, char *adresse,
+		t_buffer *buf_info)
+{
+	int	content_len;
+	int	i;
+
+	content_len = ft_strlen(adresse) + 2;
+	if (spec.flag_plus)
+		content_len++;
+	if (!spec.flag_minus)
+		ft_apply_width(spec, buf_info, content_len);
+	ft_handle_space_flag(spec, (unsigned long long)adresse, buf_info);
+	ft_handle_plus_flag(spec, (unsigned long long)adresse, buf_info);
+	ft_buffer_add(buf_info, '0');
+	ft_buffer_add(buf_info, 'x');
+	i = 0;
+	while (adresse[i])
+		ft_buffer_add(buf_info, adresse[i++]);
+	if (spec.flag_minus)
+		ft_apply_width(spec, buf_info, content_len);
+}
+
+int	ft_handle_pointer(t_format_spec spec, va_list args, t_buffer *buf_info)
+{
+	char	*adresse;
+
+	if (!ft_prepare_pointer_content(args, &adresse, buf_info))
+		return (0);
+	ft_process_formatted_pointer(spec, adresse, buf_info);
+	if (adresse[0] != '0')
+		free(adresse);
+	return (1);
+}
+
+ft_nbr_len.c/   0           0     0     644     1064      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_nbr_len.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 21:26:33 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/12 15:25:49 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+int	ft_nbr_len(unsigned long long nbr, int base_len)
+{
+	int	len;
+
+	len = 1;
+	while (nbr / base_len)
+	{
+		nbr /= base_len;
+		len++;
+	}
+	return (len);
+}
+ft_utoa_base.c/ 0           0     0     644     1479      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utoa_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/02 16:39:22 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 21:27:23 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+static char	*ft_fill_base(unsigned int nbr, int size, char *base, char *res)
+{
+	int	len;
+	int	i;
+
+	len = ft_strlen(base);
+	i = size - 1;
+	if (nbr == 0)
+		res[i] = base[0];
+	while (nbr)
+	{
+		res[i--] = base[nbr % len];
+		nbr /= len;
+	}
+	res[size] = '\0';
+	return (res);
+}
+
+char	*ft_utoa_base(unsigned int nbr, char *base)
+{
+	int		len;
+	int		size;
+	char	*res;
+
+	if (!base || ft_strlen(base) < 2)
+		return (NULL);
+	len = ft_strlen(base);
+	size = ft_nbr_len(nbr, len);
+	res = malloc(size + 1);
+	if (!res)
+		return (NULL);
+	return (ft_fill_base(nbr, size, base, res));
+}
+
+/61             0           0     0     644     1259      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_apply_width.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/29 14:21:49 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/05 03:45:57 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+void	ft_apply_width(t_format_spec spec, t_buffer *buf_info, int content_len)
+{
+	int		width;
+	char	pad;
+
+	width = spec.width;
+	pad = ' ';
+	if (spec.flag_zero)
+		pad = '0';
+	while (width > content_len)
+	{
+		ft_buffer_add(buf_info, pad);
+		width--;
+	}
+	if (spec.flag_plus && spec.width && content_len < spec.width)
+		ft_buffer_add(buf_info, pad);
+}
+
+/79             0           0     0     644     1179      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_handle_hash_flag.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/30 17:39:26 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/05 18:14:48 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+void	ft_handle_hash_flag(t_format_spec spec, int content, t_buffer *buf_info)
+{
+	if (spec.flag_hash && content)
+	{
+		ft_buffer_add(buf_info, '0');
+		if (spec.type == 'X')
+			ft_buffer_add(buf_info, 'X');
+		if (spec.type == 'x')
+			ft_buffer_add(buf_info, 'x');
+	}
+}
+
+/102            0           0     0     644     1158      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_handle_space_flag.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/29 21:25:19 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 19:09:40 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+void	ft_handle_space_flag(t_format_spec spec, int content,
+		t_buffer *buf_info)
+{
+	if (spec.flag_space && !spec.flag_plus && content >= 0)
+	{
+		if (spec.type == 'u')
+		{
+			if (!spec.width)
+				return ;
+		}
+		ft_buffer_add(buf_info, ' ');
+	}
+}
+/126            0           0     0     644     2569      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse_flags.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 20:53:15 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 21:06:29 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+static void	ft_parse_width(const char *format, t_format_spec *spec, size_t *i)
+{
+	spec->width = 0;
+	while (format[*i] >= '0' && format[*i] <= '9')
+	{
+		spec->width = spec->width * 10 + (format[*i] - '0');
+		(*i)++;
+	}
+}
+
+static void	ft_parse_precision(const char *format, t_format_spec *spec,
+		size_t *i)
+{
+	if (format[*i] == '.')
+	{
+		(*i)++;
+		spec->precision = 0;
+		while (format[*i] >= '0' && format[*i] <= '9')
+		{
+			spec->precision = spec->precision * 10 + (format[*i] - '0');
+			(*i)++;
+		}
+	}
+}
+
+static void	ft_zero_minus_flags(const char *format, t_format_spec *spec,
+		size_t *i)
+{
+	if (format[*i] == '0' && !spec->flag_minus && spec->width == 0)
+	{
+		spec->flag_zero = 1;
+	}
+	else if (format[*i] == '-')
+	{
+		spec->flag_minus = 1;
+		spec->flag_zero = 0;
+	}
+	(*i)++;
+}
+
+static void	ft_psh_flags(const char *format, t_format_spec *spec,
+		size_t *i)
+{
+	if (format[*i] == '+')
+	{
+		spec->flag_plus = 1;
+		spec->flag_space = 0;
+	}
+	else if (format[*i] == ' ' && !spec->flag_plus)
+	{
+		spec->flag_space = 1;
+	}
+	else if (format[*i] == '#')
+	{
+		spec->flag_hash = 1;
+	}
+	(*i)++;
+}
+
+void	ft_parse_flags(const char *format, t_format_spec *spec)
+{
+	size_t	i;
+
+	i = 0;
+	while (ft_isflag(format[i]) && format[i] != spec->type)
+	{
+		if (format[i] == '0' || format[i] == '-')
+			ft_zero_minus_flags(format, spec, &i);
+		else if (ft_strchr("+# ", format[i]))
+			ft_psh_flags(format, spec, &i);
+		else if (ft_isdigit(format[i]) && format[i] != '0')
+			ft_parse_width(format, spec, &i);
+		else if (format[i] == '.' && spec->type != 'p' && spec->type != 'c')
+			ft_parse_precision(format, spec, &i);
+		else
+		{
+			spec->error = ERNOFORMAT;
+			break ;
+		}
+	}
+}
+
+ft_buffer_add.c/0           0     0     644     1248      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_buffer_add.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/25 18:03:11 by jeportie          #+#    #+#             */
+/*   Updated: 2023/12/31 15:05:18 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+void	ft_buffer_add(t_buffer *buf_info, char c)
+{
+	if (buf_info->error)
+		return ;
+	if (buf_info->index >= BUFFER_SIZE)
+	{
+		buf_info->buf_last = buf_info->buffer[buf_info->index - 1];
+		if (!ft_buffer_flush(buf_info))
+		{
+			buf_info->error = ERNOWRITE;
+			return ;
+		}
+	}
+	buf_info->buffer[buf_info->index] = c;
+	buf_info->index++;
+}
+/144            0           0     0     644     2432      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_handle_hexadecimal.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/30 17:18:44 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 18:30:28 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+static int	ft_prep_hex(t_format_spec spec, unsigned int content,
+		char **formatted_content, t_buffer *buf_info)
+{
+	if (spec.type == 'X')
+		*formatted_content = ft_utoa_base(content, "0123456789ABCDEF");
+	if (spec.type == 'x')
+		*formatted_content = ft_utoa_base(content, "0123456789abcdef");
+	if (!formatted_content)
+	{
+		buf_info->error = ERNOMEM;
+		return (0);
+	}
+	if (spec.precision != -1)
+		ft_apply_precision(spec, formatted_content);
+	return (1);
+}
+
+static int	ft_format_len(t_format_spec spec, unsigned int content,
+		const char *formatted_content)
+{
+	int	formatted_len;
+
+	formatted_len = ft_strlen(formatted_content);
+	if (spec.flag_hash && content)
+		formatted_len += 2;
+	return (formatted_len);
+}
+
+int	ft_handle_hexadecimal(t_format_spec spec, va_list args, t_buffer *buf_info)
+{
+	unsigned int	content;
+	char			*formatted_content;
+	int				formatted_len;
+	int				i;
+
+	content = va_arg(args, unsigned int);
+	if (!ft_prep_hex(spec, content, &formatted_content, buf_info))
+		return (0);
+	i = 0;
+	formatted_len = ft_format_len(spec, content, formatted_content);
+	if (!spec.flag_minus)
+	{
+		if (spec.flag_zero && spec.flag_hash)
+			ft_handle_hash_flag(spec, content, buf_info);
+		ft_apply_width(spec, buf_info, formatted_len);
+	}
+	if (!spec.flag_zero)
+		ft_handle_hash_flag(spec, content, buf_info);
+	while (i < formatted_len && formatted_content[i])
+		ft_buffer_add(buf_info, formatted_content[i++]);
+	if (spec.flag_minus)
+		ft_apply_width(spec, buf_info, formatted_len);
+	free(formatted_content);
+	return (1);
+}
+/169            0           0     0     644     1440      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_handle_string.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/29 14:56:22 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 17:21:11 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+void	ft_handle_string(t_format_spec spec, va_list args, t_buffer *buf_info)
+{
+	char	*str;
+	int		content_len;
+	int		i;
+
+	str = (char *)va_arg(args, char *);
+	if (!str)
+		str = "(null)";
+	content_len = 0;
+	while (str[content_len] && (spec.precision < 0 
+			|| content_len < spec.precision))
+		content_len++;
+	i = 0;
+	if (!spec.flag_minus)
+		ft_apply_width(spec, buf_info, content_len);
+	while (str[i] && i < content_len)
+		ft_buffer_add(buf_info, str[i++]);
+	if (spec.flag_minus)
+		ft_apply_width(spec, buf_info, content_len);
+}
+/189            0           0     0     644     1616      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse_format.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/25 23:29:21 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 21:06:43 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+static char	*ft_find_end(const char *start, t_format_spec *spec)
+{
+	char	*ptr;
+
+	if (!start)
+		return (NULL);
+	ptr = (char *)start;
+	while (*ptr && (ft_isflag(*ptr) || ft_isconvert_spec(*ptr)))
+	{
+		if (ft_isconvert_spec(*ptr))
+		{
+			spec->type = *ptr;
+			return (ptr);
+		}
+		ptr++;
+	}
+	return (NULL);
+}
+
+t_format_spec	ft_parse_format(const char **format)
+{
+	t_format_spec	spec;
+	char			*end;
+
+	ft_memset(&spec, 0, sizeof(t_format_spec));
+	spec.precision = -1;
+	if (!format || !*format || **format != '%')
+		return (spec);
+	(*format)++;
+	end = ft_find_end(*format, &spec);
+	if (!end)
+	{
+		spec.error = ERNOFORMAT;
+		return (spec);
+	}
+	ft_parse_flags(*format, &spec);
+	*format = end; 
+	return (spec);
+}
+/208            0           0     0     644     1067      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printf_globals.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/02 03:49:22 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/02 14:00:01 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+const char	*g_perror[] = 
+{
+	"Success\n",
+	"Error: Failed to write output\n",
+	"Error: Memory allocation failed\n",
+	"Error: Invalid format string\n",
+};
+
+/226            0           0     0     644     1396      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_buffer_flush.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/25 18:03:39 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/12 15:11:54 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+int	ft_buffer_flush(t_buffer *buf_info)
+{
+	int	total_written;
+	int	written;
+
+	total_written = 0;
+	while (total_written < buf_info->index)
+	{
+		written = write(1, &buf_info->buffer[total_written],
+				buf_info->index - total_written);
+		if (written <= 0)
+		{
+			buf_info->nb_printed += total_written;
+			buf_info->index = 0;
+			buf_info->error = ERNOWRITE;
+			return (0);
+		}
+		total_written += written;
+	}
+	buf_info->nb_printed += total_written;
+	buf_info->index = 0;
+	return (1);
+}
+ft_handle_int.c/0           0     0     644     2641      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_handle_int.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/29 20:43:10 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 18:49:48 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+#include <stdio.h>
+
+static int	ft_prepare_int_content(t_format_spec spec, long long content,
+		char **formatted_content, t_buffer *buf_info)
+{
+	if (spec.type == 'i' || spec.type == 'd')
+		*formatted_content = ft_itoa((int)content);
+	else if (spec.type == 'u')
+		*formatted_content = ft_utoa_base((unsigned int)content, "0123456789");
+	if (!*formatted_content)
+	{
+		buf_info->error = ERNOMEM;
+		return (0);
+	}
+	if (spec.precision != -1)
+		ft_apply_precision(spec, formatted_content);
+	return (1);
+}
+
+static void	ft_process_formatted_int(t_format_spec spec, long long content,
+		t_buffer *buf_info, char *formatted_content)
+{
+	int	formatted_len;
+	int	i;
+
+	formatted_len = ft_strlen(formatted_content);
+	i = 0;
+	if (!spec.flag_minus)
+	{
+		if (spec.flag_zero && formatted_content[0] == '-')
+		{
+			ft_buffer_add(buf_info, '-');
+			i = 1;
+		}
+		ft_apply_width(spec, buf_info, formatted_len 
+			+ (spec.flag_space || spec.flag_plus));
+	}
+	ft_handle_space_flag(spec, content, buf_info);
+	ft_handle_plus_flag(spec, content, buf_info);
+	while (formatted_content[i])
+		ft_buffer_add(buf_info, formatted_content[i++]);
+	if (spec.flag_minus)
+		ft_apply_width(spec, buf_info, formatted_len 
+			+ (spec.flag_space || spec.flag_plus));
+}
+
+int	ft_handle_int(t_format_spec spec, va_list args, t_buffer *buf_info)
+{
+	char		*formatted_content;
+	long long	content;
+
+	if (spec.type == 'i' || spec.type == 'd')
+		content = (int)va_arg(args, int);
+	else if (spec.type == 'u')
+		content = (unsigned int)va_arg(args, unsigned int);
+	else
+		content = 0;
+	if (!ft_prepare_int_content(spec, content, &formatted_content, buf_info))
+		return (0);
+	ft_process_formatted_int(spec, content, buf_info, formatted_content);
+	free(formatted_content);
+	return (1);
+}
+
+/245            0           0     0     644     1006      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isconvert_spec.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 20:23:19 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 20:23:52 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+int	ft_isconvert_spec(char c)
+{
+	if (ft_strchr("cspdiuxX%", c))
+		return (1);
+	return (0);
+}
+ft_printf.c/    0           0     0     644     2579      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/25 18:05:57 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/12 15:16:04 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+static int	ft_convert_spec(t_format_spec spec, va_list args,
+		t_buffer *buf_info)
+{
+	if (spec.type == 'c')
+		ft_handle_char(spec, args, buf_info);
+	else if (spec.type == 's')
+		ft_handle_string(spec, args, buf_info);
+	else if (spec.type == 'p')
+	{
+		if (!ft_handle_pointer(spec, args, buf_info))
+			return (0);
+	}
+	else if (spec.type == 'd' || spec.type == 'i' || spec.type == 'u')
+	{
+		if (!ft_handle_int(spec, args, buf_info))
+			return (0);
+	}
+	else if (spec.type == 'x' || spec.type == 'X')
+	{
+		if (!ft_handle_hexadecimal(spec, args, buf_info))
+			return (0);
+	}
+	else if (spec.type == '%')
+		ft_buffer_add(buf_info, '%');
+	return (1);
+}
+
+static int	ft_process_spec(const char **format, va_list args,
+		t_buffer *buf_info)
+{
+	t_format_spec	spec;
+
+	spec = ft_parse_format(format);
+	if (!spec.type)
+	{
+		ft_buffer_add(buf_info, '%');
+		if (*(*format) && (*(*(format + 1)) || *(*format + 1) != '\n'))
+			ft_buffer_add(buf_info, *(*format));
+	}
+	else if (ft_check_format(&spec))
+	{
+		if (!ft_convert_spec(spec, args, buf_info))
+		{
+			ft_putstr_fd((char *)g_perror[buf_info->error], 2);
+			return (0);
+		}
+	}
+	return (1);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list			args;
+	t_buffer		buf_info;
+	char			buffer[BUFFER_SIZE];
+
+	ft_memset(&buf_info, 0, sizeof(t_buffer));
+	buf_info.buffer = buffer;
+	va_start(args, format);
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			if (!ft_process_spec(&format, args, &buf_info))
+				return (-1);
+		}
+		else
+			ft_buffer_add(&buf_info, *format);
+		format++;
+	}
+	va_end(args);
+	if (!ft_buffer_flush(&buf_info))
+	{
+		ft_putstr_fd((char *)g_perror[buf_info.error], 2);
+		return (-1);
+	}
+	return (buf_info.nb_printed);
+}
+
+/266            0           0     0     644     1576      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_format.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/26 19:02:54 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 18:07:32 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+int	ft_check_format(t_format_spec *spec)
+{
+	if (spec->type == 'c')
+	{
+		if (spec->width >= 0 && spec->precision == -1)
+			return (1);
+		spec->error = ERNOFORMAT;
+		return (0);
+	}
+	else if (spec->type == 's')
+		return (spec->width >= 0);
+	else if (spec->type == 'p')
+		return (spec->width >= 0 && spec->precision == -1);
+	else if (spec->type == 'd' || spec->type == 'i' || spec->type == 'u')
+		return (spec->width >= 0);
+	else if (spec->type == 'x' || spec->type == 'X')
+		return (spec->width >= 0 && spec->precision >= -1);
+	else if (spec->type == '%')
+		return (spec->width >= 0 && spec->precision == -1);
+	else
+	{
+		spec->error = ERNOFORMAT;
+		return (0);
+	}
+}
+/285            0           0     0     644     1095      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_handle_plus_flag.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/29 21:19:16 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/05 03:48:32 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+void	ft_handle_plus_flag(t_format_spec spec, int content, t_buffer *buf_info)
+{
+	if (spec.flag_plus)
+	{
+		if (content >= 0 && spec.type != 'u')
+			ft_buffer_add(buf_info, '+');
+	}
+}
+
+ft_isflag.c/    0           0     0     644     1004      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isflag.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/09 20:23:58 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 20:24:23 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+int	ft_isflag(char c)
+{
+	if (ft_strchr("0123456789 #+-.", c))
+		return (1);
+	return (0);
+}
+/308            0           0     0     644     1495      `
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ulltoa_base.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/29 21:50:01 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/09 21:27:28 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "printf.h"
+
+static char	*ft_fill_base(unsigned long long nbr, int size, char *base,
+		char *res)
+{
+	int	len;
+	int	i;
+
+	len = ft_strlen(base);
+	i = size - 1;
+	if (nbr == 0)
+		res[i] = base[0];
+	while (nbr)
+	{
+		res[i--] = base[nbr % len];
+		nbr /= len;
+	}
+	res[size] = '\0';
+	return (res);
+}
+
+char	*ft_ulltoa_base(unsigned long long nbr, char *base)
+{
+	int		len;
+	int		size;
+	char	*res;
+
+	if (!base || ft_strlen(base) < 2)
+		return (NULL);
+	len = ft_strlen(base);
+	size = ft_nbr_len(nbr, len);
+	res = malloc(size + 1);
+	if (!res)
+		return (NULL);
+	return (ft_fill_base(nbr, size, base, res));
+}
+

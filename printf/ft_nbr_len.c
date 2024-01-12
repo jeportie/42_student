@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_space_flag.c                             :+:      :+:    :+:   */
+/*   ft_nbr_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/29 21:25:19 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/12 20:37:29 by jeportie         ###   ########.fr       */
+/*   Created: 2024/01/12 20:44:07 by jeportie          #+#    #+#             */
+/*   Updated: 2024/01/12 22:01:04 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	ft_handle_space_flag(t_format_spec spec, int content,
-		t_buffer *buf_info)
+int	ft_nbr_len(unsigned long long nbr, int base_len)
 {
-	if (spec.flag_space && !spec.flag_plus && content >= 0)
+	int	len;
+
+	len = 1;
+	while (nbr / base_len)
 	{
-		if (spec.type == 'u')
-		{
-			if (!spec.width)
-				return ;
-		}
-		ft_buffer_add(buf_info, ' ');
+		nbr /= base_len;
+		len++;
 	}
+	return (len);
 }

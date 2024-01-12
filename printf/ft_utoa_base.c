@@ -6,21 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:39:22 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/02 16:42:25 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/12 20:51:53 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-
-static int	ft_nbr_len(unsigned int nbr, int base_len)
-{
-	int	len;
-
-	len = 1;
-	while (nbr /= base_len)
-		len++;
-	return (len);
-}
 
 static char	*ft_fill_base(unsigned int nbr, int size, char *base, char *res)
 {
