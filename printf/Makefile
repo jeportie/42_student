@@ -6,21 +6,32 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/01/12 22:33:57 by jeportie         ###   ########.fr        #
+#    Updated: 2024/01/15 20:07:50 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I.function_library/libft
+CFLAGS = -Wall -Wextra -Werror -I.libft
+
+LIBFT_SRC = $(addprefix libft/, ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
+			ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c \
+			ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
+			ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \
+			ft_memchr.c ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c \
+			ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
+			ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c \
+			ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c \
+			ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
+			ft_toupper.c)
 
 SRC = ft_apply_precision.c ft_handle_char.c ft_handle_pointer.c ft_nbr_len.c \
 	  ft_utoa_base.c ft_apply_width.c ft_handle_hash_flag.c \
 	  ft_handle_space_flag.c ft_parse_flags.c ft_buffer_add.c \
 	  ft_handle_hexadecimal.c ft_handle_string.c ft_parse_format.c \
-	  printf_globals.c ft_buffer_flush.c ft_handle_int.c ft_isconvert_spec.c \
+	  ft_printf_globals.c ft_buffer_flush.c ft_handle_int.c ft_isconvert_spec.c \
 	  ft_printf.c ft_check_format.c ft_handle_plus_flag.c ft_isflag.c \
-	  ft_ulltoa_base.c
+	  ft_ulltoa_base.c $(LIBFT_SRC)
 
 OBJ = $(SRC:.c=.o)
 
@@ -39,5 +50,7 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+bonus: re
 
 .PHONY: all clean fclean re

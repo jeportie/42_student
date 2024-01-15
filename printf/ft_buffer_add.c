@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 18:03:11 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/12 19:46:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/15 20:00:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	ft_buffer_add(t_buffer *buf_info, char c)
 {

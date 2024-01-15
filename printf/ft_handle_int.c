@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 20:43:10 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/12 22:40:38 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/15 20:01:12 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static int	ft_prepare_int(t_format_spec spec, long long content,
 		char **formatted_content, t_buffer *buf_info)

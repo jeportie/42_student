@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 18:05:57 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/12 22:00:56 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/15 20:02:51 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static int	ft_convert_spec(t_format_spec spec, va_list args,
 		t_buffer *buf_info)

@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 21:25:19 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/12 20:37:29 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/15 20:01:38 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	ft_handle_space_flag(t_format_spec spec, int content,
 		t_buffer *buf_info)

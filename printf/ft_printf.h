@@ -6,16 +6,16 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:11:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/12 23:21:36 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:58:44 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <stdlib.h>
-# include "function_library/libft.h"
+# include "libft/libft.h"
 
 # define BUFFER_SIZE 256
 

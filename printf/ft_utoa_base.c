@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:39:22 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/12 20:51:53 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/15 20:03:20 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 static char	*ft_fill_base(unsigned int nbr, int size, char *base, char *res)
 {
