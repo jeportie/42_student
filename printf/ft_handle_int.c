@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 20:43:10 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/12 20:04:53 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/12 22:40:38 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	ft_handle_int(t_format_spec spec, va_list args, t_buffer *buf_info)
 	char		*formatted_content;
 	long long	content;
 
+	formatted_content = NULL;
 	if (spec.type == 'i' || spec.type == 'd')
 		content = (int)va_arg(args, int);
 	else if (spec.type == 'u')

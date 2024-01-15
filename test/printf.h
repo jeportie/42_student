@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
-# include "function_library/libft.h"
+# include "libft.h"
 
 # define BUFFER_SIZE 256
 

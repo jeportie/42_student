@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 17:18:44 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/12 21:49:01 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/12 22:41:35 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	ft_handle_hexadecimal(t_format_spec spec, va_list args, t_buffer *buf_info)
 	char			*formatted_content;
 	unsigned int	content;
 
+	formatted_content = NULL;
 	content = va_arg(args, unsigned int);
 	if (!ft_prepare_hex_content(spec, content, &formatted_content, buf_info))
 		return (0);
