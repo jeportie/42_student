@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 14:56:22 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/15 20:01:51 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:42:00 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_handle_string(t_format_spec spec, va_list args, t_buffer *buf_info)
 	if (!str)
 		str = "(null)";
 	content_len = 0;
-	while (str[content_len] 
+	while (str[content_len]
 		&& (spec.precision < 0 || content_len < spec.precision))
 		content_len++;
 	i = 0;

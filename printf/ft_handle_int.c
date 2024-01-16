@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 20:43:10 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/15 20:01:12 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:41:46 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_process_int(t_format_spec spec, long long content,
 			ft_buffer_add(buf_info, '-');
 			i = 1;
 		}
-		ft_apply_width(spec, buf_info, formatted_len + (spec.flag_space 
+		ft_apply_width(spec, buf_info, formatted_len + (spec.flag_space
 				|| spec.flag_plus));
 	}
 	ft_handle_space_flag(spec, content, buf_info);
@@ -52,7 +52,7 @@ static void	ft_process_int(t_format_spec spec, long long content,
 	while (formatted_content[i])
 		ft_buffer_add(buf_info, formatted_content[i++]);
 	if (spec.flag_minus)
-		ft_apply_width(spec, buf_info, formatted_len + (spec.flag_space 
+		ft_apply_width(spec, buf_info, formatted_len + (spec.flag_space
 				|| spec.flag_plus));
 }
 

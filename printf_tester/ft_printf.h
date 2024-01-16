@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:11:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/12 23:21:36 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:21:53 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <stdlib.h>
 # include "libft.h"
 
 # define BUFFER_SIZE 256
+# define TEST 1
 
 typedef struct s_buffer
 {
@@ -49,7 +50,7 @@ typedef enum e_error
 	ERNOFORMAT,
 }	t_error;
 
-extern const char	*g_perror[]; 
+extern const char	*g_perror[];
 
 int				ft_printf(const char *format, ...);
 int				ft_isflag(char c);
