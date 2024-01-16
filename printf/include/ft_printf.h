@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 14:11:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/16 14:05:25 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:58:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <stdlib.h>
-# include "libft/libft.h"
+# include "libft.h"
 
 # define BUFFER_SIZE 256
 # define TEST 1

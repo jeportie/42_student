@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 03:32:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/16 14:16:59 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:09:02 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -557,7 +557,5 @@ int main(void)
     ft_printf("Test 167 [ft_printf] - Missing argument: %d\n");
     printf("Test 167 [printf   ] - Missing argument: %d\n");
 
-    printf("%50d trop cool j'ai mon propre printf qui marche avec tout\n%50p\n",123,  ptr3);
-    ft_printf("%50d trop cool j'ai mon propre printf qui marche avec tout\n%50p\n", 123,  ptr3);
     return 0;
 }
