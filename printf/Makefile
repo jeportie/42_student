@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/01/16 21:46:11 by jeportie         ###   ########.fr        #
+#    Updated: 2024/01/18 12:56:58 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -I./include
 TEST_FLAGS = -w -I./include
 OBJ_DIR = obj
 OUTPUT_DIR = outputs
+EXEC_DIR = exec
 
 SRC = $(addprefix src/, ft_apply_precision.c ft_handle_char.c ft_handle_pointer.c ft_nbr_len.c \
       ft_utoa_base.c ft_apply_width.c ft_handle_hash_flag.c \
@@ -48,6 +49,7 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
+
 $(OBJ_DIR)/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -65,38 +67,39 @@ re: fclean all
 
 bonus: re
 
-test: $(NAME) $(OUTPUT_DIR) $(OBJ_DIR)/main.o
-	$(CC) $(TEST_FLAGS) -o test_program $(OBJ_DIR)/main.o $(NAME)
-	./test_program
+test: $(NAME) $(OBJ_DIR)/main.o
+	mkdir -p $(EXEC_DIR)
+	$(CC) $(TEST_FLAGS) -o $(EXEC_DIR)/test_program $(OBJ_DIR)/main.o $(NAME)
+	./$(EXEC_DIR)/test_program
 
 $(OBJ_DIR)/main.o: tests/main.c
 	$(CC) $(TEST_FLAGS) -c tests/main.c -o $(OBJ_DIR)/main.o
 
 tclean: fclean
-	rm test_program
+	rm -rf $(EXEC_DIR)
 
 test_ft_printf: $(NAME) $(OBJ_DIR)/main_ft_printf.o
-	$(CC) $(TEST_FLAGS) -o test_ft_printf $(OBJ_DIR)/main_ft_printf.o $(NAME)
+	mkdir -p $(EXEC_DIR)
+	$(CC) $(TEST_FLAGS) -o $(EXEC_DIR)/test_ft_printf $(OBJ_DIR)/main_ft_printf.o $(NAME)
 
 $(OBJ_DIR)/main_ft_printf.o: tests/main_ft_printf.c
 	$(CC) $(TEST_FLAGS) -c tests/main_ft_printf.c -o $(OBJ_DIR)/main_ft_printf.o
 
 test_printf: $(NAME) $(OBJ_DIR)/main_printf.o
-	$(CC) $(TEST_FLAGS) -o test_printf $(OBJ_DIR)/main_printf.o $(NAME)
+	$(CC) $(TEST_FLAGS) -o $(EXEC_DIR)/test_printf $(OBJ_DIR)/main_printf.o $(NAME)
 
 $(OBJ_DIR)/main_printf.o: tests/main_printf.c
 	$(CC) $(TEST_FLAGS) -c tests/main_printf.c -o $(OBJ_DIR)/main_printf.o
 
 difftest: test_ft_printf test_printf
 	mkdir -p $(OUTPUT_DIR)
-	./test_ft_printf > $(OUTPUT_DIR)/output_ft_printf.txt
-	./test_printf > $(OUTPUT_DIR)/output_printf.txt
+	./$(EXEC_DIR)/test_ft_printf > $(OUTPUT_DIR)/output_ft_printf.txt
+	./$(EXEC_DIR)/test_printf > $(OUTPUT_DIR)/output_printf.txt
 	clear
 	diff -u $(OUTPUT_DIR)/output_printf.txt $(OUTPUT_DIR)/output_ft_printf.txt
 
 dclean: fclean
 	rm -f main_ft_printf.o main_printf.o
-	rm -rf $(OUTPUT_DIR)
-	rm test_ft_printf test_printf
+	rm -rf $(OUTPUT_DIR) $(EXEC_DIR)
 
 .PHONY: all clean fclean re bonus test tclean test_ft_printf test_printf difftest dclean
