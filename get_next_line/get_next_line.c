@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:43:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/18 18:28:03 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:40:39 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ char	*ft_read_buffer(int fd, char *buffer)
 	ssize_t	bytes_read;
 	char	*temp;
 
-	while (!ft_strchr(buffer, 'n'))
+	if (fd <= 0 || !buffer)
+		return (NULL);
+	while (!ft_strchr(buffer, '\n'))
 	{
 		bytes_read = read(fd, read_buffer, BUFFER_SIZE);
 		if (bytes_read <= 0)
 		{
-			if (bytes_read == 0 && buffer && *buffer)
+			if (!bytes_read && buffer && *buffer)
 				return (buffer);
 			return (NULL);
 		}
@@ -45,7 +47,7 @@ char	*ft_extract_line(char *buffer)
 
 	i = 0;
 	if (buffer == NULL || buffer[0] == '\0')
-		return NULL;
+		return (NULL);
 	while (buffer[i] != '\0' && buffer[i] != '\n')
 		i++;
 	if (buffer[i] == '\n')
@@ -96,7 +98,6 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 
-	buffer = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = ft_read_buffer(fd, buffer);
