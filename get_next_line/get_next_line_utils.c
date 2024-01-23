@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:58:15 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/22 20:01:59 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:25:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	*ft_strchr(const char *s, int c)
 {
 	char	first_occurrence;
 
+	if (!s)
+		return (NULL);
 	first_occurrence = (unsigned char)c;
 	while (*s)
 	{

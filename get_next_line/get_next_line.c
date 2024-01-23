@@ -6,22 +6,32 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:43:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/22 20:40:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:18:32 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*mem_src;
+
+	mem_src = (unsigned char *)s;
+	while (n--)
+		*mem_src++ = (unsigned char)c;
+	return (s);
+}
+
 char	*ft_read_buffer(int fd, char *buffer)
 {
 	char	read_buffer[BUFFER_SIZE + 1];
 	ssize_t	bytes_read;
-	char	*temp;
 
-	if (fd <= 0 || !buffer)
+	if (fd <= 0)
 		return (NULL);
 	while (!ft_strchr(buffer, '\n'))
 	{
+		ft_memset(read_buffer, 0, BUFFER_SIZE + 1);
 		bytes_read = read(fd, read_buffer, BUFFER_SIZE);
 		if (bytes_read <= 0)
 		{
@@ -29,10 +39,10 @@ char	*ft_read_buffer(int fd, char *buffer)
 				return (buffer);
 			return (NULL);
 		}
-		read_buffer[bytes_read] = '\0';
-		temp = buffer;
-		buffer = ft_strjoin(buffer, read_buffer);
-		free(temp);
+		if (!buffer)
+			buffer = ft_strdup(read_buffer);
+		else	
+			buffer = ft_strjoin(buffer, read_buffer);
 		if (!buffer)
 			return (NULL);
 	}
@@ -46,13 +56,14 @@ char	*ft_extract_line(char *buffer)
 	char	*line;
 
 	i = 0;
+	len = 0;
 	if (buffer == NULL || buffer[0] == '\0')
 		return (NULL);
 	while (buffer[i] != '\0' && buffer[i] != '\n')
 		i++;
 	if (buffer[i] == '\n')
 		len = i + 1;
-	else
+	else if (buffer[i] == '\0')
 		len = i;
 	line = (char *)malloc(sizeof(char) * (len + 1));
 	if (!line)
