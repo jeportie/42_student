@@ -6,7 +6,7 @@
 #    By: jeportie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/23 12:25:36 by jeportie          #+#    #+#              #
-#    Updated: 2024/01/23 14:48:31 by jeportie         ###   ########.fr        #
+#    Updated: 2024/01/29 15:58:33 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,6 @@ re: fclean all
 
 main: fclean
 	$(CC) $(CFLAGS) $(SRC) main.c -o my_prog
-	./my_prog
+	time ./my_prog
 
 .PHONY: all clean fclean re

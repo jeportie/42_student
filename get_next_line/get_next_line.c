@@ -6,47 +6,82 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:43:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/23 17:18:32 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:40:34 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <string.h>
 
-void	*ft_memset(void *s, int c, size_t n)
+void *ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
-	unsigned char	*mem_src;
+    void *new_ptr;
 
-	mem_src = (unsigned char *)s;
-	while (n--)
-		*mem_src++ = (unsigned char)c;
-	return (s);
+    if (new_size <= old_size)
+        return ptr;
+
+    new_ptr = malloc(new_size);
+    if (new_ptr == NULL)
+        return (NULL);
+    if (ptr != NULL)
+    {
+        ft_memcpy(new_ptr, ptr, old_size);
+        free(ptr);
+    }
+    return new_ptr;
 }
 
-char	*ft_read_buffer(int fd, char *buffer)
+size_t next_capacity(size_t required_capacity)
 {
-	char	read_buffer[BUFFER_SIZE + 1];
-	ssize_t	bytes_read;
+    size_t capacity = 1;
+    while (capacity < required_capacity)
+        capacity *= 2;
+    return capacity;
+}
 
-	if (fd <= 0)
-		return (NULL);
-	while (!ft_strchr(buffer, '\n'))
-	{
-		ft_memset(read_buffer, 0, BUFFER_SIZE + 1);
-		bytes_read = read(fd, read_buffer, BUFFER_SIZE);
-		if (bytes_read <= 0)
-		{
-			if (!bytes_read && buffer && *buffer)
-				return (buffer);
-			return (NULL);
-		}
-		if (!buffer)
-			buffer = ft_strdup(read_buffer);
-		else	
-			buffer = ft_strjoin(buffer, read_buffer);
-		if (!buffer)
-			return (NULL);
-	}
-	return (buffer);
+char *ft_append_to_buffer(char *buffer, char *read_buffer, ssize_t bytes_read)
+{
+    size_t  current_size;
+    size_t  capacity;
+    char    *new_buffer;
+
+    current_size = (buffer) ? ft_strlen(buffer) : 0;
+    capacity = current_size + 1;
+
+    if (current_size + bytes_read + 1 > capacity)
+    {
+        capacity = next_capacity(current_size + bytes_read + 1);
+        new_buffer = (char *)ft_realloc(buffer, current_size, capacity);
+        if (new_buffer == NULL)
+            return (NULL);  // Memory allocation failure
+        buffer = new_buffer;
+    }
+    if (buffer)
+        ft_memcpy(buffer + current_size, read_buffer, bytes_read + 1);
+    return (buffer);
+}
+
+char *ft_read_buffer(int fd, char *buffer)
+{
+    char    *read_buffer;
+    ssize_t bytes_read;
+
+    if (fd < 0)
+        return (NULL);
+
+    read_buffer = (char *)malloc(BUFFER_SIZE + 1);
+    if (read_buffer == NULL)
+        return (NULL);
+
+    while ((bytes_read = read(fd, read_buffer, BUFFER_SIZE)) > 0)
+    {
+        read_buffer[bytes_read] = '\0';
+        buffer = ft_append_to_buffer(buffer, read_buffer, bytes_read);
+        if (buffer == NULL || ft_strchr(read_buffer, '\n'))
+            break;
+    }
+    free(read_buffer);
+    return (buffer);
 }
 
 char	*ft_extract_line(char *buffer)
@@ -115,6 +150,12 @@ char	*get_next_line(int fd)
 	if (!buffer)
 		return (NULL);
 	line = ft_extract_line(buffer);
+	if (!line)
+	{
+		free(buffer);
+		buffer = NULL;
+		return (NULL);
+	}
 	buffer = ft_update_buffer(buffer);
 	return (line);
 }

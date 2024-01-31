@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:14:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/23 17:19:45 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:48:31 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 21
+#  define BUFFER_SIZE 1
 # endif
 
 # include <unistd.h>
@@ -28,7 +28,8 @@ char	*ft_update_buffer(char *buffer);
 /* utils functions */
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
+void	*ft_memset(void *s, int c, size_t n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 #endif /* GET_NEXT_LINE_H */
+
