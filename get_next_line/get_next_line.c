@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 17:43:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/02/01 14:41:24 by jeportie         ###   ########.fr       */
+/*   Created: 2024/02/06 16:28:11 by jeportie          #+#    #+#             */
+/*   Updated: 2024/02/06 19:55:28 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <string.h>
 
 char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
@@ -39,32 +38,31 @@ char	*ft_strjoin_gnl(char const *s1, char const *s2)
 	return (joined_str);
 }
 
-char *ft_read_buffer(int fd, char *buffer)
+char	*ft_read_buffer(int fd, char *buffer)
 {
-    char    *read_buffer;
-    ssize_t bytes_read;
+	char	*read_buffer;
+	ssize_t	bytes_read;
 	int		size;
 
 	size = BUFFER_SIZE;
-	if (size == 1)
-		size++;
-	
-    if (fd < 0)
-        return (NULL);
-
-    read_buffer = (char *)malloc(size + 1);
-    if (read_buffer == NULL)
-        return (NULL);
-
-    while ((bytes_read = read(fd, read_buffer, size)) > 0)
-    {
-        read_buffer[bytes_read] = '\0';
+	if (size < 4)
+		size = 4;
+	if (fd < 0)
+		return (NULL);
+	read_buffer = (char *)malloc(size + 1);
+	if (!read_buffer)
+		return (NULL);
+	bytes_read = read(fd, read_buffer, size);
+	while (bytes_read > 0)
+	{
+		read_buffer[bytes_read] = '\0';
 		buffer = ft_strjoin_gnl(buffer, read_buffer);
-        if (!buffer || ft_strchr(read_buffer, '\n'))
-            break;
-    }
-    free(read_buffer);
-    return (buffer);
+		if (!buffer || ft_strchr(read_buffer, '\n'))
+			break ;
+		bytes_read = read(fd, read_buffer, size);
+	}
+	free(read_buffer);
+	return (buffer);
 }
 
 char	*ft_extract_line(char *buffer)
@@ -111,7 +109,7 @@ char	*ft_update_buffer(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	new_buffer = (char *)malloc(sizeof(char) * (ft_strlen(buffer) - i));
+	new_buffer = (char *)malloc(sizeof(char) *(ft_strlen(buffer) - i));
 	if (!new_buffer)
 		return (NULL);
 	i++;

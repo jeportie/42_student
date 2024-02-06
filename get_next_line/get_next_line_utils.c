@@ -6,28 +6,27 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:58:15 by jeportie          #+#    #+#             */
-/*   Updated: 2024/02/01 09:34:42 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:43:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void *ft_realloc(void *ptr, size_t old_size, size_t new_size)
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
-    void *new_ptr;
+	void	*new_ptr;
 
-    if (new_size <= old_size)
-        return ptr;
-
-    new_ptr = malloc(new_size);
-    if (new_ptr == NULL)
-        return (NULL);
-    if (ptr != NULL)
-    {
-        ft_memcpy(new_ptr, ptr, old_size);
-        free(ptr);
-    }
-    return new_ptr;
+	if (new_size <= old_size)
+		return (ptr);
+	new_ptr = malloc(new_size);
+	if (!new_ptr)
+		return (NULL);
+	if (ptr)
+	{
+		ft_memcpy(new_ptr, ptr, old_size);
+		free(ptr);
+	}
+	return (new_ptr);
 }
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
