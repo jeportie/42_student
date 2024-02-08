@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:58:15 by jeportie          #+#    #+#             */
-/*   Updated: 2024/02/06 19:43:09 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/02/08 21:32:57 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {

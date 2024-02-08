@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 17:14:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/02/06 19:16:31 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:58:03 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 char	*get_next_line(int fd);
 char	*ft_read_buffer(int fd, char *buffer);
 char	*ft_extract_line(char *buffer);
-char	*ft_update_buffer(char *buffer);
+char	*ft_update_static_buffer(char *buffer);
 char	*ft_strjoin_gnl(char const *s1, char const *s2);
 
 /* utils functions */

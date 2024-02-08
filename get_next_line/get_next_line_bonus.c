@@ -6,12 +6,12 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:37:21 by jeportie          #+#    #+#             */
-/*   Updated: 2024/02/07 13:16:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/02/08 23:02:39 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include "get_next_line.h"
+#include <stdio.h>
 
 char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
@@ -39,20 +39,12 @@ char	*ft_strjoin_gnl(char const *s1, char const *s2)
 	return (joined_str);
 }
 
-char	*ft_read_buffer_bonus(int fd, char *buffer, t_fd_list **top)
+char	*ft_read_buffer(int fd, char *buffer)
 {
-	char		*read_buffer;
-	ssize_t		bytes_read;
-	int			size;
-	t_fd_list	*current_fd;
+	char	*read_buffer;
+	ssize_t	bytes_read;
+	int		size;
 
-	current_fd = ft_find_fd(top, fd);
-	if (!current_fd)
-	{
-		current_fd = ft_list_new(fd);
-		ft_lstadd_back(top, current_fd);
-	}
-	buffer = current_fd->buffer;
 	size = BUFFER_SIZE;
 	if (size < 4)
 		size = 4;
@@ -66,13 +58,12 @@ char	*ft_read_buffer_bonus(int fd, char *buffer, t_fd_list **top)
 	{
 		read_buffer[bytes_read] = '\0';
 		buffer = ft_strjoin_gnl(buffer, read_buffer);
-		current_fd->buffer = buffer;
 		if (!buffer || ft_strchr(read_buffer, '\n'))
 			break ;
 		bytes_read = read(fd, read_buffer, size);
 	}
 	free(read_buffer);
-	return (current_fd->buffer);
+	return (buffer);
 }
 
 char	*ft_extract_line(char *buffer)
@@ -132,25 +123,29 @@ char	*ft_update_buffer(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static t_fd_list	*top;
-	char				*line;
-	t_fd_list			*current_fd;
+    static t_fd_list	*fd_list;
+	t_fd_list			*current;
+	char				*buffer;
+    char				*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (!ft_find_fd(&top, fd))
-		ft_read_buffer_bonus(fd, NULL, &top);
-	current_fd = ft_find_fd(&top, fd);
-	if (!current_fd || !current_fd->buffer)
-		return (NULL);
-	line = ft_extract_line(current_fd->buffer);
-	if (!line)
+    if (fd < 0 || BUFFER_SIZE <= 0)
+        return (NULL);
+    current = ft_find_fd(&fd_list, fd);
+    if (!current)
 	{
-		ft_lstdelone(&top, fd);
-		return (NULL);
-	}
-	current_fd->buffer = ft_update_buffer(current_fd->buffer);
-	if (!current_fd->buffer)
-		ft_lstdelone(&top, fd);
-	return (line);
+        current = ft_list_new(fd);
+        if (!current)
+            return (NULL);
+        ft_lstadd_back(&fd_list, current);
+    } 
+	buffer = current->buffer;
+    buffer = ft_read_buffer(fd, buffer);
+    if (!buffer) 
+        return (ft_lstdelone(&fd_list, fd), NULL);
+    line = ft_extract_line(buffer);
+    if (!line) 
+        return (ft_lstdelone(&fd_list, fd), NULL);
+    buffer = ft_update_buffer(buffer);
+    current->buffer = buffer;
+    return (line);
 }

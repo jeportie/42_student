@@ -6,11 +6,12 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:28:11 by jeportie          #+#    #+#             */
-/*   Updated: 2024/02/07 12:58:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/02/08 23:15:02 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+#include <stdio.h>
 
 char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
@@ -38,7 +39,7 @@ char	*ft_strjoin_gnl(char const *s1, char const *s2)
 	return (joined_str);
 }
 
-char	*ft_read_buffer(int fd, char *buffer)
+char	*ft_read_buffer_to_static(int fd, char *static_buffer)
 {
 	char	*read_buffer;
 	ssize_t	bytes_read;
@@ -56,16 +57,16 @@ char	*ft_read_buffer(int fd, char *buffer)
 	while (bytes_read > 0)
 	{
 		read_buffer[bytes_read] = '\0';
-		buffer = ft_strjoin_gnl(buffer, read_buffer);
-		if (!buffer || ft_strchr(read_buffer, '\n'))
+		static_buffer = ft_strjoin_gnl(static_buffer, read_buffer);
+		if (!static_buffer || ft_strchr(read_buffer, '\n'))
 			break ;
 		bytes_read = read(fd, read_buffer, size);
 	}
 	free(read_buffer);
-	return (buffer);
+	return (static_buffer);
 }
 
-char	*ft_extract_line(char *buffer)
+char	*ft_extract_line(char *static_buffer)
 {
 	size_t	i;
 	size_t	len;
@@ -73,13 +74,13 @@ char	*ft_extract_line(char *buffer)
 
 	i = 0;
 	len = 0;
-	if (buffer == NULL || buffer[0] == '\0')
+	if (static_buffer == NULL || static_buffer[0] == '\0')
 		return (NULL);
-	while (buffer[i] != '\0' && buffer[i] != '\n')
+	while (static_buffer[i] != '\0' && static_buffer[i] != '\n')
 		i++;
-	if (buffer[i] == '\n')
+	if (static_buffer[i] == '\n')
 		len = i + 1;
-	else if (buffer[i] == '\0')
+	else if (static_buffer[i] == '\0')
 		len = i;
 	line = (char *)malloc(sizeof(char) * (len + 1));
 	if (!line)
@@ -87,14 +88,14 @@ char	*ft_extract_line(char *buffer)
 	i = 0;
 	while (i < len)
 	{
-		line[i] = buffer[i];
+		line[i] = static_buffer[i];
 		i++;
 	}
 	line[len] = '\0';
 	return (line);
 }
 
-char	*ft_update_buffer(char *buffer)
+char	*ft_update_static_buffer(char *static_buffer)
 {
 	char	*new_buffer;
 	size_t	i;
@@ -102,41 +103,41 @@ char	*ft_update_buffer(char *buffer)
 
 	i = 0;
 	j = 0;
-	while (buffer[i] && buffer[i] != '\n')
+	while (static_buffer[i] && static_buffer[i] != '\n')
 		i++;
-	if (!buffer[i])
+	if (!static_buffer[i])
 	{
-		free(buffer);
+		free(static_buffer);
 		return (NULL);
 	}
-	new_buffer = (char *)malloc(sizeof(char) *(ft_strlen(buffer) - i));
+	new_buffer = (char *)malloc(sizeof(char) *(ft_strlen(static_buffer) - i));
 	if (!new_buffer)
 		return (NULL);
 	i++;
-	while (buffer[i])
-		new_buffer[j++] = buffer[i++];
+	while (static_buffer[i])
+		new_buffer[j++] = static_buffer[i++];
 	new_buffer[j] = '\0';
-	free(buffer);
+	free(static_buffer);
 	return (new_buffer);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*static_buffer;
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = ft_read_buffer(fd, buffer);
-	if (!buffer)
+	static_buffer = ft_read_buffer_to_static(fd, static_buffer);
+	if (!static_buffer)
 		return (NULL);
-	line = ft_extract_line(buffer);
+	line = ft_extract_line(static_buffer);
 	if (!line)
 	{
-		free(buffer);
-		buffer = NULL;
+		free(static_buffer);
+		static_buffer = NULL;
 		return (NULL);
 	}
-	buffer = ft_update_buffer(buffer);
+	static_buffer = ft_update_static_buffer(static_buffer);
 	return (line);
 }
