@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:37:21 by jeportie          #+#    #+#             */
-/*   Updated: 2024/02/08 23:02:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:16:33 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char	*ft_read_buffer(int fd, char *buffer)
 	return (buffer);
 }
 
+// Function to extract the next line from the buffer.
 char	*ft_extract_line(char *buffer)
 {
 	size_t	i;
@@ -95,6 +96,7 @@ char	*ft_extract_line(char *buffer)
 	return (line);
 }
 
+// Function to update the buffer by removing the extracted line.
 char	*ft_update_buffer(char *buffer)
 {
 	char	*new_buffer;
@@ -123,6 +125,28 @@ char	*ft_update_buffer(char *buffer)
 
 char	*get_next_line(int fd)
 {
+	static char	*buffer[FOPEN_MAX];
+	char		*line;
+
+	if (fd < 0 || fd>= FOPEN_MAX || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer[fd] = ft_read_buffer(fd, buffer[fd]);
+	if (!buffer[fd])
+		return (NULL);
+	line = ft_extract_line(buffer[fd]);
+	if (!line)
+	{
+		free(buffer[fd]);
+		buffer[fd] = NULL;
+		return (NULL);
+	}
+	buffer[fd] = ft_update_buffer(buffer[fd]);
+	return (line);
+}
+
+/*
+char	*get_next_line(int fd)
+{
     static t_fd_list	*fd_list;
 	t_fd_list			*current;
 	char				*buffer;
@@ -149,3 +173,4 @@ char	*get_next_line(int fd)
     current->buffer = buffer;
     return (line);
 }
+*/
