@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:37:21 by jeportie          #+#    #+#             */
-/*   Updated: 2024/02/09 11:16:33 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/02/29 20:16:47 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,34 +143,3 @@ char	*get_next_line(int fd)
 	buffer[fd] = ft_update_buffer(buffer[fd]);
 	return (line);
 }
-
-/*
-char	*get_next_line(int fd)
-{
-    static t_fd_list	*fd_list;
-	t_fd_list			*current;
-	char				*buffer;
-    char				*line;
-
-    if (fd < 0 || BUFFER_SIZE <= 0)
-        return (NULL);
-    current = ft_find_fd(&fd_list, fd);
-    if (!current)
-	{
-        current = ft_list_new(fd);
-        if (!current)
-            return (NULL);
-        ft_lstadd_back(&fd_list, current);
-    } 
-	buffer = current->buffer;
-    buffer = ft_read_buffer(fd, buffer);
-    if (!buffer) 
-        return (ft_lstdelone(&fd_list, fd), NULL);
-    line = ft_extract_line(buffer);
-    if (!line) 
-        return (ft_lstdelone(&fd_list, fd), NULL);
-    buffer = ft_update_buffer(buffer);
-    current->buffer = buffer;
-    return (line);
-}
-*/
