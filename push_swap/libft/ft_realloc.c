@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 14:12:45 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 11:20:07 by jeportie         ###   ########.fr       */
+/*   Created: 2024/03/21 14:01:18 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/21 14:27:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
-	size_t	i;
+	void	*new_ptr;
 
-	if (!s || !f)
-		return ;
-	i = 0;
-	while (s[i] && f)
+	if (new_size <= old_size)
+		return (ptr);
+	new_ptr = malloc(new_size);
+	if (!new_ptr)
+		return (NULL);
+	if (ptr)
 	{
-		f(i, &s[i]);
-		i++;
+		ft_memcpy(new_ptr, ptr, old_size);
+		free(ptr);
 	}
+	return (new_ptr);
 }

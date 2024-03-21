@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_empty_stack.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 14:12:45 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 11:20:07 by jeportie         ###   ########.fr       */
+/*   Created: 2024/03/21 15:40:21 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/21 15:49:37 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../include/push_swap.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_empty_stack(t_dclst *stack)
 {
-	size_t	i;
+	t_dcnode	*current_node;
+	t_dcnode	*next_node;
 
-	if (!s || !f)
+	if (!stack || !stack->begin)
 		return ;
-	i = 0;
-	while (s[i] && f)
+	current_node = stack->begin;
+	while (current_node)
 	{
-		f(i, &s[i]);
-		i++;
+		next_node = current_node->next;
+		free(current_node);
+		current_node = next_node;
+		if (current_node == stack->begin)
+			break;
 	}
+	ft_bzero(stack, sizeof(t_dclst));
 }

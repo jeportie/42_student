@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 14:12:45 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 11:20:07 by jeportie         ###   ########.fr       */
+/*   Created: 2024/02/06 19:21:03 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/21 14:33:21 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
+#include "../include/ft_printf.h"
+#include <fcntl.h>
+#include <stdio.h>
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+int	main(void)
 {
-	size_t	i;
+	int		fd;
+	int		i;
+	char	*test;
 
-	if (!s || !f)
-		return ;
-	i = 0;
-	while (s[i] && f)
+	fd = open("tests/testfile.txt", O_RDONLY);
+	if (fd == -1)
 	{
-		f(i, &s[i]);
-		i++;
+		perror("Error opening test file:");
+		exit(EXIT_FAILURE);
 	}
+	i = 1;
+	test = get_next_line(fd);
+	while (test != NULL)
+	{
+		ft_printf("l%i: %s", i, test);
+		free(test);
+		i++;
+		test = get_next_line(fd);
+	}
+	close(fd);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 01:56:03 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:25:17 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@
 # include <stdint.h>
 # include <limits.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
 
-//		Partie 1 - Fonctions de la libc
+/*		Partie 1 - Fonctions de la libc  */
 int		ft_atoi(const char *nptr);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -39,6 +43,7 @@ int		ft_toupper(int c);
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
@@ -67,7 +72,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
-//		Partie Bonus
+/*		Partie Bonus  */
 int		ft_lstsize(t_list *lst);
 
 t_list	*ft_lstnew(void	*content);
@@ -79,5 +84,12 @@ void	ft_lstadd_back(t_list **lst, t_list *New);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+
+/* GNL */
+char		*get_next_line(int fd);
+char		*ft_read_buffer(int fd, char *buffer);
+char		*ft_extract_line(char *buffer);
+char		*ft_update_buffer(char *buffer);
+char		*ft_strjoin_gnl(char const *s1, char const *s2);
 
 #endif /*LIBFT_H*/

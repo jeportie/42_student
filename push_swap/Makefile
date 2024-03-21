@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/03/21 00:15:23 by jeportie         ###   ########.fr        #
+#    Updated: 2024/03/21 17:15:54 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ OUTPUT_DIR = outputs
 EXEC_DIR = exec
 VALGRIND = valgrind --track-origins=yes --leak-check=full
 
-SRC = 
+SRC =			$(addprefix src/, ft_init_stack.c ft_empty_stack.c a_rules.c \
+				ab_rules.c b_rules.c ft_parse_arg.c ft_split_to_stack.c) 
 
 PRINTF_SRC =	$(addprefix ft_printf/, ft_apply_precision.c ft_handle_char.c \
 			 	ft_handle_pointer.c ft_nbr_len.c ft_utoa_base.c ft_apply_width.c \
@@ -37,7 +38,7 @@ LIBFT_SRC = 	$(addprefix libft/, ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
             	ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c \
             	ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c \
             	ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
-            	ft_toupper.c)
+            	ft_toupper.c ft_realloc.c get_next_line.c)
 
 OBJ_SRC =		$(SRC:src/%.c=$(OBJ_DIR)/%.o)
 OBJ_PRINTF =	$(PRINTF_SRC:ft_printf/%.c=$(OBJ_DIR)/%.o)
@@ -86,8 +87,16 @@ debug: all $(NAME) $(OBJ_DIR)/main.o
 	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
 	$(VALGRIND) ./$(EXEC_DIR)/push_swap $$user_input
 
+gnl: all $(NAME) $(OBJ_DIR)/gnlmain.o
+	mkdir -p $(EXEC_DIR)
+	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/gnl_test $(OBJ_DIR)/gnlmain.o $(NAME)
+	$(VALGRIND) ./$(EXEC_DIR)/gnl_test
+
 $(OBJ_DIR)/main.o: main.c
 	$(CC) $(C_FLAGS) -c main.c -o $(OBJ_DIR)/main.o
+
+$(OBJ_DIR)/gnlmain.o: tests/gnltest.c
+	$(CC) $(C_FLAGS) -c tests/gnltest.c -o $(OBJ_DIR)/gnlmain.o
 
 eclean: fclean
 	rm -rf $(EXEC_DIR)

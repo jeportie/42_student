@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 20:46:19 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/15 20:02:35 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:25:19 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 static void	ft_parse_width(const char *format, t_format_spec *spec, size_t *i)
 {

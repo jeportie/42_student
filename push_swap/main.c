@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 02:03:47 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:49:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	main(int argc, char **argv)
 
 	ft_printf("Hello, World! :)\n");
 	ft_printf("Programe name: %s\n", argv[0]);
-	stack_a = NULL;
-	stack_b = NULL;
 	ft_init_stack(&stack_a);
 	ft_init_stack(&stack_b);
 	if (argc > 1)
@@ -39,12 +37,10 @@ int	main(int argc, char **argv)
 
 /*
  * TO DO LIST PUSH_SWAP
- * clean function libft pour avoir le bon include dans chaque fonction
- * pareil pour ft_printf 
- * ajouter gnl dans libft et test que ca marche
- * implem ft_init_stack et faire test
+ * implem ft_valid_imput
+ * implem ft_is_integer
+ * implem ft-atol
  * implem ft_parse_arg et faire test
- * implem ft_empty stack et faire test
  * dans radix, implementer un printf qui montre visuellemet les deux stackset essayer avec sa
  * implem le reste des stack operations et toutes les test 
  * implem small data algo et faire test
