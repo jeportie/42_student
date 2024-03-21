@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 01:50:42 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/21 02:03:47 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int	main(int argc, char **argv)
 
 /*
  * TO DO LIST PUSH_SWAP
+ * clean function libft pour avoir le bon include dans chaque fonction
+ * pareil pour ft_printf 
+ * ajouter gnl dans libft et test que ca marche
  * implem ft_init_stack et faire test
  * implem ft_parse_arg et faire test
  * implem ft_empty stack et faire test
@@ -51,3 +54,4 @@ int	main(int argc, char **argv)
  * implem gestionaire d'algo en fonction de la taille de la stack
  * opti big_data algo and quicksort/radixsort switch points
  */
+

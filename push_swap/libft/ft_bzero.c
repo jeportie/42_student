@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 00:35:30 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/14 01:25:55 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/21 01:59:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

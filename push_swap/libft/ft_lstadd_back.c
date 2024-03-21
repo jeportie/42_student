@@ -6,23 +6,23 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:39:41 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/21 14:30:04 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/21 01:57:51 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *New)
 {
 	t_list	*last;
 
-	if (!lst || !new)
+	if (!lst || !New)
 		return ;
 	if (!*lst)
 	{
-		*lst = new;
+		*lst = New;
 		return ;
 	}
 	last = ft_lstlast(*lst);
-	last->next = new;
+	last->next = New;
 }

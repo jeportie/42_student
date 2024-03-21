@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:21:24 by jeportie          #+#    #+#             */
-/*   Updated: 2023/11/23 17:21:32 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/21 01:59:42 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
 static int	ft_isspace(int c)
 {

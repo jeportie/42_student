@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 14:21:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/01/15 20:00:05 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/21 02:00:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/ft_printf.h"
 
 void	ft_apply_width(t_format_spec spec, t_buffer *buf_info, int content_len)
 {
