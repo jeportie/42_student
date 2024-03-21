@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/20 22:29:38 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/21 01:29:30 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	rra(t_dclst *stack_a);
 void	rrb(t_dclst *stack_b);
 void	rrr(t_dclst *stack_a, t_dclst *stack_b);
 
-/* Radix Sort specific functions */
+/* Push_swap QuickSort (PHASE 1 BIG_DATA)*/
+/* Push_swap RadixSort (PHASE 2 BIG DATA)*/
 void	radix_sort(t_dclst *stack_a, t_dclst *stack_b);
 int		ft_find_max_bits(t_dclst *stack);
 long	ft_find_max(t_dclst *stack);
@@ -53,10 +54,17 @@ bool	ft_check_bit(long number, int bit);
 void	ft_perform_push_or_rotate(t_dclst *stack_a, t_dclst *stack_b, int bit);
 void	ft_reintegrate_stack_b(t_dclst *stack_a, t_dclst *stack_b);
 
+/* Turkish Algo strategy (MEDIUM_DATA) */
+/* Small Data Sorting Algos (SMALL DATA)*/
+
 /* Utility functions */
 int		ft_stack_size(t_dclst *stack);
 bool	ft_is_empty(t_dclst *stack);
 bool	ft_validate_inputs(int argc, char **argv);
 bool	ft_is_integer(char *str);
+void	ft_init_stack(t_dclst **stack);
+void	ft_empty_stack(t_dclst *stack);
+void	ft_parse_arg(int argc, char **argv, t_dclst *stack_a);
+void	ft_addto_stack(t_dclst *stack, long value);
 
 #endif /*PUSH_SWAP*/
