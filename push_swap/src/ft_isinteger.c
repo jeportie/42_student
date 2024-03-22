@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix_sort.c                                       :+:      :+:    :+:   */
+/*   ft_isinteger.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 17:00:46 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 18:57:59 by jeportie         ###   ########.fr       */
+/*   Created: 2024/03/22 18:19:06 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/22 18:19:20 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include "../include/ft_printf.h"
 
-void	radix_sort(t_dclst *stack_a, t_dclst *stack_b)
+bool	ft_isinteger(char *str)
 {
-    ft_print_stack(stack_a, 'a');
-    ft_print_stack(stack_b, 'b');
-
-    ft_printf("\n");
-    sa(stack_a);
-    pb(stack_a, stack_b);
-    pb(stack_a, stack_b);
-    ft_printf("\n");
-
-    ft_print_stack(stack_a, 'a');
-    ft_print_stack(stack_b, 'b');
+	if (*str == '-' || *str == '+')
+		str++;
+	if (!*str)
+		return false;
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (false);
+		str++;
+	}
+	return (true);
 }

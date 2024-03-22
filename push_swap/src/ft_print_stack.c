@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix_sort.c                                       :+:      :+:    :+:   */
+/*   ft_print_stack.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 17:00:46 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 18:57:59 by jeportie         ###   ########.fr       */
+/*   Created: 2024/03/22 18:12:33 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/22 18:13:04 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 #include "../include/ft_printf.h"
 
-void	radix_sort(t_dclst *stack_a, t_dclst *stack_b)
+void    ft_print_stack(t_dclst *stack, char name)
 {
-    ft_print_stack(stack_a, 'a');
-    ft_print_stack(stack_b, 'b');
+    t_dcnode *current_node;
 
-    ft_printf("\n");
-    sa(stack_a);
-    pb(stack_a, stack_b);
-    pb(stack_a, stack_b);
-    ft_printf("\n");
-
-    ft_print_stack(stack_a, 'a');
-    ft_print_stack(stack_b, 'b');
+    ft_printf("stack_%c :\t", name);
+	if (stack->begin == NULL)
+	{
+        ft_printf("NULL\n");
+        return;
+    }
+    current_node = stack->begin;
+    while (current_node)
+    {
+        ft_printf("%i\t", current_node->value);
+        current_node = current_node->next;
+        if (current_node == stack->begin)
+            break;
+    }
+    ft_printf("\n\n");
 }

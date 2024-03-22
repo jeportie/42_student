@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix_sort.c                                       :+:      :+:    :+:   */
+/*   ft_free_split.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 17:00:46 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 18:57:59 by jeportie         ###   ########.fr       */
+/*   Created: 2024/03/22 18:22:10 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/22 18:23:32 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include "../include/ft_printf.h"
 
-void	radix_sort(t_dclst *stack_a, t_dclst *stack_b)
+void	ft_free_split(char **argv)
 {
-    ft_print_stack(stack_a, 'a');
-    ft_print_stack(stack_b, 'b');
+	char	**tmp;
 
-    ft_printf("\n");
-    sa(stack_a);
-    pb(stack_a, stack_b);
-    pb(stack_a, stack_b);
-    ft_printf("\n");
-
-    ft_print_stack(stack_a, 'a');
-    ft_print_stack(stack_b, 'b');
+	tmp = argv;
+	while (*tmp)
+	{
+		free(*tmp);
+		tmp++;
+	}
+	free(argv);
 }

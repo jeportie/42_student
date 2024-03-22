@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 22:43:18 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 17:12:48 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:56:36 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,33 @@ void	sa(t_dclst *stack_a)
 	ft_printf("sa\n");
 }
 
-void	pa(t_dclst *stack_a, t_dclst *stack_b);
+void	pb(t_dclst *stack_a, t_dclst *stack_b)
+{
+	t_dcnode	*top_a;
+
+	if (!stack_a || !stack_a->begin)
+		return ;
+	top_a = stack_a->begin;
+	stack_a->begin = top_a->next;
+	if (stack_a->begin)
+		stack_a->begin->back = NULL;
+	if (!stack_b->begin)
+	{
+		stack_b->begin = top_a;
+		stack_b->end = top_a;
+		top_a->next = NULL;
+	}
+	else
+	{
+		top_a->next = stack_b->begin;
+		stack_b->begin->back = top_a;
+		stack_b->begin = top_a;
+	}
+	top_a->back = NULL;
+	stack_a->length--;
+	stack_b->length++;
+	ft_printf("pb\n");
+}
 
 void	ra(t_dclst *stack_a);
 

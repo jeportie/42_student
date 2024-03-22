@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 13:33:16 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:23:28 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,8 @@ void	ft_init_stack(t_dclst **stack);
 void	ft_empty_stack(t_dclst *stack);
 void	ft_parse_arg(int argc, char **argv, t_dclst *stack_a);
 void	ft_push_to_stack(t_dclst *stack, long value);
+void    ft_print_stack(t_dclst *stack, char name);
+int		ft_argc_len(char **argv);
+void	ft_free_split(char **argv);
 
 #endif /*PUSH_SWAP*/
