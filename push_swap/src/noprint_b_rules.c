@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   b_rules.c                                          :+:      :+:    :+:   */
+/*   noprint_b_rules.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/22 20:31:05 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 20:54:57 by jeportie         ###   ########.fr       */
+/*   Created: 2024/03/22 21:04:49 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/22 21:06:01 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include "../include/ft_printf.h"
 
-void	sb(t_dclst *stack_b)
+void	noprint_sb(t_dclst *stack_b)
 {
 	t_dcnode	*first_node;
 	t_dcnode	*second_node;
@@ -29,38 +28,9 @@ void	sb(t_dclst *stack_b)
 		first_node->next->back = first_node;
 	first_node->back = second_node;
 	second_node->back = NULL;
-	ft_printf("sb\n");
 }
 
-void	pa(t_dclst *stack_a, t_dclst *stack_b)
-{
-	t_dcnode	*top_b;
-
-	if (!stack_b || !stack_b->begin)
-		return ;
-	top_b = stack_b->begin;
-	stack_b->begin = top_b->next;
-	if (stack_b->begin)
-		stack_b->begin->back = NULL;
-	if (!stack_a->begin)
-	{
-		stack_a->begin = top_b;
-		stack_a->end = top_b;
-		top_b->next = NULL;
-	}
-	else
-	{
-		top_b->next = stack_a->begin;
-		stack_a->begin->back = top_b;
-		stack_a->begin = top_b;
-	}
-	top_b->back = NULL;
-	stack_b->length--;
-	stack_a->length++;
-	ft_printf("pa\n");
-}
-
-void	rb(t_dclst *stack_b)
+void	noprint_rb(t_dclst *stack_b)
 {
 	t_dcnode	*first_node;
 	t_dcnode	*last_node;
@@ -75,10 +45,9 @@ void	rb(t_dclst *stack_b)
 	first_node->back = last_node;
 	first_node->next = NULL;
 	stack_b->end = first_node;
-	ft_printf("rb\n");
 }
 
-void	rrb(t_dclst *stack_b)
+void	noprint_rrb(t_dclst *stack_b)
 {
 	t_dcnode	*first_node;
 	t_dcnode	*last_node;
@@ -93,5 +62,4 @@ void	rrb(t_dclst *stack_b)
 	last_node->back = NULL;
 	first_node->back = last_node;
 	stack_b->begin = last_node;
-	ft_printf("rrb\n");
 }

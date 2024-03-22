@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 18:23:28 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:00:53 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void	rr(t_dclst *stack_a, t_dclst *stack_b);
 void	rra(t_dclst *stack_a);
 void	rrb(t_dclst *stack_b);
 void	rrr(t_dclst *stack_a, t_dclst *stack_b);
+void	noprint_sa(t_dclst *stack_a);
+void	noprint_sb(t_dclst *stack_b);
+void	noprint_ra(t_dclst *stack_a);
+void	noprint_rb(t_dclst *stack_b);
+void	noprint_rra(t_dclst *stack_a);
+void	noprint_rrb(t_dclst *stack_b);
 
 /* Push_swap QuickSort (PHASE 1 BIG_DATA)*/
 /* Push_swap RadixSort (PHASE 2 BIG DATA)*/
@@ -70,4 +76,4 @@ void    ft_print_stack(t_dclst *stack, char name);
 int		ft_argc_len(char **argv);
 void	ft_free_split(char **argv);
 
-#endif /*PUSH_SWAP*/
+#endif /*PUSH_SWAP*/	
