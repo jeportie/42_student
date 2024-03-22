@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/03/21 17:15:54 by jeportie         ###   ########.fr        #
+#    Updated: 2024/03/22 11:03:05 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ PRINTF_SRC =	$(addprefix ft_printf/, ft_apply_precision.c ft_handle_char.c \
 			 	ft_handle_int.c ft_isconvert_spec.c ft_printf.c ft_check_format.c \
 			 	ft_handle_plus_flag.c ft_isflag.c ft_ulltoa_base.c)
 
-LIBFT_SRC = 	$(addprefix libft/, ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
+LIBFT_SRC = 	$(addprefix libft/, ft_atoi.c ft_atol.c ft_bzero.c ft_isalnum.c \
             	ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c \
             	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
             	ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c \
@@ -38,7 +38,7 @@ LIBFT_SRC = 	$(addprefix libft/, ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \
             	ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c \
             	ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c \
             	ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
-            	ft_toupper.c ft_realloc.c get_next_line.c)
+            	ft_toupper.c ft_calloc.c ft_realloc.c get_next_line.c)
 
 OBJ_SRC =		$(SRC:src/%.c=$(OBJ_DIR)/%.o)
 OBJ_PRINTF =	$(PRINTF_SRC:ft_printf/%.c=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 01:29:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:33:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void	ft_reintegrate_stack_b(t_dclst *stack_a, t_dclst *stack_b);
 
 /* Utility functions */
 int		ft_stack_size(t_dclst *stack);
-bool	ft_is_empty(t_dclst *stack);
+bool	ft_isempty(t_dclst *stack);
 bool	ft_validate_inputs(int argc, char **argv);
-bool	ft_is_integer(char *str);
+bool	ft_isinteger(char *str);
 void	ft_init_stack(t_dclst **stack);
 void	ft_empty_stack(t_dclst *stack);
 void	ft_parse_arg(int argc, char **argv, t_dclst *stack_a);
-void	ft_addto_stack(t_dclst *stack, long value);
+void	ft_push_to_stack(t_dclst *stack, long value);
 
 #endif /*PUSH_SWAP*/
