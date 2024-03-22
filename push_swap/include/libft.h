@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 11:04:05 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:31:27 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 /* GNL */
-char		*get_next_line(int fd);
-char		*ft_read_buffer(int fd, char *buffer);
-char		*ft_extract_line(char *buffer);
-char		*ft_update_buffer(char *buffer);
-char		*ft_strjoin_gnl(char const *s1, char const *s2);
+char	*get_next_line(int fd);
+char	*ft_read_buffer(int fd, char *buffer);
+char	*ft_extract_line(char *buffer);
+char	*ft_update_buffer(char *buffer);
+char	*ft_strjoin_gnl(char const *s1, char const *s2);
 
 #endif /*LIBFT_H*/

@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/03/22 11:03:05 by jeportie         ###   ########.fr        #
+#    Updated: 2024/03/22 17:15:06 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ EXEC_DIR = exec
 VALGRIND = valgrind --track-origins=yes --leak-check=full
 
 SRC =			$(addprefix src/, ft_init_stack.c ft_empty_stack.c a_rules.c \
-				ab_rules.c b_rules.c ft_parse_arg.c ft_split_to_stack.c) 
+				ab_rules.c b_rules.c ft_parse_arg.c radix_sort.c) 
 
 PRINTF_SRC =	$(addprefix ft_printf/, ft_apply_precision.c ft_handle_char.c \
 			 	ft_handle_pointer.c ft_nbr_len.c ft_utoa_base.c ft_apply_width.c \

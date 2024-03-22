@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 17:49:40 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:30:54 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ int	main(int argc, char **argv)
 
 /*
  * TO DO LIST PUSH_SWAP
- * implem ft_valid_imput
- * implem ft_is_integer
- * implem ft-atol
- * implem ft_parse_arg et faire test
- * dans radix, implementer un printf qui montre visuellemet les deux stackset essayer avec sa
  * implem le reste des stack operations et toutes les test 
  * implem small data algo et faire test
  * implem radix et faire test
