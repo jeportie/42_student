@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 17:30:54 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:37:44 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int argc, char **argv)
 
 /*
  * TO DO LIST PUSH_SWAP
- * implem le reste des stack operations et toutes les test 
  * implem small data algo et faire test
  * implem radix et faire test
  * implem quick sort et faire test
