@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 21:04:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 21:06:01 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:07:56 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	noprint_sb(t_dclst *stack_b)
 
 	if (!stack_b || !stack_b->begin || !stack_b->begin->next)
 		return ; 
+	if (stack_b->length == 2)
+	{
+		noprint_sa(stack_b);
+		return ;
+	}
 	first_node = stack_b->begin;
 	second_node = stack_b->begin->next;
 	stack_b->begin = second_node;
@@ -54,6 +59,11 @@ void	noprint_rrb(t_dclst *stack_b)
 	
 	if (!stack_b || !stack_b->begin || !stack_b->begin->next)
 		return ;
+	if (stack_b->length == 2)
+	{
+		noprint_sa(stack_b);
+		return ;
+	}
 	last_node = stack_b->end;
 	first_node = stack_b->begin;
 	stack_b->end = last_node->back;
