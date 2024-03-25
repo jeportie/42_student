@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/03/22 20:59:18 by jeportie         ###   ########.fr        #
+#    Updated: 2024/03/25 13:41:12 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,13 @@ debug: all $(NAME) $(OBJ_DIR)/main.o
 	read user_input; \
 	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
 	$(VALGRIND) ./$(EXEC_DIR)/push_swap $$user_input
+	
+count: all $(NAME) $(OBJ_DIR)/main.o
+	mkdir -p $(EXEC_DIR)
+	@echo -n "Enter some input (only digits and numbers)."; \
+	read user_input; \
+	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
+	./$(EXEC_DIR)/push_swap $$user_input | wc -l
 
 gnl: all $(NAME) $(OBJ_DIR)/gnlmain.o
 	mkdir -p $(EXEC_DIR)
