@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/03/25 13:41:12 by jeportie         ###   ########.fr        #
+#    Updated: 2024/03/26 16:45:10 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC =			$(addprefix src/, ft_init_stack.c ft_empty_stack.c a_rules.c \
 				ab_rules.c b_rules.c ft_parse_arg.c radix_sort.c \
 				ft_print_stack.c ft_push_to_stack.c ft_validate_inputs.c \
 				ft_isinteger.c ft_argc_len.c ft_free_split.c noprint_a_rules.c \
-				noprint_b_rules.c ) 
+				noprint_b_rules.c turkish_sort.c) 
 
 PRINTF_SRC =	$(addprefix ft_printf/, ft_apply_precision.c ft_handle_char.c \
 			 	ft_handle_pointer.c ft_nbr_len.c ft_utoa_base.c ft_apply_width.c \
