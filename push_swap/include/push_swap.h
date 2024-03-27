@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/26 18:56:03 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/27 21:01:13 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_dcnode
 	int				push_cost;
 	bool			above_median;
 	bool			cheapest;
-	struct s_node	*target;
+	struct s_dcnode	*target;
 	struct s_dcnode	*back;
 	struct s_dcnode	*next;
 }	t_dcnode;
@@ -70,7 +70,7 @@ void	ft_reintegrate_stack_b(t_dclst *stack_a, t_dclst *stack_b);
 void	turkish_sort(t_dclst *stack_a, t_dclst *stack_b);
 	void	ft_push_initial_numbers(t_dclst *stack_a, t_dclst *stack_b);
 	void	ft_define_target(t_dclst *stack_a, t_dclst *stack_b);
-		t_dcnode* ft_closest_smaller_number(t_dclst *stack_a, t_dclst *stack_b);
+		t_dcnode* ft_closest_smaller_number(t_dcnode *node_a, t_dclst *stack_b);
 		// if our node value is smaller than any possible target in stack_b, then assign
 		// it to the max value of stack_b (that way it will take the place as smalest value)
 	void	ft_isabove_median(t_dclst *stack_a, t_dclst *stack_b);

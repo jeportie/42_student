@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:44:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/26 19:54:59 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/27 21:19:39 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,81 @@ void	ft_sort_three(t_dclst *stack_a)
 
 void	ft_push_initial_numbers(t_dclst *stack_a, t_dclst *stack_b)
 {
+	pb(stack_a, stack_b);
 	if (stack_a->length == 4)
-		pb(stack_a, stack_b);
-	else if (stack_a->length > 4)
+		return ;
+	pb(stack_a, stack_b);
+}
+
+t_dcnode*	ft_closest_smaller_number(t_dcnode *node_a, t_dclst *stack_b)
+{
+	t_dcnode	*current_b;
+	t_dcnode	*target_b;
+	long		max_value;
+
+	current_b = stack_b->begin;
+	target_b = NULL;
+	max_value = LONG_MIN;
+	while (current_b)
 	{
-		pb(stack_a, stack_b);
-		pb(stack_a, stack_b);
+		if (current_b->value < node_a->value && current_b->value > max_value)
+		{
+			target_b = current_b;
+			max_value = current_b->value;
+		}
+		current_b = current_b->next;
 	}
+	if (!target_b)
+	{
+		current_b = stack_b->begin;
+		while (current_b)
+		{
+			if (current_b->value > max_value)
+			{
+				target_b = current_b;
+				max_value = current_b->value;
+			}
+			current_b = current_b->next;
+		}
+	}
+	return (target_b);
+}
+
+void	ft_define_target(t_dclst *stack_a, t_dclst *stack_b)
+{
+	t_dcnode	*current_a;
+
+	if (!stack_a || !stack_b || !stack_b->length)
+		return ;
+	current_a = stack_a->begin;
+	while (current_a)
+	{
+		current_a->target = ft_closest_smaller_number(current_a, stack_b);
+		current_a = current_a->next;
+	}
+}
+
+void	ft_mark_above_median(t_dclst *stack)
+{
+	int			median_position;
+	int			position;
+	t_dcnode	*current;
+
+	median_position = (stack->length + 1) / 2;
+	position = 1;
+	current = stack->begin;
+	while (current)
+	{
+		current->above_median = (position <= median_position);
+		current = current->next;
+		position++;
+	}
+}
+
+void	ft_isabove_median(t_dclst *stack_a, t_dclst *stack_b)
+{
+	if (!stack_a || !stack_b)
+		return ;
+	ft_mark_above_median(stack_a);
+	ft_mark_above_median(stack_b);
 }
