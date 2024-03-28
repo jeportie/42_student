@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:44:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/27 21:19:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:36:03 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,67 @@ void	ft_mark_above_median(t_dclst *stack)
 
 void	ft_isabove_median(t_dclst *stack_a, t_dclst *stack_b)
 {
-	if (!stack_a || !stack_b)
-		return ;
 	ft_mark_above_median(stack_a);
 	ft_mark_above_median(stack_b);
+}
+
+void	ft_actualise_indexes(t_dclst *stack_a, t_dclst *stack_b)
+{
+	ft_define_index(stack_a);
+	ft_define_index(stack_b);
+}
+
+void	ft_define_index(t_dclst *stack)
+{
+	t_dcnode	*current;
+	int			i;
+
+	current = stack->begin;
+	i = 1;
+	while (current)
+	{
+		current->index = i;
+		current = current->next;
+		i++;
+	}
+}
+
+int	calculate_moves_to_top(t_dclst *stack, t_dcnode *node)
+{
+	int	moves;
+
+	if (node->above_median)
+		moves = node->index - 1;
+	else
+		moves = stack->length - node->index;
+	return (moves);
+}
+
+void	ft_calculate_push_cost(t_dclst *stack_a, t_dclst *stack_b)
+{
+	t_dcnode	*current_a;
+	int			moves_a;
+	int			moves_b;
+	int			combined_moves;
+	int			remaining_moves;
+
+	current_a = stack_a->begin;
+	while (current_a)
+	{
+		moves_a = calculate_moves_to_top(stack_a, current_a);
+		moves_b = calculate_moves_to_top(stack_b, current_a->target);
+		if (current_a->above_median == current_a->target->above_median)
+		{
+			combined_moves = 0;
+			if (moves_a < moves_b)
+				combined_moves = moves_a;
+			else
+				combined_moves = moves_b;
+			remaining_moves = (int)ft_labs((long)moves_a - (long)moves_b);
+			current_a->push_cost = combined_moves + remaining_moves;
+		}
+		else
+			current_a->push_cost = moves_a + moves_b;
+		current_a = current_a->next;
+	}
 }

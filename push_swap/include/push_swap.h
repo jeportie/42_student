@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/27 21:01:13 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:32:10 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	ft_reintegrate_stack_b(t_dclst *stack_a, t_dclst *stack_b);
 /* Turkish Algo strategy (MEDIUM_DATA) */
 void	turkish_sort(t_dclst *stack_a, t_dclst *stack_b);
 	void	ft_push_initial_numbers(t_dclst *stack_a, t_dclst *stack_b);
+	void	ft_actualise_indexes(t_dclst *stack_a, t_dclst *stack_b);
+	void	ft_define_index(t_dclst *stack);
 	void	ft_define_target(t_dclst *stack_a, t_dclst *stack_b);
 		t_dcnode* ft_closest_smaller_number(t_dcnode *node_a, t_dclst *stack_b);
 		// if our node value is smaller than any possible target in stack_b, then assign
@@ -85,6 +87,7 @@ void	turkish_sort(t_dclst *stack_a, t_dclst *stack_b);
 /* Small Data Sorting Algos (SMALL DATA)*/
 
 /* Utility functions */
+long	ft_labs(long value);
 int		ft_stack_size(t_dclst *stack);
 bool	ft_isempty(t_dclst *stack);
 bool	ft_validate_inputs(int argc, char **argv);
