@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/03/26 16:45:10 by jeportie         ###   ########.fr        #
+#    Updated: 2024/04/01 16:48:42 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ main: all $(NAME) $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	@echo -n "Enter some input (only digits and numbers)."; \
 	read user_input; \
-	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
+	$(CC) $(C_FLAGS) -g3 -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
 	./$(EXEC_DIR)/push_swap $$user_input
 
 debug: all $(NAME) $(OBJ_DIR)/main.o
