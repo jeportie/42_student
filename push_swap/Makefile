@@ -6,13 +6,13 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/04/01 16:48:42 by jeportie         ###   ########.fr        #
+#    Updated: 2024/04/01 17:03:11 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I./include
+CFLAGS = -Wall -Wextra -Werror -g3 -I./include
 OBJ_DIR = obj
 OUTPUT_DIR = outputs
 EXEC_DIR = exec
@@ -80,7 +80,7 @@ main: all $(NAME) $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	@echo -n "Enter some input (only digits and numbers)."; \
 	read user_input; \
-	$(CC) $(C_FLAGS) -g3 -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
+	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
 	./$(EXEC_DIR)/push_swap $$user_input
 
 debug: all $(NAME) $(OBJ_DIR)/main.o
@@ -97,16 +97,13 @@ count: all $(NAME) $(OBJ_DIR)/main.o
 	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
 	./$(EXEC_DIR)/push_swap $$user_input | wc -l
 
-gnl: all $(NAME) $(OBJ_DIR)/gnlmain.o
+lldb: all $(NAME) $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
-	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/gnl_test $(OBJ_DIR)/gnlmain.o $(NAME)
-	$(VALGRIND) ./$(EXEC_DIR)/gnl_test
+	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME);
+	lldb $(EXEC_DIR)/push_swap
 
 $(OBJ_DIR)/main.o: main.c
 	$(CC) $(C_FLAGS) -c main.c -o $(OBJ_DIR)/main.o
-
-$(OBJ_DIR)/gnlmain.o: tests/gnltest.c
-	$(CC) $(C_FLAGS) -c tests/gnltest.c -o $(OBJ_DIR)/gnlmain.o
 
 eclean: fclean
 	rm -rf $(EXEC_DIR)
