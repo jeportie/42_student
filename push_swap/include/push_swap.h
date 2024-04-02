@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/01 21:10:04 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:47:56 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,11 @@ void		ft_actualise_indexes(t_dclst *stack_a, t_dclst *stack_b);
 void		ft_define_index(t_dclst *stack);
 void		ft_define_target(t_dclst *stack_a, t_dclst *stack_b);
 t_dcnode*	ft_closest_smaller_number(t_dcnode *node_a, t_dclst *stack_b);
+t_dcnode*	ft_closest_greater_number(t_dcnode *node_b, t_dclst *stack_a);
 void		ft_isabove_median(t_dclst *stack_a, t_dclst *stack_b);
+void		ft_mark_above_median(t_dclst *stack);
 void		ft_calculate_push_cost(t_dclst *stack_a, t_dclst *stack_b);
-int			ft_calculate_moves_to_top(t_dclst *stack, t_dcnode *node);
+int			ft_moves_to_top(t_dclst *stack, t_dcnode *node);
 void		ft_push_to_target(t_dclst *stack_a, t_dclst *stack_b);
 void		ft_init_push_cost(t_dclst *stack_a);
 void		ft_sort_three(t_dclst *stack_a);

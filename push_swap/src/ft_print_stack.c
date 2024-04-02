@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 18:12:33 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 18:13:04 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/02 20:11:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void    ft_print_stack(t_dclst *stack, char name)
 {
     t_dcnode *current_node;
 
-    ft_printf("stack_%c :\t", name);
+    ft_printf("\nstack_%c :\t", name);
 	if (stack->begin == NULL)
 	{
-        ft_printf("NULL\n");
+        ft_printf("NULL\n\n");
         return;
     }
     current_node = stack->begin;

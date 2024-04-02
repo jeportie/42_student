@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/04/01 17:03:11 by jeportie         ###   ########.fr        #
+#    Updated: 2024/04/02 14:55:30 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,10 @@ OBJ_DIR = obj
 OUTPUT_DIR = outputs
 EXEC_DIR = exec
 VALGRIND = valgrind --track-origins=yes --leak-check=full
+
+TURK =			$(addprefix src/turkish_src/, ft_sort_three.c \
+				turkish_sub_utilities.c turkish_utilities.c \
+				turkish_calculation.c turkish_push_operations.c) 
 
 SRC =			$(addprefix src/, ft_init_stack.c ft_empty_stack.c a_rules.c \
 				ab_rules.c b_rules.c ft_parse_arg.c radix_sort.c \
@@ -43,10 +47,11 @@ LIBFT_SRC = 	$(addprefix libft/, ft_atoi.c ft_atol.c ft_bzero.c ft_isalnum.c \
             	ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
             	ft_toupper.c ft_calloc.c ft_realloc.c get_next_line.c)
 
+OBJ_TURK =		$(TURK:src/turkish_src/%.c=$(OBJ_DIR)/%.o)
 OBJ_SRC =		$(SRC:src/%.c=$(OBJ_DIR)/%.o)
 OBJ_PRINTF =	$(PRINTF_SRC:ft_printf/%.c=$(OBJ_DIR)/%.o)
 OBJ_LIBFT =		$(LIBFT_SRC:libft/%.c=$(OBJ_DIR)/%.o)
-OBJ =			$(OBJ_SRC) $(OBJ_PRINTF) $(OBJ_LIBFT)
+OBJ =			$(OBJ_TURK) $(OBJ_SRC) $(OBJ_PRINTF) $(OBJ_LIBFT)
 
 all: $(NAME)
 
@@ -56,6 +61,8 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
+$(OBJ_DIR)/%.o: src/turkish_src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@

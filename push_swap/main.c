@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/01 16:33:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/02 14:07:39 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,3 @@ int	main(int argc, char **argv)
 	free(stack_b);
 	return (0);
 }
-
-/*
- * TO DO LIST PUSH_SWAP
- * implem small data algo et faire test
- * implem radix et faire test
- * implem quick sort et faire test
- * implem turkish algo et faire test.
- * implem gestionaire d'algo en fonction de la taille de la stack
- * opti big_data algo and quicksort/radixsort switch points
- */
-
