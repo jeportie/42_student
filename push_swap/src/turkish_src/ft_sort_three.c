@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:11:36 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/02 19:35:03 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:35:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_topgreater(t_dclst *stack_a, long top, long middle, long bottom)
 	if (top < bottom)
 		sa(stack_a);
 	else if (middle < bottom)
-		rra(stack_a);
+		ra(stack_a);
 	else
 	{
 		sa(stack_a);

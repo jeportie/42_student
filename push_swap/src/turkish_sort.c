@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:44:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/02 20:09:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/03 19:43:37 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ void ft_ischeapest(t_dclst *stack_a)
 
     // Mark the cheapest node.
     if (cheapest_node != NULL)
-    {
         cheapest_node->cheapest = true;
-    }
 }
 
 void	turkish_sort(t_dclst *stack_a, t_dclst *stack_b)
@@ -57,17 +55,24 @@ void	turkish_sort(t_dclst *stack_a, t_dclst *stack_b)
 		return ;
 	}
 	ft_push_initial_numbers(stack_a, stack_b);
-	while (stack_a->length > 5)
-	{
-		ft_define_target(stack_a, stack_b);
-		ft_isabove_median(stack_a, stack_b);
-		ft_calculate_push_cost(stack_a, stack_b);
-		ft_ischeapest(stack_a);
-		ft_push_to_target(stack_a, stack_b);
-		ft_print_stack(stack_a, 'a');
-		ft_init_push_cost(stack_a);
-	}
+    if (stack_a->length > 5)
+    {
+    	while (stack_a->length > 3)
+    	{
+    		ft_define_target(stack_a, stack_b);
+    		ft_isabove_median(stack_a, stack_b);
+    		ft_calculate_push_cost(stack_a, stack_b);
+     //       ft_printf("push cost : %i\n", stack_a->begin->push_cost);
+     //       ft_printf("comb moves : %i\n", stack_a->begin->combined_moves);
+     //       ft_printf("a moves : %i\n", stack_a->begin->moves_a);
+     //       ft_printf("b moves : %i\n", stack_a->begin->moves_b);
+    		ft_ischeapest(stack_a);
+    		ft_push_to_target(stack_a, stack_b);
+    		ft_init_push_cost(stack_a);
+    	}
+    }
 	ft_sort_three(stack_a);
+	ft_print_stack(stack_b, 'b');
 	ft_back_to_stack_a(stack_a, stack_b);
 	ft_fine_tune(stack_a);
 }
