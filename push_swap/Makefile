@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/04/02 14:55:30 by jeportie         ###   ########.fr        #
+#    Updated: 2024/04/08 16:06:35 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ VALGRIND = valgrind --track-origins=yes --leak-check=full
 
 TURK =			$(addprefix src/turkish_src/, ft_sort_three.c \
 				turkish_sub_utilities.c turkish_utilities.c \
-				turkish_calculation.c turkish_push_operations.c) 
+				turkish_calculation.c turkish_push_operations.c \
+				ft_push_to_target.c ft_calculate_push_cost.c) 
 
 SRC =			$(addprefix src/, ft_init_stack.c ft_empty_stack.c a_rules.c \
 				ab_rules.c b_rules.c ft_parse_arg.c radix_sort.c \

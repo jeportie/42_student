@@ -6,27 +6,36 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 16:44:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/03 19:43:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:46:56 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 #include "../include/ft_printf.h"
 
-void ft_ischeapest(t_dclst *stack_a)
+void    ft_define_cheapest(t_dcnode *node, t_dclst *stack)
+{
+    t_dcnode    *current;
+
+    current = stack->begin;
+    while (current)
+    {
+        if (!current->cheapest)
+            current->to_cheapest = node;
+        current = current->next;
+    }
+}
+
+void    ft_ischeapest(t_dclst *stack_a)
 {
     t_dcnode *current = stack_a->begin;
     t_dcnode *cheapest_node = NULL;
     int lowest_cost = INT_MAX;
-
-    // Reset the cheapest flag for all nodes before finding the new cheapest.
     for (t_dcnode *tmp = stack_a->begin; tmp != NULL; tmp = tmp->next) {
         tmp->cheapest = false;
     }
-
     while (current != NULL)
     {
-        // If a node with push_cost of 0 is found, it's automatically the cheapest.
         if (current->push_cost == 0)
         {
             cheapest_node = current;
@@ -39,10 +48,9 @@ void ft_ischeapest(t_dclst *stack_a)
         }
         current = current->next;
     }
-
-    // Mark the cheapest node.
     if (cheapest_node != NULL)
         cheapest_node->cheapest = true;
+    ft_define_cheapest(cheapest_node, stack_a);
 }
 
 void	turkish_sort(t_dclst *stack_a, t_dclst *stack_b)
@@ -55,20 +63,21 @@ void	turkish_sort(t_dclst *stack_a, t_dclst *stack_b)
 		return ;
 	}
 	ft_push_initial_numbers(stack_a, stack_b);
+	ft_print_stack(stack_a, 'a');
+	ft_print_stack(stack_b, 'b');
     if (stack_a->length > 5)
     {
     	while (stack_a->length > 3)
     	{
+            ft_printf("top stack_a : %i\n", stack_a->begin->value);
     		ft_define_target(stack_a, stack_b);
     		ft_isabove_median(stack_a, stack_b);
     		ft_calculate_push_cost(stack_a, stack_b);
-     //       ft_printf("push cost : %i\n", stack_a->begin->push_cost);
-     //       ft_printf("comb moves : %i\n", stack_a->begin->combined_moves);
-     //       ft_printf("a moves : %i\n", stack_a->begin->moves_a);
-     //       ft_printf("b moves : %i\n", stack_a->begin->moves_b);
     		ft_ischeapest(stack_a);
     		ft_push_to_target(stack_a, stack_b);
     		ft_init_push_cost(stack_a);
+    		ft_print_stack(stack_a, 'a');
+	    	ft_print_stack(stack_b, 'b');
     	}
     }
 	ft_sort_three(stack_a);

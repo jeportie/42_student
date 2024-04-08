@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/02 14:47:56 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:42:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ typedef struct	s_dcnode
 	int				push_cost;
 	bool			above_median;
 	bool			cheapest;
-	int				moves_a;
-	int				moves_b;
+	int				moves_to_top;
+	int				direct_moves;
 	int				combined_moves;
 	int				remaining_moves;
+	struct s_dcnode	*to_cheapest;
 	struct s_dcnode	*target;
 	struct s_dcnode	*back;
 	struct s_dcnode	*next;
