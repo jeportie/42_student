@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 15:07:21 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/08 19:37:26 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:06:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,11 @@ void	ft_push_to_target(t_dclst *stack_a, t_dclst *stack_b)
 {
 	t_dcnode	*cheapest_node;
 
-	cheapest_node = stack_a->begin->to_cheapest;
+	cheapest_node = ft_ischeapest(stack_a);
 	if (!cheapest_node)
-		cheapest_node = stack_a->begin;
-	ft_printf("Cheapest value : %i\n", cheapest_node->value);
+		return ;
+//	if (!cheapest_node->target)
+//		return ;
 	ft_printf("target value : %i\n", cheapest_node->target->value);
 	ft_printf("Push cost : %i\n", cheapest_node->push_cost);
 

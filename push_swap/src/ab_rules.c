@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:45:51 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/23 17:42:27 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:06:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ss(t_dclst *stack_a, t_dclst *stack_b)
 	noprint_sa(stack_a); 
 	noprint_sb(stack_b);
 	ft_printf("ss\n");
+	stack_a->moves++;
 }
 
 void	rr(t_dclst *stack_a, t_dclst *stack_b)
@@ -31,6 +32,7 @@ void	rr(t_dclst *stack_a, t_dclst *stack_b)
 	noprint_ra(stack_a); 
 	noprint_rb(stack_b);
 	ft_printf("rr\n");
+	stack_a->moves++;
 }
 
 void	rrr(t_dclst *stack_a, t_dclst *stack_b)
@@ -41,4 +43,5 @@ void	rrr(t_dclst *stack_a, t_dclst *stack_b)
 	noprint_rra(stack_a); 
 	noprint_rrb(stack_b);
 	ft_printf("rrr\n");
+	stack_a->moves++;
 }

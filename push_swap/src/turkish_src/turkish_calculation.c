@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:44:36 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/08 16:06:05 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:39:19 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_dcnode*	ft_closest_smaller_number(t_dcnode *node_a, t_dclst *stack_b)
 	current_b = stack_b->begin;
 	target_b = NULL;
 	max_value = LONG_MIN;
+
 	while (current_b)
 	{
 		if (current_b->value < node_a->value && current_b->value > max_value)

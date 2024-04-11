@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/08 19:42:49 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:06:12 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ typedef struct	s_dcnode
 	bool			above_median;
 	bool			cheapest;
 	int				moves_to_top;
-	int				direct_moves;
 	int				combined_moves;
 	int				remaining_moves;
-	struct s_dcnode	*to_cheapest;
 	struct s_dcnode	*target;
 	struct s_dcnode	*back;
 	struct s_dcnode	*next;
@@ -37,6 +35,7 @@ typedef struct	s_dcnode
 
 typedef struct	s_dclst
 {
+	int				moves;
 	int				length;
 	struct s_dcnode	*begin;
 	struct s_dcnode	*end;
@@ -72,6 +71,7 @@ void		ft_reintegrate_stack_b(t_dclst *stack_a, t_dclst *stack_b);
 
 /* Turkish Algo strategy */
 void		turkish_sort(t_dclst *stack_a, t_dclst *stack_b);
+t_dcnode*	ft_ischeapest(t_dclst *stack_a);
 void		ft_push_initial_numbers(t_dclst *stack_a, t_dclst *stack_b);
 void		ft_actualise_indexes(t_dclst *stack_a, t_dclst *stack_b);
 void		ft_define_index(t_dclst *stack);

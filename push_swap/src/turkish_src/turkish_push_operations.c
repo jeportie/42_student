@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:53:52 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/08 16:03:54 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:28:30 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_define_target(t_dclst *stack_a, t_dclst *stack_b)
 {
 	t_dcnode	*current_a;
 
-	if (!stack_a || !stack_b || !stack_b->length)
+	if (!stack_a || !stack_b)
 		return ;
 	current_a = stack_a->begin;
 	while (current_a)
