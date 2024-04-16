@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:53:52 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/09 16:28:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/16 14:08:18 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	ft_back_to_stack_a(t_dclst *stack_a, t_dclst *stack_b)
 		}
 		pa(stack_a, stack_b);
 	}
+    ft_print_stack(stack_a, 'a');
+    ft_print_stack(stack_b, 'b');
 }
 
 void	ft_fine_tune(t_dclst *stack_a)

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/09 18:31:12 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:48:18 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,9 @@ int	main(int argc, char **argv)
 	{
 
 		ft_parse_arg(argc, argv, stack_a);
-		ft_print_stack(stack_a, 'a');
-		ft_print_stack(stack_a, 'a');
-		ft_print_stack(stack_b, 'b');
 		turkish_sort(stack_a, stack_b);
-//		ft_print_stack(stack_a, 'a');
-//		ft_print_stack(stack_b, 'b');
+    	ft_print_stack(stack_a, 'a');
+    	ft_print_stack(stack_b, 'b');
 		ft_empty_stack(stack_a);
 		ft_empty_stack(stack_b);
 	}

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:30:29 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/04 22:10:36 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:01:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,23 @@ void	ft_actualise_indexes(t_dclst *stack_a, t_dclst *stack_b)
 	ft_define_index(stack_b);
 }
 
-void	ft_init_push_cost(t_dclst *stack_a)
+t_dcnode    *ft_ischeapest(t_dclst *stack_a)
 {
-	t_dcnode	*current_a;
+    t_dcnode *current = stack_a->begin;
+    t_dcnode *cheapest_node = NULL;
+    int lowest_cost = INT_MAX;
 
-	current_a = stack_a->begin;
-	while (current_a)
-	{
-		current_a->push_cost = 0;
-		current_a = current_a->next;
-	}
+    while (current != NULL)
+    {
+        ft_printf("Node : %i -> push cost : %i\n", current->value, current->push_cost);
+        ft_printf("Target : %i Above med : %i\n", current->target->value, current->target->above_median);
+        if (current->push_cost < lowest_cost)
+        {
+            lowest_cost = current->push_cost;
+            cheapest_node = current;
+        }
+        current = current->next;
+    }
+    ft_printf("cheapest : %i\n", cheapest_node->value);
+    return cheapest_node;
 }

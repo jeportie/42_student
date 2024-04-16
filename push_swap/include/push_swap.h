@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/11 17:06:12 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:34:27 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void		ft_mark_above_median(t_dclst *stack);
 void		ft_calculate_push_cost(t_dclst *stack_a, t_dclst *stack_b);
 int			ft_moves_to_top(t_dclst *stack, t_dcnode *node);
 void		ft_push_to_target(t_dclst *stack_a, t_dclst *stack_b);
-void		ft_init_push_cost(t_dclst *stack_a);
 void		ft_sort_three(t_dclst *stack_a);
 void		ft_back_to_stack_a(t_dclst *stack_a, t_dclst *stack_b);
 void		ft_fine_tune(t_dclst *stack_a);

@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/04/08 16:06:35 by jeportie         ###   ########.fr        #
+#    Updated: 2024/04/12 20:31:07 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -g3 -I./include
 OBJ_DIR = obj
 OUTPUT_DIR = outputs
 EXEC_DIR = exec
+BIN_DIR = push_swap_visualizer
 VALGRIND = valgrind --track-origins=yes --leak-check=full
 
 TURK =			$(addprefix src/turkish_src/, ft_sort_three.c \
@@ -80,40 +81,50 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	
+eclean: fclean
+	rm -rf $(EXEC_DIR)
 
 re: fclean all
 
 
 main: all $(NAME) $(OBJ_DIR)/main.o
-	mkdir -p $(EXEC_DIR)
+	mkdir $(EXEC_DIR)
 	@echo -n "Enter some input (only digits and numbers)."; \
 	read user_input; \
 	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
 	./$(EXEC_DIR)/push_swap $$user_input
 
 debug: all $(NAME) $(OBJ_DIR)/main.o
-	mkdir -p $(EXEC_DIR)
+	mkdir $(EXEC_DIR)
 	@echo -n "Enter some input (only digits and numbers)."; \
 	read user_input; \
 	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
 	$(VALGRIND) ./$(EXEC_DIR)/push_swap $$user_input
 	
 count: all $(NAME) $(OBJ_DIR)/main.o
-	mkdir -p $(EXEC_DIR)
+	mkdir $(EXEC_DIR)
 	@echo -n "Enter some input (only digits and numbers)."; \
 	read user_input; \
 	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
 	./$(EXEC_DIR)/push_swap $$user_input | wc -l
 
 lldb: all $(NAME) $(OBJ_DIR)/main.o
-	mkdir -p $(EXEC_DIR)
+	mkdir $(EXEC_DIR)
 	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME);
 	lldb $(EXEC_DIR)/push_swap
 
+visu: eclean all $(NAME) $(OBJ_DIR)/main.o
+	mkdir $(EXEC_DIR)
+	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME);
+	git clone https://github.com/o-reo/push_swap_visualizer.git /home/jerome/Documents/42_stud/push_swap/exec/push_swap_visualizer
+	mkdir exec/push_swap_visualizer/build
+	cd /home/jerome/Documents/42_stud/push_swap/exec/push_swap_visualizer/build && cmake ..
+	cd /home/jerome/Documents/42_stud/push_swap/exec/push_swap_visualizer/build && make
+	./$(EXEC_DIR)/$(BIN_DIR)/build/bin/visualizer
+	
+
 $(OBJ_DIR)/main.o: main.c
 	$(CC) $(C_FLAGS) -c main.c -o $(OBJ_DIR)/main.o
-
-eclean: fclean
-	rm -rf $(EXEC_DIR)
 
 .PHONY: all clean fclean re main eclean
