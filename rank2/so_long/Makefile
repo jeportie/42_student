@@ -6,32 +6,22 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/04/16 18:32:53 by jeportie         ###   ########.fr        #
+#    Updated: 2024/06/01 23:23:08 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap.a
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -I./include
-OBJ_DIR = obj
-OUTPUT_DIR = outputs
-EXEC_DIR = exec
-BIN_DIR = push_swap_visualizer
-VALGRIND = valgrind --track-origins=yes --leak-check=full
+NAME = 			so_long.a
+CC = 			cc
+CFLAGS = 		-Wall -Wextra -g3 -I./include
+OBJ_DIR = 		obj
+OUTPUT_DIR = 	outputs
+EXEC_DIR = 		exec
+VALGRIND = 		valgrind --track-origins=yes --leak-check=full
+LIBS = 			-Lminilibx -lX11 -lXext -lXrandr -lXrender
 
-TURK =			$(addprefix src/turkish_src/, ft_sort_three.c \
-				turkish_utilities.c \
-				turkish_calculation.c turkish_push_operations.c \
-				ft_push_to_target.c ft_calculate_push_cost.c) 
+UTILITIES = 	$(addprefix src/utilities_src/, )
 
-RULES = 		$(addprefix src/rules_src/, a_rules.c ab_rules.c b_rules.c)
-
-UTILITIES = 	$(addprefix src/utilities_src/, ft_init_stack.c ft_empty_stack.c \
-				ft_parse_arg.c ft_print_stack.c ft_push_to_stack.c \
-				ft_validate_inputs.c ft_isinteger.c ft_argc_len.c \
-				ft_free_split.c)
-
-SRC =			$(addprefix src/, radix_sort.c turkish_sort.c) 
+SRC =			$(addprefix src/, ) 
 
 PRINTF_SRC =	$(addprefix ft_printf/, ft_apply_precision.c ft_handle_char.c \
 			 	ft_handle_pointer.c ft_nbr_len.c ft_utoa_base.c ft_apply_width.c \
@@ -52,14 +42,26 @@ LIBFT_SRC = 	$(addprefix libft/, ft_atoi.c ft_atol.c ft_bzero.c ft_isalnum.c \
             	ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
             	ft_toupper.c ft_calloc.c ft_realloc.c get_next_line.c)
 
-OBJ_TURK =		$(TURK:src/turkish_src/%.c=$(OBJ_DIR)/%.o)
-OBJ_RULES =		$(RULES:src/rules_src/%.c=$(OBJ_DIR)/%.o)
+MINILIBX_SRC = 	$(addprefix minilibx/, mlx_clear_window.c \
+   				mlx_destroy_display.c mlx_destroy_image.c \
+				mlx_destroy_window.c mlx_expose_hook.c mlx_ext_randr.c \
+    			mlx_flush_event.c mlx_get_color_value.c mlx_get_data_addr.c \
+    			mlx_hook.c mlx_init.c mlx_int_anti_resize_win.c mlx_int_do_nothing.c \
+    			mlx_int_get_visual.c mlx_int_param_event.c mlx_int_set_win_event_mask.c \
+    			mlx_int_str_to_wordtab.c mlx_int_wait_first_expose.c \
+    			mlx_key_hook.c mlx_loop.c mlx_loop_hook.c \
+    			mlx_mouse.c mlx_mouse_hook.c mlx_new_image.c mlx_new_window.c \
+    			mlx_pixel_put.c mlx_put_image_to_window.c mlx_rgb.c \
+    			mlx_screen_size.c mlx_set_font.c mlx_string_put.c mlx_xpm.c)
+#mlx_lib_xpm.c 
+
+
 OBJ_UTILITIES =	$(UTILITIES:src/utilities_src/%.c=$(OBJ_DIR)/%.o)
 OBJ_SRC =		$(SRC:src/%.c=$(OBJ_DIR)/%.o)
 OBJ_PRINTF =	$(PRINTF_SRC:ft_printf/%.c=$(OBJ_DIR)/%.o)
 OBJ_LIBFT =		$(LIBFT_SRC:libft/%.c=$(OBJ_DIR)/%.o)
-OBJ =			$(OBJ_TURK) $(OBJ_SRC) $(OBJ_PRINTF) $(OBJ_LIBFT) $(OBJ_RULES) \
-				$(OBJ_UTILITIES)
+OBJ_MINILIBX =	$(MINILIBX_SRC:minilibx/%.c=$(OBJ_DIR)/%.o)
+OBJ =			$(OBJ_SRC) $(OBJ_PRINTF) $(OBJ_LIBFT) $(OBJ_MINILIBX) $(OBJ_UTILITIES)
 
 all: $(NAME)
 
@@ -69,11 +71,6 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: src/turkish_src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJ_DIR)/%.o: src/rules_src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/%.o: src/utilities_src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -85,6 +82,9 @@ $(OBJ_DIR)/%.o: ft_printf/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/%.o: libft/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: minilibx/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
@@ -102,36 +102,17 @@ re: fclean all
 
 main: all $(NAME) $(OBJ_DIR)/main.o
 	mkdir $(EXEC_DIR)
-	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
+	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/so_long $(OBJ_DIR)/main.o $(NAME) $(LIBS);
 
 debug: all $(NAME) $(OBJ_DIR)/main.o
 	mkdir $(EXEC_DIR)
-	@echo -n "Enter some input (only digits and numbers)."; \
-	read user_input; \
-	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
-	$(VALGRIND) ./$(EXEC_DIR)/push_swap $$user_input
+	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/so_long $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
+	$(VALGRIND) ./$(EXEC_DIR)/so_long
 	
-count: all $(NAME) $(OBJ_DIR)/main.o
-	mkdir $(EXEC_DIR)
-	@echo -n "Enter some input (only digits and numbers)."; \
-	read user_input; \
-	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME); \
-	./$(EXEC_DIR)/push_swap $$user_input | wc -l
-
 lldb: all $(NAME) $(OBJ_DIR)/main.o
 	mkdir $(EXEC_DIR)
-	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME);
+	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
 	lldb $(EXEC_DIR)/push_swap
-
-visu: eclean all $(NAME) $(OBJ_DIR)/main.o
-	mkdir $(EXEC_DIR)
-	$(CC) $(C_FLAGS) -o $(EXEC_DIR)/push_swap $(OBJ_DIR)/main.o $(NAME);
-	git clone https://github.com/o-reo/push_swap_visualizer.git /home/jerome/Documents/42_stud/push_swap/exec/push_swap_visualizer
-	mkdir exec/push_swap_visualizer/build
-	cd /home/jerome/Documents/42_stud/push_swap/exec/push_swap_visualizer/build && cmake ..
-	cd /home/jerome/Documents/42_stud/push_swap/exec/push_swap_visualizer/build && make
-	./$(EXEC_DIR)/$(BIN_DIR)/build/bin/visualizer
-	
 
 $(OBJ_DIR)/main.o: main.c
 	$(CC) $(C_FLAGS) -c main.c -o $(OBJ_DIR)/main.o
