@@ -6,13 +6,15 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/02 21:35:25 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/03 00:48:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include <unistd.h>
+# include <fcntl.h>
 # include <stdbool.h>
 # include <limits.h>
 # include <X11/keysym.h>
@@ -29,7 +31,7 @@
 # define WIDTH 1200
 # define HEIGHT 800
 
-# define RED		0xFF0000
+# define RED	0xFF0000
 # define GREEN	0x00FF00
 # define BLUE	0x0000FF
 # define BLACK	0x000000
@@ -49,6 +51,17 @@ typedef struct s_img_data
 	int		size_line;
 	int		endian;
 }				t_img_data;
+
+typedef struct s_map
+{
+	char	**map;
+	int		width;
+	int		height;
+	int		player_x;
+	int		player_y;
+	int		collectible_count;
+	int		exit_count;
+}			t_map;
 
 /* Utility functions */
 

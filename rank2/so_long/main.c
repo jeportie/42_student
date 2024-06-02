@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/02 21:42:03 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:12:48 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,18 @@ void	ft_fill_image(char *img_data, int bpp, int size_line, int color)
 int	ft_generate_color(int keysym, t_mlx_data *data)
 {
 	int			color;
-	t_img_data	img_data;
+	t_img_data	img;
 
 	ft_printf("The %d key has been pressed\n\n", keysym);
 	color = ft_get_color(keysym);
 	ft_display_controls(keysym, data);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	img_data.img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-	img_data.img_data = mlx_get_data_addr(img_data.img_ptr,
-			&img_data.bpp, &img_data.size_line, &img_data.endian);
-	ft_fill_image(img_data.img_data, img_data.bpp,
-		img_data.size_line, color);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		img_data.img_ptr, 0, 0);
-	mlx_destroy_image(data->mlx_ptr, img_data.img_ptr);
+	img.img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	img.img_data = mlx_get_data_addr(img.img_ptr, &img.bpp,
+		&img.size_line, &img.endian);
+	ft_fill_image(img.img_data, img.bpp, img.size_line, color);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img.img_ptr, 0, 0);
+	mlx_destroy_image(data->mlx_ptr, img.img_ptr);
 	return (1);
 }
 
@@ -100,7 +98,7 @@ int	main(int argc, char **argv)
 {
 	t_mlx_data	data;
 
-	mlx_start_display(&data, 1200, 800, "TEST");
+	mlx_start_display(&data, WIDTH, HEIGHT, "TEST");
 	mlx_key_hook(data.win_ptr, ft_generate_color, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_window(data.mlx_ptr, data.win_ptr);
