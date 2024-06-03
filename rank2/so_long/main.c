@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/02 23:12:48 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:59:18 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_get_color(int keysym)
 		return (BLACK);
 }
 
-void	ft_display_controls(int keysym, t_mlx_data *data)
+void	ft_display_controls(int keysym, t_mlx *data)
 {
 	if (keysym == XK_Escape)
 	{
@@ -58,10 +58,10 @@ void	ft_fill_image(char *img_data, int bpp, int size_line, int color)
 	}
 }
 
-int	ft_generate_color(int keysym, t_mlx_data *data)
+int	ft_generate_color(int keysym, t_mlx *data)
 {
 	int			color;
-	t_img_data	img;
+	t_img	img;
 
 	ft_printf("The %d key has been pressed\n\n", keysym);
 	color = ft_get_color(keysym);
@@ -76,7 +76,7 @@ int	ft_generate_color(int keysym, t_mlx_data *data)
 	return (1);
 }
 
-void	mlx_start_display(t_mlx_data *data, int width, int height, char *title)
+void	mlx_start_display(t_mlx *data, int width, int height, char *title)
 {
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
@@ -96,7 +96,7 @@ void	mlx_start_display(t_mlx_data *data, int width, int height, char *title)
 
 int	main(int argc, char **argv)
 {
-	t_mlx_data	data;
+	t_mlx	data;
 
 	mlx_start_display(&data, WIDTH, HEIGHT, "TEST");
 	mlx_key_hook(data.win_ptr, ft_generate_color, &data);
