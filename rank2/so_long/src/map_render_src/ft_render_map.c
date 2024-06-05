@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flood_fill.c                                    :+:      :+:    :+:   */
+/*   ft_render_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/03 19:07:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/06 00:15:51 by jeportie         ###   ########.fr       */
+/*   Created: 2024/06/05 22:52:38 by jeportie          #+#    #+#             */
+/*   Updated: 2024/06/05 23:01:28 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-void	ft_flood_fill(t_game *data, int x, int y)
+void	ft_render_map(t_game *game)
 {
-	if (x < 0 || x >= data->map->width || y < 0 || y >= data->map->height
-		|| data->map->map[x][y] == '1' || data->map->map[x][y] == 'F')
-		return ;
-	data->map->map[x][y] = 'F';
-	ft_flood_fill(data, x + 1, y);
-	ft_flood_fill(data, x - 1, y);
-	ft_flood_fill(data, x, y + 1);
-	ft_flood_fill(data, x, y - 1);
+	int	x;
+	int	y;
+
+	ft_load_frame(game);
+	y = 0;
+	while (y < game->map->height)
+	{
+		x = 0;
+		while (x < game->map->width)
+		{
+			if (game->map->map[x][y] == '1')
+				ft_put_tile(game, &game->wall, x, y);
+			else if (game->map->map[x][y] == '0')
+				ft_put_tile(game, &game->floor, x, y);
+			x++;
+		}
+		y++;
+	}
 }

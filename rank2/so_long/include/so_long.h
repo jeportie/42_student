@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/03 19:04:28 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/06 00:18:42 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # define WIDTH 1200
 # define HEIGHT 800
 
+# define TILE_SIZE_X 16
+# define TILE_SIZE_Y 16
+
 # define RED	0xFF0000
 # define GREEN	0x00FF00
 # define BLUE	0x0000FF
@@ -46,14 +49,11 @@ typedef enum e_ErrorCode
 	ENOWALLS,
 	ENOCOL,
 	ENOEXIT2,
-	ENOSTART2
+	ENOSTART2,
+	ENOFORMAT,
+	ENOINIT,
+	ENOWIN
 }			t_ErrorCode;
-
-typedef struct s_mlx
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-}				t_mlx;
 
 typedef struct s_img
 {
@@ -62,6 +62,8 @@ typedef struct s_img
 	int		bpp;
 	int		size_line;
 	int		endian;
+	int		width;
+	int		height;
 }				t_img;
 
 typedef struct s_map
@@ -76,22 +78,40 @@ typedef struct s_map
 	int		exit_count;
 }			t_map;
 
+typedef struct s_game
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	wall;
+	t_img	floor;
+	t_map	*map;
+}				t_game;
+
 /* Map Parser functions */
-t_map	*ft_parse_map(char *filename);
+void	ft_parse_map(t_game *data, char *filename);
 
-void	ft_read_map(char *filename, t_map *data);
+void	ft_read_map(char *filename, t_game *data);
 int		ft_count_lines(char *filename);
-void	ft_allocate_map(t_map *data);
-void	ft_store_map(char *filename, t_map *data);
+void	ft_allocate_map(t_game *data);
+void	ft_store_map(char *filename, t_game *data);
 
-void	ft_check_map(t_map *data);
-void	ft_check_char(t_map *data, int x, int y);
-void	ft_check_rectangle(t_map *data);
-void	ft_check_fill(t_map *data);
+void	ft_check_map(t_game *data);
+void	ft_check_char(t_game *data, int x, int y);
+void	ft_check_rectangle(t_game *data);
+void	ft_check_fill(t_game *data);
+
+/* Map Render functions */
+void	ft_render_map(t_game *game);
+void	ft_load_frame(t_game *game);
+void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 
 /* Utility functions */
-void	ft_exit_failure(t_map *data, int errnum);
-void	ft_flood_fill(t_map *data, int x, int y);
-void	ft_free_map(t_map *data);
+void	ft_exit_failure(t_game *data, int errnum);
+void	ft_flood_fill(t_game *data, int x, int y);
+void	ft_free_map(t_game *data);
+int		ft_generate_color(int keysym, t_game *data);
+int		ft_get_color(int keysym);
+int		ft_display_controls(int keysym, t_game *data);
+void	ft_fill_image(char *img_data, int bpp, int size_line, int color);
 
 #endif /*SO_LONG*/	

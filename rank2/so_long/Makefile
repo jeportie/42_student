@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/06/01 23:23:08 by jeportie         ###   ########.fr        #
+#    Updated: 2024/06/05 21:20:13 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ MINILIBX_SRC = 	$(addprefix minilibx/, mlx_clear_window.c \
     			mlx_key_hook.c mlx_loop.c mlx_loop_hook.c \
     			mlx_mouse.c mlx_mouse_hook.c mlx_new_image.c mlx_new_window.c \
     			mlx_pixel_put.c mlx_put_image_to_window.c mlx_rgb.c \
-    			mlx_screen_size.c mlx_set_font.c mlx_string_put.c mlx_xpm.c)
+    			mlx_screen_size.c mlx_set_font.c mlx_string_put.c mlx_xpm.c \
+				mlx_xpm_file_to_image.c)
 #mlx_lib_xpm.c 
 
 

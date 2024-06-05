@@ -6,16 +6,16 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 00:51:27 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/03 19:01:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/06 00:04:25 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-void	ft_read_map(char *filename, t_map *data)
+void	ft_read_map(char *filename, t_game *data)
 {
 	ft_memset(data, 0, sizeof(t_map));
-	data->height = ft_count_lines(filename);
+	data->map->height = ft_count_lines(filename);
 	ft_allocate_map(data);
 	ft_store_map(filename, data);
 }
@@ -44,9 +44,9 @@ int	ft_count_lines(char *filename)
 	return (count);
 }
 
-void	ft_allocate_map(t_map *data)
+void	ft_allocate_map(t_game *data)
 {
-	data->map = (char **)malloc(sizeof (char *) * (data->height + 1));
+	data->map->map = (char **)malloc(sizeof (char *) * (data->map->height + 1));
 	if (!data->map)
 	{
 		errno = ENOMEM;
@@ -55,7 +55,7 @@ void	ft_allocate_map(t_map *data)
 }
 //Needs to be freed
 
-void	ft_store_map(char *filename, t_map *data)
+void	ft_store_map(char *filename, t_game *data)
 {
 	int		fd;
 	char	*line;
@@ -71,9 +71,9 @@ void	ft_store_map(char *filename, t_map *data)
 	line = get_next_line(fd);
 	while (line)
 	{
-		data->map[i++] = line;
+		data->map->map[i++] = line;
 		line = get_next_line(fd);
 	}
-	data->map[i] = NULL;
+	data->map->map[i] = NULL;
 	close(fd);
 }

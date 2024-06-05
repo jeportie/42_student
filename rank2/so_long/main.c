@@ -6,103 +6,40 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/03 15:59:18 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/06 00:14:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/so_long.h"
 #include "include/ft_printf.h"
 
-int	ft_get_color(int keysym)
-{
-	if (keysym == XK_r)
-		return (RED);
-	else if (keysym == XK_g)
-		return (GREEN);
-	else if (keysym == XK_b)
-		return (BLUE);
-	else
-		return (BLACK);
-}
-
-void	ft_display_controls(int keysym, t_mlx *data)
-{
-	if (keysym == XK_Escape)
-	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		mlx_destroy_display(data->mlx_ptr);
-		free(data->mlx_ptr);
-		exit(1);
-	}
-}
-
-void	ft_fill_image(char *img_data, int bpp, int size_line, int color)
-{
-	int	pixel;
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < HEIGHT)
-	{
-		x = 0;
-		while (x < WIDTH)
-		{
-			pixel = (y * size_line) + (x * (bpp / 8));
-			img_data[pixel] = color & 0xFF;
-			img_data[pixel + 1] = (color >> 8) & 0xFF;
-			img_data[pixel + 2] = (color >> 16) & 0xFF;
-			x++;
-		}
-		y++;
-	}
-}
-
-int	ft_generate_color(int keysym, t_mlx *data)
-{
-	int			color;
-	t_img	img;
-
-	ft_printf("The %d key has been pressed\n\n", keysym);
-	color = ft_get_color(keysym);
-	ft_display_controls(keysym, data);
-	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	img.img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
-	img.img_data = mlx_get_data_addr(img.img_ptr, &img.bpp,
-		&img.size_line, &img.endian);
-	ft_fill_image(img.img_data, img.bpp, img.size_line, color);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, img.img_ptr, 0, 0);
-	mlx_destroy_image(data->mlx_ptr, img.img_ptr);
-	return (1);
-}
-
-void	mlx_start_display(t_mlx *data, int width, int height, char *title)
+void	mlx_start_display(t_game *data, int width, int height, char *title)
 {
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
-	{
-		perror("Failed to initialize mlx.\n");
-		exit (EXIT_FAILURE);
-	}
-	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height, "Hello Jeje!");
+		ft_exit_failure(data, ENOINIT);
+	data->win_ptr = mlx_new_window(data->mlx_ptr,
+			data->map->width * TILE_SIZE_X,
+			data->map->height * TILE_SIZE_Y, title);
 	if (!data->win_ptr)
-	{
-		perror("Failed to create window");
-		mlx_destroy_display(data->mlx_ptr);
-		free(data->mlx_ptr);
-		exit (EXIT_FAILURE);
-	}
+		ft_exit_failure(data, ENOWIN);
 }
 
 int	main(int argc, char **argv)
 {
-	t_mlx	data;
+	t_game	game;
 
-	mlx_start_display(&data, WIDTH, HEIGHT, "TEST");
-	mlx_key_hook(data.win_ptr, ft_generate_color, &data);
-	mlx_loop(data.mlx_ptr);
-	mlx_destroy_window(data.mlx_ptr, data.win_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
+	if (argc != 2)
+		ft_exit_failure(&game, ENOFORMAT);
+	ft_parse_map(&game, argv[1]);
+	mlx_start_display(&game, WIDTH, HEIGHT, "SO_LONG");
+	ft_render_map(&game);
+	mlx_key_hook(game.win_ptr, ft_display_controls, &game);
+
+	mlx_loop(game.mlx_ptr);
+
+	mlx_destroy_window(game.mlx_ptr, game.win_ptr);
+	mlx_destroy_display(game.mlx_ptr);
+	free(game.mlx_ptr);
 	return (0);
 }

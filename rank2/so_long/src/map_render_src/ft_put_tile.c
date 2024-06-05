@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flood_fill.c                                    :+:      :+:    :+:   */
+/*   ft_put_tile.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/03 19:07:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/06 00:15:51 by jeportie         ###   ########.fr       */
+/*   Created: 2024/06/05 22:45:34 by jeportie          #+#    #+#             */
+/*   Updated: 2024/06/05 22:52:28 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-void	ft_flood_fill(t_game *data, int x, int y)
+void	ft_put_tile(t_game *game, t_img *tile, int x, int y)
 {
-	if (x < 0 || x >= data->map->width || y < 0 || y >= data->map->height
-		|| data->map->map[x][y] == '1' || data->map->map[x][y] == 'F')
-		return ;
-	data->map->map[x][y] = 'F';
-	ft_flood_fill(data, x + 1, y);
-	ft_flood_fill(data, x - 1, y);
-	ft_flood_fill(data, x, y + 1);
-	ft_flood_fill(data, x, y - 1);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			tile->img_ptr, x * TILE_SIZE_X, y * TILE_SIZE_Y);
 }
