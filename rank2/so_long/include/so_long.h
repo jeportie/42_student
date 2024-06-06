@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/06 00:18:42 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/07 00:26:14 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@
 # include <stdio.h>
 # include "libft.h"
 # include "printf.h"
-# include "mlx.h"
+# include <mlx.h>
 
 # define MALLOC_ERR 1
 
-# define WIDTH 1200
-# define HEIGHT 800
+# define WIDTH 1920
+# define HEIGHT 1080
+# define SCALE 20
 
 # define TILE_SIZE_X 16
 # define TILE_SIZE_Y 16
@@ -51,6 +52,7 @@ typedef enum e_ErrorCode
 	ENOEXIT2,
 	ENOSTART2,
 	ENOFORMAT,
+	ENOPATH,
 	ENOINIT,
 	ENOWIN
 }			t_ErrorCode;
@@ -84,7 +86,11 @@ typedef struct s_game
 	void	*win_ptr;
 	t_img	wall;
 	t_img	floor;
+	t_img	door;
 	t_map	*map;
+	int		win_width;
+	int		win_height;
+	int		zoom;
 }				t_game;
 
 /* Map Parser functions */
@@ -106,12 +112,14 @@ void	ft_load_frame(t_game *game);
 void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 
 /* Utility functions */
+void	mlx_start_display(t_game *data, char *title);
 void	ft_exit_failure(t_game *data, int errnum);
 void	ft_flood_fill(t_game *data, int x, int y);
 void	ft_free_map(t_game *data);
 int		ft_generate_color(int keysym, t_game *data);
 int		ft_get_color(int keysym);
 int		ft_display_controls(int keysym, t_game *data);
+int		ft_close_window(t_game *data);
 void	ft_fill_image(char *img_data, int bpp, int size_line, int color);
 
 #endif /*SO_LONG*/	

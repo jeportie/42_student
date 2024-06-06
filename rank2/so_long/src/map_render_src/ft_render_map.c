@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/**************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_render_map.c                                    :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:52:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/05 23:01:28 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/06 23:30:30 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@ void	ft_render_map(t_game *game)
 		x = 0;
 		while (x < game->map->width)
 		{
-			if (game->map->map[x][y] == '1')
-				ft_put_tile(game, &game->wall, x, y);
-			else if (game->map->map[x][y] == '0')
-				ft_put_tile(game, &game->floor, x, y);
+			if (game->map->map[y][x] == '1')
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->wall.img_ptr, x * TILE_SIZE_X, y * TILE_SIZE_Y);
+			else if (game->map->map[y][x] == 'E')
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->door.img_ptr, x * TILE_SIZE_X , y * TILE_SIZE_Y);
+			else 
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->floor.img_ptr, x * TILE_SIZE_X, y * TILE_SIZE_Y);
 			x++;
 		}
 		y++;
 	}
 }
+
