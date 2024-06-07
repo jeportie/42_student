@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 00:51:27 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/06 17:17:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:25:46 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_count_lines(char *filename)
 
 void	ft_allocate_map(t_game *data)
 {
-	data->map->map = (char **)malloc(sizeof (char *) * (data->map->height + 1));
+	data->map->map = gc_malloc(sizeof (char *) * (data->map->height + 1));
 	if (!data->map)
 	{
 		errno = ENOMEM;
@@ -69,10 +69,12 @@ void	ft_store_map(char *filename, t_game *data)
 		ft_exit_failure(data, ENOENT);
 	}
 	line = get_next_line(fd);
+	gc_register(line);
 	while (line)
 	{
 		data->map->map[i++] = line;
 		line = get_next_line(fd);
+		gc_register(line);
 	}
 	data->map->map[i] = NULL;
 	close(fd);

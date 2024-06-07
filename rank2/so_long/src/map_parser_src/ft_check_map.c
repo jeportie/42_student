@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 01:57:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/06 21:05:57 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:06:19 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ char	**ft_duplicate_map(t_map *map)
 	int		y;
 	char	**dup_map;
 
-	dup_map = (char **)malloc(sizeof(char *) * (map->height + 1));
+	dup_map = gc_malloc(sizeof(char *) * (map->height + 1));
 	if (!dup_map)
 		return (NULL);
 	y = 0;
 	while (y < map->height)
 	{
 		dup_map[y] = ft_strdup(map->map[y]);
+		gc_register(dup_map[y]);
 		if (!dup_map[y])
 		{
 			while (y-- > 0)

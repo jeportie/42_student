@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/06/07 00:02:24 by jeportie         ###   ########.fr        #
+#    Updated: 2024/06/07 13:04:06 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ VALGRIND = 		valgrind --track-origins=yes --leak-check=full
 LIBS = 			-Llibft -lmlx -lXext -lX11 -lft -ldl -lglfw -pthread -lm
 
 UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c ft_display_controls.c\
-					ft_flood_fill.c ft_free_game.c ft_free_map.c ft_generate_color.c)
+					ft_flood_fill.c ft_free_game.c ft_free_map.c ft_generate_color.c \
+					garbage_collector.c)
 
 MAP_PARSER =	$(addprefix src/map_parser_src/, ft_check_map.c ft_parse_map.c \
 					ft_read_map.c ) 

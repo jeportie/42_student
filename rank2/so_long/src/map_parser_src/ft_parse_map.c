@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:06:07 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/06 00:24:08 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:47:28 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_parse_map(t_game *data, char *filename)
 {
-	data->map = (t_map *)malloc(sizeof(t_map));
+	data->map = gc_malloc(sizeof(t_map));
 	if (!data)
 	{
 		errno = ENOMEM;

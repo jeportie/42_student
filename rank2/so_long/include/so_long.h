@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/07 00:26:14 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/07 13:08:10 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@
 # define BLUE	0x0000FF
 # define BLACK	0x000000
 # define WHITE	0xFFFFFF
+
+typedef struct s_gc_node
+{
+	void				*ptr;
+	struct s_gc_node	*next;
+}				t_gc_node;
+
+typedef struct s_garbage_collector
+{
+	t_gc_node	*head;
+}				t_gc;
+
+extern t_gc	g_garbage_collector;
 
 typedef enum e_ErrorCode
 {
@@ -112,6 +125,9 @@ void	ft_load_frame(t_game *game);
 void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 
 /* Utility functions */
+void	*gc_malloc(size_t size);
+void	gc_register(void *ptr);
+void	gc_cleanup(void);
 void	mlx_start_display(t_game *data, char *title);
 void	ft_exit_failure(t_game *data, int errnum);
 void	ft_flood_fill(t_game *data, int x, int y);

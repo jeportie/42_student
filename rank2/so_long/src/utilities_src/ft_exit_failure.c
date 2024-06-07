@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:08:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/06 19:14:16 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/07 12:34:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ void	ft_exit_failure(t_game *data, int errnum)
 		perror((char *)error_messages[errnum - 100]);
 	else
 		ft_putstr_fd("Unknown error\n", 2);
-//	if (data)
-//		ft_free_map(data);
-//	mlx_destroy_display(data->mlx_ptr);
-//	free(data->mlx_ptr);
+	gc_cleanup();
 	exit(EXIT_FAILURE);
 }
