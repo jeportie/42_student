@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 12:13:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/07 13:09:11 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:58:21 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	gc_cleanup(void)
 	{
 		next = current->next;
 		free(current->ptr);
+		current->ptr = NULL;
 		free(current);
 		current = next;
 	}

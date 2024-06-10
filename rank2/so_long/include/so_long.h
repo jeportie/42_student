@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/07 13:08:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:05:17 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdio.h>
 # include "libft.h"
 # include "printf.h"
-# include <mlx.h>
+# include "mlx.h"
 
 # define MALLOC_ERR 1
 

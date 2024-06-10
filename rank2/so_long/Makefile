@@ -6,18 +6,20 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/06/07 13:04:06 by jeportie         ###   ########.fr        #
+#    Updated: 2024/06/10 11:45:15 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = 			so_long.a
 CC = 			cc
-CFLAGS = 		-Wall -Wextra -g3 -Iinclude -Ilibft
+CFLAGS = 		-Wall -Wextra -g3 -Iinclude -Ilibft -Iminilibx
 OBJ_DIR = 		obj
 OUTPUT_DIR = 	outputs
 EXEC_DIR = 		exec
 VALGRIND = 		valgrind --track-origins=yes --leak-check=full
-LIBS = 			-Llibft -lmlx -lXext -lX11 -lft -ldl -lglfw -pthread -lm
+LIBFT_DIR = 	libft
+MINILIBX_DIR = 	minilibx
+LIBS = 			-L$(MINILIBX_DIR) -lmlx -L$(LIBFT_DIR) -lft -lXext -lX11 -ldl -lglfw -pthread -lm
 
 UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c ft_display_controls.c\
 					ft_flood_fill.c ft_free_game.c ft_free_map.c ft_generate_color.c \
@@ -34,10 +36,13 @@ OBJ_MAP_PARSE =	$(MAP_PARSER:src/map_parser_src/%.c=$(OBJ_DIR)/map_parser_src_%.
 OBJ_MAP_REND  =	$(MAP_RENDER:src/map_render_src/%.c=$(OBJ_DIR)/map_render_src_%.o)
 OBJ =			$(OBJ_MAP_PARSE) $(OBJ_MAP_REND) $(OBJ_UTILITIES)
 
-all: libft/libft.a $(NAME)
+all: $(LIBFT_DIR)/libft.a $(MINILIBX_DIR)/libmlx.a $(NAME)
 
-libft/libft.a:
-	make -C libft
+$(LIBFT_DIR)/libft.a:
+	make -C $(LIBFT_DIR)
+
+$(MINILIBX_DIR)/libmlx.a:
+	make -C $(MINILIBX_DIR)
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	ar rcs $(NAME) $(OBJ)
@@ -60,33 +65,33 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	make -C libft fclean
+	make -C $(LIBFT_DIR) fclean
 
 eclean: fclean
 	rm -rf $(EXEC_DIR)
 
 re: fclean all
 
-main: all $(NAME) $(OBJ_DIR)/main.o
-	mkdir $(EXEC_DIR)
+main: all $(OBJ_DIR)/main.o
+	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/so_long $(OBJ_DIR)/main.o $(NAME) $(LIBS)
 
-run: all $(NAME) $(OBJ_DIR)/main.o
-	mkdir $(EXEC_DIR)
+run: all $(OBJ_DIR)/main.o
+	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/so_long $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
 	./$(EXEC_DIR)/so_long "assets/maps/test_map.ber" | cat -e
 
-debug: all $(NAME) $(OBJ_DIR)/main.o
-	mkdir $(EXEC_DIR)
+debug: all $(OBJ_DIR)/main.o
+	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/so_long $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
 	$(VALGRIND) ./$(EXEC_DIR)/so_long "assets/maps/test_map.ber"
-	
-lldb: all $(NAME) $(OBJ_DIR)/main.o
-	mkdir $(EXEC_DIR)
+
+lldb: all $(OBJ_DIR)/main.o
+	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/so_long $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
 	lldb $(EXEC_DIR)/so_long
 
 $(OBJ_DIR)/main.o: main.c
-	$(CC) $(CFLAGS) -c main.c -o $(OBJ_DIR)/main.o
+	$(CC) $(CFLAGS) -c main.c -o $@
 
 .PHONY: all clean fclean re main eclean

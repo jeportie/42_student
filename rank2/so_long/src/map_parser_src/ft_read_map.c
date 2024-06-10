@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 00:51:27 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/07 15:25:46 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:48:57 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_allocate_map(t_game *data)
 		ft_exit_failure(data, ENOMEM);
 	}
 }
-//Needs to be freed
 
 void	ft_store_map(char *filename, t_game *data)
 {
