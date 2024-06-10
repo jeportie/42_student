@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/10 12:05:17 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:29:36 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 # include "libft.h"
 # include "printf.h"
 # include "mlx.h"
-
-# define MALLOC_ERR 1
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -93,6 +91,16 @@ typedef struct s_map
 	int		exit_count;
 }			t_map;
 
+typedef struct s_tile
+{
+	char	name[50];
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+	t_img	img;
+}				t_tile;
+
 typedef struct s_game
 {
 	void	*mlx_ptr;
@@ -100,10 +108,10 @@ typedef struct s_game
 	t_img	wall;
 	t_img	floor;
 	t_img	door;
+	t_img	tileset;
+	t_tile	**tiles;
+	int		tilecount;
 	t_map	*map;
-	int		win_width;
-	int		win_height;
-	int		zoom;
 }				t_game;
 
 /* Map Parser functions */

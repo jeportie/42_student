@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/10 15:14:32 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/10 22:56:02 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	mlx_start_display(t_game *data, char *title)
 			data->map->height * TILE_SIZE_Y , title);
 	if (!data->win_ptr)
 		ft_exit_failure(data, ENOWIN);
-	data->win_width = WIDTH;
-	data->win_width = HEIGHT;
 }
 
 int	main(int argc, char **argv)
