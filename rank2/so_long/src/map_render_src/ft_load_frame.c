@@ -21,6 +21,7 @@ void	ft_load_frame(t_game *game)
 		ft_exit_failure(game, ENOENT);
 	game->wall.img_data = mlx_get_data_addr(game->wall.img_ptr,
 			&game->wall.bpp, &game->wall.size_line, &game->wall.endian);
+//	gc_mlx_register(game->wall.img_ptr, DESTROY_IMAGE, game);
 
 	game->floor.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"./assets/frames/floor.xpm",
@@ -29,6 +30,7 @@ void	ft_load_frame(t_game *game)
 		ft_exit_failure(game, ENOENT);
 	game->floor.img_data = mlx_get_data_addr(game->floor.img_ptr,
 			&game->floor.bpp, &game->floor.size_line, &game->floor.endian);
+//	gc_mlx_register(game->floor.img_ptr, DESTROY_IMAGE, game);
 
 	game->door.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"assets/frames/door.xpm",
@@ -37,4 +39,5 @@ void	ft_load_frame(t_game *game)
 		ft_exit_failure(game, ENOENT);
 	game->door.img_data = mlx_get_data_addr(game->door.img_ptr,
 			&game->door.bpp, &game->door.size_line, &game->door.endian);
+//	gc_mlx_register(game->door.img_ptr, DESTROY_IMAGE, game);
 }

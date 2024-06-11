@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/06/10 11:45:15 by jeportie         ###   ########.fr        #
+#    Updated: 2024/06/11 18:49:21 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ MINILIBX_DIR = 	minilibx
 LIBS = 			-L$(MINILIBX_DIR) -lmlx -L$(LIBFT_DIR) -lft -lXext -lX11 -ldl -lglfw -pthread -lm
 
 UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c ft_display_controls.c\
-					ft_flood_fill.c ft_free_game.c ft_free_map.c ft_generate_color.c \
-					garbage_collector.c)
+					ft_flood_fill.c)
 
 MAP_PARSER =	$(addprefix src/map_parser_src/, ft_check_map.c ft_parse_map.c \
 					ft_read_map.c ) 
@@ -31,10 +30,16 @@ MAP_PARSER =	$(addprefix src/map_parser_src/, ft_check_map.c ft_parse_map.c \
 MAP_RENDER = 	$(addprefix src/map_render_src/, ft_load_frame.c ft_put_tile.c \
 					ft_render_map.c)
 
+TILESET_PARS = 	$(addprefix src/tileset_parser_src/, ft_parse_tileset.c)
+
+GARBAGE	=		$(addprefix src/gc_src/, garbage_collector.c gc_collect.c)
+
 OBJ_UTILITIES =	$(UTILITIES:src/utilities_src/%.c=$(OBJ_DIR)/utilities_src_%.o)
 OBJ_MAP_PARSE =	$(MAP_PARSER:src/map_parser_src/%.c=$(OBJ_DIR)/map_parser_src_%.o)
 OBJ_MAP_REND  =	$(MAP_RENDER:src/map_render_src/%.c=$(OBJ_DIR)/map_render_src_%.o)
-OBJ =			$(OBJ_MAP_PARSE) $(OBJ_MAP_REND) $(OBJ_UTILITIES)
+OBJ_TILESET	=	$(TILESET_PARS:src/tileset_parser_src/%.c=$(OBJ_DIR)/tileset_parser_src_%.o)
+OBJ_GARBAGE	=	$(GARBAGE:src/gc_src/%.c=$(OBJ_DIR)/gc_src_%.o)
+OBJ =			$(OBJ_MAP_PARSE) $(OBJ_MAP_REND) $(OBJ_UTILITIES) $(OBJ_TILESET) $(OBJ_GARBAGE)
 
 all: $(LIBFT_DIR)/libft.a $(MINILIBX_DIR)/libmlx.a $(NAME)
 
@@ -57,6 +62,12 @@ $(OBJ_DIR)/map_parser_src_%.o: src/map_parser_src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/map_render_src_%.o: src/map_render_src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/tileset_parser_src_%.o: src/tileset_parser_src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/gc_src_%.o: src/gc_src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

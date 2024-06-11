@@ -14,7 +14,7 @@
 #include <X11/keysym.h>
 #include <X11/X.h>
 
-void	mlx_start_display(t_game *data, char *title)
+void	ft_start_display(t_game *data, char *title)
 {
 	data->mlx_ptr = mlx_init();
 	gc_register(data->mlx_ptr);
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_exit_failure(&game, ENOFORMAT);
 	ft_parse_map(&game, argv[1]);
-	mlx_start_display(&game, "SO_LONG");
+	ft_start_display(&game, "SO_LONG");
 	ft_render_map(&game);
 
 	mlx_hook(game.win_ptr, 17, 0, ft_close_window, &game);
