@@ -26,6 +26,9 @@
 # include "printf.h"
 # include "mlx.h"
 
+# define FALSE 0
+# define TRUE 1
+
 # define WIDTH	1920
 # define HEIGHT 1080
 # define SCALE 20
@@ -50,6 +53,7 @@ typedef enum e_ErrorCode
 	ENOFORMAT,
 	ENOPATH,
 	ENOINIT,
+	ENOTILE,
 	ENOWIN
 }			t_ErrorCode;
 

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:08:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/07 12:34:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/12 21:24:48 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_exit_failure(t_game *data, int errnum)
 {
-	const char	*error_messages[] = {
+	const char	*error_messages[] = 
+	{
 		"Invalid character present in map.\n",
 		"Multiple exits not allowed.\n",
 		"Multiple starting positions not allowed.\n",
@@ -26,9 +27,9 @@ void	ft_exit_failure(t_game *data, int errnum)
 		"Usage : ./so_long <map_file.ber>\n",
 		"Map has no possible path to exit.\n",
 		"Failed to initialize mlx.\n",
+		"Failed to find tile in tileset.\n",
 		"Failed to create window.\n"
 	};
-
 	errno = errnum;
 	if (errnum >= ENOCHAR && errnum <= ENOPATH)
 	{
