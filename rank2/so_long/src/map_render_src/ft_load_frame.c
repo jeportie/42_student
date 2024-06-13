@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 20:33:14 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/10 14:57:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/14 00:15:18 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@ void	ft_load_frame(t_game *game)
 	game->wall.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"./assets/frames/wall.xpm",
 			&game->wall.width, &game->wall.height);
+//	gc_mlx_image_register(game->wall.img_ptr, game->mlx_ptr);
 	if (!game->wall.img_ptr)
 		ft_exit_failure(game, ENOENT);
 	game->wall.img_data = mlx_get_data_addr(game->wall.img_ptr,
 			&game->wall.bpp, &game->wall.size_line, &game->wall.endian);
-//	gc_mlx_register(game->wall.img_ptr, DESTROY_IMAGE, game);
 
 	game->floor.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"./assets/frames/floor.xpm",
 			&game->floor.width, &game->floor.height);
+//	gc_mlx_image_register(game->floor.img_ptr, game->mlx_ptr);
 	if (!game->floor.img_ptr)
 		ft_exit_failure(game, ENOENT);
 	game->floor.img_data = mlx_get_data_addr(game->floor.img_ptr,
 			&game->floor.bpp, &game->floor.size_line, &game->floor.endian);
-//	gc_mlx_register(game->floor.img_ptr, DESTROY_IMAGE, game);
 
 	game->door.img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"assets/frames/door.xpm",
 			&game->door.width, &game->door.height);
+//	gc_mlx_image_register(game->door.img_ptr, game->mlx_ptr);
 	if (!game->door.img_ptr)
 		ft_exit_failure(game, ENOENT);
 	game->door.img_data = mlx_get_data_addr(game->door.img_ptr,
 			&game->door.bpp, &game->door.size_line, &game->door.endian);
-//	gc_mlx_register(game->door.img_ptr, DESTROY_IMAGE, game);
 }

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 12:13:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/11 20:35:28 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:48:27 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	*gc_malloc(size_t size)
 	new_node->marked = 0;
 	new_node->is_array = 0;
 	new_node->mlx_option = 0;
+	new_node->img = NULL;
+	new_node->fd = 0;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
 	return (ptr);
@@ -59,9 +61,34 @@ void	gc_register(void *ptr)
 	new_node->marked = 0;
 	new_node->is_array = 0;
 	new_node->mlx_option = 0;
+	new_node->img = NULL;
+	new_node->fd = 0;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
 }
+
+void	gc_fd_register(int fd)
+{
+	t_gc_node	*new_node;
+
+	if (!fd)
+		return ;
+	new_node = malloc(sizeof(t_gc_node));
+	if (!new_node)
+	{
+		errno = ENOMEM;
+		return ;
+	}
+	new_node->ptr = NULL;
+	new_node->marked = 0;
+	new_node->is_array = 0;
+	new_node->mlx_option = 0;
+	new_node->img = NULL;
+	new_node->fd = fd;
+	new_node->next = g_garbage_collector.head;
+	g_garbage_collector.head = new_node;
+}
+
 
 void	gc_nest_register(void *ptr)
 {
@@ -86,15 +113,17 @@ void	gc_nest_register(void *ptr)
 	new_node->marked = 0;
 	new_node->is_array = 1;
 	new_node->mlx_option = 0;
+	new_node->img = NULL;
+	new_node->fd = 0;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
 }
 
-void	gc_mlx_register(void *ptr, int mlx_destroy_code, t_game *data)
+void	gc_mlx_image_register(t_img *img, void *mlx_ptr)
 {
 	t_gc_node	*new_node;
 
-	if (!ptr)
+	if (!img || !mlx_ptr)
 		return ;
 	new_node = malloc(sizeof(t_gc_node));
 	if (!new_node)
@@ -102,11 +131,12 @@ void	gc_mlx_register(void *ptr, int mlx_destroy_code, t_game *data)
 		errno = ENOMEM;
 		return ;
 	}
-	new_node->ptr = ptr;
+	new_node->ptr = mlx_ptr;
 	new_node->marked = 0;
 	new_node->is_array = 0;
-	new_node->game = data;
-	new_node->mlx_option = mlx_destroy_code;
+	new_node->mlx_option = DESTROY_IMAGE;
+	new_node->img = img;
+	new_node->fd = 0;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
 }
@@ -119,9 +149,16 @@ void	gc_cleanup(void)
 	current = g_garbage_collector.head;
 	while (current)
 	{
+		if (current->fd)
+			close(current->fd);
 		next = current->next;
-		free(current->ptr);
-		current->ptr = NULL;
+		if (current->mlx_option == DESTROY_IMAGE)
+			mlx_destroy_image(current->ptr, current->img);
+		else
+		{
+			free(current->ptr);
+			current->ptr = NULL;
+		}
 		free(current);
 		current = next;
 	}

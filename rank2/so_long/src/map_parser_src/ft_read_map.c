@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 00:51:27 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/10 14:48:57 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/14 00:13:41 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_count_lines(char *filename)
 
 	count = 0;
 	fd = open(filename, O_RDONLY);
+	gc_fd_register(fd);
 	if (fd < 0)
 	{
 		errno = ENOENT;
@@ -40,7 +41,6 @@ int	ft_count_lines(char *filename)
 		count++;
 		line = get_next_line(fd);
 	}
-	close(fd);
 	return (count);
 }
 
@@ -62,6 +62,7 @@ void	ft_store_map(char *filename, t_game *data)
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
+	gc_fd_register(fd);
 	if (fd < 0)
 	{
 		errno = ENOENT;
@@ -76,5 +77,4 @@ void	ft_store_map(char *filename, t_game *data)
 		gc_register(line);
 	}
 	data->map->map[i] = NULL;
-	close(fd);
 }

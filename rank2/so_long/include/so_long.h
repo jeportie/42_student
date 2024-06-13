@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/11 20:33:53 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:27:55 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@
 # define TILE_SIZE_X 16
 # define TILE_SIZE_Y 16
 
-# define DESTROY_IMAGE 0
-# define DESTROY_WINDOW 1
-# define DESTROY_DISPLAY 2
+# define DESTROY_IMAGE 1
+# define DESTROY_WINDOW 2
 
 typedef enum e_ErrorCode
 {
@@ -52,7 +51,7 @@ typedef enum e_ErrorCode
 	ENOSTART2,
 	ENOFORMAT,
 	ENOPATH,
-	ENOINIT,
+ENOINIT,
 	ENOTILE,
 	ENOWIN
 }			t_ErrorCode;
@@ -112,7 +111,8 @@ typedef struct s_gc_node
 	int					marked;
 	int					is_array;
 	int					mlx_option;
-	t_game				*game;
+	t_img				*img;
+	int					fd;
 	struct s_gc_node	*next;
 }				t_gc_node;
 
@@ -140,17 +140,20 @@ void	ft_load_frame(t_game *game);
 void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 
 /* Tileset Parser */
-t_tile	**ft_parse_tileset(t_game *data, char *filename,
-			t_img *tileset, int *tilecount);
+t_img	*load_tileset(t_game *game, const char *path);
+t_img	ft_get_tile(t_game *data, t_img *tileset, const char *tile_name,
+		const char *tile_list_path);
 t_img	ft_extract_frame(t_game *data, t_img *tileset, t_tile *tile);
+void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name);
+void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y);
 
 /* Garbage_collector function */
 void	*gc_malloc(size_t size);
 void	gc_register(void *ptr);
 void	gc_nest_register(void *ptr);
-void	gc_mlx_register(void *ptr, int mlx_destroy_code, t_game *data);
+void	gc_mlx_image_register(t_img *img, void *mlx_ptr);
+void	gc_fd_register(int fd);
 void	gc_cleanup(void);
-
 void	gc_collect();
 void	gc_mark(void *ptr);	
 void	gc_mark_from_roots(void);

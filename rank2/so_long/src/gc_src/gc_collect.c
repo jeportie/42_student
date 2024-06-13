@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:23:26 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/11 18:26:08 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:04:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ void gc_collect()
 {
 	gc_mark_from_roots();
 	gc_sweep();
+}
+
+void	gc_mark_from_roots(void)
+{
+	if (g_game)
+		gc_mark(g_game);
+	if (g_map)
+		gc_mark(g_map);
 }
 
 void	gc_mark(void *ptr)
@@ -46,14 +54,6 @@ void	gc_mark(void *ptr)
 	}
 }
 
-void	gc_mark_from_roots(void)
-{
-	if (g_game)
-		gc_mark(g_game);
-	if (g_map)
-		gc_mark(g_map);
-}
-
 void	gc_sweep(void)
 {
 	t_gc_node	*current;
@@ -69,12 +69,10 @@ void	gc_sweep(void)
 				prev->next = current->next;
 			else
 				g_garbage_collector.head = current->next;
+			if (current->fd)
+				close(current->fd);
 			if (current->mlx_option == DESTROY_IMAGE)
-				mlx_destroy_image(current->game->mlx_ptr, current->ptr);
-			else if (current->mlx_option == DESTROY_WINDOW)
-				mlx_destroy_window(current->game->mlx_ptr, current->ptr);
-			else if (current->mlx_option == DESTROY_DISPLAY)
-				mlx_destroy_display(current->game->mlx_ptr);
+				mlx_destroy_image(current->ptr, current->img);
 			else
 				free(current->ptr);
 			free(current);
