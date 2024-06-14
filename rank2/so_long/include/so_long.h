@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/13 16:27:55 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:28:01 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define FALSE 0
 # define TRUE 1
 
-# define WIDTH	1920
-# define HEIGHT 1080
+# define WIDTH 2000	
+# define HEIGHT 2000
 # define SCALE 20
 
 # define TILE_SIZE_X 16
@@ -93,10 +93,7 @@ typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	wall;
-	t_img	floor;
-	t_img	door;
-	t_img	tileset;
+	t_img	*tileset;
 	t_tile	**tiles;
 	int		tilecount;
 	t_map	*map;
@@ -111,7 +108,8 @@ typedef struct s_gc_node
 	int					marked;
 	int					is_array;
 	int					mlx_option;
-	t_img				*img;
+	void				*mlx_ptr;
+	t_game				*data;
 	int					fd;
 	struct s_gc_node	*next;
 }				t_gc_node;
@@ -140,10 +138,11 @@ void	ft_load_frame(t_game *game);
 void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 
 /* Tileset Parser */
-t_img	*load_tileset(t_game *game, const char *path);
-t_img	ft_get_tile(t_game *data, t_img *tileset, const char *tile_name,
-		const char *tile_list_path);
-t_img	ft_extract_frame(t_game *data, t_img *tileset, t_tile *tile);
+void	ft_load_tileset(t_game *game, const char *path);
+t_tile	**ft_parse_tileset(t_game *data, char *filename, int *tilecount);
+
+void	ft_get_tile(t_game *data, const char *tile_name, const char *tile_list_path);
+void	ft_extract_frame(t_game *data, t_tile *tile);
 void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name);
 void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y);
 
@@ -151,7 +150,7 @@ void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y);
 void	*gc_malloc(size_t size);
 void	gc_register(void *ptr);
 void	gc_nest_register(void *ptr);
-void	gc_mlx_image_register(t_img *img, void *mlx_ptr);
+void	gc_mlx_image_register(void *img_ptr, void *mlx_ptr);
 void	gc_fd_register(int fd);
 void	gc_cleanup(void);
 void	gc_collect();

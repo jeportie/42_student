@@ -27,8 +27,7 @@ UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c ft_display_contro
 MAP_PARSER =	$(addprefix src/map_parser_src/, ft_check_map.c ft_parse_map.c \
 					ft_read_map.c ) 
 
-MAP_RENDER = 	$(addprefix src/map_render_src/, ft_load_frame.c ft_put_tile.c \
-					ft_render_map.c)
+MAP_RENDER = 	$(addprefix src/map_render_src/, ft_render_map.c)
 
 TILESET_PARS = 	$(addprefix src/tileset_parser_src/, ft_parse_tileset.c)
 

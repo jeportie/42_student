@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:23:26 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/13 16:04:26 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:47:13 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	gc_sweep(void)
 			if (current->fd)
 				close(current->fd);
 			if (current->mlx_option == DESTROY_IMAGE)
-				mlx_destroy_image(current->ptr, current->img);
+				mlx_destroy_image(current->mlx_ptr, current->ptr);
 			else
 				free(current->ptr);
 			free(current);
