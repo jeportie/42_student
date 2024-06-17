@@ -29,16 +29,20 @@ MAP_PARSER =	$(addprefix src/map_parser_src/, ft_check_map.c ft_parse_map.c \
 
 MAP_RENDER = 	$(addprefix src/map_render_src/, ft_render_map.c)
 
-TILESET_PARS = 	$(addprefix src/tileset_parser_src/, ft_parse_tileset.c)
+TILESET_PARS = 	$(addprefix src/tileset_parser_src/, ft_parse_tileset.c ft_load_tileset.c)
 
 GARBAGE	=		$(addprefix src/gc_src/, garbage_collector.c gc_collect.c)
+
+TESTS =			test/tileset_tests.c
 
 OBJ_UTILITIES =	$(UTILITIES:src/utilities_src/%.c=$(OBJ_DIR)/utilities_src_%.o)
 OBJ_MAP_PARSE =	$(MAP_PARSER:src/map_parser_src/%.c=$(OBJ_DIR)/map_parser_src_%.o)
 OBJ_MAP_REND  =	$(MAP_RENDER:src/map_render_src/%.c=$(OBJ_DIR)/map_render_src_%.o)
 OBJ_TILESET	=	$(TILESET_PARS:src/tileset_parser_src/%.c=$(OBJ_DIR)/tileset_parser_src_%.o)
 OBJ_GARBAGE	=	$(GARBAGE:src/gc_src/%.c=$(OBJ_DIR)/gc_src_%.o)
-OBJ =			$(OBJ_MAP_PARSE) $(OBJ_MAP_REND) $(OBJ_UTILITIES) $(OBJ_TILESET) $(OBJ_GARBAGE)
+OBJ_TESTS	=	$(TESTS:test/%.c=$(OBJ_DIR)/test_%.o)
+OBJ =			$(OBJ_MAP_PARSE) $(OBJ_MAP_REND) $(OBJ_UTILITIES) $(OBJ_TILESET) \
+				$(OBJ_GARBAGE) $(OBJ_TESTS)
 
 all: $(LIBFT_DIR)/libft.a $(MINILIBX_DIR)/libmlx.a $(NAME)
 
@@ -67,6 +71,9 @@ $(OBJ_DIR)/tileset_parser_src_%.o: src/tileset_parser_src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/gc_src_%.o: src/gc_src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/test_%.o: test/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/14 16:28:01 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:47:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef enum e_ErrorCode
 	ENOSTART2,
 	ENOFORMAT,
 	ENOPATH,
-ENOINIT,
+	ENOINIT,
 	ENOTILE,
 	ENOWIN
 }			t_ErrorCode;
@@ -107,9 +107,6 @@ typedef struct s_gc_node
 	void				*ptr;
 	int					marked;
 	int					is_array;
-	int					mlx_option;
-	void				*mlx_ptr;
-	t_game				*data;
 	int					fd;
 	struct s_gc_node	*next;
 }				t_gc_node;
@@ -139,10 +136,9 @@ void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 
 /* Tileset Parser */
 void	ft_load_tileset(t_game *game, const char *path);
-t_tile	**ft_parse_tileset(t_game *data, char *filename, int *tilecount);
-
+void	ft_parse_tileset(t_game *data, char *filename);
 void	ft_get_tile(t_game *data, const char *tile_name, const char *tile_list_path);
-void	ft_extract_frame(t_game *data, t_tile *tile);
+void	ft_extract_frame(t_game *data, t_tile *tile, int i);
 void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name);
 void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y);
 
@@ -150,9 +146,10 @@ void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y);
 void	*gc_malloc(size_t size);
 void	gc_register(void *ptr);
 void	gc_nest_register(void *ptr);
-void	gc_mlx_image_register(void *img_ptr, void *mlx_ptr);
 void	gc_fd_register(int fd);
 void	gc_cleanup(void);
+void	gc_destroy_tiles(t_game *game);
+void	gc_destroy_tileset(t_game *game);
 void	gc_collect();
 void	gc_mark(void *ptr);	
 void	gc_mark_from_roots(void);
@@ -165,5 +162,8 @@ void	ft_flood_fill(t_game *data, int x, int y);
 int		ft_display_controls(int keysym, t_game *data);
 int		ft_close_window(t_game *data);
 void	ft_fill_image(char *img_data, int bpp, int size_line, int color);
+
+/*	Test functions */
+void	display_tiles(t_game *data);
 
 #endif /*SO_LONG*/	

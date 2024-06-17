@@ -6,31 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:25:25 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/14 16:20:54 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/17 18:43:24 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-
-void	ft_load_tileset(t_game *game, const char *path)
-{
-	game->tileset = gc_malloc(sizeof(t_img));
-	if (!game->tileset)
-		ft_exit_failure(game, ENOMEM);
-	game->tileset->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			(char *)path, &game->tileset->width, &game->tileset->height);
-	gc_mlx_image_register(game->tileset->img_ptr, game->mlx_ptr);
-	if (!game->tileset->img_ptr)
-	{
-		printf("Tileset not found\n");
-		ft_exit_failure(game, ENOENT);
-	}
-	game->tileset->img_data = mlx_get_data_addr(game->tileset->img_ptr,
-			&game->tileset->bpp, &game->tileset->size_line, &game->tileset->endian);
-}
-
-t_tile	**ft_parse_tileset(t_game *data, char *filename, int *tilecount)
+void	ft_parse_tileset(t_game *data, char *filename)
 {
 	int		fd;
 	t_tile	**tiles;
@@ -43,8 +25,8 @@ t_tile	**ft_parse_tileset(t_game *data, char *filename, int *tilecount)
 	gc_fd_register(fd);
 	if (fd < 0)
 		ft_exit_failure(data, ENOENT);
-	*tilecount = ft_count_lines(filename);
-	tiles = gc_malloc(sizeof(t_tile) * (*tilecount + 1));
+	data->tilecount = ft_count_lines(filename);
+	tiles = gc_malloc(sizeof(t_tile) * (data->tilecount + 1));
 	if (!tiles)
 		ft_exit_failure(data, ENOMEM);
 	line = get_next_line(fd);
@@ -56,51 +38,17 @@ t_tile	**ft_parse_tileset(t_game *data, char *filename, int *tilecount)
 		if (!tile)
 			ft_exit_failure(data, ENOMEM);
 		parts = ft_split(line, ' ');
+		gc_nest_register(parts);
 		if (!parts)
 			ft_exit_failure(data, ENOMEM);
-		gc_nest_register(parts);
 		ft_extract_split(parts, tile, filename);
-		ft_extract_frame(data, tile);
+		ft_extract_frame(data, tile, i);
 		tiles[i++] = tile;
 		line = get_next_line(fd);
 	}
 	tiles[i] = NULL;
 	close (fd);
-	return (tiles);
-}
-
-//Reste a gerer erreur de parse exemple : mauvais format, mauvaise valeur, etc.
-//Fonction ft_check_list a implementer et mettre juste apres gc_register(line).
-void	ft_get_tile(t_game *data, const char *tile_name, const char *tile_list_path)
-{
-	int		fd;
-	char	*line;
-	char	**parts;
-	t_tile	tile;
-
-	fd = open(tile_list_path, O_RDONLY);
-	gc_fd_register(fd);
-	if (fd < 0)
-	{
-		printf("Tile list not found\n");
-		ft_exit_failure(data, ENOENT);
-	}
-	line = get_next_line(fd);
-	gc_register(line);
-	while (line)
-	{
-		parts = ft_split(line, ' ');
-		if (!parts)
-			ft_exit_failure(data, ENOMEM);
-		gc_nest_register(parts);
-		if (!ft_strncmp(parts[0], tile_name, sizeof(parts[0])))
-		{
-			ft_extract_split(parts, &tile, tile_name);
-			ft_extract_frame(data, &tile);
-			return ;
-		}
-	}
-	ft_exit_failure(data, ENOTILE);
+    data->tiles = tiles;
 }
 
 void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y)
@@ -125,20 +73,31 @@ void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y)
 	}
 }
 
-void	ft_extract_frame(t_game *data, t_tile *tile)
+void	ft_extract_frame(t_game *data, t_tile *tile, int index)
 {
 	t_img	*frame;
 
+	// Créer une nouvelle image pour la tuile
 	frame = gc_malloc(sizeof(t_img));
 	if (!frame)
 		ft_exit_failure(data, ENOMEM);
+
+	// Initialiser la nouvelle image avec les dimensions de la tuile
 	frame->img_ptr = mlx_new_image(data->mlx_ptr, tile->width, tile->height);
-	gc_mlx_image_register(data->tileset->img_ptr, data->mlx_ptr);
-	frame->img_data = mlx_get_data_addr(frame->img_ptr, &frame->bpp,
-			&frame->size_line, &frame->endian);
+	if (!frame->img_ptr)
+		ft_exit_failure(data, ENOMEM);
+
+	// Obtenir les informations de l'image (data, bpp, size_line, endian)
+	frame->img_data = mlx_get_data_addr(frame->img_ptr, &frame->bpp, &frame->size_line, &frame->endian);
 	frame->width = tile->width;
 	frame->height = tile->height;
+
+	// Copier les pixels de la portion correspondante du tileset vers la nouvelle image
 	ft_extract_by_pixels(frame, data->tileset, tile->x, tile->y);
+
+	// Assigner l'image extraite à la tuile
+	tile->img = *frame;
+
 }
 
 void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name)

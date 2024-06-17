@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 12:13:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/14 14:37:40 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:39:11 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	*gc_malloc(size_t size)
 	new_node->ptr = ptr;
 	new_node->marked = 0;
 	new_node->is_array = 0;
-	new_node->mlx_option = 0;
-	new_node->mlx_ptr = NULL;
 	new_node->fd = 0;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
@@ -60,8 +58,6 @@ void	gc_register(void *ptr)
 	new_node->ptr = ptr;
 	new_node->marked = 0;
 	new_node->is_array = 0;
-	new_node->mlx_option = 0;
-	new_node->mlx_ptr = NULL;
 	new_node->fd = 0;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
@@ -82,8 +78,6 @@ void	gc_fd_register(int fd)
 	new_node->ptr = NULL;
 	new_node->marked = 0;
 	new_node->is_array = 0;
-	new_node->mlx_option = 0;
-	new_node->mlx_ptr = NULL;
 	new_node->fd = fd;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
@@ -112,30 +106,6 @@ void	gc_nest_register(void *ptr)
 	new_node->ptr = ptr;
 	new_node->marked = 0;
 	new_node->is_array = 1;
-	new_node->mlx_option = 0;
-	new_node->mlx_ptr = NULL;
-	new_node->fd = 0;
-	new_node->next = g_garbage_collector.head;
-	g_garbage_collector.head = new_node;
-}
-
-void	gc_mlx_image_register(void *img_ptr, void *mlx_ptr)
-{
-	t_gc_node	*new_node;
-
-	if (!img_ptr)
-		return ;
-	new_node = malloc(sizeof(t_gc_node));
-	if (!new_node)
-	{
-		errno = ENOMEM;
-		return ;
-	}
-	new_node->ptr = img_ptr;
-	new_node->marked = 0;
-	new_node->is_array = 0;
-	new_node->mlx_option = DESTROY_IMAGE;
-	new_node->mlx_ptr = mlx_ptr;
 	new_node->fd = 0;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
@@ -152,9 +122,7 @@ void	gc_cleanup(void)
 		if (current->fd)
 			close(current->fd);
 		next = current->next;
-		if (current->mlx_option == DESTROY_IMAGE && current->ptr && current->mlx_ptr)
-			mlx_destroy_image(current->mlx_ptr, current->ptr);
-		else if (current->ptr)
+		if (current->ptr)
 		{
 			free(current->ptr);
 			current->ptr = NULL;
