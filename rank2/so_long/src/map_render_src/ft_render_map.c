@@ -6,13 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 22:52:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/18 16:57:20 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/19 00:09:25 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-void	*get_tile_image(t_game *game, const char *tile_name)
+void	*ft_get_tile(t_game *game, const char *tile_name)
 {
 	int i;
 
@@ -30,17 +30,6 @@ void	ft_render_map(t_game *game)
 {
 	int		x;
 	int		y;
-	void	*floor_img;
-	void	*wall_img;
-	void	*player_img;
-	void	*exit_img;
-	void	*con_img;
-
-	floor_img = get_tile_image(game, "floor_1");
-	wall_img = get_tile_image(game, "wall_mid");
-	player_img = get_tile_image(game, "knight_f_idle_anim_f0");
-	exit_img = get_tile_image(game, "doors_leaf_closed");
-	con_img = get_tile_image(game, "coin_anim_f0");
 
 	y = 0;
 	while (y < game->map->height)
@@ -49,21 +38,22 @@ void	ft_render_map(t_game *game)
 		while (x < game->map->width)
 		{
 			if (game->map->map[y][x] == '1')
-			{
-				if (wall_img)
-					mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-						wall_img, x * TILE_SIZE_X, y * TILE_SIZE_Y);
-			}
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+					ft_get_tile(game, "wall_mid"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
 			else 
-			{
-				if (floor_img)
-					mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-						floor_img, x * TILE_SIZE_X, y * TILE_SIZE_Y);
-			}
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+					ft_get_tile(game, "floor_1"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
 			x++;
 		}
 		y++;
 	}
+}
+
+void	ft_render_obj(t_game *game)
+{
+	int		x;
+	int		y;
+
 	y = 0;
 	while (y < game->map->height)
 	{
@@ -72,25 +62,31 @@ void	ft_render_map(t_game *game)
 		{
 			if (game->map->map[y][x] == 'P')
 			{
-				if (player_img)
-					mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-						player_img, x * 16, y * 16);
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+					ft_get_tile(game, "knight_f_idle_anim_f0"), x * 16, y * 16);
 			}
 			else if (game->map->map[y][x] == 'C')
 			{
-				if (con_img)
-					mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-						con_img, x * TILE_SIZE_X, y * TILE_SIZE_Y);
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+					ft_get_tile(game, "coin_anim_f0"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
 			}
 			else if (game->map->map[y][x] == 'E')
 			{
-				if (exit_img)
+				if (game->map->collectible_count == game->map->exit_count)
 					mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-						exit_img, x * TILE_SIZE_X, y * TILE_SIZE_Y);
-			}
+						ft_get_tile(game, "doors_leaf_open"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
+				else
+					mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+						ft_get_tile(game, "doors_leaf_closed"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
+			}	
 			x++;
 		}
 		y++;
 	}
+}
 
+void	ft_render_game(t_game *game)
+{
+	ft_render_map(game);
+	ft_render_obj(game);
 }

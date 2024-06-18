@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/17 17:47:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/19 00:33:29 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,16 +128,19 @@ void	ft_check_map(t_game *data);
 void	ft_check_char(t_game *data, int x, int y);
 void	ft_check_rectangle(t_game *data);
 void	ft_check_fill(t_game *data);
+int		ft_count_collectibles(t_game *game);
 
 /* Map Render functions */
 void	ft_render_map(t_game *game);
+void	ft_render_obj(t_game *game);
+void	ft_render_game(t_game *game);
 void	ft_load_frame(t_game *game);
 void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 
 /* Tileset Parser */
 void	ft_load_tileset(t_game *game, const char *path);
 void	ft_parse_tileset(t_game *data, char *filename);
-void	ft_get_tile(t_game *data, const char *tile_name, const char *tile_list_path);
+void	*ft_get_tile(t_game *game, const char *tile_name);
 void	ft_extract_frame(t_game *data, t_tile *tile, int i);
 void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name);
 void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y);
