@@ -98,7 +98,7 @@ dwarf_m_run_anim_f2 224 292 16 28
 dwarf_m_run_anim_f3 240 292 16 28
 dwarf_m_hit_anim_f0 256 292 16 28
 knight_f_hit_anim_f0 256 68 16 28
-knight_f_idle_anim_f0 128 68 16 28
+knight_f_idle_anim_f0 128 76 16 20
 knight_f_idle_anim_f1 144 68 16 28
 knight_f_idle_anim_f2 160 68 16 28
 knight_f_idle_anim_f3 176 68 16 28

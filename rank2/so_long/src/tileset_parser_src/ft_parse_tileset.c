@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:25:25 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/17 18:43:24 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:59:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,27 +77,17 @@ void	ft_extract_frame(t_game *data, t_tile *tile, int index)
 {
 	t_img	*frame;
 
-	// Créer une nouvelle image pour la tuile
 	frame = gc_malloc(sizeof(t_img));
 	if (!frame)
 		ft_exit_failure(data, ENOMEM);
-
-	// Initialiser la nouvelle image avec les dimensions de la tuile
 	frame->img_ptr = mlx_new_image(data->mlx_ptr, tile->width, tile->height);
 	if (!frame->img_ptr)
 		ft_exit_failure(data, ENOMEM);
-
-	// Obtenir les informations de l'image (data, bpp, size_line, endian)
 	frame->img_data = mlx_get_data_addr(frame->img_ptr, &frame->bpp, &frame->size_line, &frame->endian);
 	frame->width = tile->width;
 	frame->height = tile->height;
-
-	// Copier les pixels de la portion correspondante du tileset vers la nouvelle image
 	ft_extract_by_pixels(frame, data->tileset, tile->x, tile->y);
-
-	// Assigner l'image extraite à la tuile
 	tile->img = *frame;
-
 }
 
 void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name)

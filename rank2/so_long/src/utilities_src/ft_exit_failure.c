@@ -44,8 +44,10 @@ void	ft_exit_failure(t_game *data, int errnum)
 		ft_putstr_fd("Unknown error\n", 2);
 	gc_destroy_tiles(data);
 	gc_destroy_tileset(data);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
+	if (data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->mlx_ptr)
+		mlx_destroy_display(data->mlx_ptr);
 	gc_cleanup();
 	exit(EXIT_FAILURE);
 }
