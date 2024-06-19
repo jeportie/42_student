@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:14:11 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/18 16:28:49 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:44:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	ft_load_tileset(t_game *game, const char *path)
 	}
 	game->tileset->img_data = mlx_get_data_addr(game->tileset->img_ptr,
 			&game->tileset->bpp, &game->tileset->size_line, &game->tileset->endian);
+	ft_parse_tileset(game, "assets/tileset/tile_list");
 }

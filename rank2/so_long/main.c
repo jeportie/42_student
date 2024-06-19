@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/19 00:35:31 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:44:53 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ void	ft_start_display(t_game *data, char *title)
 	gc_register(data->mlx_ptr);
 	if (!data->mlx_ptr)
 		ft_exit_failure(data, ENOINIT);
-	data->win_ptr = mlx_new_window(data->mlx_ptr,
-			data->map->width * TILE_SIZE_X + 100,
-			data->map->height * TILE_SIZE_Y + 100, title);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, title);
 	if (!data->win_ptr)
 		ft_exit_failure(data, ENOWIN);
 }
@@ -33,14 +31,16 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_exit_failure(&game, ENOFORMAT);
+
+
 	ft_parse_map(&game, argv[1]);
-	game.map->exit_count = 2;
 	ft_start_display(&game, "SO_LONG");
+
 	ft_load_tileset(&game, "assets/tileset/tileset.xpm"); 
-	ft_parse_tileset(&game, "assets/tileset/tile_list");
-	ft_render_map(&game);
-	ft_render_obj(&game);
-	mlx_hook(game.win_ptr, 17, 0, ft_close_window, &game);
+
+	ft_render_game(&game);
+
+	mlx_hook(game.win_ptr, 17, 0, ft_close_game, &game);
 	mlx_key_hook(game.win_ptr, ft_display_controls, &game);
 
 	mlx_loop(game.mlx_ptr);

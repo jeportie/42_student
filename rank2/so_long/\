@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:44:18 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/19 15:56:57 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:54:27 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,50 +54,29 @@ void	ft_move_player(int keysym, t_game *game)
 		return ;
 	if (game->map->map[new_y][new_x] != '1')
 	{
-		if (game->map->map[new_y][new_x] == 'E' && !game->map->collectible_count)
-			ft_close_game(game);
-
 		if (game->map->map[new_y][new_x] == 'C')
 			game->map->collectible_count--;
-
-		if (game->on_exit == TRUE)
-		{
-			game->map->map[game->map->player_y][game->map->player_x] = 'E';
-			game->on_exit = FALSE;
-		}
-		else
-			game->map->map[game->map->player_y][game->map->player_x] = '0';
-
 		if (game->map->map[new_y][new_x] == 'E')
-			game->on_exit = TRUE;
-
+			ft_close_window(game);
+		game->map->map[game->map->player_y][game->map->player_x] = '0';
 		game->map->player_x = new_x;
 		game->map->player_y = new_y;
 		game->map->map[new_y][new_x] = 'P';
-		game->player_moves++;
+		game->map->player_count++;
 		ft_render_game(game);
-		printf("Player total moves : %i\n", game->player_moves);
 	}
+
 }
 
 int	ft_display_controls(int keysym, t_game *game)
 {
 	ft_move_player(keysym, game);
 	if (keysym == XK_Escape)
-		ft_close_game(game);
+		ft_close_window(game);
 	return (0);
 }
 
 int	ft_close_window(t_game *game)
-{
-	gc_destroy_tiles(game);
-	gc_destroy_tileset(game);
-	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	gc_collect();
-	return (0);
-}
-
-int	ft_close_game(t_game *game)
 {
 	gc_destroy_tiles(game);
 	gc_destroy_tileset(game);

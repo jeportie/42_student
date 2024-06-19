@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/19 00:33:29 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:32:17 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,26 @@
 # define FALSE 0
 # define TRUE 1
 
-# define WIDTH 2000	
-# define HEIGHT 2000
+# define WIDTH 866	
+# define HEIGHT 600
 # define SCALE 20
 
 # define TILE_SIZE_X 16
 # define TILE_SIZE_Y 16
 
-# define DESTROY_IMAGE 1
-# define DESTROY_WINDOW 2
+typedef struct s_gc_node
+{
+	void				*ptr;
+	int					marked;
+	int					is_array;
+	int					fd;
+	struct s_gc_node	*next;
+}				t_gc_node;
+
+typedef struct s_garbage_collector
+{
+	t_gc_node	*head;
+}				t_gc;
 
 typedef enum e_ErrorCode
 {
@@ -67,6 +78,15 @@ typedef struct s_img
 	int		height;
 }				t_img;
 
+typedef struct s_tile
+{
+	char	name[50];
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+	t_img	img;
+}				t_tile;
 typedef struct s_map
 {
 	char	**map;
@@ -79,16 +99,6 @@ typedef struct s_map
 	int		exit_count;
 }			t_map;
 
-typedef struct s_tile
-{
-	char	name[50];
-	int		x;
-	int		y;
-	int		width;
-	int		height;
-	t_img	img;
-}				t_tile;
-
 typedef struct s_game
 {
 	void	*mlx_ptr;
@@ -97,37 +107,25 @@ typedef struct s_game
 	t_tile	**tiles;
 	int		tilecount;
 	t_map	*map;
+	int		player_moves;
+	int		on_exit;
 }				t_game;
 
+
+extern t_gc	g_garbage_collector;
 extern t_game	*g_game;
 extern t_map	*g_map;
 
-typedef struct s_gc_node
-{
-	void				*ptr;
-	int					marked;
-	int					is_array;
-	int					fd;
-	struct s_gc_node	*next;
-}				t_gc_node;
-
-typedef struct s_garbage_collector
-{
-	t_gc_node	*head;
-}				t_gc;
-
-extern t_gc	g_garbage_collector;
-
 /* Map Parser functions */
-void	ft_parse_map(t_game *data, char *filename);
-void	ft_read_map(char *filename, t_game *data);
+void	ft_parse_map(t_game *game, char *filename);
+void	ft_read_map(char *filename, t_game *game);
 int		ft_count_lines(char *filename);
-void	ft_allocate_map(t_game *data);
-void	ft_store_map(char *filename, t_game *data);
-void	ft_check_map(t_game *data);
-void	ft_check_char(t_game *data, int x, int y);
-void	ft_check_rectangle(t_game *data);
-void	ft_check_fill(t_game *data);
+void	ft_allocate_map(t_game *game);
+void	ft_store_map(char *filename, t_game *game);
+void	ft_check_map(t_game *game);
+void	ft_check_char(t_game *game, int x, int y);
+void	ft_check_rectangle(t_game *game);
+void	ft_check_fill(t_game *game);
 int		ft_count_collectibles(t_game *game);
 
 /* Map Render functions */
@@ -139,9 +137,9 @@ void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 
 /* Tileset Parser */
 void	ft_load_tileset(t_game *game, const char *path);
-void	ft_parse_tileset(t_game *data, char *filename);
+void	ft_parse_tileset(t_game *game, char *filename);
 void	*ft_get_tile(t_game *game, const char *tile_name);
-void	ft_extract_frame(t_game *data, t_tile *tile, int i);
+void	ft_extract_frame(t_game *game, t_tile *tile, int i);
 void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name);
 void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y);
 
@@ -159,14 +157,15 @@ void	gc_mark_from_roots(void);
 void	gc_sweep(void);
 
 /* Utility functions */
-void	ft_start_display(t_game *data, char *title);
-void	ft_exit_failure(t_game *data, int errnum);
-void	ft_flood_fill(t_game *data, int x, int y);
-int		ft_display_controls(int keysym, t_game *data);
-int		ft_close_window(t_game *data);
+void	ft_start_display(t_game *game, char *title);
+void	ft_exit_failure(t_game *game, int errnum);
+void	ft_flood_fill(t_game *game, int x, int y);
+int		ft_display_controls(int keysym, t_game *game);
+int		ft_close_window(t_game *game);
+int		ft_close_game(t_game *game);
 void	ft_fill_image(char *img_data, int bpp, int size_line, int color);
 
 /*	Test functions */
-void	display_tiles(t_game *data);
+void	display_tiles(t_game *game);
 
 #endif /*SO_LONG*/	

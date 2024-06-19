@@ -72,7 +72,7 @@ void	ft_render_obj(t_game *game)
 			}
 			else if (game->map->map[y][x] == 'E')
 			{
-				if (game->map->collectible_count == game->map->exit_count)
+				if (!game->map->collectible_count)
 					mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
 						ft_get_tile(game, "doors_leaf_open"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
 				else
