@@ -35,8 +35,8 @@ void	*gc_malloc(size_t size)
 		return (NULL);
 	}
 	new_node->ptr = ptr;
-	new_node->marked = 0;
-	new_node->is_array = 0;
+	new_node->is_marked = false;
+	new_node->is_array = false;
 	new_node->fd = 0;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
@@ -56,8 +56,8 @@ void	gc_register(void *ptr)
 		return ;
 	}
 	new_node->ptr = ptr;
-	new_node->marked = 0;
-	new_node->is_array = 0;
+	new_node->is_marked = false;
+	new_node->is_array = false;
 	new_node->fd = 0;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
@@ -76,8 +76,8 @@ void	gc_fd_register(int fd)
 		return ;
 	}
 	new_node->ptr = NULL;
-	new_node->marked = 0;
-	new_node->is_array = 0;
+	new_node->is_marked = false;
+	new_node->is_array = false;
 	new_node->fd = fd;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
@@ -104,8 +104,8 @@ void	gc_nest_register(void *ptr)
 		return ;
 	}
 	new_node->ptr = ptr;
-	new_node->marked = 0;
-	new_node->is_array = 1;
+	new_node->is_marked = false;
+	new_node->is_array = true;
 	new_node->fd = 0;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;

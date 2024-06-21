@@ -6,51 +6,51 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 01:57:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/07 15:06:19 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:21:46 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-void	ft_check_char(t_game *data, int x, int y)
+void	ft_check_char(t_game *game, int x, int y)
 {
-	if (!ft_strchr("01CEP", data->map->map[y][x]))
+	if (!ft_strchr("01CEP", game->map->map[y][x]))
 	{
-		printf("map[%d][%d] = %c\n", y, x, data->map->map[y][x]);
-		ft_exit_failure(data, ENOCHAR);
+		printf("map[%d][%d] = %c\n", y, x, game->map->map[y][x]);
+		ft_exit_failure(game, ENOCHAR);
 	}
-	if (data->map->map[y][x] == 'C')
-		data->map->collectible_count++;
-	if (data->map->map[y][x] == 'E')
+	if (game->map->map[y][x] == 'C')
+		game->map->c_count++;
+	if (game->map->map[y][x] == 'E')
 	{
-		if (data->map->exit_count)
-			ft_exit_failure(data, ENOEXIT);
-		data->map->exit_count++;
+		if (game->map->e_count)
+			ft_exit_failure(game, ENOEXIT);
+		game->map->e_count++;
 	}
-	if (data->map->map[y][x] == 'P')
+	if (game->map->map[y][x] == 'P')
 	{
-		if (data->map->player_count)
-			ft_exit_failure(data, ENOSTART);
-		data->map->player_count++;
-		data->map->player_x = x;
-		data->map->player_y = y;
+		if (game->map->p_count)
+			ft_exit_failure(game, ENOSTART);
+		game->map->p_count++;
+		game->player->x = x;
+		game->player->y = y;
 	}
 }
 
-void	ft_check_rectangle(t_game *data)
+void	ft_check_rectangle(t_game *game)
 {
 	int	width;
 	int	i;
 
-	width = ft_strlen(data->map->map[0]);
+	width = ft_strlen(game->map->map[0]);
 	i = 0;
-	while (i < data->map->height)
+	while (i < game->map->height)
 	{
-		if (ft_strlen(data->map->map[i]) != width)
-			ft_exit_failure(data, ENORECT);
+		if (ft_strlen(game->map->map[i]) != width)
+			ft_exit_failure(game, ENORECT);
 		i++;
 	}
-	data->map->width = width - 1;
+	game->map->width = width - 1;
 }
 
 char	**ft_duplicate_map(t_map *map)
@@ -79,84 +79,83 @@ char	**ft_duplicate_map(t_map *map)
 	return (dup_map);
 }
 
-//Attention, la premiere map avec pleins de F n'est pas free !
-void	ft_check_fill(t_game *data)
+void	ft_check_fill(t_game *game)
 {
 	int		x;
 	int		y;
 	char	**dup_map;
 
-	dup_map = ft_duplicate_map(data->map);
-	ft_flood_fill(data, data->map->player_x, data->map->player_y);
+	dup_map = ft_duplicate_map(game->map);
+	ft_flood_fill(game, game->player->x, game->player->y);
 	y = 0;
-	while (y < data->map->height)
+	while (y < game->map->height)
 	{
 		x = 0;
-		while (x < data->map->width)
+		while (x < game->map->width)
 		{
-			if (data->map->map[y][x] == '0' || data->map->map[y][x] == 'C'
-				|| data->map->map[y][x] == 'E')
-				ft_exit_failure(data, ENOPATH);
+			if (game->map->map[y][x] == '0' || game->map->map[y][x] == 'C'
+				|| game->map->map[y][x] == 'E')
+				ft_exit_failure(game, ENOPATH);
 			x++;
 		}
 		y++;
 	}
-	data->map->map = dup_map;
+	game->map->map = dup_map;
 }
 
-void	ft_check_wall(t_game *data)
+void	ft_check_wall(t_game *game)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (y < data->map->height)
+	while (y < game->map->height)
 	{
-		if (data->map->map[y][0] != '1'
-			|| data->map->map[y][data->map->width - 1] != '1')
-			ft_exit_failure(data, ENOWALLS);
+		if (game->map->map[y][0] != '1'
+			|| game->map->map[y][game->map->width - 1] != '1')
+			ft_exit_failure(game, ENOWALLS);
 		y++;
 	}
 	x = 0;
-	while (x < data->map->width)
+	while (x < game->map->width)
 	{
-		if (data->map->map[0][x] != '1'
-			|| data->map->map[data->map->height - 1][x] != '1')
-			ft_exit_failure(data, ENOWALLS);
+		if (game->map->map[0][x] != '1'
+			|| game->map->map[game->map->height - 1][x] != '1')
+			ft_exit_failure(game, ENOWALLS);
 		x++;
 	}
 }
 
-void	ft_check_map(t_game *data)
+void	ft_check_map(t_game *game)
 {
 	int		x;
 	int		y;
 
-	data->map->exit_count = 0;
-	data->map->player_count = 0;
-	data->map->collectible_count = 0;
-	data->map->player_x = -1;
-	data->map->player_y = -1;
+	game->map->e_count = 0;
+	game->map->p_count = 0;
+	game->map->c_count = 0;
+	game->player->x = -1;
+	game->player->y = -1;
 	y = 0;
-	while (y < data->map->height)
+	while (y < game->map->height)
 	{
 		x = 0;
-		while (data->map->map[y][x] != '\n')
+		while (game->map->map[y][x] != '\n')
 		{
-			if (y == data->map->height - 1 && !data->map->map[y][x])
+			if (y == game->map->height - 1 && !game->map->map[y][x])
 				break ;
-			ft_check_char(data, x, y);
+			ft_check_char(game, x, y);
 			x++;
 		}
 		y++;
 	}
-	if (!data->map->collectible_count)
-		ft_exit_failure(data, ENOCOL);
-	if (!data->map->exit_count)
-		ft_exit_failure(data, ENOEXIT2);
-	if (!data->map->player_count)
-		ft_exit_failure(data, ENOSTART2);
-	ft_check_rectangle(data);
-	ft_check_fill(data);
-	ft_check_wall(data);
+	if (!game->map->c_count)
+		ft_exit_failure(game, ENOCOL);
+	if (!game->map->e_count)
+		ft_exit_failure(game, ENOEXIT2);
+	if (!game->map->p_count)
+		ft_exit_failure(game, ENOSTART2);
+	ft_check_rectangle(game);
+	ft_check_fill(game);
+	ft_check_wall(game);
 }

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/19 15:32:17 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/21 18:31:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,24 @@
 # include <errno.h>
 # include <string.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include "libft.h"
 # include "printf.h"
 # include "mlx.h"
 
-# define FALSE 0
-# define TRUE 1
-
 # define WIDTH 866	
 # define HEIGHT 600
 # define SCALE 20
 
-# define TILE_SIZE_X 16
-# define TILE_SIZE_Y 16
+# define MAP_TILE_SIZE 16
+
 
 typedef struct s_gc_node
 {
 	void				*ptr;
-	int					marked;
-	int					is_array;
+	bool				is_marked;
+	bool				is_array;
 	int					fd;
 	struct s_gc_node	*next;
 }				t_gc_node;
@@ -85,34 +83,40 @@ typedef struct s_tile
 	int		y;
 	int		width;
 	int		height;
-	t_img	img;
+	t_img	*img;
 }				t_tile;
+
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	int		moves;
+	bool	on_exit;
+}				t_player;
+
 typedef struct s_map
 {
 	char	**map;
 	int		width;
 	int		height;
-	int		player_x;
-	int		player_y;
-	int		player_count;
-	int		collectible_count;
-	int		exit_count;
+	int		p_count;
+	int		c_count;
+	int		e_count;
 }			t_map;
 
 typedef struct s_game
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	*tileset;
-	t_tile	**tiles;
-	int		tilecount;
-	t_map	*map;
-	int		player_moves;
-	int		on_exit;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		*tileset;
+	t_tile		**tiles;
+	int			tilecount;
+	t_map		*map;
+	t_player	*player;
+	int			on_exit;
 }				t_game;
 
-
-extern t_gc	g_garbage_collector;
+extern t_gc		g_garbage_collector;
 extern t_game	*g_game;
 extern t_map	*g_map;
 
@@ -138,7 +142,8 @@ void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 /* Tileset Parser */
 void	ft_load_tileset(t_game *game, const char *path);
 void	ft_parse_tileset(t_game *game, char *filename);
-void	*ft_get_tile(t_game *game, const char *tile_name);
+t_tile	*ft_get_tile(t_game *game, const char *tile_name);
+void	ft_blend_images(t_img *player, t_img *background);
 void	ft_extract_frame(t_game *game, t_tile *tile, int i);
 void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name);
 void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y);
@@ -151,7 +156,7 @@ void	gc_fd_register(int fd);
 void	gc_cleanup(void);
 void	gc_destroy_tiles(t_game *game);
 void	gc_destroy_tileset(t_game *game);
-void	gc_collect();
+void	gc_collect(void);
 void	gc_mark(void *ptr);	
 void	gc_mark_from_roots(void);
 void	gc_sweep(void);
@@ -164,6 +169,7 @@ int		ft_display_controls(int keysym, t_game *game);
 int		ft_close_window(t_game *game);
 int		ft_close_game(t_game *game);
 void	ft_fill_image(char *img_data, int bpp, int size_line, int color);
+void	ft_print_map(t_game *game);
 
 /*	Test functions */
 void	display_tiles(t_game *game);

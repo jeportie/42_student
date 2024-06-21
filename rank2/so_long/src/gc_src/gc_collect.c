@@ -12,7 +12,7 @@
 
 #include "../../include/so_long.h"
 
-void gc_collect()
+void gc_collect(void)
 {
 	gc_mark_from_roots();
 	gc_sweep();
@@ -36,9 +36,9 @@ void	gc_mark(void *ptr)
 	{
 		if (current->ptr == ptr)
 		{
-			if (current->marked)
+			if (current->is_marked)
 				return ;
-			current->marked = 1;
+			current->is_marked = true;
 			if (current->is_array)
 			{
 				array = (void **)current->ptr;
@@ -63,7 +63,7 @@ void	gc_sweep(void)
 	prev = NULL;
 	while (current)
 	{
-		if (!current->marked)
+		if (!current->is_marked)
 		{
 			if (prev)
 				prev->next = current->next;
@@ -81,7 +81,7 @@ void	gc_sweep(void)
 		}
 		else
 		{
-			current->marked = 0;
+			current->is_marked = 0;
 			prev = current;
 			current = current->next;
 		}
@@ -92,20 +92,20 @@ void	gc_destroy_tiles(t_game *game)
 {
 	int	i;
 
-	if(!game || !game->tiles)
+	if (!game || !game->tiles)
 		return ;
 	i = 0;
 	while (i < game->tilecount)
 	{
-		if (game->tiles[i] && game->tiles[i]->img.img_ptr)
-			mlx_destroy_image(game->mlx_ptr, game->tiles[i]->img.img_ptr);
+		if (game->tiles[i] && game->tiles[i]->img->img_ptr)
+			mlx_destroy_image(game->mlx_ptr, game->tiles[i]->img->img_ptr);
 		i++;
 	}
 }
 
 void	gc_destroy_tileset(t_game *game)
 {
-	if(!game || !game->tileset)
+	if (!game || !game->tileset)
 		return ;
 	mlx_destroy_image(game->mlx_ptr, game->tileset->img_ptr);
 }

@@ -6,13 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:25:25 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/19 16:07:14 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/21 18:22:21 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-void	ft_parse_tileset(t_game *data, char *filename)
+void	ft_parse_tileset(t_game *game, char *filename)
 {
 	int		fd;
 	t_tile	**tiles;
@@ -24,11 +24,11 @@ void	ft_parse_tileset(t_game *data, char *filename)
 	fd = open(filename, O_RDONLY);
 	gc_fd_register(fd);
 	if (fd < 0)
-		ft_exit_failure(data, ENOENT);
-	data->tilecount = ft_count_lines(filename);
-	tiles = gc_malloc(sizeof(t_tile) * (data->tilecount + 1));
+		ft_exit_failure(game, ENOENT);
+	game->tilecount = ft_count_lines(filename);
+	tiles = gc_malloc(sizeof(t_tile) * (game->tilecount + 1));
 	if (!tiles)
-		ft_exit_failure(data, ENOMEM);
+		ft_exit_failure(game, ENOMEM);
 	line = get_next_line(fd);
 	i = 0;
 	while (line)
@@ -36,19 +36,19 @@ void	ft_parse_tileset(t_game *data, char *filename)
 		gc_register(line);
 		tile = gc_malloc(sizeof(t_tile));
 		if (!tile)
-			ft_exit_failure(data, ENOMEM);
+			ft_exit_failure(game, ENOMEM);
 		parts = ft_split(line, ' ');
 		gc_nest_register(parts);
 		if (!parts)
-			ft_exit_failure(data, ENOMEM);
+			ft_exit_failure(game, ENOMEM);
 		ft_extract_split(parts, tile, filename);
-		ft_extract_frame(data, tile, i);
+		ft_extract_frame(game, tile, i);
 		tiles[i++] = tile;
 		line = get_next_line(fd);
 	}
 	tiles[i] = NULL;
 	close (fd);
-    data->tiles = tiles;
+    game->tiles = tiles;
 }
 
 void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y)
@@ -73,21 +73,21 @@ void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y)
 	}
 }
 
-void	ft_extract_frame(t_game *data, t_tile *tile, int index)
+void	ft_extract_frame(t_game *game, t_tile *tile, int index)
 {
 	t_img	*frame;
 
 	frame = gc_malloc(sizeof(t_img));
 	if (!frame)
-		ft_exit_failure(data, ENOMEM);
-	frame->img_ptr = mlx_new_image(data->mlx_ptr, tile->width, tile->height);
+		ft_exit_failure(game, ENOMEM);
+	frame->img_ptr = mlx_new_image(game->mlx_ptr, tile->width, tile->height);
 	if (!frame->img_ptr)
-		ft_exit_failure(data, ENOMEM);
+		ft_exit_failure(game, ENOMEM);
 	frame->img_data = mlx_get_data_addr(frame->img_ptr, &frame->bpp, &frame->size_line, &frame->endian);
 	frame->width = tile->width;
 	frame->height = tile->height;
-	ft_extract_by_pixels(frame, data->tileset, tile->x, tile->y);
-	tile->img = *frame;
+	ft_extract_by_pixels(frame, game->tileset, tile->x, tile->y);
+	tile->img = frame;
 }
 
 void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name)
@@ -97,4 +97,27 @@ void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name)
 	tile->y = ft_atoi(parts[2]);
 	tile->width = ft_atoi(parts[3]);
 	tile->height = ft_atoi(parts[4]);
+}
+
+void ft_blend_images(t_img *src, t_img *dest)
+{
+    int fg_color;
+    int *bg_pixel;
+    int *fg_pixel;
+    int x, y;
+
+    for (y = 0; y < src->height; y++)
+    {
+        for (x = 0; x < src->width; x++)
+        {
+            bg_pixel = (int *)(dest->img_data + (y * dest->size_line + x * (dest->bpp / 8)));
+            fg_pixel = (int *)(src->img_data + (y * src->size_line + x * (src->bpp / 8)));
+            fg_color = *fg_pixel;
+
+            if ((fg_color & 0xFF000000) != 0xFF000000)
+			{
+                *bg_pixel = *fg_pixel;
+			}
+        }
+    }
 }

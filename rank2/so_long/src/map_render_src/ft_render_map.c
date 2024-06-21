@@ -1,29 +1,38 @@
-/**************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_render_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 22:52:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/19 00:09:25 by jeportie         ###   ########.fr       */
+/*   Created: 2024/06/21 13:26:09 by jeportie          #+#    #+#             */
+/*   Updated: 2024/06/21 18:22:33 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-void	*ft_get_tile(t_game *game, const char *tile_name)
+t_tile	*ft_get_tile(t_game *game, const char *filename)
 {
-	int i;
+	int	i;
 
-	for (i = 0; i < game->tilecount; i++)
+	i = 0;
+	while (i < game->tilecount)
 	{
-		if (ft_strncmp(game->tiles[i]->name, tile_name, ft_strlen(tile_name)) == 0)
-		{
-			return game->tiles[i]->img.img_ptr;
-		}
+		if (ft_strncmp(game->tiles[i]->name, filename,
+				ft_strlen(filename)) == 0)
+			return (game->tiles[i]);
+		i++;
 	}
-	return NULL; // Return NULL if the tile is not found
+	return (NULL);
+}
+
+void	ft_put_image(t_game *game, const char *tilename, int y, int x)
+{
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+		ft_get_tile(game, tilename)->img->img_ptr,
+		x * MAP_TILE_SIZE,
+		y * MAP_TILE_SIZE);
 }
 
 void	ft_render_map(t_game *game)
@@ -38,17 +47,16 @@ void	ft_render_map(t_game *game)
 		while (x < game->map->width)
 		{
 			if (game->map->map[y][x] == '1')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-					ft_get_tile(game, "wall_mid"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
+				ft_put_image(game, "wall_mid", y, x);
 			else 
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-					ft_get_tile(game, "floor_1"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
+				ft_put_image(game, "floor_1", y, x);
 			x++;
 		}
 		y++;
 	}
 }
 
+//attention segfault si nom du tiles existe pas -> proteger ca
 void	ft_render_obj(t_game *game)
 {
 	int		x;
@@ -62,22 +70,23 @@ void	ft_render_obj(t_game *game)
 		{
 			if (game->map->map[y][x] == 'P')
 			{
+				ft_blend_images(ft_get_tile(game, "player_f")->img, ft_get_tile(game, "back")->img);
 				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-					ft_get_tile(game, "knight_f_idle_anim_f0"), x * 16, y * 16);
+					ft_get_tile(game, "back")->img->img_ptr,
+					x * MAP_TILE_SIZE,
+					y * MAP_TILE_SIZE - 2);
 			}
 			else if (game->map->map[y][x] == 'C')
-			{
 				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-					ft_get_tile(game, "coin_anim_f0"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
-			}
+					ft_get_tile(game, "coin_anim_f0")->img->img_ptr,
+					x * MAP_TILE_SIZE + 5,
+					y * MAP_TILE_SIZE + 4);
 			else if (game->map->map[y][x] == 'E')
 			{
-				if (!game->map->collectible_count)
-					mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-						ft_get_tile(game, "doors_leaf_open"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
+				if (!game->map->c_count)
+					ft_put_image(game, "doors_leaf_open", y, x);
 				else
-					mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
-						ft_get_tile(game, "doors_leaf_closed"), x * TILE_SIZE_X, y * TILE_SIZE_Y);
+					ft_put_image(game, "doors_leaf_closed", y, x);
 			}	
 			x++;
 		}

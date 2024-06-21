@@ -33,14 +33,14 @@ int	ft_count_collectibles(t_game *game)
 		}
 		y++;
 	}
-	game->map->exit_count = count;
+	game->map->e_count = count;
 	return (count);
 }
 
 void	ft_move_player(int keysym, t_game *game)
 {
-	int new_x = game->map->player_x;
-	int new_y = game->map->player_y;
+	int new_x = game->player->x;
+	int new_y = game->player->y;
 
 	if (keysym == XK_w || keysym == XK_Up)
 		new_y--;
@@ -54,29 +54,29 @@ void	ft_move_player(int keysym, t_game *game)
 		return ;
 	if (game->map->map[new_y][new_x] != '1')
 	{
-		if (game->map->map[new_y][new_x] == 'E' && !game->map->collectible_count)
+		if (game->map->map[new_y][new_x] == 'E' && !game->map->c_count)
 			ft_close_game(game);
 
 		if (game->map->map[new_y][new_x] == 'C')
-			game->map->collectible_count--;
+			game->map->c_count--;
 
-		if (game->on_exit == TRUE)
+		if (game->on_exit == true)
 		{
-			game->map->map[game->map->player_y][game->map->player_x] = 'E';
-			game->on_exit = FALSE;
+			game->map->map[game->player->y][game->player->x] = 'E';
+			game->on_exit = false;
 		}
 		else
-			game->map->map[game->map->player_y][game->map->player_x] = '0';
+			game->map->map[game->player->y][game->player->x] = '0';
 
 		if (game->map->map[new_y][new_x] == 'E')
-			game->on_exit = TRUE;
+			game->on_exit = true;
 
-		game->map->player_x = new_x;
-		game->map->player_y = new_y;
+		game->player->x = new_x;
+		game->player->y = new_y;
 		game->map->map[new_y][new_x] = 'P';
-		game->player_moves++;
+		game->player->moves++;
 		ft_render_game(game);
-		printf("Player total moves : %i\n", game->player_moves);
+		printf("Player total moves : %i\n", game->player->moves);
 	}
 }
 

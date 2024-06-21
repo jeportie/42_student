@@ -6,18 +6,18 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 00:51:27 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/14 00:13:41 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:08:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-void	ft_read_map(char *filename, t_game *data)
+void	ft_read_map(char *filename, t_game *game)
 {
-	ft_memset(data, 0, sizeof(t_map));
-	data->map->height = ft_count_lines(filename);
-	ft_allocate_map(data);
-	ft_store_map(filename, data);
+	ft_memset(game, 0, sizeof(t_map));
+	game->map->height = ft_count_lines(filename);
+	ft_allocate_map(game);
+	ft_store_map(filename, game);
 }
 
 int	ft_count_lines(char *filename)
@@ -44,17 +44,17 @@ int	ft_count_lines(char *filename)
 	return (count);
 }
 
-void	ft_allocate_map(t_game *data)
+void	ft_allocate_map(t_game *game)
 {
-	data->map->map = gc_malloc(sizeof (char *) * (data->map->height + 1));
-	if (!data->map)
+	game->map->map = gc_malloc(sizeof (char *) * (game->map->height + 1));
+	if (!game->map)
 	{
 		errno = ENOMEM;
-		ft_exit_failure(data, ENOMEM);
+		ft_exit_failure(game, ENOMEM);
 	}
 }
 
-void	ft_store_map(char *filename, t_game *data)
+void	ft_store_map(char *filename, t_game *game)
 {
 	int		fd;
 	char	*line;
@@ -66,15 +66,15 @@ void	ft_store_map(char *filename, t_game *data)
 	if (fd < 0)
 	{
 		errno = ENOENT;
-		ft_exit_failure(data, ENOENT);
+		ft_exit_failure(game, ENOENT);
 	}
 	line = get_next_line(fd);
 	gc_register(line);
 	while (line)
 	{
-		data->map->map[i++] = line;
+		game->map->map[i++] = line;
 		line = get_next_line(fd);
 		gc_register(line);
 	}
-	data->map->map[i] = NULL;
+	game->map->map[i] = NULL;
 }
