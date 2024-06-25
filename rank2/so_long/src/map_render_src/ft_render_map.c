@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:26:09 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/25 14:47:33 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:42:41 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,32 @@ void ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x)
         while (j < tile->height)
         {
             *(unsigned int *)(dest_data + ((y * 16 + i) * dest_line_size) + ((x * 16 + j) * bpp)) =
+            *(unsigned int *)(src_data + (i * src_line_size) + (j * bpp));
+            j++;
+        }
+        i++;
+    }
+}
+
+void ft_put_tile_to_buffer_offset(t_game *game, const char *tilename, int y, int x, int offset_y, int offset_x)
+{
+    t_tile *tile = ft_get_tile(game, tilename);
+    if (!tile || !tile->img)
+        return;
+
+    char *src_data = tile->img->img_data;
+    char *dest_data = game->buffer->img_data;
+    int src_line_size = tile->img->size_line;
+    int dest_line_size = game->buffer->size_line;
+    int bpp = tile->img->bpp / 8;
+    int i = 0, j;
+
+    while (i < tile->width)
+    {
+        j = 0;
+        while (j < tile->height)
+        {
+            *(unsigned int *)(dest_data + ((y * 16 + i + offset_y) * dest_line_size) + ((x * 16 + j + offset_x) * bpp)) =
             *(unsigned int *)(src_data + (i * src_line_size) + (j * bpp));
             j++;
         }
@@ -107,8 +133,8 @@ void	ft_render_obj(t_game *game)
 		{
 			if (game->map->map[y][x] == 'C')
 			{
-				ft_blend_images(ft_get_tile(game, "coin")->img, ft_get_tile(game, "bcoin")->img);
-				ft_put_tile_to_buffer(game, "bcoin", y, x);
+   //             ft_blend_images(ft_get_tile(game, "coin")->img, ft_get_tile(game, "bcoin")->img);
+				ft_put_tile_to_buffer_offset(game, "coin", y, x, 4, 5);
 			}
 			else if (game->map->map[y][x] == 'E')
 			{

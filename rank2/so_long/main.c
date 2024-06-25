@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/25 12:03:40 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:12:00 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	ft_start_display(t_game *game, char *title)
 	gc_register(game->mlx_ptr);
 	if (!game->mlx_ptr)
 		ft_exit_failure(game, ENOINIT);
-	game->win_ptr = mlx_new_window(game->mlx_ptr, WIDTH, HEIGHT, title);
+	game->win_ptr = mlx_new_window(game->mlx_ptr,
+			game->map->width * MAP_TILE_SIZE,
+			game->map->height * MAP_TILE_SIZE + 50, title);
 	if (!game->win_ptr)
 		ft_exit_failure(game, ENOWIN);
 }

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:23:26 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/14 14:47:13 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/25 17:27:36 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,5 @@ void	gc_destroy_tileset(t_game *game)
 	if (!game || !game->tileset)
 		return ;
 	mlx_destroy_image(game->mlx_ptr, game->tileset->img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->buffer->img_ptr);
 }
