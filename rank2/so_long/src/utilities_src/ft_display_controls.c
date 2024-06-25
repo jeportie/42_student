@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:44:18 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/19 15:56:57 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:01:11 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ void	ft_move_player(int keysym, t_game *game)
 		return ;
 	if (game->map->map[new_y][new_x] != '1')
 	{
-		if (game->map->map[new_y][new_x] == 'E' && !game->map->c_count)
+		if (!game->map->c_count && (game->map->map[new_y][new_x] == 'E'
+				|| game->map->map[new_y][new_x - 1] == 'E'
+				|| game->map->map[new_y - 1][new_x] == 'E'
+				|| game->map->map[new_y - 1][new_x - 1] == 'E'))
 			ft_close_game(game);
 
 		if (game->map->map[new_y][new_x] == 'C')

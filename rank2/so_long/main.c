@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/21 16:36:40 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/25 12:03:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,18 @@ void	ft_init_game(t_game *game, char *mapfile)
 	ft_parse_map(game, mapfile);
 	ft_start_display(game, "SO_LONG");
 	ft_load_tileset(game, "assets/tileset/tileset.xpm"); 
-}
-
-void	ft_print_map(t_game *game)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (game->map->map[y])
+	game->buffer = gc_malloc(sizeof(t_img));
+	if (!game->buffer)
 	{
-		x = 0;
-		while (game->map->map[y][x])
-		{
-			printf("%c", game->map->map[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
+		errno = ENOMEM;
+		ft_exit_failure(NULL, ENOMEM);
 	}
-	printf("\n");
+	game->buffer->img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
+	if (!game->buffer->img_ptr)
+		ft_exit_failure(game, ENOMEM);
+	game->buffer->img_data = mlx_get_data_addr(game->buffer->img_ptr,
+		&game->buffer->bpp, &game->buffer->size_line, &game->buffer->endian);
+
 }
 
 int	main(int argc, char **argv)
