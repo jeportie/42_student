@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/25 14:52:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:30:42 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,8 @@ void	ft_render_obj(t_game *game);
 void	ft_render_game(t_game *game);
 void	ft_load_frame(t_game *game);
 void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
+void	ft_update_move(t_game *game, const char *tilename, bool render);
+void    ft_render_info(t_game *game);
 
 /* Tileset Parser */
 void	ft_load_tileset(t_game *game, const char *path);

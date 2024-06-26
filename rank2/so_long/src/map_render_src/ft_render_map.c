@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:26:09 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/25 17:42:41 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:42:30 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x)
 {
     t_tile *tile = ft_get_tile(game, tilename);
     if (!tile || !tile->img)
-        return;
+        ft_exit_failure(game, ENOTILE);
 
     char *src_data = tile->img->img_data;
     char *dest_data = game->buffer->img_data;
@@ -45,8 +45,8 @@ void ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x)
         j = 0;
         while (j < tile->height)
         {
-            *(unsigned int *)(dest_data + ((y * 16 + i) * dest_line_size) + ((x * 16 + j) * bpp)) =
-            *(unsigned int *)(src_data + (i * src_line_size) + (j * bpp));
+            *(unsigned int *)(dest_data + ((y * 16 + j) * dest_line_size) + ((x * 16 + i) * bpp)) =
+            *(unsigned int *)(src_data + (j * src_line_size) + (i * bpp));
             j++;
         }
         i++;
@@ -57,7 +57,7 @@ void ft_put_tile_to_buffer_offset(t_game *game, const char *tilename, int y, int
 {
     t_tile *tile = ft_get_tile(game, tilename);
     if (!tile || !tile->img)
-        return;
+        ft_exit_failure(game, ENOTILE);
 
     char *src_data = tile->img->img_data;
     char *dest_data = game->buffer->img_data;
@@ -132,22 +132,13 @@ void	ft_render_obj(t_game *game)
 		while (x < game->map->width)
 		{
 			if (game->map->map[y][x] == 'C')
-			{
-   //             ft_blend_images(ft_get_tile(game, "coin")->img, ft_get_tile(game, "bcoin")->img);
 				ft_put_tile_to_buffer_offset(game, "coin", y, x, 4, 5);
-			}
 			else if (game->map->map[y][x] == 'E')
 			{
 				if (!game->map->c_count)
-				{
-	//				ft_blend_images(ft_get_tile(game, "door_open")->img, ft_get_tile(game, "doback")->img);
 					ft_put_tile_to_buffer(game, "door_open", y, x);
-				}
 				else
-				{
-	//				ft_blend_images(ft_get_tile(game, "door_closed")->img, ft_get_tile(game, "dcback")->img);
 					ft_put_tile_to_buffer(game, "door_closed", y, x);
-				}
 			}	
 			x++;
 		}
@@ -178,13 +169,60 @@ void	ft_render_player(t_game *game)
 
 }
 
+void	ft_update_move(t_game *game, const char *tilename, bool render)
+{
+    int x;
+    int y;
+
+    ft_put_tile_to_buffer(game, tilename, game->player->y, game->player->x);
+    if (!game->map->c_count)
+    {
+    	y = 0;
+    	while (y < game->map->height)
+    	{
+    		x = 0;
+    		while (x < game->map->width)
+    		{
+    			if (game->map->map[y][x] == 'E')
+                    ft_put_tile_to_buffer(game, "door_open", y, x);
+    			x++;
+    		}
+    		y++;
+    	}
+        game->map->c_count--;
+    }
+    if (render == true)
+    {
+        mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->buffer->img_ptr, 0, 0);
+        ft_render_info(game);
+    }
+}
+
+void    ft_render_info(t_game *game)
+{
+    char    *moves;
+
+    moves = ft_itoa(game->player->moves);
+    gc_register(moves);
+
+    mlx_string_put(game->mlx_ptr, game->win_ptr,
+            (game->map->width / 2 - 10) * MAP_TILE_SIZE,
+			game->map->height * MAP_TILE_SIZE + 20, 0xFFFFFF, "Total Moves:");
+
+    mlx_string_put(game->mlx_ptr, game->win_ptr,
+            (game->map->width / 2 + 5) * MAP_TILE_SIZE,
+			game->map->height * MAP_TILE_SIZE + 20, 0xFFFFFF, moves);
+}
+
 void	ft_render_game(t_game *game)
 {
 //	ft_clear_buffer(game->buffer->img_data, game->buffer->bpp, game->buffer->size_line);
 
-	ft_render_map(game);
+
+    ft_render_map(game);
 	ft_render_obj(game);
 	ft_render_player(game);
 
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->buffer->img_ptr, 0, 0);
+    ft_render_info(game);
 }

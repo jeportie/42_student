@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:44:18 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/25 15:01:11 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:31:12 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,14 @@ void	ft_move_player(int keysym, t_game *game)
 		if (game->map->map[new_y][new_x] == 'E')
 			game->on_exit = true;
 
+		ft_update_move(game, "floor_1", false);
+
 		game->player->x = new_x;
 		game->player->y = new_y;
 		game->map->map[new_y][new_x] = 'P';
 		game->player->moves++;
-		ft_render_game(game);
-		printf("Player total moves : %i\n", game->player->moves);
+		ft_update_move(game, "back", true);
+//		ft_render_game(game);
 	}
 }
 
