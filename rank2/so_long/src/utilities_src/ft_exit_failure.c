@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:08:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/17 16:54:32 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:06:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_exit_failure(t_game *data, int errnum)
 		"Multiple starting positions not allowed.\n",
 		"Map is not rectangular.\n",
 		"Map is not fully enclosed by walls.\n",
+		"Door need to have more floor space.\n",
 		"No collectibles found in the map.\n",
 		"No exit found in the map.\n",
 		"No start position in the map.\n",

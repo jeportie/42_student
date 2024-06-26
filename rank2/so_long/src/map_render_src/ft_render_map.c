@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:26:09 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/26 10:42:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/26 10:52:47 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,11 +206,11 @@ void    ft_render_info(t_game *game)
     gc_register(moves);
 
     mlx_string_put(game->mlx_ptr, game->win_ptr,
-            (game->map->width / 2 - 10) * MAP_TILE_SIZE,
+            (game->map->width / 2 - 5) * MAP_TILE_SIZE,
 			game->map->height * MAP_TILE_SIZE + 20, 0xFFFFFF, "Total Moves:");
 
     mlx_string_put(game->mlx_ptr, game->win_ptr,
-            (game->map->width / 2 + 5) * MAP_TILE_SIZE,
+            (game->map->width / 2) * MAP_TILE_SIZE,
 			game->map->height * MAP_TILE_SIZE + 20, 0xFFFFFF, moves);
 }
 

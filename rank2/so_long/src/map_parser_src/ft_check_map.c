@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 01:57:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/21 14:21:46 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:08:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,28 @@ void	ft_check_wall(t_game *game)
 	}
 }
 
+void	ft_check_door(t_game *game)
+{
+	int		x;
+	int		y;
+
+	y = 0;
+	while (y < game->map->height)
+	{
+		x = 0;
+		while (game->map->map[y][x] != '\n')
+		{
+			if (game->map->map[y][x] == 'E')
+			{
+				if (game->map->map[y + 1][x] != '0' || game->map->map[y][x + 1] != '0' || game->map->map[y + 1][x + 1] != '0')
+					ft_exit_failure(game, ENODOOR);
+			}
+			x++;
+		}
+		y++;
+	}
+}
+
 void	ft_check_map(t_game *game)
 {
 	int		x;
@@ -158,4 +180,5 @@ void	ft_check_map(t_game *game)
 	ft_check_rectangle(game);
 	ft_check_fill(game);
 	ft_check_wall(game);
+	ft_check_door(game);
 }
