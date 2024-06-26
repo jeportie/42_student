@@ -6,11 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:26:09 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/26 10:52:47 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/26 16:02:47 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
+
+
 
 t_tile	*ft_get_tile(t_game *game, const char *filename)
 {
@@ -19,8 +21,8 @@ t_tile	*ft_get_tile(t_game *game, const char *filename)
 	i = 0;
 	while (i < game->tilecount)
 	{
-		if (ft_strncmp(game->tiles[i]->name, filename,
-				ft_strlen(filename)) == 0)
+		if (!ft_strncmp(game->tiles[i]->name, filename,
+				ft_strlen(filename)))
 			return (game->tiles[i]);
 		i++;
 	}
@@ -29,17 +31,24 @@ t_tile	*ft_get_tile(t_game *game, const char *filename)
 
 void ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x)
 {
+    char    *src_data;
+    char    *dest_data;
+    int     src_line_size;
+    int     dest_line_size;
+    int     bpp;
+    int     i;
+    int     j;
+
     t_tile *tile = ft_get_tile(game, tilename);
     if (!tile || !tile->img)
         ft_exit_failure(game, ENOTILE);
 
-    char *src_data = tile->img->img_data;
-    char *dest_data = game->buffer->img_data;
-    int src_line_size = tile->img->size_line;
-    int dest_line_size = game->buffer->size_line;
-    int bpp = tile->img->bpp / 8;
-    int i = 0, j;
-
+    src_data = tile->img->img_data;
+    dest_data = game->buffer->img_data;
+    src_line_size = tile->img->size_line;
+    dest_line_size = game->buffer->size_line;
+    bpp = tile->img->bpp / 8;
+    i = 0;
     while (i < tile->width)
     {
         j = 0;
@@ -206,11 +215,11 @@ void    ft_render_info(t_game *game)
     gc_register(moves);
 
     mlx_string_put(game->mlx_ptr, game->win_ptr,
-            (game->map->width / 2 - 5) * MAP_TILE_SIZE,
+            (game->map->width / 2 - 3) * MAP_TILE_SIZE,
 			game->map->height * MAP_TILE_SIZE + 20, 0xFFFFFF, "Total Moves:");
 
     mlx_string_put(game->mlx_ptr, game->win_ptr,
-            (game->map->width / 2) * MAP_TILE_SIZE,
+            (game->map->width / 2 + 2) * MAP_TILE_SIZE,
 			game->map->height * MAP_TILE_SIZE + 20, 0xFFFFFF, moves);
 }
 
