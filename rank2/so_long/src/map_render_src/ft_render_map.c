@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:26:09 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/26 16:02:47 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:06:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x)
         j = 0;
         while (j < tile->height)
         {
-            *(unsigned int *)(dest_data + ((y * 16 + j) * dest_line_size) + ((x * 16 + i) * bpp)) =
+            *(unsigned int *)(dest_data + ((y * 16 + j) * dest_line_size)
+                    + ((x * 16 + i) * bpp)) =
             *(unsigned int *)(src_data + (j * src_line_size) + (i * bpp));
             j++;
         }
@@ -80,7 +81,8 @@ void ft_put_tile_to_buffer_offset(t_game *game, const char *tilename, int y, int
         j = 0;
         while (j < tile->height)
         {
-            *(unsigned int *)(dest_data + ((y * 16 + i + offset_y) * dest_line_size) + ((x * 16 + j + offset_x) * bpp)) =
+            *(unsigned int *)(dest_data + ((y * 16 + i + offset_y) * dest_line_size)
+                    + ((x * 16 + j + offset_x) * bpp)) =
             *(unsigned int *)(src_data + (i * src_line_size) + (j * bpp));
             j++;
         }
@@ -88,19 +90,20 @@ void ft_put_tile_to_buffer_offset(t_game *game, const char *tilename, int y, int
     }
 }
 
-void ft_clear_buffer(char *img_data, int bpp, int size_line)
+void ft_clear_buffer(t_game *game, char *img_data, int bpp, int size_line)
 {
     int x, y;
     int pixel_bytes = bpp / 8;
     unsigned int color = 0x000000; // Black color
 
     y = 0;
-    while (y < HEIGHT)
+    while (y < game->map->height * MAP_TILE_SIZE + 50)
     {
         x = 0;
-        while (x < WIDTH)
+        while (x < game->map->width * MAP_TILE_SIZE)
         {
-            *(unsigned int *)(img_data + (y * size_line) + (x * pixel_bytes)) = color;
+            *(unsigned int *)(img_data + (y * size_line)
+                    + (x * pixel_bytes)) = color;
             x++;
         }
         y++;
@@ -120,7 +123,8 @@ void	ft_render_map(t_game *game)
 		{
 			if (game->map->map[y][x] == '1')
 				ft_put_tile_to_buffer(game, "wall_mid", y, x);
-			else if (game->map->map[y][x] == '0' || game->map->map[y][x] == 'C' || game->map->map[y][x] == 'P' ) 
+			else if (game->map->map[y][x] == '0' || game->map->map[y][x] == 'C'
+                    || game->map->map[y][x] == 'P' ) 
 				ft_put_tile_to_buffer(game, "floor_1", y, x);
 			x++;
 		}
@@ -168,8 +172,15 @@ void	ft_render_player(t_game *game)
 		{
 			if (game->map->map[y][x] == 'P')
 			{
-				ft_blend_images(ft_get_tile(game, "player_f")->img, ft_get_tile(game, "back")->img);
+				ft_blend_images(ft_get_tile(game, "player_f")->img,
+                        ft_get_tile(game, "back")->img);
 				ft_put_tile_to_buffer(game, "back", y, x);
+			}
+            else if (game->map->map[y][x] == 'M')
+			{
+				ft_blend_images(ft_get_tile(game, "goblin")->img,
+                      ft_get_tile(game, "mback")->img);
+			ft_put_tile_to_buffer(game, "mback", y, x);
 			}
 			x++;
 		}
@@ -178,7 +189,7 @@ void	ft_render_player(t_game *game)
 
 }
 
-void	ft_update_move(t_game *game, const char *tilename, bool render)
+void	ft_update_player_move(t_game *game, const char *tilename, bool render)
 {
     int x;
     int y;
@@ -202,17 +213,32 @@ void	ft_update_move(t_game *game, const char *tilename, bool render)
     }
     if (render == true)
     {
-        mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->buffer->img_ptr, 0, 0);
+        mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+                game->buffer->img_ptr, 0, 0);
         ft_render_info(game);
+    }
+}
+
+void	ft_update_goblin_move(t_game *game, const char *tilename, bool render)
+{
+    ft_put_tile_to_buffer(game, tilename, game->goblin->y, game->goblin->x);
+    if (render == true)
+    {
+        mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+                game->buffer->img_ptr, 0, 0);
     }
 }
 
 void    ft_render_info(t_game *game)
 {
     char    *moves;
+    int     nbr;
 
-    moves = ft_itoa(game->player->moves);
+    nbr = game->player->moves;
+    moves = ft_itoa(nbr);
     gc_register(moves);
+    if (!moves)
+        ft_exit_failure(game, ENOMEM);
 
     mlx_string_put(game->mlx_ptr, game->win_ptr,
             (game->map->width / 2 - 3) * MAP_TILE_SIZE,

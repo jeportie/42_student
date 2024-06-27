@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/26 11:06:44 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:44:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@
 # include "libft.h"
 # include "printf.h"
 # include "mlx.h"
-
-# define WIDTH 866	
-# define HEIGHT 600
-# define SCALE 20
+# include <math.h>
 
 # define MAP_TILE_SIZE 16
 
@@ -115,6 +112,7 @@ typedef struct s_game
 	int			tilecount;
 	t_map		*map;
 	t_player	*player;
+	t_player	*goblin;
 	int			on_exit;
 }				t_game;
 
@@ -140,7 +138,8 @@ void	ft_render_obj(t_game *game);
 void	ft_render_game(t_game *game);
 void	ft_load_frame(t_game *game);
 void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
-void	ft_update_move(t_game *game, const char *tilename, bool render);
+void	ft_update_player_move(t_game *game, const char *tilename, bool render);
+void	ft_update_goblin_move(t_game *game, const char *tilename, bool render);
 void    ft_render_info(t_game *game);
 
 /* Tileset Parser */
@@ -148,8 +147,8 @@ void	ft_load_tileset(t_game *game, const char *path);
 void	ft_parse_tileset(t_game *game, char *filename);
 t_tile	*ft_get_tile(t_game *game, const char *tile_name);
 void	ft_blend_images(t_img *player, t_img *background);
-void	ft_extract_frame(t_game *game, t_tile *tile, int i);
-void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name);
+void	ft_extract_frame(t_game *game, t_tile *tile);
+void	ft_extract_split(char **parts, t_tile *tile);
 void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y);
 
 /* Garbage_collector function */

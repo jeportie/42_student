@@ -6,13 +6,13 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/06/11 18:49:21 by jeportie         ###   ########.fr        #
+#    Updated: 2024/06/27 09:54:00 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = 			so_long.a
 CC = 			cc
-CFLAGS = 		-Wall -Wextra -g3 -Iinclude -Ilibft -Iminilibx
+CFLAGS = 		-Wall -Wextra -Werror -g3 -Iinclude -Ilibft -Iminilibx
 OBJ_DIR = 		obj
 OUTPUT_DIR = 	outputs
 EXEC_DIR = 		exec

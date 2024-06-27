@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/25 17:12:00 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:14:19 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ void	ft_init_game(t_game *game, char *mapfile)
 		errno = ENOMEM;
 		ft_exit_failure(NULL, ENOMEM);
 	}
+	game->player->moves = 0;
+	game->goblin = gc_malloc(sizeof(t_player));
+	if (!game->goblin)
+	{
+		errno = ENOMEM;
+		ft_exit_failure(NULL, ENOMEM);
+	}
+	game->goblin->moves = 0;
 	ft_parse_map(game, mapfile);
 	ft_start_display(game, "SO_LONG");
 	ft_load_tileset(game, "assets/tileset/tileset.xpm"); 
@@ -44,7 +52,8 @@ void	ft_init_game(t_game *game, char *mapfile)
 		errno = ENOMEM;
 		ft_exit_failure(NULL, ENOMEM);
 	}
-	game->buffer->img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
+	game->buffer->img_ptr = mlx_new_image(game->mlx_ptr, game->map->width * MAP_TILE_SIZE,
+			game->map->height * MAP_TILE_SIZE);
 	if (!game->buffer->img_ptr)
 		ft_exit_failure(game, ENOMEM);
 	game->buffer->img_data = mlx_get_data_addr(game->buffer->img_ptr,

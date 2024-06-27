@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:25:25 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/21 18:22:21 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/27 09:57:27 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	ft_parse_tileset(t_game *game, char *filename)
 		gc_nest_register(parts);
 		if (!parts)
 			ft_exit_failure(game, ENOMEM);
-		ft_extract_split(parts, tile, filename);
-		ft_extract_frame(game, tile, i);
+		ft_extract_split(parts, tile);
+		ft_extract_frame(game, tile);
 		tiles[i++] = tile;
 		line = get_next_line(fd);
 	}
@@ -73,7 +73,7 @@ void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y)
 	}
 }
 
-void	ft_extract_frame(t_game *game, t_tile *tile, int index)
+void	ft_extract_frame(t_game *game, t_tile *tile)
 {
 	t_img	*frame;
 
@@ -90,7 +90,7 @@ void	ft_extract_frame(t_game *game, t_tile *tile, int index)
 	tile->img = frame;
 }
 
-void	ft_extract_split(char **parts, t_tile *tile, const char *tile_name)
+void	ft_extract_split(char **parts, t_tile *tile)
 {
 	ft_strlcpy(tile->name, parts[0], sizeof(tile->name));
 	tile->x = ft_atoi(parts[1]);

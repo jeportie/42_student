@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 01:57:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/26 11:08:26 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:21:02 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_check_char(t_game *game, int x, int y)
 {
-	if (!ft_strchr("01CEP", game->map->map[y][x]))
+	if (!ft_strchr("01CEPM", game->map->map[y][x]))
 	{
 		printf("map[%d][%d] = %c\n", y, x, game->map->map[y][x]);
 		ft_exit_failure(game, ENOCHAR);
@@ -35,6 +35,11 @@ void	ft_check_char(t_game *game, int x, int y)
 		game->player->x = x;
 		game->player->y = y;
 	}
+	if (game->map->map[y][x] == 'M')
+	{
+		game->goblin->x = x;
+		game->goblin->y = y;
+	}
 }
 
 void	ft_check_rectangle(t_game *game)
@@ -46,7 +51,7 @@ void	ft_check_rectangle(t_game *game)
 	i = 0;
 	while (i < game->map->height)
 	{
-		if (ft_strlen(game->map->map[i]) != width)
+		if ((int)ft_strlen(game->map->map[i]) != width)
 			ft_exit_failure(game, ENORECT);
 		i++;
 	}
