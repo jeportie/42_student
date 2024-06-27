@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_handle_hash_flag.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 18:19:49 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/30 17:39:26 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/21 11:24:02 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/pipex.h"
+#include "../include/libft.h"
 
-int	main(void)
+void	ft_handle_hash_flag(t_format_spec spec, int content, t_buffer *buf_info)
 {
-	ft_printf("Hello, Wolrd!\n");
-	return (0);
+	if (spec.flag_hash && content)
+	{
+		ft_buffer_add(buf_info, '0');
+		if (spec.type == 'X')
+			ft_buffer_add(buf_info, 'X');
+		if (spec.type == 'x')
+			ft_buffer_add(buf_info, 'x');
+	}
 }

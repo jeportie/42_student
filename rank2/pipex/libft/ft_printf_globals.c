@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf_globals.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 18:19:49 by jeportie         ###   ########.fr       */
+/*   Created: 2024/01/02 03:49:22 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/21 11:25:48 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/pipex.h"
+#include "../include/libft.h"
 
-int	main(void)
-{
-	ft_printf("Hello, Wolrd!\n");
-	return (0);
-}
+const char	*g_perror[] = {
+	"Success\n",
+	"Error: Failed to write output\n",
+	"Error: Memory allocation failed\n",
+	"Error: Invalid format string\n",
+};

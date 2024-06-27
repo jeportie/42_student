@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_buffer_add.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 18:19:49 by jeportie         ###   ########.fr       */
+/*   Created: 2023/12/25 18:03:11 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/21 11:23:27 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/pipex.h"
+#include "../include/libft.h"
 
-int	main(void)
+void	ft_buffer_add(t_buffer *buf_info, char c)
 {
-	ft_printf("Hello, Wolrd!\n");
-	return (0);
+	if (buf_info->error)
+		return ;
+	if (buf_info->index >= BUFFER_SIZE)
+	{
+		buf_info->buf_last = buf_info->buffer[buf_info->index - 1];
+		if (!ft_buffer_flush(buf_info))
+		{
+			buf_info->error = ERNOWRITE;
+			return ;
+		}
+	}
+	buf_info->buffer[buf_info->index] = c;
+	buf_info->index++;
 }

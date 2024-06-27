@@ -6,13 +6,14 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:08:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/26 11:06:40 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:23:06 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/pipex.h"
 
-void	ft_exit_failure(t_game *data, int errnum)
+	/*
+void	ft_exit_failure(t_pipex *pipex, int errnum)
 {
 	const char	*error_messages[] = 
 	{
@@ -52,3 +53,5 @@ void	ft_exit_failure(t_game *data, int errnum)
 	gc_cleanup();
 	exit(EXIT_FAILURE);
 }
+
+	*/

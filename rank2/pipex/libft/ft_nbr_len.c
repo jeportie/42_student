@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_nbr_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 18:19:49 by jeportie         ###   ########.fr       */
+/*   Created: 2024/01/12 20:44:07 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/21 11:25:11 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/pipex.h"
+#include "../include/libft.h"
 
-int	main(void)
+int	ft_nbr_len(unsigned long long nbr, int base_len)
 {
-	ft_printf("Hello, Wolrd!\n");
-	return (0);
+	int	len;
+
+	len = 1;
+	while (nbr / base_len)
+	{
+		nbr /= base_len;
+		len++;
+	}
+	return (len);
 }

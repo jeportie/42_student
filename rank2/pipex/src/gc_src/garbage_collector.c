@@ -6,15 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 12:13:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/17 16:39:11 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:24:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/pipex.h"
 
 t_gc	g_garbage_collector = {NULL};
-t_game	*g_game = NULL;
-t_map	*g_map = NULL;
 
 void	*gc_malloc(size_t size)
 {

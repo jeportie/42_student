@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/pipex.h"
 
 void gc_collect(void)
 {
@@ -18,13 +18,13 @@ void gc_collect(void)
 	gc_sweep();
 }
 
-void	gc_mark_from_roots(void)
-{
-	if (g_game)
-		gc_mark(g_game);
-	if (g_map)
-		gc_mark(g_map);
-}
+//void	gc_mark_from_roots(void)
+//{
+//	if (g_game)
+//		gc_mark(g_game);
+//	if (g_map)
+//		gc_mark(g_map);
+//}
 
 void	gc_mark(void *ptr)
 {
@@ -86,27 +86,4 @@ void	gc_sweep(void)
 			current = current->next;
 		}
 	}
-}
-
-void	gc_destroy_tiles(t_game *game)
-{
-	int	i;
-
-	if (!game || !game->tiles)
-		return ;
-	i = 0;
-	while (i < game->tilecount)
-	{
-		if (game->tiles[i] && game->tiles[i]->img->img_ptr)
-			mlx_destroy_image(game->mlx_ptr, game->tiles[i]->img->img_ptr);
-		i++;
-	}
-}
-
-void	gc_destroy_tileset(t_game *game)
-{
-	if (!game || !game->tileset)
-		return ;
-	mlx_destroy_image(game->mlx_ptr, game->tileset->img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->buffer->img_ptr);
 }

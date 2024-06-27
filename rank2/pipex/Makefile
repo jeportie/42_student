@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/06/26 17:42:02 by jeportie         ###   ########.fr        #
+#    Updated: 2024/06/27 18:07:46 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,15 +18,12 @@ OUTPUT_DIR = 	outputs
 EXEC_DIR = 		exec
 VALGRIND = 		valgrind --track-origins=yes --leak-check=full
 LIBFT_DIR = 	libft
-PRINTF_DIR =	ft_printf
-LIBS = 			-L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lft_printf 
+LIBS = 			-L$(LIBFT_DIR) -lft
 
-UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c ft_display_controls.c\
-					ft_flood_fill.c)
+UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c)
 
 GARBAGE	=		$(addprefix src/gc_src/, garbage_collector.c gc_collect.c)
 
-#TESTS =			test/tileset_tests.c
 
 OBJ_UTILITIES =	$(UTILITIES:src/utilities_src/%.c=$(OBJ_DIR)/utilities_src_%.o)
 OBJ_GARBAGE	=	$(GARBAGE:src/gc_src/%.c=$(OBJ_DIR)/gc_src_%.o)

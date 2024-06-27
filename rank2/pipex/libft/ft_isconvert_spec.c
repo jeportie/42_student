@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isconvert_spec.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 18:19:49 by jeportie         ###   ########.fr       */
+/*   Created: 2024/01/12 20:39:09 by jeportie          #+#    #+#             */
+/*   Updated: 2024/03/21 11:24:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/pipex.h"
+#include "../include/libft.h"
 
-int	main(void)
+int	ft_isconvert_spec(char c)
 {
-	ft_printf("Hello, Wolrd!\n");
+	if (ft_strchr("cspdiuxX%", c))
+		return (1);
 	return (0);
 }
