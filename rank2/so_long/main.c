@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 14:14:19 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:14:03 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_init_game(t_game *game, char *mapfile)
 	ft_parse_map(game, mapfile);
 	ft_start_display(game, "SO_LONG");
 	ft_load_tileset(game, "assets/tileset/tileset.xpm"); 
+	ft_init_player_anim(game);
 	game->buffer = gc_malloc(sizeof(t_img));
 	if (!game->buffer)
 	{
@@ -73,6 +74,7 @@ int	main(int argc, char **argv)
 
 	mlx_hook(game.win_ptr, 17, 0, ft_close_game, &game);
 	mlx_key_hook(game.win_ptr, ft_display_controls, &game);
+	mlx_loop_hook(game.mlx_ptr, ft_player_anim, &game);
 
 	mlx_loop(game.mlx_ptr);
 

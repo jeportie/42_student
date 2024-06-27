@@ -6,11 +6,12 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:26:09 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 15:06:43 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:34:30 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
+
 
 
 
@@ -187,6 +188,50 @@ void	ft_render_player(t_game *game)
 		y++;
 	}
 
+}
+
+void    ft_init_player_anim(t_game *game)
+{
+	ft_blend_images(ft_get_tile(game, "knight_f_idle_anim_f0")->img, ft_get_tile(game, "1b")->img);
+    ft_blend_images(ft_get_tile(game, "knight_f_idle_anim_f1")->img, ft_get_tile(game, "2b")->img);
+    ft_blend_images(ft_get_tile(game, "knight_f_idle_anim_f2")->img, ft_get_tile(game, "3b")->img);
+    ft_blend_images(ft_get_tile(game, "knight_f_idle_anim_f3")->img, ft_get_tile(game, "4b")->img);
+}
+
+int ft_player_anim(t_game *game)
+{
+    static long count = 500;
+    static int  turn = 0;
+
+    if (game->player->x == game->goblin->x && game->player->y == game->goblin->y)
+        ft_close_game(game);
+    count--;
+    if (!count)
+    {
+        if (!turn)
+        {
+            ft_put_tile_to_buffer(game, "1b", game->player->y, game->player->x);
+            turn++;
+        }
+        else if (turn == 1)
+        {
+            ft_put_tile_to_buffer(game, "2b", game->player->y, game->player->x);
+            turn++;
+        }
+        else if (turn == 2)
+        {
+            ft_put_tile_to_buffer(game, "3b", game->player->y, game->player->x);
+            turn++;
+        }
+        else if (turn == 3)
+        {
+            ft_put_tile_to_buffer(game, "3b", game->player->y, game->player->x);
+            turn = 0;
+        }
+        mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->buffer->img_ptr, 0, 0);
+        count = 800;
+    }
+    return (0);
 }
 
 void	ft_update_player_move(t_game *game, const char *tilename, bool render)
