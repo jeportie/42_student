@@ -6,6 +6,14 @@ knight_f_idle_anim_f2 160 76 16 28
 3b 16 64 16 16
 knight_f_idle_anim_f3 176 76 16 28
 4b 16 64 16 16
+masked_orc_idle_anim_f0 368 160 16 23
+1m 16 64 16 16
+masked_orc_idle_anim_f1 384 160 16 23
+2m 16 64 16 16
+masked_orc_idle_anim_f2 400 160 16 23
+3m 16 64 16 16
+masked_orc_idle_anim_f3 416 160 16 23
+4m 16 64 16 16
 player_f 128 76 16 20
 back 16 64 16 16
 coin 289 385 6 7

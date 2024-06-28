@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:25:25 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 09:57:27 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:50:47 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,28 @@ void	ft_parse_tileset(t_game *game, char *filename)
 	tiles = gc_malloc(sizeof(t_tile) * (game->tilecount + 1));
 	if (!tiles)
 		ft_exit_failure(game, ENOMEM);
-	line = get_next_line(fd);
 	i = 0;
-	while (line)
+	while (i < game->tilecount)
 	{
-		gc_register(line);
-		tile = gc_malloc(sizeof(t_tile));
-		if (!tile)
-			ft_exit_failure(game, ENOMEM);
-		parts = ft_split(line, ' ');
-		gc_nest_register(parts);
-		if (!parts)
-			ft_exit_failure(game, ENOMEM);
-		ft_extract_split(parts, tile);
-		ft_extract_frame(game, tile);
-		tiles[i++] = tile;
+
 		line = get_next_line(fd);
+		gc_register(line);
+		if (*line || *line != '\n')
+		{
+			tile = gc_malloc(sizeof(t_tile));
+			if (!tile)
+				ft_exit_failure(game, ENOMEM);
+			parts = ft_split(line, ' ');
+			gc_nest_register(parts);
+			if (!parts)
+				ft_exit_failure(game, ENOMEM);
+			if (!parts[0] || !parts[1] || !parts[2] || !parts[3] || !parts[4])
+				ft_exit_failure(game, ENOFORMAT);
+			ft_extract_split(parts, tile);
+			ft_extract_frame(game, tile);
+			tiles[i] = tile;
+		}
+		i++;
 	}
 	tiles[i] = NULL;
 	close (fd);
@@ -92,6 +98,7 @@ void	ft_extract_frame(t_game *game, t_tile *tile)
 
 void	ft_extract_split(char **parts, t_tile *tile)
 {
+		
 	ft_strlcpy(tile->name, parts[0], sizeof(tile->name));
 	tile->x = ft_atoi(parts[1]);
 	tile->y = ft_atoi(parts[2]);

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 13:26:09 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 22:34:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/06/28 10:21:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,10 @@ void    ft_init_player_anim(t_game *game)
     ft_blend_images(ft_get_tile(game, "knight_f_idle_anim_f1")->img, ft_get_tile(game, "2b")->img);
     ft_blend_images(ft_get_tile(game, "knight_f_idle_anim_f2")->img, ft_get_tile(game, "3b")->img);
     ft_blend_images(ft_get_tile(game, "knight_f_idle_anim_f3")->img, ft_get_tile(game, "4b")->img);
+	ft_blend_images(ft_get_tile(game, "masked_orc_idle_anim_f0")->img, ft_get_tile(game, "1m")->img);
+    ft_blend_images(ft_get_tile(game, "masked_orc_idle_anim_f1")->img, ft_get_tile(game, "2m")->img);
+    ft_blend_images(ft_get_tile(game, "masked_orc_idle_anim_f2")->img, ft_get_tile(game, "3m")->img);
+    ft_blend_images(ft_get_tile(game, "masked_orc_idle_anim_f3")->img, ft_get_tile(game, "4m")->img);
 }
 
 int ft_player_anim(t_game *game)
@@ -211,24 +215,29 @@ int ft_player_anim(t_game *game)
         if (!turn)
         {
             ft_put_tile_to_buffer(game, "1b", game->player->y, game->player->x);
+            ft_put_tile_to_buffer(game, "1m", game->goblin->y, game->goblin->x);
             turn++;
         }
         else if (turn == 1)
         {
             ft_put_tile_to_buffer(game, "2b", game->player->y, game->player->x);
+            ft_put_tile_to_buffer(game, "2m", game->goblin->y, game->goblin->x);
             turn++;
         }
         else if (turn == 2)
         {
             ft_put_tile_to_buffer(game, "3b", game->player->y, game->player->x);
+            ft_put_tile_to_buffer(game, "3m", game->goblin->y, game->goblin->x);
             turn++;
         }
         else if (turn == 3)
         {
-            ft_put_tile_to_buffer(game, "3b", game->player->y, game->player->x);
+            ft_put_tile_to_buffer(game, "4b", game->player->y, game->player->x);
+            ft_put_tile_to_buffer(game, "4m", game->goblin->y, game->goblin->x);
             turn = 0;
         }
         mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->buffer->img_ptr, 0, 0);
+
         count = 800;
     }
     return (0);
@@ -277,6 +286,7 @@ void	ft_update_goblin_move(t_game *game, const char *tilename, bool render)
 void    ft_render_info(t_game *game)
 {
     char    *moves;
+    char    *old_moves;
     int     nbr;
 
     nbr = game->player->moves;
@@ -284,11 +294,17 @@ void    ft_render_info(t_game *game)
     gc_register(moves);
     if (!moves)
         ft_exit_failure(game, ENOMEM);
+    old_moves = ft_itoa(nbr - 1);
+    gc_register(old_moves);
+    if (!moves)
+        ft_exit_failure(game, ENOMEM);
 
     mlx_string_put(game->mlx_ptr, game->win_ptr,
             (game->map->width / 2 - 3) * MAP_TILE_SIZE,
 			game->map->height * MAP_TILE_SIZE + 20, 0xFFFFFF, "Total Moves:");
-
+    mlx_string_put(game->mlx_ptr, game->win_ptr,
+            (game->map->width / 2 + 2) * MAP_TILE_SIZE,
+			game->map->height * MAP_TILE_SIZE + 20, 0x000000, old_moves);
     mlx_string_put(game->mlx_ptr, game->win_ptr,
             (game->map->width / 2 + 2) * MAP_TILE_SIZE,
 			game->map->height * MAP_TILE_SIZE + 20, 0xFFFFFF, moves);
@@ -299,10 +315,9 @@ void	ft_render_game(t_game *game)
 //	ft_clear_buffer(game->buffer->img_data, game->buffer->bpp, game->buffer->size_line);
 
 
+    ft_render_info(game);
     ft_render_map(game);
 	ft_render_obj(game);
 	ft_render_player(game);
-
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->buffer->img_ptr, 0, 0);
-    ft_render_info(game);
 }
