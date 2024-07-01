@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:08:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/26 11:06:40 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:48:37 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_exit_failure(t_game *data, int errnum)
 		"No exit found in the map.\n",
 		"No start position in the map.\n",
 		"Usage : ./so_long <map_file.ber>\n",
+		"Tileset list has an invalid format.\n",
 		"Map has no possible path to exit.\n",
 		"Failed to initialize mlx.\n",
 		"Failed to find tile in tileset.\n",
@@ -43,8 +44,11 @@ void	ft_exit_failure(t_game *data, int errnum)
 		perror((char *)error_messages[errnum - 100]);
 	else
 		ft_putstr_fd("Unknown error\n", 2);
-	gc_destroy_tiles(data);
-	gc_destroy_tileset(data);
+	if (data->tiles)
+	{
+		gc_destroy_tiles(data);
+		gc_destroy_tileset(data);
+	}
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)

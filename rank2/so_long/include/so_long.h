@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 21:59:51 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:06:15 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef enum e_ErrorCode
 	ENOEXIT2,
 	ENOSTART2,
 	ENOFORMAT,
+	ENOLIST,
 	ENOPATH,
 	ENOINIT,
 	ENOTILE,

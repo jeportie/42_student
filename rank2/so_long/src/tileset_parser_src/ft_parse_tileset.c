@@ -6,11 +6,13 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:25:25 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/28 10:50:47 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:46:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
+
+
 
 void	ft_parse_tileset(t_game *game, char *filename)
 {
@@ -30,11 +32,13 @@ void	ft_parse_tileset(t_game *game, char *filename)
 	if (!tiles)
 		ft_exit_failure(game, ENOMEM);
 	i = 0;
+
+	line = get_next_line(fd);
+	gc_register(line);
+	if (!line)
+		ft_exit_failure(game, ENOMEM);
 	while (i < game->tilecount)
 	{
-
-		line = get_next_line(fd);
-		gc_register(line);
 		if (*line || *line != '\n')
 		{
 			tile = gc_malloc(sizeof(t_tile));
@@ -44,13 +48,12 @@ void	ft_parse_tileset(t_game *game, char *filename)
 			gc_nest_register(parts);
 			if (!parts)
 				ft_exit_failure(game, ENOMEM);
-			if (!parts[0] || !parts[1] || !parts[2] || !parts[3] || !parts[4])
-				ft_exit_failure(game, ENOFORMAT);
 			ft_extract_split(parts, tile);
 			ft_extract_frame(game, tile);
-			tiles[i] = tile;
+			tiles[i++] = tile;
 		}
-		i++;
+		line = get_next_line(fd);
+		gc_register(line);
 	}
 	tiles[i] = NULL;
 	close (fd);

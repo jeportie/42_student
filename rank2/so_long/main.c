@@ -6,13 +6,40 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/27 22:14:03 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:03:57 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/so_long.h"
 #include <X11/keysym.h>
 #include <X11/X.h>
+
+bool	ft_check_tilelist(char *filename)
+{
+	int		fd;
+	char	*line;
+	int		count;
+
+	count = 0;
+	fd = open(filename, O_RDONLY);
+	gc_fd_register(fd);
+	if (fd < 0)
+	{
+		errno = ENOENT;
+		ft_exit_failure(NULL, ENOENT);
+	}
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (*line == '\n')
+			count++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (count)
+		return (false);
+	return (true);
+}
 
 void	ft_start_display(t_game *game, char *title)
 {
@@ -45,6 +72,8 @@ void	ft_init_game(t_game *game, char *mapfile)
 	game->goblin->moves = 0;
 	ft_parse_map(game, mapfile);
 	ft_start_display(game, "SO_LONG");
+	if (!ft_check_tilelist("assets/tileset/tile_list"))
+		ft_exit_failure(game, ENOLIST);
 	ft_load_tileset(game, "assets/tileset/tileset.xpm"); 
 	ft_init_player_anim(game);
 	game->buffer = gc_malloc(sizeof(t_img));
@@ -68,6 +97,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		ft_exit_failure(&game, ENOFORMAT);
+
 
 	ft_init_game(&game, argv[1]);
 	ft_render_game(&game);

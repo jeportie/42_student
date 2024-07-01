@@ -6,12 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 17:14:11 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/19 15:44:26 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/01 20:53:39 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
-
 
 void	ft_load_tileset(t_game *game, const char *path)
 {
