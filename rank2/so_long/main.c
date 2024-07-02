@@ -15,6 +15,7 @@
 t_game	*g_game = NULL;
 t_map	*g_map = NULL;
 
+//essayer d'enlever game et tout passer dans g_game si non ca sert a rien poiur le garbage
 int	main(int argc, char **argv)
 {
 	t_game	game = {0};
