@@ -6,11 +6,14 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 00:51:27 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/21 14:08:09 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:14:52 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
+
+static void	ft_allocate_map(t_game *game);
+static void	ft_store_map(char *filename, t_game *game);
 
 void	ft_read_map(char *filename, t_game *game)
 {
@@ -20,31 +23,7 @@ void	ft_read_map(char *filename, t_game *game)
 	ft_store_map(filename, game);
 }
 
-int	ft_count_lines(char *filename)
-{
-	int		fd;
-	char	*line;
-	int		count;
-
-	count = 0;
-	fd = open(filename, O_RDONLY);
-	gc_fd_register(fd);
-	if (fd < 0)
-	{
-		errno = ENOENT;
-		ft_exit_failure(NULL, ENOENT);
-	}
-	line = get_next_line(fd);
-	while (line)
-	{
-		free(line);
-		count++;
-		line = get_next_line(fd);
-	}
-	return (count);
-}
-
-void	ft_allocate_map(t_game *game)
+static void	ft_allocate_map(t_game *game)
 {
 	game->map->map = gc_malloc(sizeof (char *) * (game->map->height + 1));
 	if (!game->map)
@@ -54,7 +33,7 @@ void	ft_allocate_map(t_game *game)
 	}
 }
 
-void	ft_store_map(char *filename, t_game *game)
+static void	ft_store_map(char *filename, t_game *game)
 {
 	int		fd;
 	char	*line;

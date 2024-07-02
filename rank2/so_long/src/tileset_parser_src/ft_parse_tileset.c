@@ -6,13 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:25:25 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/01 20:46:43 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:29:44 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
-
-
 
 void	ft_parse_tileset(t_game *game, char *filename)
 {
@@ -32,7 +30,6 @@ void	ft_parse_tileset(t_game *game, char *filename)
 	if (!tiles)
 		ft_exit_failure(game, ENOMEM);
 	i = 0;
-
 	line = get_next_line(fd);
 	gc_register(line);
 	if (!line)
@@ -57,7 +54,7 @@ void	ft_parse_tileset(t_game *game, char *filename)
 	}
 	tiles[i] = NULL;
 	close (fd);
-    game->tiles = tiles;
+	game->tiles = tiles;
 }
 
 void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y)

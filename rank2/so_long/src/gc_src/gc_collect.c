@@ -6,27 +6,55 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:23:26 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/25 17:27:36 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/02 10:59:10 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
+#include <stdarg.h>
 
-void gc_collect(void)
+static void	gc_mark(void *ptr);
+static void	gc_sweep(void);
+
+void	gc_collect(const char *format, ...)
 {
-	gc_mark_from_roots();
+	va_list	args;
+	int		i;
+	void	*ptr;
+
+	va_start(args, format);
+	i = 0;
+	while (format[i])
+	{
+		if (format[i] == 'p')
+		{
+			ptr = va_arg(args, void *);
+			gc_mark(ptr);
+		}
+		i++;
+	}
+	va_end(args);
 	gc_sweep();
 }
 
-void	gc_mark_from_roots(void)
+static void	gc_delete_node(t_gc_node **prev, t_gc_node **current)
 {
-	if (g_game)
-		gc_mark(g_game);
-	if (g_map)
-		gc_mark(g_map);
+	t_gc_node	*next_node;
+
+	next_node = (*current)->next;
+	if (*prev)
+		(*prev)->next = next_node;
+	else
+		g_garbage_collector.head = next_node;
+	if ((*current)->fd)
+		close((*current)->fd);
+	else
+		free((*current)->ptr);
+	free(*current);
+	*current = next_node;
 }
 
-void	gc_mark(void *ptr)
+static void	gc_mark(void *ptr)
 {
 	t_gc_node	*current;
 	void		**array;
@@ -54,7 +82,7 @@ void	gc_mark(void *ptr)
 	}
 }
 
-void	gc_sweep(void)
+static void	gc_sweep(void)
 {
 	t_gc_node	*current;
 	t_gc_node	*prev;
@@ -65,19 +93,7 @@ void	gc_sweep(void)
 	{
 		if (!current->is_marked)
 		{
-			if (prev)
-				prev->next = current->next;
-			else
-				g_garbage_collector.head = current->next;
-			if (current->fd)
-				close(current->fd);
-			else
-				free(current->ptr);
-			free(current);
-			if (prev)
-				current = prev->next;
-			else
-				current = g_garbage_collector.head;
+			gc_delete_node(&prev, &current);
 		}
 		else
 		{
@@ -86,27 +102,4 @@ void	gc_sweep(void)
 			current = current->next;
 		}
 	}
-}
-
-void	gc_destroy_tiles(t_game *game)
-{
-	int	i;
-
-	if (!game || !game->tiles)
-		return ;
-	i = 0;
-	while (i < game->tilecount)
-	{
-		if (game->tiles[i] && game->tiles[i]->img->img_ptr)
-			mlx_destroy_image(game->mlx_ptr, game->tiles[i]->img->img_ptr);
-		i++;
-	}
-}
-
-void	gc_destroy_tileset(t_game *game)
-{
-	if (!game || !game->tileset)
-		return ;
-	mlx_destroy_image(game->mlx_ptr, game->tileset->img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->buffer->img_ptr);
 }
