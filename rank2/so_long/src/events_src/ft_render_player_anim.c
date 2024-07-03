@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:46:52 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 10:46:52 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:52:37 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	ft_render_player_anim(t_game *game)
 {
-	static int	turn;
+	static int	turn = 0;
 
-	turn = 0;
 	if (!turn)
 	{
 		ft_put_tile_to_buffer(game, "1b", game->player->y, game->player->x);

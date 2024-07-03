@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:46:46 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 10:46:46 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:52:50 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	ft_render_goblin_anim(t_game *game)
 {
-	static int	turn;
+	static int	turn = 0;
 
-	turn = 0;
 	if (!turn)
 	{
 		ft_put_tile_to_buffer(game, "1m", game->goblin->y, game->goblin->x);

@@ -18,7 +18,7 @@
 # include <stdbool.h>
 # include <limits.h>
 # include <X11/keysym.h>
-#include <X11/X.h>
+# include <X11/X.h>
 # include <errno.h>
 # include <string.h>
 # include <stdlib.h>
@@ -26,7 +26,6 @@
 # include <stdio.h>
 # include "libft.h"
 # include "mlx.h"
-# include "garbage.h"
 
 # define MAP_TILE_SIZE 16
 # define GAME_BORDER 50

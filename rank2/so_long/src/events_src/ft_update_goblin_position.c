@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:33:17 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 12:33:59 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:55:35 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,8 @@ void	ft_update_goblin_position(t_game *game)
 	else if (game->goblin->moves == 2)
 		ft_write_goblin(game, 2);
 	else
+	{
 		ft_write_goblin(game, 3);
+		game->goblin->moves = 0;
+	}
 }

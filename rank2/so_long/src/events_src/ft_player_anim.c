@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:26:29 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 14:49:53 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 13:53:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int	ft_player_anim(t_game *game)
 {
-	static long	count;
+	static long	count = 2000;
 
-	count = 2000;
 	if (game->player->x == game->goblin->x
 		&& game->player->y == game->goblin->y)
 		ft_close_game(game);
