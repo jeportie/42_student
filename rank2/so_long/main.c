@@ -6,16 +6,15 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/01 21:03:57 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 10:30:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/so_long.h"
 
-t_game	*g_game = NULL;
-t_map	*g_map = NULL;
+t_game		*g_game = NULL;
+t_map		*g_map = NULL;
 
-//essayer d'enlever game et tout passer dans g_game si non ca sert a rien poiur le garbage
 int	main(int argc, char **argv)
 {
 	t_game	game = {0};

@@ -6,11 +6,17 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:39:39 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 12:39:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 10:39:13 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
+
+static void	ft_update_pos(t_player *type, int x, int y)
+{
+	type->x = x;
+	type->y = y;
+}
 
 void	ft_check_char(t_game *game, int x, int y)
 {
@@ -32,12 +38,10 @@ void	ft_check_char(t_game *game, int x, int y)
 		if (game->map->p_count)
 			ft_exit_failure(game, ENOSTART);
 		game->map->p_count++;
-		game->player->x = x;
-		game->player->y = y;
+		ft_update_pos(game->player, x, y);
 	}
 	if (game->map->map[y][x] == 'M')
 	{
-		game->goblin->x = x;
-		game->goblin->y = y;
+		ft_update_pos(game->goblin, x, y);
 	}
 }

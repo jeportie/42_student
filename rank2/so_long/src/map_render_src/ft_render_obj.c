@@ -6,13 +6,12 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:24:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 15:25:13 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:12:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
-//attention segfault si nom du tiles existe pas -> proteger ca
 void	ft_render_obj(t_game *game)
 {
 	int		x;
@@ -25,7 +24,7 @@ void	ft_render_obj(t_game *game)
 		while (x < game->map->width)
 		{
 			if (game->map->map[y][x] == 'C')
-				ft_put_tile_to_buffer_offset(game, "coin", y, x, 4, 5);
+				ft_put_tile_to_buffer(game, "coin", y, x);
 			else if (game->map->map[y][x] == 'E')
 			{
 				if (!game->map->c_count)

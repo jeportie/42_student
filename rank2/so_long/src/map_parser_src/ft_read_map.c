@@ -12,17 +12,6 @@
 
 #include "../../include/so_long.h"
 
-static void	ft_allocate_map(t_game *game);
-static void	ft_store_map(char *filename, t_game *game);
-
-void	ft_read_map(char *filename, t_game *game)
-{
-	ft_memset(game, 0, sizeof(t_map));
-	game->map->height = ft_count_lines(filename);
-	ft_allocate_map(game);
-	ft_store_map(filename, game);
-}
-
 static void	ft_allocate_map(t_game *game)
 {
 	game->map->map = gc_malloc(sizeof (char *) * (game->map->height + 1));
@@ -56,4 +45,12 @@ static void	ft_store_map(char *filename, t_game *game)
 		gc_register(line);
 	}
 	game->map->map[i] = NULL;
+}
+
+void	ft_read_map(char *filename, t_game *game)
+{
+	ft_memset(game, 0, sizeof(t_map));
+	game->map->height = ft_count_lines(filename);
+	ft_allocate_map(game);
+	ft_store_map(filename, game);
 }

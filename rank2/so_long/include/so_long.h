@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 15:24:08 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 10:15:10 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_tile
 	int		y;
 	int		width;
 	int		height;
+	int		offset;
 	t_img	*img;
 }				t_tile;
 
@@ -103,8 +104,9 @@ typedef struct s_game
 	int			on_exit;
 }				t_game;
 
-extern t_game	*g_game;
-extern t_map	*g_map;
+extern t_game		*g_game;
+extern t_map		*g_map;
+extern const char	*g_error_mesages;
 
 /* Map Parser functions */
 void	ft_parse_map(t_game *game, char *filename);
@@ -128,16 +130,12 @@ void	ft_load_frame(t_game *game);
 void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 void	ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x);
 void	ft_put_tile_to_buffer_offset(t_game *game, const char *tilename,
-			int y, int x, int offset_y, int offset_x);
+			int y, int x, int offset);
 
 /* Tileset Parser */
 void	ft_load_tileset(t_game *game, const char *path);
 void	ft_parse_tileset(t_game *game, char *filename);
 t_tile	*ft_get_tile(t_game *game, const char *tile_name);
-void	ft_blend_images(t_img *player, t_img *background);
-void	ft_extract_frame(t_game *game, t_tile *tile);
-void	ft_extract_split(char **parts, t_tile *tile);
-void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y);
 bool	ft_check_tilelist(char *filename);
 
 /* Events Functions */
@@ -163,6 +161,7 @@ void	ft_start_display(t_game *game, char *title);
 void	ft_init_game(t_game *game, char *mapfile);
 void	ft_exit_failure(t_game *game, int errnum);
 void	ft_flood_fill(t_game *game, int x, int y);
+void	ft_blend_images(t_img *player, t_img *background);
 int		ft_display_controls(int keysym, t_game *game);
 int		ft_close_window(t_game *game);
 int		ft_close_game(t_game *game);
