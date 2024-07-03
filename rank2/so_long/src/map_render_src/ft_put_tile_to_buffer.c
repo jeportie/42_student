@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:57:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 13:42:25 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:51:56 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x)
 	tile = ft_get_tile(game, tilename);
 	if (!tile || !tile->img)
 		ft_exit_failure(game, ENOTILE);
-	if (ft_strncmp(tilename, "coin", ft_strlen(tilename)))
-		tile->offset = 5;
 	i = 0;
 	while (i < tile->width)
 	{
@@ -30,8 +28,8 @@ void	ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x)
 		while (j < tile->height)
 		{
 			*(unsigned int *)(game->buffer->img_data + ((y * 16 + j
-							- tile->offset) * game->buffer->size_line)
-					+ ((x * 16 + i - tile->offset) * (tile->img->bpp / 8)))
+							+ tile->offset) * game->buffer->size_line)
+					+ ((x * 16 + i + tile->offset) * (tile->img->bpp / 8)))
 				= *(unsigned int *)(tile->img->img_data
 					+ (j * tile->img->size_line) + (i * (tile->img->bpp / 8)));
 			j++;

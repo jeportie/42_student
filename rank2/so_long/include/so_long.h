@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 10:15:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:04:31 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ typedef struct s_game
 }				t_game;
 
 extern t_game		*g_game;
-extern t_map		*g_map;
 extern const char	*g_error_mesages;
 
 /* Map Parser functions */

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:25:25 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 09:20:34 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/03 14:52:55 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static void	ft_extract_split(char **parts, t_tile *tile)
 	tile->y = ft_atoi(parts[2]);
 	tile->width = ft_atoi(parts[3]);
 	tile->height = ft_atoi(parts[4]);
-	tile->offset = 0;
+	if (parts[5])
+		tile->offset = ft_atoi(parts[5]);
+	else
+		tile->offset = 0;
 }
 
 static void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y)

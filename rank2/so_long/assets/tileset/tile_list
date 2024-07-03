@@ -16,7 +16,7 @@ masked_orc_idle_anim_f3 416 160 16 23
 4m 16 64 16 16
 player_f 128 76 16 20
 back 16 64 16 16
-coin 289 385 6 7
+coin 289 385 6 7 5
 bcoin 16 64 16 16
 door_closed 32 240 32 32
 dcback 16 64 16 16
