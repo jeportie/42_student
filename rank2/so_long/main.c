@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 15:24:00 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:44:38 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	ft_memset(&game, 0, sizeof(t_game));
+	game.state = NO_WIN;
 	if (argc != 2)
 		ft_exit_failure(&game, ENOFORMAT);
 	g_game = &game;

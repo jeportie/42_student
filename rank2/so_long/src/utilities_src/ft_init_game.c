@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:09:19 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 15:18:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:23:01 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ static void	ft_init_objects(t_game *game)
 		ft_exit_failure(NULL, ENOMEM);
 	}
 	game->goblin->moves = 0;
+	game->orc = gc_malloc(sizeof(t_player));
+	if (!game->orc)
+	{
+		errno = ENOMEM;
+		ft_exit_failure(NULL, ENOMEM);
+	}
+	game->orc->moves = 0;
 }
 
 void	ft_init_game(t_game *game, char *mapfile)
@@ -35,9 +42,11 @@ void	ft_init_game(t_game *game, char *mapfile)
 	ft_init_objects(game);
 	ft_parse_map(game, mapfile);
 	ft_start_display(game, "SO_LONG");
-	if (!ft_check_tilelist("assets/tileset/tile_list"))
+	game->state = NO_TILE;
+	if (!ft_check_tilelist(game, "assets/tileset/tile_list"))
 		ft_exit_failure(game, ENOLIST);
 	ft_load_tileset(game, "assets/tileset/tileset.xpm");
+	game->state = LOADED;
 	ft_init_player_anim(game);
 	game->buffer = gc_malloc(sizeof(t_img));
 	if (!game->buffer)

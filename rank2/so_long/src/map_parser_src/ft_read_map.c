@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 00:51:27 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 14:14:52 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:21:13 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ static void	ft_store_map(char *filename, t_game *game)
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
-	gc_fd_register(fd);
 	if (fd < 0)
 	{
 		errno = ENOENT;
+		ft_putstr_fd("Map file not found\n", 2);
 		ft_exit_failure(game, ENOENT);
 	}
+	gc_fd_register(fd);
+	game->map->height = ft_count_lines(filename);
+	ft_allocate_map(game);
 	line = get_next_line(fd);
 	gc_register(line);
 	while (line)
@@ -50,7 +53,5 @@ static void	ft_store_map(char *filename, t_game *game)
 void	ft_read_map(char *filename, t_game *game)
 {
 	ft_memset(game, 0, sizeof(t_map));
-	game->map->height = ft_count_lines(filename);
-	ft_allocate_map(game);
 	ft_store_map(filename, game);
 }

@@ -6,25 +6,115 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:26:29 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 13:53:22 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 19:18:28 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
+void	ft_update_orc_position(t_game *game)
+{
+	static int	opt = 0;
+
+
+	if (!opt)
+	{
+		if (game->map->map[game->orc->y + 3][game->orc->x] != '1')
+		{
+			if (game->map->map[game->orc->y + 1][game->orc->x] == 'C')
+				game->orc->on_exit = 1;
+			game->map->map[game->orc->y + 1][game->orc->x] = 'M';
+			game->orc->y++;
+		}
+		else
+		{
+			if (opt < 3)
+				opt++;
+			else
+				opt = 0;
+		}
+	}
+	else if (opt == 1)
+	{
+		if (game->map->map[game->orc->y][game->orc->x + 3] != '1')
+		{
+			if (game->map->map[game->orc->y][game->orc->x + 1] == 'C')
+				game->orc->on_exit = 1;
+			game->map->map[game->orc->y][game->orc->x + 1] = 'M';
+			game->orc->x++;
+		}
+		else
+		{
+			if (opt < 3)
+				opt++;
+			else
+				opt = 0;
+		}
+	}
+	else if (opt == 2)
+	{
+		if (game->map->map[game->orc->y - 3][game->orc->x] != '1')
+		{
+			if (game->map->map[game->orc->y - 1][game->orc->x] == 'C')
+				game->orc->on_exit = 1;
+			game->map->map[game->orc->y - 1][game->orc->x] = 'M';
+			game->orc->y--;
+		}
+		else
+		{
+			if (opt < 3)
+				opt++;
+			else
+				opt = 0;
+		}
+	}
+	else if (opt == 3)
+	{
+		if (game->map->map[game->orc->y][game->orc->x - 3] != '1')
+		{
+			if (game->map->map[game->orc->y][game->orc->x - 1] == 'C')
+				game->orc->on_exit = 1;
+			game->map->map[game->orc->y][game->orc->x - 1] = 'M';
+			game->orc->x--;
+		}
+		else
+		{
+			if (opt < 3)
+				opt++;
+			else
+				opt = 0;
+		}
+	}
+	game->orc->moves++;
+}
+
+void	ft_move_orc(t_game *game)
+{
+	ft_update_orc_move(game, "floor_1", false);
+	ft_update_orc_position(game);
+	ft_update_orc_move(game, "1n", true);
+}
+
+
 int	ft_player_anim(t_game *game)
 {
-	static long	count = 2000;
+	static long	count = 1000;
+	static long	speed = 1800;
 
-	if (game->player->x == game->goblin->x
-		&& game->player->y == game->goblin->y)
-		ft_close_game(game);
 	count--;
+	speed--;
+	ft_check_exit(game, game->player->y, game->player->x);
 	if (!count)
 	{
 		ft_render_player_anim(game);
 		ft_render_goblin_anim(game);
-		count = 2000;
+		ft_render_orc_anim(game);
+		count = 1000;
+	}
+	if (!speed)
+	{
+		ft_move_orc(game);
+		speed = 3500;
 	}
 	return (0);
 }

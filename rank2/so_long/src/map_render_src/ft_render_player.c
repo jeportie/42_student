@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 15:25:34 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 15:25:34 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:12:11 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,11 @@ void	ft_render_player(t_game *game)
 		while (x < game->map->width)
 		{
 			if (game->map->map[y][x] == 'P')
-			{
-				ft_blend_images(ft_get_tile(game, "player_f")->img,
-					ft_get_tile(game, "back")->img);
-				ft_put_tile_to_buffer(game, "back", y, x);
-			}
+				ft_put_tile_to_buffer(game, "1b", y, x);
 			else if (game->map->map[y][x] == 'M')
-			{
-				ft_blend_images(ft_get_tile(game, "goblin")->img,
-					ft_get_tile(game, "mback")->img);
-				ft_put_tile_to_buffer(game, "mback", y, x);
-			}
+				ft_put_tile_to_buffer(game, "1m", y, x);
+			else if (game->map->map[y][x] == 'N')
+				ft_put_tile_to_buffer(game, "1n", y, x);
 			x++;
 		}
 		y++;

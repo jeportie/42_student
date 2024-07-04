@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:08:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 08:29:25 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:12:33 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,24 @@ const char	*g_error_messages[] = {
 	"Failed to create window.\n"
 };
 
-void	ft_exit_failure(t_game *data, int errnum)
+static void	ft_exit_tiles(t_game *game)
+{
+	if (game->tiles)
+	{
+		gc_destroy_tiles(game);
+		gc_destroy_tileset(game);
+	}
+}
+
+static void	ft_exit_device(t_game *game)
+{
+	if (game->win_ptr)
+		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	if (game->mlx_ptr)
+		mlx_destroy_display(game->mlx_ptr);
+}
+
+void	ft_exit_failure(t_game *game, int errnum)
 {
 	errno = errnum;
 	if (errnum >= ENOCHAR && errnum <= ENOPATH)
@@ -44,15 +61,10 @@ void	ft_exit_failure(t_game *data, int errnum)
 		perror((char *)g_error_messages[errnum - 100]);
 	else
 		ft_putstr_fd("Unknown error\n", 2);
-	if (data->tiles)
-	{
-		gc_destroy_tiles(data);
-		gc_destroy_tileset(data);
-	}
-	if (data->win_ptr)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	if (data->mlx_ptr)
-		mlx_destroy_display(data->mlx_ptr);
+	if (game != NULL && game->state ==  LOADED)
+		ft_exit_tiles(game);
+	if (game != NULL && (game->state == LOADED || game->state == NO_TILE))
+		ft_exit_device(game);
 	gc_cleanup();
 	exit(EXIT_FAILURE);
 }

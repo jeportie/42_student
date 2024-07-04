@@ -20,7 +20,7 @@ static void	ft_update_pos(t_player *type, int x, int y)
 
 void	ft_check_char(t_game *game, int x, int y)
 {
-	if (!ft_strchr("01CEPM", game->map->map[y][x]))
+	if (!ft_strchr("01CEPMN", game->map->map[y][x]))
 	{
 		printf("map[%d][%d] = %c\n", y, x, game->map->map[y][x]);
 		ft_exit_failure(game, ENOCHAR);
@@ -41,7 +41,7 @@ void	ft_check_char(t_game *game, int x, int y)
 		ft_update_pos(game->player, x, y);
 	}
 	if (game->map->map[y][x] == 'M')
-	{
 		ft_update_pos(game->goblin, x, y);
-	}
+	if (game->map->map[y][x] == 'N')
+		ft_update_pos(game->orc, x, y);
 }

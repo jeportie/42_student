@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:53:58 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 12:55:03 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:44:53 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	ft_count_lines(char *filename)
 
 	count = 0;
 	fd = open(filename, O_RDONLY);
-	gc_fd_register(fd);
 	if (fd < 0)
 	{
 		errno = ENOENT;
 		ft_exit_failure(NULL, ENOENT);
 	}
+	gc_fd_register(fd);
 	line = get_next_line(fd);
 	while (line)
 	{

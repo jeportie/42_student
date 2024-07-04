@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:46:46 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 13:52:50 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 11:28:18 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,50 @@ void	ft_render_goblin_anim(t_game *game)
 
 	if (!turn)
 	{
-		ft_put_tile_to_buffer(game, "1m", game->goblin->y, game->goblin->x);
+		ft_put_tile_to_buffer(game, "2m", game->goblin->y, game->goblin->x);
 		turn++;
 	}
 	else if (turn == 1)
 	{
-		ft_put_tile_to_buffer(game, "2m", game->goblin->y, game->goblin->x);
+		ft_put_tile_to_buffer(game, "3m", game->goblin->y, game->goblin->x);
 		turn++;
 	}
 	else if (turn == 2)
 	{
-		ft_put_tile_to_buffer(game, "3m", game->goblin->y, game->goblin->x);
+		ft_put_tile_to_buffer(game, "4m", game->goblin->y, game->goblin->x);
 		turn++;
 	}
 	else if (turn == 3)
 	{
-		ft_put_tile_to_buffer(game, "4m", game->goblin->y, game->goblin->x);
+		ft_put_tile_to_buffer(game, "1m", game->goblin->y, game->goblin->x);
+		turn = 0;
+	}
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+		game->buffer->img_ptr, 0, 0);
+}
+
+void	ft_render_orc_anim(t_game *game)
+{
+	static int	turn = 0;
+
+	if (!turn)
+	{
+		ft_put_tile_to_buffer(game, "3n", game->orc->y, game->orc->x);
+		turn++;
+	}
+	else if (turn == 1)
+	{
+		ft_put_tile_to_buffer(game, "4n", game->orc->y, game->orc->x);
+		turn++;
+	}
+	else if (turn == 2)
+	{
+		ft_put_tile_to_buffer(game, "1n", game->orc->y, game->orc->x);
+		turn++;
+	}
+	else if (turn == 3)
+	{
+		ft_put_tile_to_buffer(game, "2n", game->orc->y, game->orc->x);
 		turn = 0;
 	}
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,

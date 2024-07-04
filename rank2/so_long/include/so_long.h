@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 15:04:31 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:14:21 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 
 # define MAP_TILE_SIZE 16
 # define GAME_BORDER 50
+# define NO_WIN 1
+# define NO_TILE 2
+# define LOADED 3
 
 typedef enum e_ErrorCode
 {
@@ -99,8 +102,10 @@ typedef struct s_game
 	int			tilecount;
 	t_map		*map;
 	t_player	*player;
+	t_player	*orc;
 	t_player	*goblin;
-	int			on_exit;
+	bool		on_exit;
+	int			state;
 }				t_game;
 
 extern t_game		*g_game;
@@ -134,17 +139,20 @@ void	ft_put_tile_to_buffer_offset(t_game *game, const char *tilename,
 void	ft_load_tileset(t_game *game, const char *path);
 void	ft_parse_tileset(t_game *game, char *filename);
 t_tile	*ft_get_tile(t_game *game, const char *tile_name);
-bool	ft_check_tilelist(char *filename);
+bool	ft_check_tilelist(t_game *game, char *filename);
 
 /* Events Functions */
 void	ft_update_position(int keysym, int *y, int *x);
 void	ft_update_goblin_position(t_game *game);
+void	ft_update_orc_position(t_game *game);
 void	ft_check_exit(t_game *game, int new_y, int new_x);
 void	ft_move_player(int keysym, t_game *game);
 void	ft_update_player_move(t_game *game, const char *tilename, bool render);
 void	ft_update_goblin_move(t_game *game, const char *tilename, bool render);
+void	ft_update_orc_move(t_game *game, const char *tilename, bool render);
 void	ft_render_player_anim(t_game *game);
 void	ft_render_goblin_anim(t_game *game);
+void	ft_render_orc_anim(t_game *game);
 void	ft_render_info(t_game *game);
 int		ft_player_anim(t_game *game);
 void	ft_init_player_anim(t_game *game);

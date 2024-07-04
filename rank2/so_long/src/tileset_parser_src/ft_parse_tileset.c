@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:25:25 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 14:52:55 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:59:33 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,20 @@ void	ft_parse_tileset(t_game *game, char *filename)
 	char	*line;
 
 	fd = open(filename, O_RDONLY);
-	gc_fd_register(fd);
 	if (fd < 0)
+	{
+		errno = ENOENT;
 		ft_exit_failure(game, ENOENT);
+	}
+	gc_fd_register(fd);
 	game->tilecount = ft_count_lines(filename);
 	tiles = gc_malloc(sizeof(t_tile) * (game->tilecount + 1));
 	if (!tiles)
 		ft_exit_failure(game, ENOMEM);
 	line = get_next_line(fd);
-	gc_register(line);
 	if (!line)
 		ft_exit_failure(game, ENOMEM);
+	gc_register(line);
 	ft_manage_split(game, tiles, line, fd);
 	close (fd);
 	game->tiles = tiles;

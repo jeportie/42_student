@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:53:47 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 14:53:47 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/04 10:30:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,12 @@ void	ft_init_player_anim(t_game *game)
 		ft_get_tile(game, "3m")->img);
 	ft_blend_images(ft_get_tile(game, "masked_orc_idle_anim_f3")->img,
 		ft_get_tile(game, "4m")->img);
+	ft_blend_images(ft_get_tile(game, "orc_shaman_idle_anim_f0")->img,
+		ft_get_tile(game, "1n")->img);
+	ft_blend_images(ft_get_tile(game, "orc_shaman_idle_anim_f1")->img,
+		ft_get_tile(game, "2n")->img);
+	ft_blend_images(ft_get_tile(game, "orc_shaman_idle_anim_f2")->img,
+		ft_get_tile(game, "3n")->img);
+	ft_blend_images(ft_get_tile(game, "orc_shaman_idle_anim_f3")->img,
+		ft_get_tile(game, "4n")->img);
 }
