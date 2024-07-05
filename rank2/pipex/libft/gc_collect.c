@@ -6,36 +6,75 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:23:26 by jeportie          #+#    #+#             */
-/*   Updated: 2024/06/25 17:27:36 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/05 15:35:25 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/pipex.h"
+#include "../include/libft.h"
+#include <stdarg.h>
 
-void gc_collect(void)
+static void	gc_mark(void *ptr);
+static void	gc_sweep(void);
+
+void	gc_collect(void)
 {
-	gc_mark_from_roots();
+	t_gc_root	*root;
+	t_gc_root	*local_root;
+
+	local_root = g_garbage_collector.local_roots;
+	root = g_garbage_collector.roots;
+	while (root)
+	{
+		if (*root->root_ptr)
+		{
+			ft_printf("Collecting and marking root pointer: %p\n",
+				*root->root_ptr);
+			gc_mark(*root->root_ptr);
+		}
+	root = root->next;
+	}
+	while (local_root)
+	{
+		if (*local_root->root_ptr)
+		{
+			ft_printf("Collecting and marking local root pointer: %p\n",
+				*local_root->root_ptr);
+			gc_mark(*local_root->root_ptr);
+		}
+		local_root = local_root->next;
+	}
 	gc_sweep();
 }
 
-//void	gc_mark_from_roots(void)
-//{
-//	if (g_game)
-//		gc_mark(g_game);
-//	if (g_map)
-//		gc_mark(g_map);
-//}
+static void	gc_delete_node(t_gc_node **prev, t_gc_node **current)
+{
+	t_gc_node	*next_node;
 
-void	gc_mark(void *ptr)
+	next_node = (*current)->next;
+	if (*prev)
+		(*prev)->next = next_node;
+	else
+		g_garbage_collector.head = next_node;
+	if ((*current)->fd > -1)
+		close((*current)->fd);
+	else
+		free((*current)->ptr);
+	free(*current);
+	*current = next_node;
+}
+
+static void	gc_mark(void *ptr)
 {
 	t_gc_node	*current;
 	void		**array;
 
+	ft_printf("Marking pointer: %p\n", ptr);
 	current = g_garbage_collector.head;
 	while (current)
 	{
 		if (current->ptr == ptr)
 		{
+			ft_printf("Found node: %p\n", current->ptr);
 			if (current->is_marked)
 				return ;
 			current->is_marked = true;
@@ -54,7 +93,7 @@ void	gc_mark(void *ptr)
 	}
 }
 
-void	gc_sweep(void)
+static void	gc_sweep(void)
 {
 	t_gc_node	*current;
 	t_gc_node	*prev;
@@ -65,23 +104,12 @@ void	gc_sweep(void)
 	{
 		if (!current->is_marked)
 		{
-			if (prev)
-				prev->next = current->next;
-			else
-				g_garbage_collector.head = current->next;
-			if (current->fd)
-				close(current->fd);
-			else
-				free(current->ptr);
-			free(current);
-			if (prev)
-				current = prev->next;
-			else
-				current = g_garbage_collector.head;
+			ft_printf("Deleting node: %p\n", current->ptr);
+			gc_delete_node(&prev, &current);
 		}
 		else
 		{
-			current->is_marked = 0;
+			current->is_marked = false;
 			prev = current;
 			current = current->next;
 		}

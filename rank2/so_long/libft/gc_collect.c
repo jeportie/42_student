@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 18:23:26 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 10:59:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/05 11:22:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	gc_delete_node(t_gc_node **prev, t_gc_node **current)
 		(*prev)->next = next_node;
 	else
 		g_garbage_collector.head = next_node;
-	if ((*current)->fd)
+	if ((*current)->fd > -1)
 		close((*current)->fd);
 	else
 		free((*current)->ptr);
@@ -97,7 +97,7 @@ static void	gc_sweep(void)
 		}
 		else
 		{
-			current->is_marked = 0;
+			current->is_marked = false;
 			prev = current;
 			current = current->next;
 		}

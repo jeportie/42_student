@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/06/27 18:07:46 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/05 10:18:38 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,7 @@ LIBS = 			-L$(LIBFT_DIR) -lft
 
 UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c)
 
-GARBAGE	=		$(addprefix src/gc_src/, garbage_collector.c gc_collect.c)
-
-
 OBJ_UTILITIES =	$(UTILITIES:src/utilities_src/%.c=$(OBJ_DIR)/utilities_src_%.o)
-OBJ_GARBAGE	=	$(GARBAGE:src/gc_src/%.c=$(OBJ_DIR)/gc_src_%.o)
 OBJ =			$(OBJ_UTILITIES) $(OBJ_GARBAGE)
 
 all: $(LIBFT_DIR)/libft.a $(NAME)
@@ -41,9 +37,6 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/utilities_src_%.o: src/utilities_src/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJ_DIR)/gc_src_%.o: src/gc_src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
