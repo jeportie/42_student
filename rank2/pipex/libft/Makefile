@@ -36,7 +36,7 @@ SRC = 	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 		gc_malloc.c \
 		gc_nest_register.c \
 		gc_register.c \
-		gc_roots.c
+		gc_mark_lock.c
 
 
 BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:20:13 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/05 10:45:50 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/05 21:58:00 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,16 @@ void	*gc_malloc(size_t size)
 	if (!new_node)
 	{
 		free(ptr);
+		
 		errno = ENOMEM;
 		return (NULL);
 	}
 	new_node->ptr = ptr;
 	new_node->is_marked = false;
+	new_node->is_locked = false;
 	new_node->is_array = false;
 	new_node->fd = -1;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
-	ft_printf("Allocated and registered: %p\n", ptr);
 	return (ptr);
 }

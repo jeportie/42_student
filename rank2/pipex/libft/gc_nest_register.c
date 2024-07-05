@@ -33,6 +33,7 @@ void	gc_nest_register(void *ptr)
 	}
 	new_node->ptr = ptr;
 	new_node->is_marked = false;
+	new_node->is_locked = false;
 	new_node->is_array = true;
 	new_node->fd = -1;
 	new_node->next = g_garbage_collector.head;

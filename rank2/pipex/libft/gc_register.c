@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:25:20 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/05 10:46:21 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/05 21:57:38 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	gc_register(void *ptr)
 	}
 	new_node->ptr = ptr;
 	new_node->is_marked = false;
+	new_node->is_locked = false;
 	new_node->is_array = false;
 	new_node->fd = -1;
 	new_node->next = g_garbage_collector.head;
 	g_garbage_collector.head = new_node;
-	ft_printf("Registered pointer: %p\n", ptr);
 }

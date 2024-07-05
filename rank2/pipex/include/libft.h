@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/05 15:36:53 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:56:10 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,15 @@ typedef struct s_gc_node
 {
 	void				*ptr;
 	bool				is_marked;
+	bool				is_locked;
 	bool				is_array;
 	int					fd;
 	struct s_gc_node	*next;
 }				t_gc_node;
 
-typedef struct s_gc_root
-{
-	void				**root_ptr;
-	struct s_gc_root	*next;
-}				t_gc_root;
-
 typedef struct s_garbage_collector
 {
 	t_gc_node	*head;
-	t_gc_root	*roots;
-	t_gc_root	*local_roots;
 }				t_gc;
 
 extern t_gc			g_garbage_collector;
@@ -200,9 +193,8 @@ void			gc_nest_register(void *ptr);
 void			gc_fd_register(int fd);
 void			gc_cleanup(void);
 void			gc_collect(void);
-void			gc_add_root(void **root_ptr);
-void			gc_remove_root(void **root_ptr);	
-void			gc_add_local_root(void **root_ptr);
-void			gc_remove_local_root(void **root_ptr);
+void			gc_lock(void *ptr);
+void			gc_unlock(void *ptr);
+void			gc_mark(void *ptr);
 
 #endif /*LIBFT_H*/

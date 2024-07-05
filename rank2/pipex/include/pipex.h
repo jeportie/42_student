@@ -17,6 +17,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <stdio.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include "libft.h"
 
 # define MAX_COMMANDS 100
