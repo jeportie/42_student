@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:09:19 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/04 17:23:01 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/05 08:44:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	ft_init_objects(t_game *game)
 		ft_exit_failure(NULL, ENOMEM);
 	}
 	game->orc->moves = 0;
+	game->orc->on_exit = 0;
 }
 
 void	ft_init_game(t_game *game, char *mapfile)

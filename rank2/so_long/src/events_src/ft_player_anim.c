@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:26:29 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/04 19:18:28 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/05 09:13:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_update_orc_position(t_game *game)
 {
 	static int	opt = 0;
-
 
 	if (!opt)
 	{
@@ -28,10 +27,8 @@ void	ft_update_orc_position(t_game *game)
 		}
 		else
 		{
-			if (opt < 3)
-				opt++;
-			else
-				opt = 0;
+			opt++;
+			ft_update_orc_position(game);
 		}
 	}
 	else if (opt == 1)
@@ -45,10 +42,8 @@ void	ft_update_orc_position(t_game *game)
 		}
 		else
 		{
-			if (opt < 3)
-				opt++;
-			else
-				opt = 0;
+			opt++;
+			ft_update_orc_position(game);
 		}
 	}
 	else if (opt == 2)
@@ -62,10 +57,8 @@ void	ft_update_orc_position(t_game *game)
 		}
 		else
 		{
-			if (opt < 3)
-				opt++;
-			else
-				opt = 0;
+			opt++;
+			ft_update_orc_position(game);
 		}
 	}
 	else if (opt == 3)
@@ -79,10 +72,8 @@ void	ft_update_orc_position(t_game *game)
 		}
 		else
 		{
-			if (opt < 3)
-				opt++;
-			else
-				opt = 0;
+			opt = 0;
+			ft_update_orc_position(game);
 		}
 	}
 	game->orc->moves++;
@@ -94,7 +85,6 @@ void	ft_move_orc(t_game *game)
 	ft_update_orc_position(game);
 	ft_update_orc_move(game, "1n", true);
 }
-
 
 int	ft_player_anim(t_game *game)
 {
