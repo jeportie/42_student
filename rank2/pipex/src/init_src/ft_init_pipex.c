@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_init_pipex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 12:35:07 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 11:20:00 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/06 12:13:47 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/06 15:20:17 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../include/pipex.h"
 
-char	*ft_strdup(const char *s)
+void	ft_init_pipex(t_pipex *pipex, int argc, char **argv)
 {
-	char	*new_str;
-	size_t	s_len;
-
-	s_len = ft_strlen(s);
-	new_str = (char *)malloc(sizeof(char) * (s_len + 1));
-	if (!new_str)
-	{
-		errno = ENOMEM;
-		return (NULL);
-	}
-	new_str = ft_memcpy(new_str, s, s_len + 1);
-	return (new_str);
+	ft_parse_args(pipex, argc, argv);
+	gc_collect();
+	ft_setup_pipes(pipex);
+//	gc_collect();
+	ft_open_files(pipex);
 }

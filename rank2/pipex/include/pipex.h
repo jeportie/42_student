@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:31:56 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/05 13:33:24 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/06 12:20:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,8 @@ typedef struct s_pipex
 }				t_pipex;
 
 // Function declarations
-void	ft_initialize_pipex(t_pipex *pipex, int argc, char **argv);
-void	ft_parse_arguments(t_pipex *pipex, int argc, char **argv);
-void	ft_parse_command(t_command *command, char *cmd_str);
+void	ft_init_pipex(t_pipex *pipex, int argc, char **argv);
+void	ft_parse_args(t_pipex *pipex, int argc, char **argv);
 void	ft_setup_pipes(t_pipex *pipex);
 void	ft_open_files(t_pipex *pipex);
 

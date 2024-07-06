@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_setup_pipes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 12:35:07 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 11:20:00 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/06 12:43:32 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/06 12:43:32 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "../../include/pipex.h"
 
-char	*ft_strdup(const char *s)
+void	ft_setup_pipes(t_pipex *pipex)
 {
-	char	*new_str;
-	size_t	s_len;
-
-	s_len = ft_strlen(s);
-	new_str = (char *)malloc(sizeof(char) * (s_len + 1));
-	if (!new_str)
+	if (pipe(pipex->pipefd) == -1)
 	{
-		errno = ENOMEM;
-		return (NULL);
+		perror("Pipe Error");
+		gc_cleanup();
+		exit(EXIT_FAILURE);
 	}
-	new_str = ft_memcpy(new_str, s, s_len + 1);
-	return (new_str);
+	gc_fd_register(pipex->pipefd[0]);
+	gc_fd_register(pipex->pipefd[1]);
 }

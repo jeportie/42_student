@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/07/05 10:18:38 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/06 14:45:24 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,13 @@ VALGRIND = 		valgrind --track-origins=yes --leak-check=full
 LIBFT_DIR = 	libft
 LIBS = 			-L$(LIBFT_DIR) -lft
 
+INIT = 		$(addprefix src/init_src/, ft_init_pipex.c ft_open_files.c \
+				ft_parse_args.c ft_setup_pipes.c)
 UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c)
 
 OBJ_UTILITIES =	$(UTILITIES:src/utilities_src/%.c=$(OBJ_DIR)/utilities_src_%.o)
-OBJ =			$(OBJ_UTILITIES) $(OBJ_GARBAGE)
+OBJ_INIT	  =	$(INIT:src/init_src/%.c=$(OBJ_DIR)/init_src_%.o)
+OBJ =			$(OBJ_UTILITIES) $(OBJ_INIT)
 
 all: $(LIBFT_DIR)/libft.a $(NAME)
 
@@ -37,6 +40,9 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/utilities_src_%.o: src/utilities_src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/init_src_%.o: src/init_src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
@@ -59,17 +65,20 @@ main: all $(OBJ_DIR)/main.o
 run: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	./$(EXEC_DIR)/pipex
+	read -p "Enter arguments: " ARGS; \
+	./$(EXEC_DIR)/pipex $$ARGS
 
 debug: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	$(VALGRIND) ./$(EXEC_DIR)/pipex 
+	read -p "Enter arguments: " ARGS; \
+	$(VALGRIND) ./$(EXEC_DIR)/pipex $$ARGS
 
 lldb: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	lldb $(EXEC_DIR)/pipex
+	read -p "Enter arguments: " ARGS; \
+	lldb -- ./$(EXEC_DIR)/pipex $$ARGS
 
 $(OBJ_DIR)/main.o: main.c
 	$(CC) $(CFLAGS) -c main.c -o $@

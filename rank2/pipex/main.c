@@ -18,6 +18,7 @@ void	ft_redirect_inputs(const char *file, const char *cmd)
 {
 	int		fd;
 	pid_t	pid;
+	char	*argv[2];
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
@@ -42,7 +43,9 @@ void	ft_redirect_inputs(const char *file, const char *cmd)
 			gc_cleanup();
 			exit(EXIT_FAILURE);
 		}
-		execlp(cmd, cmd, (char *) NULL);
+		argv[0] = (char *)cmd;
+		argv[1] = NULL;
+		execve(cmd, argv, NULL);
 		perror("Execlp Error!\n");
 		gc_cleanup();
 		exit(EXIT_FAILURE);
@@ -51,17 +54,12 @@ void	ft_redirect_inputs(const char *file, const char *cmd)
 		wait(NULL);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	int argc;
+	t_pipex pipex;
 
-	argc = 3;
-	if (argc != 3)
-	{
-		ft_putstr_fd("Usage : ./pipex <file1><cmd>\n", STDERR_FILENO);
-		return (EXIT_FAILURE);
-	}
-	ft_redirect_inputs("test.txt", "cat");
+	ft_init_pipex(&pipex, argc, argv);
+	ft_redirect_inputs("test.txt", "/bin/cat");
 	gc_cleanup();
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 11:47:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 11:19:44 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/06 12:35:29 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static char	*ft_extract(const char **s, char c, char **tab, size_t i)
 	if (!word)
 	{
 		ft_free_memory(tab, i);
+		errno = ENOMEM;
 		return (NULL);
 	}
 	ft_strlcpy(word, *s, word_len + 1);
