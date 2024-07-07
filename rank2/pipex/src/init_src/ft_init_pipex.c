@@ -15,7 +15,7 @@
 void	ft_init_pipex(t_pipex *pipex, int argc, char **argv)
 {
 	ft_parse_args(pipex, argc, argv);
-	gc_collect();
+//	gc_collect();
 	ft_setup_pipes(pipex);
 //	gc_collect();
 	ft_open_files(pipex);

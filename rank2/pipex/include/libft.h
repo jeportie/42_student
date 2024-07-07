@@ -69,6 +69,7 @@ typedef struct s_gc_node
 	bool				is_locked;
 	bool				is_array;
 	int					fd;
+	char				*temp_file;
 	struct s_gc_node	*next;
 }				t_gc_node;
 
@@ -191,10 +192,16 @@ void			*gc_malloc(size_t size);
 void			gc_register(void *ptr);
 void			gc_nest_register(void *ptr);
 void			gc_fd_register(int fd);
+void			gc_temp_file_register(const char *filename);
 void			gc_cleanup(void);
 void			gc_collect(void);
 void			gc_lock(void *ptr);
 void			gc_unlock(void *ptr);
 void			gc_mark(void *ptr);
+
+/* UTILITIES */
+
+void	ft_check_fd(int fd, const char *error_message);
+void	ft_check_malloc(void *ptr, const char *error_message);
 
 #endif /*LIBFT_H*/

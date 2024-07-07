@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/07/06 14:45:24 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/08 01:40:23 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,13 @@ LIBS = 			-L$(LIBFT_DIR) -lft
 
 INIT = 		$(addprefix src/init_src/, ft_init_pipex.c ft_open_files.c \
 				ft_parse_args.c ft_setup_pipes.c)
+EXEC = 		$(addprefix src/exec_src/, ft_fork_and_exec.c)
 UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c)
 
 OBJ_UTILITIES =	$(UTILITIES:src/utilities_src/%.c=$(OBJ_DIR)/utilities_src_%.o)
 OBJ_INIT	  =	$(INIT:src/init_src/%.c=$(OBJ_DIR)/init_src_%.o)
-OBJ =			$(OBJ_UTILITIES) $(OBJ_INIT)
+OBJ_EXEC	  =	$(EXEC:src/exec_src/%.c=$(OBJ_DIR)/exec_src_%.o)
+OBJ =			$(OBJ_UTILITIES) $(OBJ_INIT) $(OBJ_EXEC)
 
 all: $(LIBFT_DIR)/libft.a $(NAME)
 
@@ -43,6 +45,9 @@ $(OBJ_DIR)/utilities_src_%.o: src/utilities_src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/init_src_%.o: src/init_src/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/exec_src_%.o: src/exec_src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
@@ -71,8 +76,12 @@ run: all $(OBJ_DIR)/main.o
 debug: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	read -p "Enter arguments: " ARGS; \
-	$(VALGRIND) ./$(EXEC_DIR)/pipex $$ARGS
+	$(VALGRIND) ./$(EXEC_DIR)/pipex infile "ls -l" "wc -l" outfile
+
+heredoc: all $(OBJ_DIR)/main.o
+	mkdir -p $(EXEC_DIR)
+	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
+	$(VALGRIND) ./$(EXEC_DIR)/pipex here_doc EOF "ls -l" "wc -l" outfile
 
 lldb: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/06 00:15:12 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/07 21:49:36 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,52 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-void	ft_redirect_inputs(const char *file, const char *cmd)
+void ft_print_command(t_command *command)
 {
-	int		fd;
-	pid_t	pid;
-	char	*argv[2];
+    int i;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Open Error!\n");
-		gc_cleanup();
-		exit(EXIT_FAILURE);
-	}
-	gc_fd_register(fd);
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("Fork Error!\n");
-		gc_cleanup();
-		exit(EXIT_FAILURE);
-	}
-	else if (pid == 0)
-	{
-		if (dup2(fd, STDIN_FILENO) == -1)
-		{
-			perror("Dup2 Error !\n");
-			gc_cleanup();
-			exit(EXIT_FAILURE);
-		}
-		argv[0] = (char *)cmd;
-		argv[1] = NULL;
-		execve(cmd, argv, NULL);
-		perror("Execlp Error!\n");
-		gc_cleanup();
-		exit(EXIT_FAILURE);
-	}
-	else
-		wait(NULL);
+    ft_printf("Command: %s\n", command->cmd);
+    if (command->args)
+    {
+        ft_printf("Arguments: ");
+        i = 1;
+        while (command->args[i])
+        {
+            ft_printf("%s ", command->args[i]);
+            i++;
+        }
+        ft_printf("\n");
+    }
+    else
+    {
+        ft_printf("Arguments: None\n");
+    }
+    ft_printf("Input FD: %d\n", command->in_fd);
+    ft_printf("Output FD: %d\n", command->out_fd);
 }
 
-int	main(int argc, char **argv)
+void ft_print_pipex(t_pipex *pipex)
+{
+    int i;
+
+    ft_printf("Input File: %s\n", pipex->input_file);
+    ft_printf("Output File: %s\n", pipex->output_file);
+    ft_printf("Number of Commands: %d\n", pipex->num_commands);
+    for (i = 0; i < pipex->num_commands; i++)
+    {
+        ft_printf("Command %d:\n", i + 1);
+        ft_print_command(&pipex->commands[i]);
+    }
+    ft_printf("Pipe FD: [%d, %d]\n", pipex->pipefd[0], pipex->pipefd[1]);
+}
+
+int	main(int argc, char **argv, char **envp)
 {
 	t_pipex pipex;
 
 	ft_init_pipex(&pipex, argc, argv);
-	ft_redirect_inputs("test.txt", "/bin/cat");
+	ft_print_pipex(&pipex);
+//	ft_fork_and_exec(&pipex, envp);
 	gc_cleanup();
 	return (EXIT_SUCCESS);
 }

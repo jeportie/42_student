@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:09:32 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/05 19:06:35 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/08 01:38:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ void	gc_cleanup(void)
 	while (current)
 	{
 		next = current->next;
+		if (current->temp_file)
+			unlink(current->temp_file);
 		if (current->fd > -1)
 			close(current->fd);
-		else
+		else if (current->ptr)
 			free(current->ptr);
+
 		free(current);
 		current = next;
 	}

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:31:56 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/06 12:20:09 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/07 23:08:34 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include "libft.h"
+#include <fcntl.h>
 
 # define MAX_COMMANDS 100
+# define COPYMODE 0644
 
 typedef enum e_ErrorCode
 {
@@ -68,8 +70,8 @@ void	ft_setup_pipes(t_pipex *pipex);
 void	ft_open_files(t_pipex *pipex);
 
 void	ft_execute_pipex(t_pipex *pipex, char **envp);
-void	ft_fork_and_execute(t_pipex *pipex, char **envp);
-void	ft_child_process(t_command *command, int pipefd[2], char **envp);
+void	ft_fork_and_exec(t_pipex *pipex, char **envp);
+void	ft_child_process(t_command *command, char **envp);
 void	ft_parent_process(int pipefd[2]);
 void	ft_redirect_io(t_command *command);
 void	ft_redirect_input(int in_fd);
@@ -83,7 +85,8 @@ void	ft_free_memory(t_pipex *pipex);
 void	ft_free_commands(t_command *commands, int num_commands);
 
 /* Utility functions */
-void	ft_exit_failure(t_pipex *pipex, int errnum);
+void	ft_check_fd(int fd, const char *error_message);
+void	ft_check_malloc(void *ptr, const char *error_message);
 
 
 #endif /*PIPEX_H*/	
