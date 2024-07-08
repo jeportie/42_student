@@ -25,6 +25,7 @@
 
 # define MAX_COMMANDS 100
 # define COPYMODE 0644
+# define DEBUG_MODE false
 
 typedef enum e_ErrorCode
 {
@@ -72,7 +73,7 @@ void	ft_open_files(t_pipex *pipex);
 void	ft_execute_pipex(t_pipex *pipex, char **envp);
 void	ft_fork_and_exec(t_pipex *pipex, char **envp);
 void	ft_child_process(t_command *command, char **envp);
-void	ft_parent_process(int pipefd[2]);
+void	ft_parent_process(t_pipex *pipex);
 void	ft_redirect_io(t_command *command);
 void	ft_redirect_input(int in_fd);
 void	ft_redirect_output(int out_fd);

@@ -80,7 +80,7 @@ void	ft_here_doc_mode(t_pipex *pipex, int argc, char **argv)
 			break;
 		write(temp_fd, line, ft_strlen(line));
 	}
-	gc_collect();
+//	gc_collect();
 	close(temp_fd);
 
 	pipex->input_file = ft_strdup("here_doc");

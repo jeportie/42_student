@@ -76,7 +76,7 @@ run: all $(OBJ_DIR)/main.o
 debug: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	$(VALGRIND) ./$(EXEC_DIR)/pipex infile "ls -l" "wc -l" outfile
+	$(VALGRIND) ./$(EXEC_DIR)/pipex infile "/bin/ls -l" "/bin/wc -l" outfile
 
 heredoc: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
