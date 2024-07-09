@@ -1,1 +1,13 @@
-11
+total 64
+drwxr-xr-x 7 jeportie 2023_paris   142 Jul  9 15:25 .
+drwxr-xr-x 5 jeportie 2023_paris    51 Jun 10 10:17 ..
+drwxr-xr-x 2 jeportie 2023_paris    19 Jul  9 15:25 exec
+drwxr-xr-x 2 jeportie 2023_paris    36 Jul  9 15:20 include
+-rw-r--r-- 1 jeportie 2023_paris    33 Jul  9 09:47 infile
+drwxr-xr-x 2 jeportie 2023_paris  8192 Jul  9 15:25 libft
+-rw-r--r-- 1 jeportie 2023_paris  2064 Jul  9 15:24 main.c
+-rw-r--r-- 1 jeportie 2023_paris  3240 Jul  9 15:18 Makefile
+drwxr-xr-x 2 jeportie 2023_paris  4096 Jul  9 15:25 obj
+-rw-r--r-- 1 jeportie 2023_paris     0 Jul  9 15:25 outfile
+-rw-r--r-- 1 jeportie 2023_paris 36680 Jul  9 15:25 pipex.a
+drwxr-xr-x 5 jeportie 2023_paris    59 Jul  9 08:00 src

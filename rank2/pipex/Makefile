@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/07/08 01:40:23 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/09 15:16:10 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,9 @@ LIBFT_DIR = 	libft
 LIBS = 			-L$(LIBFT_DIR) -lft
 
 INIT = 		$(addprefix src/init_src/, ft_init_pipex.c ft_open_files.c \
-				ft_parse_args.c ft_setup_pipes.c)
-EXEC = 		$(addprefix src/exec_src/, ft_fork_and_exec.c)
+			ft_parse_args.c)
+EXEC = 		$(addprefix src/exec_src/, ft_fork_and_exec.c ft_process.c \
+			ft_redirect.c)
 UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c)
 
 OBJ_UTILITIES =	$(UTILITIES:src/utilities_src/%.c=$(OBJ_DIR)/utilities_src_%.o)
@@ -70,18 +71,18 @@ main: all $(OBJ_DIR)/main.o
 run: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	read -p "Enter arguments: " ARGS; \
-	./$(EXEC_DIR)/pipex $$ARGS
+	./$(EXEC_DIR)/pipex infile "/bin/grep Hello" "/bin/wc -l" "/bin/ls -l -a" outfile
+
 
 debug: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	$(VALGRIND) ./$(EXEC_DIR)/pipex infile "/bin/ls -l" "/bin/wc -l" outfile
+	$(VALGRIND) ./$(EXEC_DIR)/pipex infile "/bin/grep Hello" "/bin/wc -l" "/bin/ls -l -a" outfile
 
 heredoc: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	$(VALGRIND) ./$(EXEC_DIR)/pipex here_doc EOF "ls -l" "wc -l" outfile
+	$(VALGRIND) ./$(EXEC_DIR)/pipex here_doc EOF "/bin/cat" "/bin/grep Hello" outfile
 
 lldb: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)

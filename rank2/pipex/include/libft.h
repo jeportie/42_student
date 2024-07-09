@@ -201,7 +201,7 @@ void			gc_mark(void *ptr);
 
 /* UTILITIES */
 
-void	ft_check_fd(int fd, const char *error_message);
-void	ft_check_malloc(void *ptr, const char *error_message);
+void			ft_check_fd(int fd, const char *error_message);
+void			ft_check_malloc(void *ptr, const char *error_message);
 
 #endif /*LIBFT_H*/
