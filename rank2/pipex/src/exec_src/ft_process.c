@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 11:20:09 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/09 15:27:55 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:33:51 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,6 @@ static void	ft_child_io(t_pipex *pipex, int i)
 		pipex->commands[i].in_fd = pipex->prev_pipefd[0];
 		pipex->commands[i].out_fd = pipex->pipefd[1];
 	}
-	ft_printf(
-		"In child_io: command: %s, prev_pipefd[0]: %d, prev_pipefd[1]: %d\n",
-		pipex->commands[i].cmd, pipex->prev_pipefd[0], pipex->prev_pipefd[1]);
 }
 
 void	ft_exec_pid(t_pipex *pipex, char **envp, int pid, int i)

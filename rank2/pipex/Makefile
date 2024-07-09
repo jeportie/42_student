@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/07/09 15:16:10 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/09 15:50:38 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ main: all $(OBJ_DIR)/main.o
 run: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	./$(EXEC_DIR)/pipex infile "/bin/grep Hello" "/bin/wc -l" "/bin/ls -l -a" outfile
+	./$(EXEC_DIR)/pipex infile "/bin/cat -e" "/bin/grep Good" outfile
 
 
 debug: all $(OBJ_DIR)/main.o
