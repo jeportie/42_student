@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gc_roots.c                                         :+:      :+:    :+:   */
+/*   gc_mark_lock.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -43,6 +43,22 @@ void	gc_lock(void *ptr)
 			return ;
 		}
 		current = current->next;
+	}
+}
+
+void	gc_nest_lock(void *ptr)
+{
+	int		i;
+	void	**array;
+
+	if (!ptr)
+		return ;
+	array = (void **)ptr;
+	i = 0;
+	while (array[i])
+	{
+		gc_lock(array[i]);
+		i++;
 	}
 }
 

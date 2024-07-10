@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/07/10 10:24:48 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/10 11:33:54 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,11 @@ LIBFT_DIR = 	libft
 LIBS = 			-L$(LIBFT_DIR) -lft
 
 INIT = 		$(addprefix src/init_src/, ft_init_pipex.c ft_open_files.c \
-			ft_parse_args.c)
+			ft_parse_args.c ft_here_doc_mode.c ft_parse_cmd.c)
 EXEC = 		$(addprefix src/exec_src/, ft_fork_and_exec.c ft_process.c \
 			ft_redirect.c)
-UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c ft_getenv.c)
+UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c ft_getenv.c \
+				ft_find_cmd_path.c)
 
 OBJ_UTILITIES =	$(UTILITIES:src/utilities_src/%.c=$(OBJ_DIR)/utilities_src_%.o)
 OBJ_INIT	  =	$(INIT:src/init_src/%.c=$(OBJ_DIR)/init_src_%.o)
@@ -77,12 +78,12 @@ run: all $(OBJ_DIR)/main.o
 debug: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	$(VALGRIND) ./$(EXEC_DIR)/pipex infile "cat -e" "grep Good " outfile
+	$(VALGRIND) ./$(EXEC_DIR)/pipex infile "/bin/cat -e" "grep Good " outfile
 
 heredoc: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	$(VALGRIND) ./$(EXEC_DIR)/pipex here_doc EOF "/bin/cat" "/bin/grep Hello" outfile
+	$(VALGRIND) ./$(EXEC_DIR)/pipex here_doc EOF "cat -e" "grep Hello" outfile
 
 lldb: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)

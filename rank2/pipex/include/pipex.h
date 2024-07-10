@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:31:56 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/10 09:12:20 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:13:41 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ typedef struct s_pipex
 // Function declarations
 void	ft_init_pipex(t_pipex *pipex, int argc, char **argv, char **envp);
 void	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp);
+void	ft_parse_cmd(t_command *command, char *cmd_str, char **envp);
 void	ft_setup_pipes(t_pipex *pipex);
 void	ft_open_files(t_pipex *pipex);
+void	ft_here_doc_mode(t_pipex *pipex, int argc, char **argv, char **envp);
 
 void	ft_fork_and_exec(t_pipex *pipex, char **envp);
 void	ft_exec_pid(t_pipex *pipex, char **envp, int pid, int i);
@@ -83,5 +85,6 @@ void	ft_check_fd(int fd, const char *error_message);
 void	ft_check_pid(int pid);
 void	ft_check_malloc(void *ptr, const char *error_message);
 char	*ft_getenv(char **envp, const char *name);
+char	*ft_find_cmd_path(char **envp, const char *cmd);
 
 #endif /*PIPEX_H*/	

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/10 10:11:22 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/10 11:04:19 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ void			gc_temp_file_register(const char *filename);
 void			gc_cleanup(void);
 void			gc_collect(void);
 void			gc_lock(void *ptr);
+void			gc_nest_lock(void *ptr);
 void			gc_unlock(void *ptr);
 void			gc_mark(void *ptr);
 

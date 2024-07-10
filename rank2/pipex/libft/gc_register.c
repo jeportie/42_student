@@ -20,7 +20,7 @@ void	gc_register(void *ptr)
 		return ;
 	new_node = malloc(sizeof(t_gc_node));
 	if (!new_node)
-		return;
+		return ;
 	new_node->ptr = ptr;
 	new_node->is_marked = false;
 	new_node->is_locked = false;
