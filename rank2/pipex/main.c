@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/09 15:23:22 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/10 09:12:32 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
 
-	ft_init_pipex(&pipex, argc, argv);
+	ft_init_pipex(&pipex, argc, argv, envp);
 	if (DEBUG_MODE == true)
 		ft_print_pipex(&pipex);
 	if (DEBUG_MODE == true)

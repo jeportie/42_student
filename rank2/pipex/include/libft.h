@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/05 18:56:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/10 10:11:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ size_t			ft_strlen(const char *s);
 //		Partie 2 - Fonctions supplementaires
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjoin_free(char *s1, const char *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *S, char c);
 char			*ft_itoa(int n);
@@ -198,6 +199,8 @@ void			gc_collect(void);
 void			gc_lock(void *ptr);
 void			gc_unlock(void *ptr);
 void			gc_mark(void *ptr);
+
+char			*gc_strjoin(char const *s1, char const *s2);
 
 /* UTILITIES */
 

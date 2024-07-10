@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_pipex.c                                    :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 12:13:47 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/10 09:13:24 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/10 09:03:52 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/10 09:09:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/pipex.h"
 
-void	ft_init_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
+char	*ft_getenv(char **envp, const char *name)
 {
-	ft_parse_args(pipex, argc, argv, envp);
-//	gc_collect();
-	pipex->prev_pipefd[0] = -1;
-	pipex->prev_pipefd[1] = -1;
-	ft_open_files(pipex);
+	int	i;
+	int	len;
+
+	len = ft_strlen(name);
+	i = 0;
+	while (envp[i])
+	{
+		if (!ft_strncmp(envp[i], name, len) && envp[i][len] == '=')
+			return (envp[i] + len + 1);
+		i++;
+	}
+	return (NULL);
 }
