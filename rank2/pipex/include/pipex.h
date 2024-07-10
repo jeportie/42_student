@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:31:56 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/10 11:13:41 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:51:17 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define MAX_COMMANDS 100
 # define COPYMODE 0644
-# define DEBUG_MODE 1
+# define DEBUG_MODE 0
 # define ERROR -1
 # define CHILD 0
 
@@ -86,5 +86,7 @@ void	ft_check_pid(int pid);
 void	ft_check_malloc(void *ptr, const char *error_message);
 char	*ft_getenv(char **envp, const char *name);
 char	*ft_find_cmd_path(char **envp, const char *cmd);
+void	ft_print_command(t_command *command);
+void	ft_print_pipex(t_pipex *pipex);
 
 #endif /*PIPEX_H*/	

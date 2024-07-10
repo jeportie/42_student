@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 11:20:09 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/09 15:33:51 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:29:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static void	ft_child_process(t_command *command, char **envp)
 		ft_printf("Executing Command: %s\n", command->cmd);
 	ft_redirect_io(command);
 	execve(command->cmd, command->args, envp);
-	perror("Execve Error");
+	perror("Execve Error !\n");
 	gc_cleanup();
 	exit(EXIT_FAILURE);
 }
 
-static void	ft_parent_process(t_pipex *pipex, int pid, int i)
+static void	ft_parent_process(t_pipex *pipex, int i)
 {
 	if (i < pipex->num_commands - 1)
 	{
@@ -79,5 +79,5 @@ void	ft_exec_pid(t_pipex *pipex, char **envp, int pid, int i)
 		ft_child_process(&pipex->commands[i], envp);
 	}
 	else
-		ft_parent_process(pipex, pid, i);
+		ft_parent_process(pipex, i);
 }
