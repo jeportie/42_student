@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 18:05:57 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 11:25:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:11:49 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,15 @@ static int	ft_process_format_specifier(const char **format, va_list args,
 	return (1);
 }
 
+void	ft_check_flush(t_buffer *buf_info)
+{
+	if (!ft_buffer_flush(buf_info))
+	{
+		ft_putstr_fd((char *)g_perror[buf_info->error], 2);
+		buf_info->nb_printed = -1;
+	}
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list		args;
@@ -70,6 +79,7 @@ int	ft_printf(const char *format, ...)
 
 	ft_memset(&buf_info, 0, sizeof(t_buffer));
 	buf_info.buffer = buffer;
+	buf_info.buf_fd = 1;
 	va_start(args, format);
 	while (*format)
 	{
@@ -83,10 +93,34 @@ int	ft_printf(const char *format, ...)
 		format++;
 	}
 	va_end(args);
-	if (!ft_buffer_flush(&buf_info))
+	ft_check_flush(&buf_info);
+	return (buf_info.nb_printed);
+}
+
+int	ft_printf_fd(int fd, const char *format, ...)
+{
+	va_list		args;
+	t_buffer	buf_info;
+	char		buffer[BUFFER_SIZE];
+
+	ft_memset(&buf_info, 0, sizeof(t_buffer));
+	buf_info.buffer = buffer;
+	buf_info.buf_fd = 1;
+	if (fd != -1)
+		buf_info.buf_fd = fd;
+	va_start(args, format);
+	while (*format)
 	{
-		ft_putstr_fd((char *)g_perror[buf_info.error], 2);
-		return (-1);
+		if (*format == '%')
+		{
+			if (ft_process_format_specifier(&format, args, &buf_info) == -1)
+				return (-1);
+		}
+		else
+			ft_buffer_add(&buf_info, *format);
+		format++;
 	}
+	va_end(args);
+	ft_check_flush(&buf_info);
 	return (buf_info.nb_printed);
 }

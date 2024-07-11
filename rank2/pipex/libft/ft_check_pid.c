@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getenv.c                                        :+:      :+:    :+:   */
+/*   ft_check_pid.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 09:03:52 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/10 09:09:16 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/11 10:42:57 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/11 10:43:37 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/pipex.h"
+#include "../include/libft.h"
 
-char	*ft_getenv(char **envp, const char *name)
+void	ft_check_pid(int pid)
 {
-	int	i;
-	int	len;
-
-	len = ft_strlen(name);
-	i = 0;
-	while (envp[i])
+	if (pid == ERROR)
 	{
-		if (!ft_strncmp(envp[i], name, len) && envp[i][len] == '=')
-			return (envp[i] + len + 1);
-		i++;
+		perror("Forking Error !\n");
+		gc_cleanup();
+		exit(EXIT_FAILURE);
 	}
-	return (NULL);
 }

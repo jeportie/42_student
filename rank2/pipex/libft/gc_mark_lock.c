@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 13:50:19 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/05 21:57:27 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/11 08:25:42 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	gc_nest_lock(void *ptr)
 		gc_lock(array[i]);
 		i++;
 	}
+	gc_lock(ptr);
 }
 
 void	gc_unlock(void *ptr)

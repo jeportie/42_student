@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 11:11:39 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/10 15:58:00 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:29:25 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_redirect_input(int in_fd)
 {
 	if (DEBUG_MODE == true)
-		ft_printf("Redirecting input FD: %d\n", in_fd);
+		ft_printf_fd(g_log_fd, "Redirecting input FD: %d\n", in_fd);
 	if (dup2(in_fd, STDIN_FILENO) == -1)
 	{
 		perror(" Dup2 Error ! (input)\n");
@@ -28,7 +28,7 @@ static void	ft_redirect_input(int in_fd)
 static void	ft_redirect_output(int out_fd)
 {
 	if (DEBUG_MODE == true)
-		ft_printf("Redirecting output FD: %d\n\n", out_fd);
+		ft_printf_fd(g_log_fd, "Redirecting output FD: %d\n\n", out_fd);
 	if (dup2(out_fd, STDOUT_FILENO) == -1)
 	{
 		perror(" Dup2 Error ! (output)\n");
@@ -41,7 +41,8 @@ static void	ft_redirect_output(int out_fd)
 void	ft_redirect_io(t_command *command)
 {
 	if (DEBUG_MODE == true)
-		ft_printf("\nRedirecting I/O for command: %s\n", command->cmd);
+		ft_printf_fd(g_log_fd, "\nRedirecting I/O for command: %s\n",
+			command->cmd);
 	if (command->in_fd != STDIN_FILENO)
 		ft_redirect_input(command->in_fd);
 	if (command->out_fd != STDOUT_FILENO)

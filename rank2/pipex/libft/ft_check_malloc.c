@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../include/libft.h"
-#include <stdio.h>
 
 void	ft_check_malloc(void *ptr, const char *error_message)
 {

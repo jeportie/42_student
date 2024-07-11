@@ -6,11 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:12:59 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/10 11:21:52 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/11 10:51:44 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/pipex.h"
+#include "../include/libft.h"
 
 static char	*ft_concat_path(char **paths, const char *cmd)
 {

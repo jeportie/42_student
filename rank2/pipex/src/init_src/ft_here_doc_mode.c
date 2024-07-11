@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:07:29 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/10 14:46:27 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:05:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_in_heredoc(int temp_fd, char *limiter)
 {
 	int		len;
 	int		bytes_read;
-	char	buffer[2048];
+	char	buffer[BUFFER_SIZE];
 	char	*line;
 
 	len = ft_strlen(limiter);

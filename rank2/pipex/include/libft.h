@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/10 11:04:19 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:20:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 # include <stdarg.h>
 # include <errno.h>
 # include <stdbool.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 2048
 # endif
+
+# define ERROR -1
 
 typedef struct s_list
 {
@@ -39,6 +42,7 @@ typedef struct s_buffer
 	int		nb_printed;
 	int		error;
 	char	buf_last;
+	int		buf_fd;
 }			t_buffer;
 
 typedef struct s_format_spec
@@ -150,6 +154,7 @@ char			*ft_strjoin_gnl(char const *s1, char const *s2);
 
 /* PRINTF */
 int				ft_printf(const char *format, ...);
+int				ft_printf_fd(int fd, const char *format, ...);
 int				ft_isflag(char c);
 int				ft_isconvert_spec(char c);
 
@@ -207,5 +212,8 @@ char			*gc_strjoin(char const *s1, char const *s2);
 
 void			ft_check_fd(int fd, const char *error_message);
 void			ft_check_malloc(void *ptr, const char *error_message);
+void			ft_check_pid(int pid);
+char			*ft_getenv(char **envp, const char *name);
+char			*ft_find_cmd_path(char **envp, const char *cmd);
 
 #endif /*LIBFT_H*/

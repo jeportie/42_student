@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 21:02:39 by jeportie          #+#    #+#              #
-#    Updated: 2024/07/05 13:50:02 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/11 10:52:53 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,9 @@ SRC = 	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
 		ft_nbr_len.c \
 		ft_check_fd.c \
 		ft_check_malloc.c \
+		ft_check_pid.c \
+		ft_getenv.c \
+		ft_find_cmd_path.c \
 		gc_cleanup.c \
 		gc_collect.c \
 		gc_fd_register.c \

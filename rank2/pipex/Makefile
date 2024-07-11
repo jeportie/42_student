@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/07/10 16:09:35 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/11 14:53:03 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,13 @@ EXEC_DIR = 		exec
 VALGRIND = 		valgrind --track-origins=yes --leak-check=full
 LIBFT_DIR = 	libft
 LIBS = 			-L$(LIBFT_DIR) -lft
+LOG = 			pipex_trace.log
 
 INIT = 		$(addprefix src/init_src/, ft_init_pipex.c ft_open_files.c \
 			ft_parse_args.c ft_here_doc_mode.c ft_parse_cmd.c)
 EXEC = 		$(addprefix src/exec_src/, ft_fork_and_exec.c ft_process.c \
 			ft_redirect.c)
-UTILITIES = 	$(addprefix src/utilities_src/, ft_exit_failure.c ft_getenv.c \
-				ft_find_cmd_path.c ft_print_debug.c)
+UTILITIES = 	$(addprefix src/utilities_src/, ft_print_debug.c)
 
 OBJ_UTILITIES =	$(UTILITIES:src/utilities_src/%.c=$(OBJ_DIR)/utilities_src_%.o)
 OBJ_INIT	  =	$(INIT:src/init_src/%.c=$(OBJ_DIR)/init_src_%.o)
@@ -62,6 +62,7 @@ fclean: clean
 
 eclean: fclean
 	rm -rf $(EXEC_DIR)
+	rm -f $(LOG)
 
 re: fclean all
 

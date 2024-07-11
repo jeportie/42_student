@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_fd.c                                      :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/08 00:34:20 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/11 10:47:06 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/10 09:03:52 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/11 10:51:59 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void	ft_check_fd(int fd, const char *error_message)
+char	*ft_getenv(char **envp, const char *name)
 {
-	if (fd == ERROR)
+	int	i;
+	int	len;
+
+	len = ft_strlen(name);
+	i = 0;
+	while (envp[i])
 	{
-		perror(error_message);
-		gc_cleanup();
-		exit(EXIT_FAILURE);
+		if (!ft_strncmp(envp[i], name, len) && envp[i][len] == '=')
+			return (envp[i] + len + 1);
+		i++;
 	}
+	return (NULL);
 }

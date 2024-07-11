@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:11:48 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/10 16:13:20 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/11 08:36:56 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,9 @@ static void	ft_check_cmd_path(t_command *command, char *cmd_path, char **args,
 			gc_cleanup();
 			exit(EXIT_FAILURE);
 		}
-		if (cmd_path)
-		{
-			command->cmd = cmd_path;
-			gc_register(command->cmd);
-			gc_lock(command->cmd);
-		}
+		command->cmd = cmd_path;
+		gc_register(command->cmd);
+		gc_lock(command->cmd);
 	}
 	else
 		command->cmd = args[0];
