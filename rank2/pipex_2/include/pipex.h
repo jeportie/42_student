@@ -58,7 +58,8 @@ void	ft_here_doc_mode(t_pipex *pipex, int argc, char **argv, char **envp);
 //	Pipex Process Functions
 void	ft_fork_and_exec(t_pipex *pipex, char **envp);
 void	ft_exec_pid(t_pipex *pipex, char **envp, int pid, int i);
-void	ft_redirect_io(t_command *command);
+void	ft_redirect_input(int in_fd);
+void	ft_redirect_output(int out_fd);
 
 /* Utility functions */
 void	ft_print_command(t_command *command);

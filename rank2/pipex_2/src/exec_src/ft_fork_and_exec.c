@@ -17,7 +17,7 @@ static void	ft_wait_for_children(int num_commands)
 	int	i;
 
 	i = 0;
-	close(STDIN_FILENO);
+//	close(STDIN_FILENO);
 	while (i < num_commands)
 	{
 		wait(NULL);
@@ -35,7 +35,8 @@ void	ft_fork_and_exec(t_pipex *pipex, char **envp)
 	{
 		if (i < pipex->num_commands - 1)
 		{
-			if (pipe(pipex->pipefd) == ERROR)
+			pipe(pipex->pipefd);
+			if (pipex->pipefd[0] == ERROR || pipex->pipefd[1] == ERROR)
 			{
 				gc_cleanup();
 				exit(EXIT_FAILURE);

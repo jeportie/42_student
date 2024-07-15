@@ -17,7 +17,7 @@ OBJ_DIR = 		obj
 OUTPUT_DIR = 	outputs
 EXEC_DIR = 		exec
 VALGRIND = 		valgrind --track-origins=yes --leak-check=full --track-fds=yes \
-				--trace-children=yes
+				#--trace-children=yes
 LIBFT_DIR = 	libft
 LIBS = 			-L$(LIBFT_DIR) -lft
 LOG = 			pipex_trace.log
@@ -80,7 +80,7 @@ run: all $(OBJ_DIR)/main.o
 debug: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
 	$(CC) $(CFLAGS) -o $(EXEC_DIR)/pipex $(OBJ_DIR)/main.o $(NAME) $(LIBS); \
-	$(VALGRIND) ./$(EXEC_DIR)/pipex /dev/stdin "cat" "ls" outfile
+	$(VALGRIND) ./$(EXEC_DIR)/pipex /dev/stdin "cat" "cat" "ls" outfile
 
 heredoc: all $(OBJ_DIR)/main.o
 	mkdir -p $(EXEC_DIR)
