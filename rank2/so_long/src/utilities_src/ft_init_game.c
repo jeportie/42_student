@@ -6,34 +6,31 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:09:19 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/05 10:13:46 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/16 22:32:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
+void	check_malloc(void *ptr)
+{
+	if (!ptr)
+		ft_exit_failure(NULL, ENOMEM);
+}
+
 static void	ft_init_objects(t_game *game)
 {
 	game->player = gc_malloc(sizeof(t_player));
-	if (!game->player)
-	{
-		errno = ENOMEM;
-		ft_exit_failure(NULL, ENOMEM);
-	}
+	check_malloc(game->player);
+	gc_lock(game->player);
 	game->player->moves = 0;
 	game->goblin = gc_malloc(sizeof(t_player));
-	if (!game->goblin)
-	{
-		errno = ENOMEM;
-		ft_exit_failure(NULL, ENOMEM);
-	}
+	check_malloc(game->goblin);
+	gc_lock(game->goblin);
 	game->goblin->moves = 0;
 	game->orc = gc_malloc(sizeof(t_player));
-	if (!game->orc)
-	{
-		errno = ENOMEM;
-		ft_exit_failure(NULL, ENOMEM);
-	}
+	check_malloc(game->orc);
+	gc_lock(game->orc);
 	game->orc->moves = 0;
 	game->orc->on_exit = 0;
 }
@@ -50,11 +47,8 @@ void	ft_init_game(t_game *game, char *mapfile)
 	game->state = LOADED;
 	ft_init_player_anim(game);
 	game->buffer = gc_malloc(sizeof(t_img));
-	if (!game->buffer)
-	{
-		errno = ENOMEM;
-		ft_exit_failure(NULL, ENOMEM);
-	}
+	check_malloc(game->buffer);
+	gc_lock(game->buffer);
 	game->buffer->img_ptr = mlx_new_image(game->mlx_ptr,
 			game->map->width * MAP_TILE_SIZE,
 			game->map->height * MAP_TILE_SIZE);

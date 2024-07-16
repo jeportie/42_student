@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/04 17:14:21 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:56:10 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ typedef struct s_game
 	int			state;
 }				t_game;
 
-extern t_game		*g_game;
 extern const char	*g_error_mesages;
 
 /* Map Parser functions */
@@ -173,6 +172,7 @@ int		ft_close_window(t_game *game);
 int		ft_close_game(t_game *game);
 void	ft_fill_image(char *img_data, int bpp, int size_line, int color);
 void	ft_print_map(t_game *game);
+void	check_malloc(void *ptr);
 
 /*	Test functions */
 void	display_tiles(t_game *game);

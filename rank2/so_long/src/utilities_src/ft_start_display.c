@@ -15,9 +15,10 @@
 void	ft_start_display(t_game *game, char *title)
 {
 	game->mlx_ptr = mlx_init();
-	gc_register(game->mlx_ptr);
 	if (!game->mlx_ptr)
 		ft_exit_failure(game, ENOINIT);
+	gc_register(game->mlx_ptr);
+	gc_lock(game->mlx_ptr);
 	game->win_ptr = mlx_new_window(game->mlx_ptr,
 			game->map->width * MAP_TILE_SIZE,
 			game->map->height * MAP_TILE_SIZE + GAME_BORDER, title);

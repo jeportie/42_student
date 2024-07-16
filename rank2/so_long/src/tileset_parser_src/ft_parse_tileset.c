@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 20:25:25 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/04 17:59:33 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:57:25 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	ft_extract_frame(t_game *game, t_tile *tile)
 	frame = gc_malloc(sizeof(t_img));
 	if (!frame)
 		ft_exit_failure(game, ENOMEM);
+	gc_lock(frame);
 	frame->img_ptr = mlx_new_image(game->mlx_ptr, tile->width, tile->height);
 	if (!frame->img_ptr)
 		ft_exit_failure(game, ENOMEM);
@@ -79,6 +80,7 @@ static void	ft_manage_split(t_game *game, t_tile **tiles, char *line, int fd)
 			tile = gc_malloc(sizeof(t_tile));
 			if (!tile)
 				ft_exit_failure(game, ENOMEM);
+			gc_lock(tile);
 			parts = ft_split(line, ' ');
 			gc_nest_register(parts);
 			if (!parts)
@@ -110,6 +112,7 @@ void	ft_parse_tileset(t_game *game, char *filename)
 	tiles = gc_malloc(sizeof(t_tile) * (game->tilecount + 1));
 	if (!tiles)
 		ft_exit_failure(game, ENOMEM);
+	gc_lock(tiles);
 	line = get_next_line(fd);
 	if (!line)
 		ft_exit_failure(game, ENOMEM);

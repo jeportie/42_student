@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 11:27:43 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:20:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 # include <stdarg.h>
 # include <errno.h>
 # include <stdbool.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 2048
 # endif
+
+# define ERROR -1
 
 typedef struct s_list
 {
@@ -39,6 +42,7 @@ typedef struct s_buffer
 	int		nb_printed;
 	int		error;
 	char	buf_last;
+	int		buf_fd;
 }			t_buffer;
 
 typedef struct s_format_spec
@@ -66,8 +70,10 @@ typedef struct s_gc_node
 {
 	void				*ptr;
 	bool				is_marked;
+	bool				is_locked;
 	bool				is_array;
 	int					fd;
+	char				*temp_file;
 	struct s_gc_node	*next;
 }				t_gc_node;
 
@@ -113,6 +119,7 @@ size_t			ft_strlen(const char *s);
 //		Partie 2 - Fonctions supplementaires
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strjoin_free(char *s1, const char *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *S, char c);
 char			*ft_itoa(int n);
@@ -147,6 +154,7 @@ char			*ft_strjoin_gnl(char const *s1, char const *s2);
 
 /* PRINTF */
 int				ft_printf(const char *format, ...);
+int				ft_printf_fd(int fd, const char *format, ...);
 int				ft_isflag(char c);
 int				ft_isconvert_spec(char c);
 
@@ -190,7 +198,22 @@ void			*gc_malloc(size_t size);
 void			gc_register(void *ptr);
 void			gc_nest_register(void *ptr);
 void			gc_fd_register(int fd);
+void			gc_temp_file_register(const char *filename);
 void			gc_cleanup(void);
-void			gc_collect(const char *format, ...);
+void			gc_collect(void);
+void			gc_lock(void *ptr);
+void			gc_nest_lock(void *ptr);
+void			gc_unlock(void *ptr);
+void			gc_mark(void *ptr);
+
+char			*gc_strjoin(char const *s1, char const *s2);
+
+/* UTILITIES */
+
+void			ft_check_fd(int fd, const char *error_message);
+void			ft_check_malloc(void *ptr, const char *error_message);
+void			ft_check_pid(int pid);
+char			*ft_getenv(char **envp, const char *name);
+char			*ft_find_cmd_path(char **envp, const char *cmd);
 
 #endif /*LIBFT_H*/

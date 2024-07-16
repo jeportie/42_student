@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/07/04 17:59:54 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/16 20:15:19 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,11 @@ CFLAGS = 		-Wall -Wextra -Werror -g3 -Iinclude -Ilibft -Iminilibx
 OBJ_DIR = 		obj
 OUTPUT_DIR = 	outputs
 EXEC_DIR = 		exec
-VALGRIND = 		valgrind --track-origins=yes --leak-check=full
+VALGRIND = 		valgrind \
+				--track-origins=yes \
+				--leak-check=full \
+			#	--tool=helgrind
+
 LIBFT_DIR = 	libft
 MINILIBX_DIR = 	minilibx
 LIBS = 			-L$(MINILIBX_DIR) -lmlx -L$(LIBFT_DIR) -lft -lXext -lX11 -ldl -lglfw -pthread -lm

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:41:59 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/02 12:43:35 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:44:51 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static char	**ft_duplicate_map(t_map *map)
 	{
 		dup_map[y] = ft_strdup(map->map[y]);
 		gc_register(dup_map[y]);
+		gc_lock(dup_map[y]);
 		if (!dup_map[y])
 		{
 			while (y-- > 0)
@@ -45,6 +46,7 @@ void	ft_check_fill(t_game *game)
 	char	**dup_map;
 
 	dup_map = ft_duplicate_map(game->map);
+	gc_lock(dup_map);
 	ft_flood_fill(game, game->player->x, game->player->y);
 	y = 0;
 	while (y < game->map->height)

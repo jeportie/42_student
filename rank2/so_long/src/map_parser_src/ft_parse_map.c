@@ -15,11 +15,8 @@
 void	ft_parse_map(t_game *game, char *filename)
 {
 	game->map = gc_malloc(sizeof(t_map));
-	if (!game->map)
-	{
-		errno = ENOMEM;
-		ft_exit_failure(NULL, ENOMEM);
-	}
+	check_malloc(game->map);
+	gc_lock(game->map);
 	ft_read_map(filename, game);
 	ft_check_map(game);
 }

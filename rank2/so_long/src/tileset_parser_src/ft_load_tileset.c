@@ -17,6 +17,7 @@ void	ft_load_tileset(t_game *game, const char *path)
 	game->tileset = gc_malloc(sizeof(t_img));
 	if (!game->tileset)
 		ft_exit_failure(game, ENOMEM);
+	gc_lock(game->tileset);
 	game->tileset->img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			(char *)path, &game->tileset->width, &game->tileset->height);
 	if (!game->tileset->img_ptr)

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 19:08:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/04 18:12:33 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:54:06 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_exit_failure(t_game *game, int errnum)
 		perror((char *)g_error_messages[errnum - 100]);
 	else
 		ft_putstr_fd("Unknown error\n", 2);
-	if (game != NULL && game->state ==  LOADED)
+	if (game != NULL && game->state == LOADED)
 		ft_exit_tiles(game);
 	if (game != NULL && (game->state == LOADED || game->state == NO_TILE))
 		ft_exit_device(game);

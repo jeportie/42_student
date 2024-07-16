@@ -6,75 +6,52 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:26:29 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/05 09:13:26 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:51:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
+static int	ft_move(t_game *game, int y_offset, int x_offset)
+{
+	if (game->map->map[game->orc->y + y_offset * 3][game->orc->x + x_offset * 3]
+		!= '1')
+	{
+		if (game->map->map[game->orc->y + y_offset][game->orc->x + x_offset]
+			== 'C')
+			game->orc->on_exit = 1;
+		game->map->map[game->orc->y + y_offset][game->orc->x + x_offset] = 'M';
+		game->orc->y += y_offset;
+		game->orc->x += x_offset;
+	}
+	else
+		return (0);
+	return (1);
+}
+
 void	ft_update_orc_position(t_game *game)
 {
 	static int	opt = 0;
 
-	if (!opt)
+	if (opt == 0 && !ft_move(game, -1, 0))
 	{
-		if (game->map->map[game->orc->y + 3][game->orc->x] != '1')
-		{
-			if (game->map->map[game->orc->y + 1][game->orc->x] == 'C')
-				game->orc->on_exit = 1;
-			game->map->map[game->orc->y + 1][game->orc->x] = 'M';
-			game->orc->y++;
-		}
-		else
-		{
-			opt++;
-			ft_update_orc_position(game);
-		}
+		opt++;
+		ft_update_orc_position(game);
 	}
-	else if (opt == 1)
+	if (opt == 1 && !ft_move(game, 0, -1))
 	{
-		if (game->map->map[game->orc->y][game->orc->x + 3] != '1')
-		{
-			if (game->map->map[game->orc->y][game->orc->x + 1] == 'C')
-				game->orc->on_exit = 1;
-			game->map->map[game->orc->y][game->orc->x + 1] = 'M';
-			game->orc->x++;
-		}
-		else
-		{
-			opt++;
-			ft_update_orc_position(game);
-		}
+		opt++;
+		ft_update_orc_position(game);
 	}
-	else if (opt == 2)
+	if (opt == 2 && !ft_move(game, 1, 0))
 	{
-		if (game->map->map[game->orc->y - 3][game->orc->x] != '1')
-		{
-			if (game->map->map[game->orc->y - 1][game->orc->x] == 'C')
-				game->orc->on_exit = 1;
-			game->map->map[game->orc->y - 1][game->orc->x] = 'M';
-			game->orc->y--;
-		}
-		else
-		{
-			opt++;
-			ft_update_orc_position(game);
-		}
+		opt++;
+		ft_update_orc_position(game);
 	}
-	else if (opt == 3)
+	if (opt == 3 && !ft_move(game, 0, 1))
 	{
-		if (game->map->map[game->orc->y][game->orc->x - 3] != '1')
-		{
-			if (game->map->map[game->orc->y][game->orc->x - 1] == 'C')
-				game->orc->on_exit = 1;
-			game->map->map[game->orc->y][game->orc->x - 1] = 'M';
-			game->orc->x--;
-		}
-		else
-		{
-			opt = 0;
-			ft_update_orc_position(game);
-		}
+		opt = 0;
+		ft_update_orc_position(game);
 	}
 	game->orc->moves++;
 }
@@ -104,7 +81,7 @@ int	ft_player_anim(t_game *game)
 	if (!speed)
 	{
 		ft_move_orc(game);
-		speed = 3500;
+		speed = 1500;
 	}
 	return (0);
 }

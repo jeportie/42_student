@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 21:02:39 by jeportie          #+#    #+#              #
-#    Updated: 2024/07/03 11:37:06 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/11 10:52:53 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,14 +28,20 @@ SRC = 	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \
       	ft_printf_globals.c ft_buffer_flush.c ft_handle_int.c ft_isconvert_spec.c \
       	ft_printf.c ft_check_format.c ft_handle_plus_flag.c ft_isflag.c \
       	ft_ulltoa_base.c ft_handle_char.c ft_handle_pointer.c ft_apply_precision.c \
-		ft_nbr_len.c\
+		ft_nbr_len.c \
+		ft_check_fd.c \
+		ft_check_malloc.c \
+		ft_check_pid.c \
+		ft_getenv.c \
+		ft_find_cmd_path.c \
 		gc_cleanup.c \
 		gc_collect.c \
 		gc_fd_register.c \
 		gc_globals.c \
 		gc_malloc.c \
 		gc_nest_register.c \
-		gc_register.c
+		gc_register.c \
+		gc_mark_lock.c 
 
 
 BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \

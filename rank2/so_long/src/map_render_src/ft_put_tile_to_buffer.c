@@ -6,14 +6,14 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:57:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 14:51:56 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:53:15 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/so_long.h"
 
 void	ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x)
-{	
+{
 	t_tile	*tile;
 	int		i;
 	int		j;

@@ -20,7 +20,10 @@ char	*ft_strdup(const char *s)
 	s_len = ft_strlen(s);
 	new_str = (char *)malloc(sizeof(char) * (s_len + 1));
 	if (!new_str)
+	{
+		errno = ENOMEM;
 		return (NULL);
+	}
 	new_str = ft_memcpy(new_str, s, s_len + 1);
 	return (new_str);
 }

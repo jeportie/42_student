@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 23:44:18 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 13:27:24 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:19:35 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	ft_close_window(t_game *game)
 	gc_destroy_tiles(game);
 	gc_destroy_tileset(game);
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-	gc_collect("p", g_game);
 	return (0);
 }
 
