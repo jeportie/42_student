@@ -6,7 +6,7 @@
 #    By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/12 19:12:55 by jeportie          #+#    #+#              #
-#    Updated: 2024/07/16 20:15:19 by jeportie         ###   ########.fr        #
+#    Updated: 2024/07/17 08:45:39 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,13 +85,20 @@ OBJ_EVENTS	=	$(EVENTS:src/events_src/%.c=$(OBJ_DIR)/events_src_%.o)
 OBJ =			$(OBJ_MAP_PARSE) $(OBJ_MAP_REND) $(OBJ_UTILITIES) $(OBJ_TILESET) \
 				$(OBJ_GARBAGE) $(OBJ_EVENTS)
 
-all: $(LIBFT_DIR)/libft.a $(MINILIBX_DIR)/libmlx.a $(NAME)
+all: $(LIBFT_DIR)/libft.a $(MINILIBX_DIR)/libmlx.a $(NAME) copy_mlx_header
 
 $(LIBFT_DIR)/libft.a:
 	make -C $(LIBFT_DIR)
 
-$(MINILIBX_DIR)/libmlx.a:
+$(MINILIBX_DIR)/libmlx.a: 
+	@if [ ! -d "$(MINILIBX_DIR)" ]; then \
+		echo "Minilibx not found, cloning..."; \
+		git clone https://github.com/42Paris/minilibx-linux.git $(MINILIBX_DIR); \
+	fi
 	make -C $(MINILIBX_DIR)
+
+copy_mlx_header:
+	@cp $(MINILIBX_DIR)/mlx.h include/
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	ar rcs $(NAME) $(OBJ)

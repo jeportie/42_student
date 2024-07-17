@@ -6,13 +6,13 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 11:07:29 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/11 11:05:16 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:14:11 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/pipex.h"
 
-void	ft_in_heredoc(int temp_fd, char *limiter)
+static void	ft_in_heredoc(int temp_fd, char *limiter)
 {
 	int		len;
 	int		bytes_read;
@@ -45,13 +45,13 @@ void	ft_here_doc_mode(t_pipex *pipex, int argc, char **argv, char **envp)
 	pipex->input_file = NULL;
 	pipex->output_file = argv[argc - 1];
 	pipex->num_commands = argc - 4;
-	temp_fd = open("here_doc", O_WRONLY | O_CREAT | O_TRUNC, COPYMODE);
+	temp_fd = open(".tmp", O_WRONLY | O_CREAT | O_TRUNC, COPYMODE);
 	ft_check_fd(temp_fd, "Open Error ! (Temp file)\n");
-	gc_temp_file_register("here_doc");
+	gc_temp_file_register(".tmp");
 	gc_fd_register(temp_fd);
 	ft_in_heredoc(temp_fd, limiter);
 	close(temp_fd);
-	pipex->input_file = ft_strdup("here_doc");
+	pipex->input_file = ft_strdup(".tmp");
 	ft_check_malloc(pipex->input_file, "Strdup Error !\n");
 	gc_register(pipex->input_file);
 	gc_lock(pipex->input_file);

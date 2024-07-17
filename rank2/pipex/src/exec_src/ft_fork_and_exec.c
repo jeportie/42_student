@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 16:44:28 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/15 16:55:05 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/16 09:56:21 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_wait_for_children(int num_commands)
 	int	i;
 
 	i = 0;
-//	close(STDIN_FILENO);
+	close(STDIN_FILENO);
 	while (i < num_commands)
 	{
 		wait(NULL);

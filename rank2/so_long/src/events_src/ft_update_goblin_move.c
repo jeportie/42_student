@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:32:07 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/04 19:13:49 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/17 10:28:46 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_update_goblin_move(t_game *game, const char *tilename, bool render)
 {
+	if (!game->m)
+		return ;
 	ft_put_tile_to_buffer(game, tilename, game->goblin->y, game->goblin->x);
 	if (render == true)
 	{
@@ -24,6 +26,8 @@ void	ft_update_goblin_move(t_game *game, const char *tilename, bool render)
 
 void	ft_update_orc_move(t_game *game, const char *tilename, bool render)
 {
+	if (!game->n)
+		return ;
 	ft_put_tile_to_buffer(game, tilename, game->orc->y, game->orc->x);
 	if (render == true)
 	{

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:39:39 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/03 10:39:13 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:53:41 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@ static void	ft_update_pos(t_player *type, int x, int y)
 {
 	type->x = x;
 	type->y = y;
+}
+
+static void	ft_helper(t_game *game, int x, int y)
+{
+	if (game->map->map[y][x] == 'M')
+	{
+		game->m = true;
+		ft_update_pos(game->goblin, x, y);
+	}
+	if (game->map->map[y][x] == 'N')
+	{
+		game->n = true;
+		ft_update_pos(game->orc, x, y);
+	}
 }
 
 void	ft_check_char(t_game *game, int x, int y)
@@ -40,8 +54,5 @@ void	ft_check_char(t_game *game, int x, int y)
 		game->map->p_count++;
 		ft_update_pos(game->player, x, y);
 	}
-	if (game->map->map[y][x] == 'M')
-		ft_update_pos(game->goblin, x, y);
-	if (game->map->map[y][x] == 'N')
-		ft_update_pos(game->orc, x, y);
+	ft_helper(game, x, y);
 }

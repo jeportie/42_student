@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_args.c                                    :+:      :+:    :+:   */
+/*   ft_init_pipex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 12:19:04 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/11 08:15:58 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/16 11:21:00 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/16 11:22:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/pipex.h"
 
-void	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
+void	ft_init_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
 {
 	int	i;
 
@@ -37,4 +37,5 @@ void	ft_parse_args(t_pipex *pipex, int argc, char **argv, char **envp)
 		ft_parse_cmd(&pipex->commands[i], argv[i + 2], envp);
 		i++;
 	}
+	gc_collect();
 }

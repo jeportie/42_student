@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:41:59 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/16 18:44:51 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/17 11:18:42 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_check_fill(t_game *game)
 		x = 0;
 		while (x < game->map->width)
 		{
-			if (game->map->map[y][x] == '0' || game->map->map[y][x] == 'C'
+			if (game->map->map[y][x] == 'C'
 				|| game->map->map[y][x] == 'E')
 				ft_exit_failure(game, ENOPATH);
 			x++;

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/16 19:56:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/17 10:11:20 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ typedef struct s_game
 	t_player	*goblin;
 	bool		on_exit;
 	int			state;
+	bool		n;
+	bool		m;
 }				t_game;
 
 extern const char	*g_error_mesages;
@@ -131,8 +133,6 @@ void	ft_clear_buffer(t_game *game, char *img_data, int bpp, int size_line);
 void	ft_load_frame(t_game *game);
 void	ft_put_tile(t_game *game, t_img *tile, int x, int y);
 void	ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x);
-void	ft_put_tile_to_buffer_offset(t_game *game, const char *tilename,
-			int y, int x, int offset);
 
 /* Tileset Parser */
 void	ft_load_tileset(t_game *game, const char *path);

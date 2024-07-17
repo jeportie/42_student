@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 12:11:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/04 14:44:31 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:48:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ void	ft_move_player(int keysym, t_game *game)
 	{
 		ft_check_exit(game, new_y, new_x);
 		ft_update_player_move(game, "floor_1", false);
-		ft_update_goblin_move(game, "floor_1", false);
+		if (game->m)
+			ft_update_goblin_move(game, "floor_1", false);
 		game->player->x = new_x;
 		game->player->y = new_y;
 		game->map->map[new_y][new_x] = 'P';
 		game->player->moves++;
 		ft_update_player_move(game, "1b", true);
-		ft_update_goblin_position(game);
-		ft_update_goblin_move(game, "1m", true);
+		if (game->m)
+		{
+			ft_update_goblin_position(game);
+			ft_update_goblin_move(game, "1m", true);
+		}
 	}
 }

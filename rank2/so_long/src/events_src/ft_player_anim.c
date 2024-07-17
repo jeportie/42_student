@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:26:29 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/16 19:51:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:54:20 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 static int	ft_move(t_game *game, int y_offset, int x_offset)
 {
-	if (game->map->map[game->orc->y + y_offset * 3][game->orc->x + x_offset * 3]
-		!= '1')
+	if (game->map->map[game->orc->y + y_offset][game->orc->x + x_offset] != '1'
+			&& game->map->map[game->orc->y + y_offset * 2]
+			[game->orc->x + x_offset * 2] != '1'
+			&& game->map->map[game->orc->y + y_offset * 3]
+			[game->orc->x + x_offset * 3] != '1')
 	{
 		if (game->map->map[game->orc->y + y_offset][game->orc->x + x_offset]
 			== 'C')
@@ -65,8 +68,8 @@ void	ft_move_orc(t_game *game)
 
 int	ft_player_anim(t_game *game)
 {
-	static long	count = 1000;
-	static long	speed = 1800;
+	static long	count = 2000;
+	static long	speed = 2800;
 
 	count--;
 	speed--;
@@ -74,14 +77,16 @@ int	ft_player_anim(t_game *game)
 	if (!count)
 	{
 		ft_render_player_anim(game);
-		ft_render_goblin_anim(game);
-		ft_render_orc_anim(game);
-		count = 1000;
+		if (game->m)
+			ft_render_goblin_anim(game);
+		if (game->n)
+			ft_render_orc_anim(game);
+		count = 2500;
 	}
-	if (!speed)
+	if (!speed && game->n)
 	{
 		ft_move_orc(game);
-		speed = 1500;
+		speed = 8000;
 	}
 	return (0);
 }
