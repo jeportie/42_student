@@ -19,7 +19,7 @@ void	sa(t_dclst *stack_a, bool print)
 	t_dcnode	*second_node;
 
 	if (!stack_a || !stack_a->begin || !stack_a->begin->next)
-		return ; 
+		return ;
 	first_node = stack_a->begin;
 	second_node = stack_a->begin->next;
 	stack_a->begin = second_node;
@@ -65,16 +65,13 @@ void	ra(t_dclst *stack_a, bool print)
 {
 	t_dcnode	*first_node;
 	t_dcnode	*last_node;
-	
+
 	if (!stack_a || !stack_a->begin || !stack_a->begin->next)
 		return ;
-
 	first_node = stack_a->begin;
 	last_node = stack_a->end;
-
 	stack_a->begin = first_node->next;
 	stack_a->begin->back = NULL;
-
 	last_node->next = first_node;
 	first_node->back = last_node;
 	first_node->next = NULL;
@@ -87,7 +84,7 @@ void	rra(t_dclst *stack_a, bool print)
 {
 	t_dcnode	*first_node;
 	t_dcnode	*last_node;
-	
+
 	if (!stack_a || !stack_a->begin || !stack_a->begin->next)
 		return ;
 	last_node = stack_a->end;

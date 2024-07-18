@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:53:52 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/16 16:28:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/18 10:22:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,25 @@ void	ft_back_to_stack_a(t_dclst *stack_a, t_dclst *stack_b)
 	}
 }
 
+static void	ft_helper(t_dclst *stack_a, t_dcnode *min_node)
+{
+	int	moves;
+
+	moves = ft_moves_to_top(stack_a, min_node);
+	while (moves--)
+	{
+		if (min_node->above_median)
+			ra(stack_a, true);
+		else
+			rra(stack_a, true);
+	}
+}
+
 void	ft_fine_tune(t_dclst *stack_a)
 {
 	t_dcnode	*current;
 	t_dcnode	*min_node;
 	long		min_value;
-	int			moves;
 
 	ft_define_index(stack_a);
 	ft_mark_above_median(stack_a);
@@ -75,12 +88,5 @@ void	ft_fine_tune(t_dclst *stack_a)
 		}
 		current = current->next;
 	}
-	moves = ft_moves_to_top(stack_a, min_node);
-	while (moves--)
-	{
-		if (min_node->above_median)
-			ra(stack_a, true);
-		else
-			rra(stack_a, true);
-	}
+	ft_helper(stack_a, min_node);
 }

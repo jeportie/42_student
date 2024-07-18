@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 18:16:37 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 18:17:00 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:47:57 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 bool	ft_validate_inputs(int argc, char **argv)
 {

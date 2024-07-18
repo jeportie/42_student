@@ -6,12 +6,12 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 20:31:05 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/16 16:24:02 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:25:35 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-#include "../include/ft_printf.h"
+#include "../../include/push_swap.h"
+#include "../../include/ft_printf.h"
 
 void	sb(t_dclst *stack_b, bool print)
 {
@@ -19,7 +19,7 @@ void	sb(t_dclst *stack_b, bool print)
 	t_dcnode	*second_node;
 
 	if (!stack_b || !stack_b->begin || !stack_b->begin->next)
-		return ; 
+		return ;
 	first_node = stack_b->begin;
 	second_node = stack_b->begin->next;
 	stack_b->begin = second_node;
@@ -65,7 +65,7 @@ void	rb(t_dclst *stack_b, bool print)
 {
 	t_dcnode	*first_node;
 	t_dcnode	*last_node;
-	
+
 	if (!stack_b || !stack_b->begin || !stack_b->begin->next)
 		return ;
 	first_node = stack_b->begin;
@@ -84,7 +84,7 @@ void	rrb(t_dclst *stack_b, bool print)
 {
 	t_dcnode	*first_node;
 	t_dcnode	*last_node;
-	
+
 	if (!stack_b || !stack_b->begin || !stack_b->begin->next)
 		return ;
 	last_node = stack_b->end;

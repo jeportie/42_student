@@ -6,12 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:24:17 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 18:31:41 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:45:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-
+#include "../../include/push_swap.h"
 
 void	ft_split_parse(char *values_list, t_dclst *stack_a)
 {

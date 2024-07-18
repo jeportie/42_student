@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 18:15:58 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 18:16:23 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:47:45 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 void	ft_push_to_stack(t_dclst *stack, long value)
 {

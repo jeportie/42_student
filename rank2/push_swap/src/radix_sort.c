@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:00:46 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/16 18:56:19 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:17:48 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ long	ft_labs(long value)
 {
 	if (value < 0)
 		return (-value);
-	return value;
+	return (value);
 }
 
-int		ft_find_max_bits(t_dclst *stack)
+int	ft_find_max_bits(t_dclst *stack)
 {
-	int		max_bits;
-	long	max_value;
-	t_dcnode *current;
+	int			max_bits;
+	long		max_value;
+	t_dcnode	*current;
 
 	max_bits = 0;
 	max_value = 0;
@@ -74,7 +74,7 @@ void	radix_sort(t_dclst *stack_a, t_dclst *stack_b)
 	bit = 0;
 	while (bit < max_bits)
 	{
-		ft_apply_bitwise_sort(stack_a, stack_b,  bit);
+		ft_apply_bitwise_sort(stack_a, stack_b, bit);
 		bit++;
 	}
 }

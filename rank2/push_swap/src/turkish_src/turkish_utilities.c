@@ -17,7 +17,7 @@ void	ft_push_initial_numbers(t_dclst *stack_a, t_dclst *stack_b)
 {
 	if (stack_a->length == 4)
 	{
-		pb(stack_a, stack_b);	
+		pb(stack_a, stack_b);
 		return ;
 	}
 	pb(stack_a, stack_b);
@@ -37,7 +37,7 @@ void	ft_mark_above_median(t_dclst *stack)
 	{
 		if (position <= median_position)
 			current->above_median = true;
-		else 
+		else
 			current->above_median = false;
 		current = current->next;
 		position++;

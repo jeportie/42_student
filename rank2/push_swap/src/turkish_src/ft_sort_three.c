@@ -15,7 +15,7 @@
 void	ft_topless(t_dclst *stack_a, long top, long middle, long bottom)
 {
 	if (middle < bottom)
-		return;
+		return ;
 	if (top < bottom)
 	{
 		rra(stack_a, true);

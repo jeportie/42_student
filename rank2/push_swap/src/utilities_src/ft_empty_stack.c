@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 15:40:21 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/21 15:49:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:43:51 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 void	ft_empty_stack(t_dclst *stack)
 {
@@ -26,7 +26,7 @@ void	ft_empty_stack(t_dclst *stack)
 		free(current_node);
 		current_node = next_node;
 		if (current_node == stack->begin)
-			break;
+			break ;
 	}
 	ft_bzero(stack, sizeof(t_dclst));
 }

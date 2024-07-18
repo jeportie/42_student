@@ -6,11 +6,11 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 18:21:04 by jeportie          #+#    #+#             */
-/*   Updated: 2024/03/22 18:21:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/18 09:42:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "../../include/push_swap.h"
 
 int	ft_argc_len(char **argv)
 {
