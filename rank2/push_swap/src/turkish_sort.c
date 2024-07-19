@@ -17,11 +17,6 @@ void	turkish_sort(t_dclst *stack_a, t_dclst *stack_b)
 {
 	if (!stack_a || !stack_b || ft_is_sort(stack_a))
 		return ;
-	if (stack_a->length == 3)
-	{
-		ft_sort_three(stack_a);
-		return ;
-	}
 	ft_push_initial_numbers(stack_a, stack_b);
 	if (stack_a->length > 5)
 	{

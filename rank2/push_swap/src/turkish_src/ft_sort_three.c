@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:11:36 by jeportie          #+#    #+#             */
-/*   Updated: 2024/04/16 16:26:54 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/19 08:34:15 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_sort_three(t_dclst *stack_a)
 	long	middle;
 	long	bottom;
 
-	if (stack_a->length < 3)
+	if (stack_a->length != 3)
 		return ;
 	top = stack_a->begin->value;
 	middle = stack_a->begin->next->value;

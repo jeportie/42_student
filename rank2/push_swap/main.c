@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 22:57:08 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/18 11:53:29 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/19 08:36:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	ft_is_sort(t_dclst *stack_a)
 		return (1);
 	current = stack_a->begin;
 
-	while (current->next && current->next != stack_a->begin)
+	while (current->next)
 	{
 		if (current->value > current->next->value)
 			return (false);
@@ -41,7 +41,10 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		ft_parse_arg(argc, argv, stack_a);
-		turkish_sort(stack_a, stack_b);
+		if (stack_a->length == 3)
+			ft_sort_three(stack_a);
+		else
+			turkish_sort(stack_a, stack_b);
 		ft_empty_stack(stack_a);
 		ft_empty_stack(stack_b);
 	}
