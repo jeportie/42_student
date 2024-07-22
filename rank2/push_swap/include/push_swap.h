@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 13:24:54 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/19 08:29:35 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/22 09:05:51 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_dcnode
 	bool			cheapest;
 	int				moves_to_top;
 	int				combined_moves;
+	int				segment;
 	struct s_dcnode	*target;
 	struct s_dcnode	*back;
 	struct s_dcnode	*next;
