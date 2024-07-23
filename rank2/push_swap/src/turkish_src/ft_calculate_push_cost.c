@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 16:04:44 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/18 13:36:17 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:04:38 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	ft_evaluate_combined_moves(t_dclst *stack_a, t_dclst *stack_b,
 	int	combined_moves;
 
 	combined_moves = INT_MAX;
-	moves_a_to_top = ft_moves_to_top(stack_a, node);
-	moves_b_to_top = ft_moves_to_top(stack_b, node->target);
+	moves_b_to_top = ft_moves_to_top(stack_b, node);
+	moves_a_to_top = ft_moves_to_top(stack_a, node->target);
 	if (node != stack_a->begin)
 	{
 		if (moves_a_to_top > moves_b_to_top)
@@ -55,14 +55,14 @@ void	ft_evaluate_combined_moves(t_dclst *stack_a, t_dclst *stack_b,
 void	ft_evaluate_direct_moves(t_dclst *stack_a, t_dclst *stack_b,
 		t_dcnode *node)
 {
-	int	moves_a_to_top;
 	int	moves_b_to_top;
+	int	moves_a_to_top;
 
-	moves_a_to_top = ft_moves_to_top(stack_a, node);
-	moves_b_to_top = ft_moves_to_top(stack_b, node->target);
-	node->moves_to_top = moves_a_to_top;
+	moves_b_to_top = ft_moves_to_top(stack_b, node);
+	moves_a_to_top = ft_moves_to_top(stack_a, node->target);
+	node->moves_to_top = moves_b_to_top;
 	if (node->target)
-	node->target->moves_to_top = moves_b_to_top;
+		node->target->moves_to_top = moves_a_to_top;
 }
 
 void	ft_select_optimal_strategy(t_dcnode *node)
@@ -79,7 +79,7 @@ void	ft_select_optimal_strategy(t_dcnode *node)
 	if (node->combined_moves + (int)ft_labs(remaining_moves) > direct_moves)
 		node->push_cost = node->combined_moves;
 	else
-		node->push_cost = direct_moves;
+	node->push_cost = direct_moves;
 }
 
 void	ft_calculate_push_cost(t_dclst *stack_a, t_dclst *stack_b)
@@ -89,6 +89,8 @@ void	ft_calculate_push_cost(t_dclst *stack_a, t_dclst *stack_b)
 
 	i = 1;
 	current_node = stack_a->begin;
+	current_node->push_cost = 0;
+	current_node->combined_moves = 0;
 	while (current_node)
 	{
 		ft_evaluate_combined_moves(stack_a, stack_b, current_node);

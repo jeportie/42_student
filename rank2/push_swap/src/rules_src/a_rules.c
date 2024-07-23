@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
-#include "../include/ft_printf.h"
+#include "../../include/push_swap.h"
+#include "../../include/ft_printf.h"
 
 void	sa(t_dclst *stack_a, bool print)
 {

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   nelb_algo.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 09:26:29 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/19 10:18:47 by jeportie         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 typedef struct s_stack
 {
 	long			nb;
@@ -23,126 +11,154 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	
 
-int	ft_stack_size(t_stack *lst)
+//////////////Main function sort_a + sub functions///////////////////
+void	sort_a(t_stack **a, t_stack **b)
 {
-	int	node;
+	t_stack	*cheapest;
 
-	node = 0;
-	while (lst)
+	while (*b)
 	{
-		lst = lst->next;
-		node++;
-	}
-	return (node);
-}
-
-void	sort_b(t_stack **a, t_stack **b)
-{
-	t_stack	*current;
-	int		size;
-	int		seg;
-
-	seg = -1;
-	size = ft_stack_size(*a);
-	prep_stack_a(a);
-	while (++seg <= 5)
-	{
-		current = *a;
-		while (current && size > 3)
-		{
-			assign_cost_in_a(a);
-			get_cheapest_by_segment(a, seg);
-			if (current->segment == seg && current->is_cheapest)
-			{
-				node_to_top(a, current);
-				push_b(a, b);
-				current = *a;
-				size--;
-			}
-			else
-				current = current->next;
-		}
+		prep_stack_b(b, a);
+		cheapest = find_cheapest(*b);
+		b_and_target_to_top(b, cheapest, a);
+		push_a(b, a);
 	}
 }
 
-void	prep_stack_a(t_stack **a)
+void	prep_stack_b(t_stack **b, t_stack **a)
 {
-	int	*pivots;
-	int	size;
-
-	size = ft_stack_size(*a);
-	pivots = malloc(4 * sizeof(int));
-	if (!pivots)
-		return ;
-	pivots = find_pivots(*a, size, pivots);
-	set_cheapest_to_null(a);
-	assign_segment(a, pivots);
-	free(pivots);
+	index_in_stack(a);
+	index_in_stack(b);
+	find_target_b_in_a(*b, *a);
+	target_cost(b, a);
+	total_cost(*b, *a);
+	set_cheapest_to_null(b);
+	get_cheapest(b);
 }
 
-int	*find_pivots(t_stack *stack, int size, int *pivots)
+t_stack	*find_cheapest(t_stack *a)
 {
-	int	i;
-	int	*values;
+	t_stack	*stack_a;
 
-	i = -1;
-	values = (int *)malloc(size * sizeof(int));
-	if (!values)
+	stack_a = a;
+	if (!stack_a)
 		return (NULL);
-	fill_arr(stack, &values);
-	if (size > 100)
+	while (stack_a)
 	{
-		pivots[0] = quick_select(values, 0, size - 1, size / 5);
-		pivots[1] = quick_select(values, 0, size - 1, (2 * size) / 5);
-		pivots[2] = quick_select(values, 0, size - 1, (3 * size) / 5);
-		pivots[3] = quick_select(values, 0, size - 1, (4 * size) / 5);
+		if (stack_a->is_cheapest)
+			return (stack_a);
+		stack_a = stack_a->next;
 	}
+	return (NULL);
+}
+
+void	b_and_target_to_top(t_stack **b, t_stack *cheapest, t_stack **a)
+{
+	int	cost_b;
+	int	target_cost;
+
+	target_cost = calculate_node_cost(cheapest->target_node, ft_stack_size(*a));
+	cost_b = calculate_node_cost(cheapest, ft_stack_size(*b));
+	if ((cheapest->is_in_top && cheapest->target_node->is_in_top)
+		|| (!cheapest->is_in_top && !cheapest->target_node->is_in_top))
+		both_to_top(b, cheapest, a, cost_b);
 	else
 	{
-		while (++i <= 3)
-			pivots[i] = 0;
-	}
-	free(values);
-	return (pivots);
-}
-
-int	quick_select(int *arr, int low, int high, int k)
-{
-	int	index_pivot;
-
-	if (low <= high)
-	{
-		index_pivot = partition(arr, low, high);
-		if (index_pivot == k)
-			return (arr[index_pivot]);
-		else if (index_pivot < k)
-			return (quick_select(arr, index_pivot + 1, high, k));
-		else
-			return (quick_select(arr, low, index_pivot - 1, k));
-	}
-	return (-1);
-}
-
-int	partition(int *arr, int low, int high)
-{
-	int	pivot;
-	int	i;
-	int	j;
-
-	pivot = arr[high];
-	i = (low - 1);
-	j = low;
-	while (j < high)
-	{
-		if (arr[j] <= pivot)
+		if (cheapest->is_in_top)
 		{
-			i++;
-			ft_swap(&arr[i], &arr[j]);
+			single_rotate(a, target_cost, rev_rotate_a);
+			single_rotate(b, cost_b, rotate_b);
 		}
-		j++;
+		else
+		{
+			single_rotate(a, target_cost, rotate_a);
+			single_rotate(b, cost_b, rev_rotate_b);
+		}
 	}
-	ft_swap(&arr[i + 1], &arr[high]);
-	return (i + 1);
+}
+
+void	push_a(t_stack **b, t_stack **a)
+{
+	push_top_to_stack(b, a);
+	ft_printf("pa\n");
+}
+
+
+/////////SUB FUNCTIONS OF prep_stack_b
+
+void	prep_stack_b(t_stack **b, t_stack **a)
+{
+	index_in_stack(a);
+	index_in_stack(b);
+	find_target_b_in_a(*b, *a);
+	target_cost(b, a);
+	total_cost(*b, *a);
+	set_cheapest_to_null(b);
+	get_cheapest(b);
+}
+
+void	find_target_b_in_a(t_stack *b, t_stack *a)
+{
+	t_stack	*stack_a;
+	t_stack	*target;
+	int		target_nb;
+
+	while (b)
+	{
+		target = NULL;
+		target_nb = INT_MAX;
+		stack_a = a;
+		while (stack_a)
+		{
+			if (stack_a->nb > b->nb && stack_a->nb < target_nb)
+			{
+				target_nb = stack_a->nb;
+				target = stack_a;
+			}
+			stack_a = stack_a->next;
+		}
+		if (target_nb == INT_MAX)
+			b->target_node = find_min(a);
+		else
+			b->target_node = target;
+		b = b->next;
+	}
+}
+
+t_stack	*find_min(t_stack *lst)
+{
+	t_stack	*min_node;
+	int		min;
+
+	min_node = lst;
+	min = INT_MAX;
+	while (lst)
+	{
+		if (lst->nb < min)
+		{
+			min_node = lst;
+			min = lst->nb;
+		}
+		lst = lst->next;
+	}
+	return (min_node);
+}
+
+void	target_cost(t_stack **a, t_stack **b)
+{
+	t_stack	*stack_a;
+	int		stack_len;
+
+	stack_a = *a;
+	stack_len = ft_stack_size(*b);
+	while (stack_a)
+	{
+		if (stack_a->target_node->is_in_top)
+			stack_a->target_cost = stack_a->target_node->index;
+		else
+			stack_a->target_cost = stack_len - stack_a->target_node->index;
+		stack_a = stack_a->next;
+	}
 }
 
 void	set_cheapest_to_null(t_stack **lst)
@@ -156,78 +172,8 @@ void	set_cheapest_to_null(t_stack **lst)
 		stack = stack->next;
 	}
 }
-
-void	assign_segment(t_stack **a, int *pivot)
-{
-	int		value;
-	t_stack	*stack_a;
-
-	stack_a = *a;
-	value = stack_a->nb;
-	while (stack_a)
-	{
-		value = stack_a->nb;
-		if (value <= pivot[0])
-			stack_a->segment = 1;
-		else if (value <= pivot[1])
-			stack_a->segment = 2;
-		else if (value <= pivot[2])
-			stack_a->segment = 3;
-		else if (value <= pivot[3])
-			stack_a->segment = 4;
-		else
-			stack_a->segment = 5;
-		stack_a = stack_a->next;
-	}
-}
-
-void	assign_cost_in_a(t_stack **a)
-{
-	t_stack	*stack_a;
-	int		stack_len;
-
-	stack_a = *a;
-	stack_len = ft_stack_size(stack_a);
-	index_in_stack(a);
-	while (stack_a)
-	{
-		stack_a->total_cost = calculate_node_cost(stack_a, stack_len);
-		stack_a = stack_a->next;
-	}
-}
-
-void	index_in_stack(t_stack **lst)
-{
-	int		i;
-	int		mid;
-	t_stack	*stack;
-
-	i = 0;
-	stack = *lst;
-	mid = mid_stack(stack);
-	if (!stack)
-		return ;
-	while (stack)
-	{
-		stack->index = i;
-		if (i <= mid)
-			stack->is_in_top = 1;
-		else
-			stack->is_in_top = 0;
-		stack = stack->next;
-		i++;
-	}
-}
-
-int	calculate_node_cost(t_stack *node, int stack_length)
-{
-	if (node->is_in_top)
-		return (node->index);
-	else
-		return (stack_length - node->index);
-}
-
-void	get_cheapest_by_segment(t_stack **a, int seg)
+ 
+void	get_cheapest(t_stack **a)
 {
 	t_stack	*stack_a;
 	t_stack	*cheapest;
@@ -238,7 +184,7 @@ void	get_cheapest_by_segment(t_stack **a, int seg)
 	stack_a = *a;
 	while (stack_a)
 	{
-		if (stack_a->total_cost < cheapest_cost && stack_a->segment == seg)
+		if (stack_a->total_cost < cheapest_cost)
 		{
 			cheapest_cost = stack_a->total_cost;
 			cheapest = stack_a;
@@ -249,53 +195,38 @@ void	get_cheapest_by_segment(t_stack **a, int seg)
 		cheapest->is_cheapest = 1;
 }
 
-void	node_to_top(t_stack **a, t_stack *node)
-{
-	int	cost_a;
-	int	stack_len;
+/////////SUB FUNCTIONS OF b_and_target_to_top/////////////////
 
-	stack_len = ft_stack_size(*a);
-	cost_a = calculate_node_cost(node, stack_len);
+int	calculate_node_cost(t_stack *node, int stack_length)
+{
 	if (node->is_in_top)
-		single_rotate(a, cost_a, rotate_a);
+		return (node->index);
 	else
-		single_rotate(a, cost_a, rev_rotate_a);
+		return (stack_length - node->index);
 }
 
-void	single_rotate(t_stack **stack, int count, void (*move)(t_stack **))
+void	both_to_top(t_stack **b, t_stack *cheapest, t_stack **a, int cost_b)
 {
-	int	i;
+	int	target_cost;
 
-	i = 0;
-	while (i < count)
-	{
-		move(stack);
-		i++;
-	}
-}
-
-void	push_b(t_stack **a, t_stack **b)
-{
-	push_top_to_stack(a, b);
-	ft_printf("pb\n");
-}
-
-void	push_top_to_stack(t_stack **src, t_stack **dst)
-{
-	t_stack	*tmp;
-
-	if (!src || !*src || !dst)
-		return ;
-	tmp = *src;
-	*src = (*src)->next;
-	if (!dst)
-	{
-		*dst = tmp;
-		(*dst)->next = NULL;
-	}
+	target_cost = calculate_node_cost(cheapest->target_node, ft_stack_size(*a));
+	if (cheapest->is_in_top)
+		double_rotate(a, b, ft_min(cost_b, target_cost), rr);
 	else
+		double_rotate(a, b, ft_min(cost_b, target_cost), rrr);
+	if (cost_b < target_cost)
 	{
-		tmp->next = *dst;
-		*dst = tmp;
+		if (cheapest->is_in_top)
+			single_rotate(a, target_cost - cost_b, rotate_a);
+		else
+			single_rotate(a, target_cost - cost_b, rev_rotate_a);
+	}
+	else if (cost_b > target_cost)
+	{
+		if (cheapest->is_in_top)
+			single_rotate(b, cost_b - target_cost, rotate_b);
+		else
+			single_rotate(b, cost_b - target_cost, rev_rotate_b);
 	}
 }
+
