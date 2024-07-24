@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 12:07:48 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 12:07:48 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/24 15:48:22 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/24 15:50:17 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./push_swap.h"
+#include "include/push_swap.h"
 
 int	main(int ac, char **av)
 {

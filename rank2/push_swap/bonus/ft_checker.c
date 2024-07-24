@@ -6,11 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:55:23 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 12:55:26 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:25:36 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 void	ft_checker(t_stack **a, t_stack **b, char **line)
 {
@@ -19,7 +19,7 @@ void	ft_checker(t_stack **a, t_stack **b, char **line)
 		ft_mv_read_exe(a, b, line);
 		free (*line);
 		*line = NULL;
-		*line = get_next_line(0, 0);
+		*line = get_next_line(0);
 	}
 	if (!ft_is_sorted(*a))
 		ft_putstr_fd("KO\n", 1);

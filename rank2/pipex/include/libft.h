@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/11 13:20:16 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:17:55 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strjoin_free(char *s1, const char *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *S, char c);
+size_t			ft_count_words(char *str, char c);
 char			*ft_itoa(int n);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 

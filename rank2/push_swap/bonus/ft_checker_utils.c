@@ -6,11 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:55:47 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 12:55:54 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:30:53 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 void	ft_prep_main(int ac, char **av, t_stack **a, t_stack **b)
 {
@@ -29,7 +29,8 @@ void	ft_error_checker(t_stack **a, t_stack **b, char **line)
 {
 	ft_free_stack(a);
 	ft_free_stack(b);
-	get_next_line(0, 1);
+	//if static leak error, see gnl(int fd, int flag).
+	get_next_line(0);
 	ft_putstr_fd("Error\n", 2);
 	if (!line)
 		exit(1);

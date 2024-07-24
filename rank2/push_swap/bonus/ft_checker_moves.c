@@ -6,11 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:55:31 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 12:55:34 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:26:05 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 void	ft_swap_mv_read_exe(t_stack **a, t_stack **b, char **line)
 {
