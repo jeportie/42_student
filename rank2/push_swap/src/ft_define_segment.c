@@ -92,7 +92,7 @@ int	*ft_find_pivots(t_stack *stack, int size, int *pivots)
 	return (pivots);
 }
 
-void	ft_assign_segment(t_stack **a, int *pivot)
+void	ft_assign_segment(t_stack **a, int pivot[3])
 {
 	int		value;
 	t_stack	*stack_a;
