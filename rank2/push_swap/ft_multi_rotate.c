@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_multi_rotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 12:07:48 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 12:07:48 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/24 12:05:02 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/24 12:05:02 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
 
-int	main(int ac, char **av)
+void	ft_double_rotate(t_stack **a, t_stack **b, int count,
+		void (*move)(t_stack **, t_stack **))
 {
-	t_stack	*a;
-	t_stack	*b;
-	char	*joined_args;
+	int	i;
 
-	a = NULL;
-	b = ft_init_b();
-	joined_args = NULL;
-	if (ac > 1)
+	i = 0;
+	while (i < count)
 	{
-		ft_check_empty_args(ac, av);
-		joined_args = ft_join_arguments(ac, av);
-		ft_validate_and_init_stack(&a, joined_args);
-		free(joined_args);
-		ft_check_dup_and_sort(&a, &b);
-		ft_free_stack(&a);
-		ft_free_stack(&b);
+		move(a, b);
+		i++;
 	}
-	return (0);
+}
+
+void	ft_single_rotate(t_stack **stack, int count, void (*move)(t_stack **))
+{
+	int	i;
+
+	i = 0;
+	while (i < count)
+	{
+		move(stack);
+		i++;
+	}
 }

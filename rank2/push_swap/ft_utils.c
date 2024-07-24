@@ -1,0 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/24 12:42:17 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/24 12:42:19 by jeportie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "./push_swap.h"
+
+void	ft_set_cheapest_to_null(t_stack **lst)
+{
+	t_stack	*stack;
+
+	stack = *lst;
+	while (stack)
+	{
+		stack->is_cheapest = 0;
+		stack = stack->next;
+	}
+}
+
+int	ft_count_words(char const *s, char c)
+{
+	int	count;
+	int	i;
+
+	count = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != c && (s[i + 1] == c || !s[i + 1]))
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+void	ft_swap(int *a, int *b)
+{
+	int	temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+
+int	ft_min(int cost_a, int cost_b)
+{
+	if (cost_a > cost_b)
+		return (cost_b);
+	return (cost_a);
+}
+
+void	ft_print_stack(t_stack *stack)
+{
+	t_stack	*tmp;
+	int		nbr;
+	int		first_seen;
+
+	if (!stack)
+		return ;
+	first_seen = 1;
+	tmp = stack;
+	while (tmp)
+	{
+		nbr = tmp->nb;
+		if (first_seen == 1)
+		{
+			ft_printf("%d", nbr);
+			first_seen = 0;
+		}
+		else if (first_seen == 0)
+			ft_printf(" %d", nbr);
+		tmp = tmp->next;
+	}
+	ft_printf("\n");
+}

@@ -1,35 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_push_moves.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 12:07:48 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 12:07:48 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/24 12:05:16 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/24 12:05:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
 
-int	main(int ac, char **av)
+void	ft_push_top_to_stack(t_stack **src, t_stack **dst)
 {
-	t_stack	*a;
-	t_stack	*b;
-	char	*joined_args;
+	t_stack	*tmp;
 
-	a = NULL;
-	b = ft_init_b();
-	joined_args = NULL;
-	if (ac > 1)
+	if (!src || !*src || !dst)
+		return ;
+	tmp = *src;
+	*src = (*src)->next;
+	if (!dst)
 	{
-		ft_check_empty_args(ac, av);
-		joined_args = ft_join_arguments(ac, av);
-		ft_validate_and_init_stack(&a, joined_args);
-		free(joined_args);
-		ft_check_dup_and_sort(&a, &b);
-		ft_free_stack(&a);
-		ft_free_stack(&b);
+		*dst = tmp;
+		(*dst)->next = NULL;
 	}
-	return (0);
+	else
+	{
+		tmp->next = *dst;
+		*dst = tmp;
+	}
+}
+
+void	pb(t_stack **a, t_stack **b)
+{
+	ft_push_top_to_stack(a, b);
+	ft_printf("pb\n");
+}
+
+void	pa(t_stack **b, t_stack **a)
+{
+	ft_push_top_to_stack(b, a);
+	ft_printf("pa\n");
 }

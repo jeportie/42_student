@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_checker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 12:07:48 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 12:07:48 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/24 12:55:23 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/24 12:55:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./push_swap.h"
+#include "../push_swap.h"
 
-int	main(int ac, char **av)
+void	ft_checker(t_stack **a, t_stack **b, char **line)
 {
-	t_stack	*a;
-	t_stack	*b;
-	char	*joined_args;
-
-	a = NULL;
-	b = ft_init_b();
-	joined_args = NULL;
-	if (ac > 1)
+	while (*line)
 	{
-		ft_check_empty_args(ac, av);
-		joined_args = ft_join_arguments(ac, av);
-		ft_validate_and_init_stack(&a, joined_args);
-		free(joined_args);
-		ft_check_dup_and_sort(&a, &b);
-		ft_free_stack(&a);
-		ft_free_stack(&b);
+		ft_mv_read_exe(a, b, line);
+		free (*line);
+		*line = NULL;
+		*line = get_next_line(0, 0);
 	}
-	return (0);
+	if (!ft_is_sorted(*a))
+		ft_putstr_fd("KO\n", 1);
+	else if (*b)
+		ft_putstr_fd("KO\n", 1);
+	else
+		ft_putstr_fd("OK\n", 1);
+	*line = NULL;
 }
