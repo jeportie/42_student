@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/12 17:35:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/12 17:35:27 by jeportie         ###   ########.fr       */
+/*   Created: 2024/07/25 09:35:23 by jeportie          #+#    #+#             */
+/*   Updated: 2024/07/25 09:36:12 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
-#include <stdio.h>
-#include <sys/time.h>
-#include <stdint.h>
+#include "../include/libft.h"
 
-int	main(void)
+void	ft_swap(int *a, int *b)
 {
-	return (0);	
+	int	temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }

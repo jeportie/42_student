@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:55:47 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 14:30:53 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/25 08:45:19 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_error_checker(t_stack **a, t_stack **b, char **line)
 {
 	ft_free_stack(a);
 	ft_free_stack(b);
-	//if static leak error, see gnl(int fd, int flag).
 	get_next_line(0);
 	ft_putstr_fd("Error\n", 2);
 	if (!line)

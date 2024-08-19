@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 18:59:02 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 15:28:41 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:38:44 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,6 @@ void			gc_lock(void *ptr);
 void			gc_nest_lock(void *ptr);
 void			gc_unlock(void *ptr);
 void			gc_mark(void *ptr);
-
 char			*gc_strjoin(char const *s1, char const *s2);
 
 /* UTILITIES */
@@ -217,5 +216,8 @@ void			ft_check_malloc(void *ptr, const char *error_message);
 void			ft_check_pid(int pid);
 char			*ft_getenv(char **envp, const char *name);
 char			*ft_find_cmd_path(char **envp, const char *cmd);
+void			ft_swap(int *a, int *b);
+int				ft_min(int cost_a, int cost_b);
+int				ft_max(int cost_a, int cost_b);
 
 #endif /*LIBFT_H*/

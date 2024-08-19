@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:55:23 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 14:25:36 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/25 08:50:13 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_checker(t_stack **a, t_stack **b, char **line)
 {
 	while (*line)
 	{
-		ft_mv_read_exe(a, b, line);
+		ft_read_and_exec_move(a, b, line);
 		free (*line);
 		*line = NULL;
 		*line = get_next_line(0);

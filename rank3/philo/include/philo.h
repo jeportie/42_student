@@ -6,17 +6,22 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/15 16:23:49 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:04:33 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <pthread.h>
-#include <stdio.h>
-#include <sys/time.h>
-#include <stdint.h>
-#include <stdbool.h>
-#include <limits.h>
+#ifndef PHILO_H
+# define PHILO_H
+
+# include <unistd.h>
+# include <stdlib.h> 
+# include <string.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <sys/time.h>
+# include <stdint.h>
+# include <stdbool.h>
+# include <limits.h>
 
 typedef struct timeval	t_timeval;
 
@@ -42,15 +47,34 @@ typedef struct s_params
 
 typedef struct s_simu
 {
-	t_params	*params;
-	t_philo		*philosophers;
-	long long	start_time;
+	t_params		params;
+	t_philo			*philos;
+	long long		start_time;
+	pthread_mutex_t	*forks;
 }				t_simu;
 
 /*Parsing*/
-int		ft_atoi(const char *nptr);
-bool	ft_is_int(char *nptr);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_issign(int c, int *sign);
-int		ft_isdigit(int c);
-int		ft_isspace(int c);
+bool		ft_is_int(char *nptr);
+bool		ft_check_args(int ac, char **av);
+
+/*Init*/
+bool		ft_init_params(t_simu *simu, int ac, char **av);
+bool		ft_init_philos(t_simu *simu);
+
+/*Utilities*/
+void		ft_perror(char *str);
+long long	ft_get_time_ms(void);
+
+/*Printing*/
+void		ft_print_intro(void);
+void		ft_print_params(t_params params);
+void		ft_print_parsing(t_simu simu);
+
+/*42_ft*/
+int			ft_isspace(int c);
+int			ft_isdigit(int c);
+int			ft_issign(int c, int *sign);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_atoi(const char *nptr);
+
+#endif /*PHILO_H*/

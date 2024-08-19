@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:16:26 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 15:29:36 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/29 08:56:45 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,6 @@ void	ft_init_stack(t_stack **stack_a, char *joined_args)
 	ft_free_split(split_args, ft_count_words(joined_args, ' '));
 }
 
-t_stack	*ft_init_b(void)
-{
-	return (NULL);
-}
-
 void	ft_validate_and_init_stack(t_stack **a, char *joined_args)
 {
 	if (!joined_args || !ft_is_valid_number_string(joined_args))
@@ -57,7 +52,7 @@ void	ft_validate_and_init_stack(t_stack **a, char *joined_args)
 
 void	ft_check_dup_and_sort(t_stack **a, t_stack **b)
 {
-	if (ft_check_duplicate_in_stack(*a) || ft_is_not_int(*a))
+	if (ft_check_duplicate_in_stack(*a) || !ft_is_not_int(*a))
 		ft_print_error(a);
 	if (!ft_is_sorted(*a))
 	{

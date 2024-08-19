@@ -6,13 +6,13 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 12:55:31 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 14:26:05 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:19:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	ft_swap_mv_read_exe(t_stack **a, t_stack **b, char **line)
+static void	ft_swap_move(t_stack **a, t_stack **b, char **line)
 {
 	if ((*line)[0] == 's' && (*line)[1] == 'a' && (*line)[2] == '\n')
 		ft_swap_elements(a);
@@ -27,7 +27,7 @@ void	ft_swap_mv_read_exe(t_stack **a, t_stack **b, char **line)
 		ft_error_checker(a, b, line);
 }
 
-void	ft_push_mv_read_exe(t_stack **a, t_stack **b, char **line)
+static void	ft_push_move(t_stack **a, t_stack **b, char **line)
 {
 	if ((*line)[0] == 'p' && (*line)[1] == 'a' && (*line)[2] == '\n')
 	{
@@ -47,7 +47,7 @@ void	ft_push_mv_read_exe(t_stack **a, t_stack **b, char **line)
 		ft_error_checker(a, b, line);
 }
 
-void	ft_rotate_mv_read_exe(t_stack **a, t_stack **b, char **line)
+static void	ft_rotate_move(t_stack **a, t_stack **b, char **line)
 {
 	if ((*line)[0] == 'r' && (*line)[1] == 'a' && (*line)[2] == '\n')
 		ft_rotate(a);
@@ -62,7 +62,7 @@ void	ft_rotate_mv_read_exe(t_stack **a, t_stack **b, char **line)
 		ft_error_checker(a, b, line);
 }
 
-void	ft_rev_rot_mv_read_exe(t_stack **a, t_stack **b, char **line)
+static void	ft_rev_rot_move(t_stack **a, t_stack **b, char **line)
 {
 	if ((*line)[0] == 'r' && (*line)[1] == 'r' && (*line)[2] == 'a'
 		&& (*line)[3] == '\n')
@@ -80,17 +80,17 @@ void	ft_rev_rot_mv_read_exe(t_stack **a, t_stack **b, char **line)
 		ft_error_checker(a, b, line);
 }
 
-void	ft_mv_read_exe(t_stack **a, t_stack **b, char **line)
+void	ft_read_and_exec_move(t_stack **a, t_stack **b, char **line)
 {
 	if ((*line)[0] == 's')
-		ft_swap_mv_read_exe(a, b, line);
+		ft_swap_move(a, b, line);
 	else if ((*line)[0] == 'p')
-		ft_push_mv_read_exe(a, b, line);
+		ft_push_move(a, b, line);
 	else if ((*line)[0] == 'r' && (*line)[1] == 'r' && (*line)[2] != '\n'
 		&& (*line)[3] == '\n')
-		ft_rev_rot_mv_read_exe(a, b, line);
+		ft_rev_rot_move(a, b, line);
 	else if ((*line)[0] == 'r')
-		ft_rotate_mv_read_exe(a, b, line);
+		ft_rotate_move(a, b, line);
 	else
 	{
 		free(*line);

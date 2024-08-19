@@ -6,13 +6,13 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 11:41:47 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 14:33:45 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/25 10:33:12 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	ft_partition(int *arr, int low, int high)
+static int	ft_partition(int *arr, int low, int high)
 {
 	int	pivot;
 	int	i;
@@ -34,7 +34,7 @@ int	ft_partition(int *arr, int low, int high)
 	return (i + 1);
 }
 
-int	ft_quick_select(int *arr, int low, int high, int k)
+static int	ft_quick_select(int *arr, int low, int high, int k)
 {
 	int	index_pivot;
 

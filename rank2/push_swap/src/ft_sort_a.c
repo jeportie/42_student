@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 09:47:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/07/24 14:13:09 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/07/25 09:30:29 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	ft_both_to_top(t_stack **b, t_stack *cheapest, t_stack **a, int cost_b)
 {
 	int	target_cost;
 
-	target_cost = ft_calculate_node_cost(cheapest->target_node, ft_stack_size(*a));
+	target_cost = ft_calculate_node_cost(cheapest->target_node,
+			ft_stack_size(*a));
 	if (cheapest->is_in_top)
 		ft_double_rotate(a, b, ft_min(cost_b, target_cost), rr);
 	else

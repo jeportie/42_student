@@ -24,20 +24,9 @@ void	ft_set_cheapest_to_null(t_stack **lst)
 	}
 }
 
-void	ft_swap(int *a, int *b)
+t_stack	*ft_init_b(void)
 {
-	int	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
-int	ft_min(int cost_a, int cost_b)
-{
-	if (cost_a > cost_b)
-		return (cost_b);
-	return (cost_a);
+	return (NULL);
 }
 
 void	ft_print_stack(t_stack *stack)
