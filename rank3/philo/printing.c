@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/19 13:13:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/21 21:37:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_print_intro(void)
 {
-	printf("Let's start the simluation...\n3...\n");
+	printf("\nLet's start the simluation...\n3...\n");
 	sleep(1);
 	printf("2...\n");
 	sleep(1);
 	printf("1...\n");
 	sleep(1);
-	printf("GO!\n");
+	printf("GO!\n\n");
 }
 
 void	ft_print_params(t_params params)
@@ -34,7 +34,23 @@ void	ft_print_params(t_params params)
 	printf("someone_died : %d\n", params.someone_died);
 }
 
+void	ft_print_philos(t_simu simu)
+{
+	int	i;
+
+	i = 0;
+	while (i < simu.params.num_philo)
+	{
+		printf("\nPhilo num %d...\n\n", i);
+		printf("id : %d\n", i + 1);
+		printf("r fork : %p, l fork : %p)\n",
+				simu.philos[i].right_fork, simu.philos[i].left_fork);
+		i++;
+	}
+}
+
 void	ft_print_parsing(t_simu simu)
 {
 	ft_print_params(simu.params);
+	ft_print_philos(simu);
 }
