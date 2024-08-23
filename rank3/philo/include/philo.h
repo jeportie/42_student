@@ -65,6 +65,11 @@ bool		ft_init_threads(t_simu *simu);
 
 /*Threads*/
 void		*ft_routine(void *arg);
+void		*ft_think(t_philo *philo);
+void		*ft_pick_up_forks(t_philo *philo);
+void		*ft_eat(t_philo *philo);
+void		*ft_sleep(t_philo *philo);
+void		*ft_release_forks(t_philo *philo);
 
 /*Utilities*/
 void		ft_perror(char *str);

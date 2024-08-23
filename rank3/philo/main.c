@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:35:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/23 15:53:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/23 23:16:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,6 @@ void	ft_free_philos(t_simu *simu)
 		free(simu->philos);
 	if (simu->forks)
 		free(simu->forks);
-}
-
-void	*ft_routine(void *arg)
-{
-	t_philo *philo;
-
-	philo = (t_philo *)arg;
-	sleep(1);
-	printf("Hello, I am philosopher n.%d.\n", philo->id);
-	return (NULL);
 }
 
 int	main(int ac, char **av)
