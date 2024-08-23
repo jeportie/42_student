@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/21 21:10:50 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/23 15:19:08 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,33 @@ bool	ft_init_forks(t_simu *simu)
 		i++;
 	}
 	simu->forks = forks;
+	return (true);
+}
+
+static void	ft_join_remaining_threads(int i, t_simu *simu)
+{
+	while (i)
+	{
+		pthread_join(simu->philos[i].thread, NULL);
+		i--;
+	}
+}
+
+bool	ft_init_threads(t_simu *simu)
+{
+	int	i;
+
+	i = 0;
+	while (i < simu->params.num_philo)
+	{
+		if (pthread_create(&simu->philos[i].thread, NULL, ft_routine,
+				&simu->philos[i]) != 0)
+		{
+			ft_perror("Thread creation failed.\n");
+			ft_join_remaining_threads(i, simu);
+			return (false);
+		}
+		i++;
+	}
 	return (true);
 }

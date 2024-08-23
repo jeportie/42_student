@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:35:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/21 21:36:14 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/23 15:53:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,39 @@ void	ft_free_philos(t_simu *simu)
 {
 	int	i;
 
-	free(simu->philos);
-	i = 0;
-	while (i < simu->params.num_philo)
+	if (simu->philos)
 	{
-		pthread_mutex_destroy(&simu->forks[i]);
-		i++;
+		i = 0;
+		while (i < simu->params.num_philo)
+		{
+			if (simu->philos[i].thread)
+				pthread_join(simu->philos[i].thread, NULL);
+			i++;
+		}
 	}
-//	free(simu->philos);
-	free(simu->forks);
+	if (simu->forks)
+	{
+		i = 0;
+		while (i < simu->params.num_philo)
+		{
+			pthread_mutex_destroy(&simu->forks[i]);
+			i++;
+		}
+	}
+	if (simu->philos)
+		free(simu->philos);
+	if (simu->forks)
+		free(simu->forks);
+}
+
+void	*ft_routine(void *arg)
+{
+	t_philo *philo;
+
+	philo = (t_philo *)arg;
+	sleep(1);
+	printf("Hello, I am philosopher n.%d.\n", philo->id);
+	return (NULL);
 }
 
 int	main(int ac, char **av)
@@ -33,20 +57,26 @@ int	main(int ac, char **av)
 	long long	current_time;
 	t_simu		simu;
 
-	memset(&simu, 0, sizeof(simu));
-	if (!ft_init_params(&simu, ac, av))
-		return (1);
-	if (!ft_init_forks(&simu))
-		return (1);
-	if (!ft_init_philos(&simu))
-		return (1);
-	ft_print_parsing(simu);
-	ft_print_intro();
 	start_time = ft_get_time_ms();
 	printf("The start time is %lld milliseconds\n", start_time - start_time);
-	usleep(23 * 1000);
+	ft_print_intro();
+	memset(&simu, 0, sizeof(simu));
+	if (!ft_init_params(&simu, ac, av) || !ft_init_forks(&simu)
+		|| !ft_init_philos(&simu))
+	{
+		ft_free_philos(&simu);
+		return (1);
+	}
+	ft_print_parsing(simu);
+	if (!ft_init_threads(&simu))
+	{
+		ft_free_philos(&simu);
+		return (1);
+	}
+
+	ft_free_philos(&simu);
+//	usleep(23 * 1000);
 	current_time = ft_get_time_ms();
 	printf("The elapsed time is %lld milliseconds\n", current_time - start_time);
-	ft_free_philos(&simu);
 	return (0);
 }

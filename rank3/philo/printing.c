@@ -41,8 +41,9 @@ void	ft_print_philos(t_simu simu)
 	i = 0;
 	while (i < simu.params.num_philo)
 	{
-		printf("\nPhilo num %d...\n\n", i);
+		printf("\nPhilo %d:\n\n", i);
 		printf("id : %d\n", i + 1);
+		printf("thread id: %lu\n", (unsigned long)simu.philos[i].thread);
 		printf("r fork : %p, l fork : %p)\n",
 				simu.philos[i].right_fork, simu.philos[i].left_fork);
 		i++;

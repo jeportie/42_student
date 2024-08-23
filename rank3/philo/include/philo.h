@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/21 21:20:28 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/23 14:25:06 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ bool		ft_check_args(int ac, char **av);
 bool		ft_init_params(t_simu *simu, int ac, char **av);
 bool		ft_init_philos(t_simu *simu);
 bool		ft_init_forks(t_simu *simu);
+bool		ft_init_threads(t_simu *simu);
+
+/*Threads*/
+void		*ft_routine(void *arg);
 
 /*Utilities*/
 void		ft_perror(char *str);
