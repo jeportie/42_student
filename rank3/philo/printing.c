@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/21 21:37:22 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/26 21:45:31 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_print_params(t_params params)
 	printf("time_to_eat : %d\n", params.time_to_eat);
 	printf("time_to_sleep : %d\n", params.time_to_sleep);
 	printf("(optional)num_meals : %d\n", params.num_meals);
-	printf("someone_died : %d\n", params.someone_died);
 }
 
 void	ft_print_philos(t_simu simu)
@@ -54,4 +53,5 @@ void	ft_print_parsing(t_simu simu)
 {
 	ft_print_params(simu.params);
 	ft_print_philos(simu);
+	printf("\n");
 }

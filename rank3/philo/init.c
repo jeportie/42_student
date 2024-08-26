@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/23 15:19:08 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/26 18:56:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ bool	ft_init_philos(t_simu *simu)
 		philos[i].id = i + 1;
 		philos[i].left_fork = &simu->forks[i];
 		philos[i].right_fork = &simu->forks[(i + 1) % simu->params.num_philo];
+		philos[i].simu = simu;
 		i++;
 	}
 	simu->philos = philos;
@@ -109,6 +110,7 @@ bool	ft_init_threads(t_simu *simu)
 	int	i;
 
 	i = 0;
+	simu->start_time = ft_get_time_ms();
 	while (i < simu->params.num_philo)
 	{
 		if (pthread_create(&simu->philos[i].thread, NULL, ft_routine,
