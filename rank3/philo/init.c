@@ -6,11 +6,27 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/26 18:56:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/27 22:39:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo.h"
+
+bool	ft_init_simu(t_simu *simu)
+{
+	memset(simu, 0, sizeof(*simu));
+	if (pthread_mutex_init(&simu->start_mutex, NULL) != 0
+		||pthread_mutex_init(&simu->init_mutex, NULL) != 0
+		||pthread_mutex_init(&simu->death_mutex, NULL) != 0
+		|| pthread_mutex_init(&simu->meal_mutex, NULL) != 0
+		|| pthread_mutex_init(&simu->end_mutex, NULL) != 0)
+	{
+		ft_perror("Mutex init failed.\n");
+		ft_free_philos(simu);	
+		return (false);
+	}
+	return (true);
+}
 
 bool	ft_init_params(t_simu *simu, int ac, char **av)
 {
@@ -27,12 +43,12 @@ bool	ft_init_params(t_simu *simu, int ac, char **av)
 		return (false);
 	}
 	memset(&params, 0, sizeof(params));
-	params.num_philo = atoi(av[1]);
-	params.time_to_die = atoi(av[2]);
-	params.time_to_eat = atoi(av[3]);
-	params.time_to_sleep = atoi(av[4]);
+	params.num_philo = ft_atoi(av[1]);
+	params.time_to_die = ft_atoi(av[2]);
+	params.time_to_eat = ft_atoi(av[3]);
+	params.time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		params.num_meals = atoi(av[5]);
+		params.num_meals = ft_atoi(av[5]);
 	simu->params = params;
 	return (true);
 }
@@ -71,10 +87,10 @@ static void	ft_free_remaining_forks(int i, t_simu *simu)
 
 bool	ft_init_forks(t_simu *simu)
 {
-	int				i;
-	pthread_mutex_t	*forks;
+	int		i;
+	t_mtx	*forks;
 
-	forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+	forks = (t_mtx *)malloc(sizeof(t_mtx)
 			* simu->params.num_philo);
 	if (!forks)
 	{
@@ -110,7 +126,6 @@ bool	ft_init_threads(t_simu *simu)
 	int	i;
 
 	i = 0;
-	simu->start_time = ft_get_time_ms();
 	while (i < simu->params.num_philo)
 	{
 		if (pthread_create(&simu->philos[i].thread, NULL, ft_routine,

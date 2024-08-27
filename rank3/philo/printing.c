@@ -6,21 +6,39 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/26 21:45:31 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:01:36 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo.h"
 
-void	ft_print_intro(void)
+static void ft_print_format(t_philo *philo, long long time, const char *format)
 {
-	printf("\nLet's start the simluation...\n3...\n");
-	sleep(1);
-	printf("2...\n");
-	sleep(1);
-	printf("1...\n");
-	sleep(1);
-	printf("GO!\n\n");
+	printf("[%lldms]\t %d %s\n", time, philo->id, format);
+}
+
+void	ft_print_state(t_philo *philo, int state)
+{
+	long long time;
+
+	time = ft_get_time_ms() - START_TIME;
+	if (state == DEAD)
+		printf(RED "[%lldms]\t %d died.\n" RESET, time, philo->id);
+	if (state == THINK)
+		ft_print_format(philo, time, "is thinking.");
+	if (state == LEFT)
+		ft_print_format(philo, time, "has taken the left fork.");
+	if (state == RIGHT)
+		ft_print_format(philo, time, "has taken the right fork.");
+	if (state == EAT)
+		ft_print_format(philo, time, "is eating.");
+	if (state == ULEFT)
+		ft_print_format(philo, time, "has released the left fork.");
+	if (state == URIGHT)
+		ft_print_format(philo, time, "has released the right fork.");
+	if (state == SLEEP)
+		ft_print_format(philo, time, "is sleeping.");
+
 }
 
 void	ft_print_params(t_params params)
