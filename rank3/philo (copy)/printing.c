@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/28 14:00:29 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/27 19:01:36 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,16 @@
 
 static void ft_print_format(t_philo *philo, long long time, const char *format)
 {
-	pthread_mutex_lock(&philo->mtdata->print_mutex);
 	printf("[%lldms]\t %d %s\n", time, philo->id, format);
-	pthread_mutex_unlock(&philo->mtdata->print_mutex);
 }
 
 void	ft_print_state(t_philo *philo, int state)
 {
 	long long time;
 
-	time = ft_get_time_ms() - philo->rdonly->start_time;
+	time = ft_get_time_ms() - START_TIME;
 	if (state == DEAD)
-	{
-		pthread_mutex_lock(&philo->mtdata->print_mutex);
 		printf(RED "[%lldms]\t %d died.\n" RESET, time, philo->id);
-		pthread_mutex_unlock(&philo->mtdata->print_mutex);
-	}
 	if (state == THINK)
 		ft_print_format(philo, time, "is thinking.");
 	if (state == LEFT)
@@ -47,7 +41,7 @@ void	ft_print_state(t_philo *philo, int state)
 
 }
 
-void	ft_print_params(t_rdonly params)
+void	ft_print_params(t_params params)
 {
 	printf("Printing Params...\n\n");
 	printf("num_philo : %d\n", params.num_philo);
@@ -62,7 +56,7 @@ void	ft_print_philos(t_simu simu)
 	int	i;
 
 	i = 0;
-	while (i < simu.rdonly.num_philo)
+	while (i < simu.params.num_philo)
 	{
 		printf("\nPhilo %d:\n\n", i);
 		printf("id : %d\n", i + 1);
@@ -75,7 +69,7 @@ void	ft_print_philos(t_simu simu)
 
 void	ft_print_parsing(t_simu simu)
 {
-	ft_print_params(simu.rdonly);
+	ft_print_params(simu.params);
 	ft_print_philos(simu);
 	printf("\n");
 }

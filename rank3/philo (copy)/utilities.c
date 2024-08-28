@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:28:50 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/28 11:44:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/27 21:34:30 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	ft_precise_usleep(long long usec, t_philo *philo)
 
 	while (elapsed < usec)
 	{
-		if (mtx_get_bool(philo->mtdata->death_mutex, philo->mtdata->someone_died) == true)
+		if (mtx_get_bool(DEAD_MUTEX, SOMEONE_DIED) == true)
 			break;
-		if (mtx_get_int(philo->mtdata->end_mutex, philo->mtdata->end) == philo->rdonly->num_philo)
+		if (mtx_get_int(END_MUTEX, END) == NUM_PHILOS)
 			break;
 		gettimeofday(&current, NULL);
 		elapsed = ft_get_elapsed_time_us(start, current);
@@ -76,7 +76,7 @@ void	ft_free_philos(t_simu *simu)
 	if (simu->philos)
 	{
 		i = 0;
-		while (i < simu->rdonly.num_philo)
+		while (i < simu->params.num_philo)
 		{
 			if (simu->philos[i].thread)
 				pthread_join(simu->philos[i].thread, NULL);
@@ -86,7 +86,7 @@ void	ft_free_philos(t_simu *simu)
 	if (simu->forks)
 	{
 		i = 0;
-		while (i < simu->rdonly.num_philo)
+		while (i < simu->params.num_philo)
 		{
 			pthread_mutex_destroy(&simu->forks[i]);
 			i++;
@@ -96,10 +96,9 @@ void	ft_free_philos(t_simu *simu)
 		free(simu->philos);
 	if (simu->forks)
 		free(simu->forks);
-	pthread_mutex_destroy(&simu->mtdata.print_mutex);
-	pthread_mutex_destroy(&simu->mtdata.death_mutex);
-	pthread_mutex_destroy(&simu->mtdata.meal_mutex);
-	pthread_mutex_destroy(&simu->mtdata.init_mutex);
-	pthread_mutex_destroy(&simu->mtdata.end_mutex);
-	pthread_mutex_destroy(&simu->mtdata.start_mutex);
+	pthread_mutex_destroy(&simu->death_mutex);
+	pthread_mutex_destroy(&simu->meal_mutex);
+	pthread_mutex_destroy(&simu->init_mutex);
+	pthread_mutex_destroy(&simu->end_mutex);
+	pthread_mutex_destroy(&simu->start_mutex);
 }

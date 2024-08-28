@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/28 11:45:41 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/27 22:39:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 bool	ft_init_simu(t_simu *simu)
 {
 	memset(simu, 0, sizeof(*simu));
-	if (pthread_mutex_init(&simu->mtdata.start_mutex, NULL) != 0
-		||pthread_mutex_init(&simu->mtdata.print_mutex, NULL) != 0
-		||pthread_mutex_init(&simu->mtdata.init_mutex, NULL) != 0
-		||pthread_mutex_init(&simu->mtdata.death_mutex, NULL) != 0
-		|| pthread_mutex_init(&simu->mtdata.meal_mutex, NULL) != 0
-		|| pthread_mutex_init(&simu->mtdata.end_mutex, NULL) != 0)
+	if (pthread_mutex_init(&simu->start_mutex, NULL) != 0
+		||pthread_mutex_init(&simu->init_mutex, NULL) != 0
+		||pthread_mutex_init(&simu->death_mutex, NULL) != 0
+		|| pthread_mutex_init(&simu->meal_mutex, NULL) != 0
+		|| pthread_mutex_init(&simu->end_mutex, NULL) != 0)
 	{
 		ft_perror("Mutex init failed.\n");
 		ft_free_philos(simu);	
@@ -31,7 +30,7 @@ bool	ft_init_simu(t_simu *simu)
 
 bool	ft_init_params(t_simu *simu, int ac, char **av)
 {
-	t_rdonly	params;
+	t_params	params;
 
 	if (!(ac >= 5 && ac <= 6))
 	{
@@ -50,7 +49,7 @@ bool	ft_init_params(t_simu *simu, int ac, char **av)
 	params.time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
 		params.num_meals = ft_atoi(av[5]);
-	simu->rdonly = params;
+	simu->params = params;
 	return (true);
 }
 
@@ -59,21 +58,20 @@ bool	ft_init_philos(t_simu *simu)
 	int		i;
 	t_philo	*philos;
 
-	philos = (t_philo *)malloc(sizeof(t_philo) * simu->rdonly.num_philo);
+	philos = (t_philo *)malloc(sizeof(t_philo) * simu->params.num_philo);
 	if (!philos)
 	{
 		ft_perror("Memory Allocation failed to create t_philo *philos.\n");
 		return (false);
 	}
 	i = 0;
-	while (i < simu->rdonly.num_philo)
+	while (i < simu->params.num_philo)
 	{
 		memset(&philos[i], 0, sizeof(t_philo));
 		philos[i].id = i + 1;
 		philos[i].left_fork = &simu->forks[i];
-		philos[i].right_fork = &simu->forks[(i + 1) % simu->rdonly.num_philo];
-		philos[i].rdonly = &simu->rdonly;
-		philos[i].mtdata = &simu->mtdata;
+		philos[i].right_fork = &simu->forks[(i + 1) % simu->params.num_philo];
+		philos[i].simu = simu;
 		i++;
 	}
 	simu->philos = philos;
@@ -92,14 +90,15 @@ bool	ft_init_forks(t_simu *simu)
 	int		i;
 	t_mtx	*forks;
 
-	forks = (t_mtx *)malloc(sizeof(t_mtx) * simu->rdonly.num_philo);
+	forks = (t_mtx *)malloc(sizeof(t_mtx)
+			* simu->params.num_philo);
 	if (!forks)
 	{
 		ft_perror("Memory Allocation failed to create t_philo *philos.\n");
 		return (false);
 	}
 	i = 0;
-	while (i < simu->rdonly.num_philo)
+	while (i < simu->params.num_philo)
 	{
 		if (pthread_mutex_init(&forks[i], NULL) != 0)
 		{
@@ -127,7 +126,7 @@ bool	ft_init_threads(t_simu *simu)
 	int	i;
 
 	i = 0;
-	while (i < simu->rdonly.num_philo)
+	while (i < simu->params.num_philo)
 	{
 		if (pthread_create(&simu->philos[i].thread, NULL, ft_routine,
 				&simu->philos[i]) != 0)

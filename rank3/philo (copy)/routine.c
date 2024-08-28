@@ -6,38 +6,57 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/28 13:56:28 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:03:28 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo.h"
 
+
 void	*ft_routine(void *arg)
 {
 	t_philo	*philo;
-	int		current_end;
-	int		current_init;
+	int	current_end; 
+	int	current_init;
 
 	philo = (t_philo *)arg;
 	if (!philo)
 		return (NULL);
+	
+	current_init = mtx_get_int(INIT_MUTEX, INIT_PHILOS);
+	mtx_set_int(INIT_MUTEX, &INIT_PHILOS, current_init + 1);
 
-	current_init = mtx_get_int(philo->mtdata->init_mutex, philo->mtdata->init_philos);
-	mtx_set_int(philo->mtdata->init_mutex, &philo->mtdata->init_philos, current_init + 1);
-	while (!mtx_get_bool(philo->mtdata->start_mutex, philo->mtdata->start))
+	while (!mtx_get_bool(START_MUTEX, START))
 		ft_precise_usleep(10, philo);
 
 	philo->last_meal_time = ft_get_time_ms();
+
 	while (1)
 	{
 		ft_print_state(philo, THINK);
-		ft_pick_up_forks(philo);
+		if (ft_check_if_dead(philo))
+			break ;
+		if (!ft_pick_up_forks(philo))
+			break ;
+		if (ft_check_if_dead(philo))
+		{
+			ft_release_forks(philo);
+			break ;
+		}
 		ft_eat(philo);
 		ft_release_forks(philo);
+		if (ft_check_if_dead(philo))
+			break ;
+		if (mtx_get_int(MEAL_MUTEX, PHILOS_FULL) == NUM_PHILOS)
+			break ;
 		ft_sleep(philo);
+		if (ft_check_if_dead(philo))
+			break;
 	}
-	current_end = mtx_get_int(philo->mtdata->end_mutex, philo->mtdata->end);
-	mtx_set_int(philo->mtdata->end_mutex, &philo->mtdata->end, current_end + 1);
+
+	current_end = mtx_get_int(END_MUTEX, END);
+	mtx_set_int(END_MUTEX, &END, current_end + 1);
+
 	return (NULL);
 }
 
@@ -65,7 +84,7 @@ bool	ft_pick_up_forks(t_philo *philo)
 			return (false);
 		}
 		pthread_mutex_lock(philo->left_fork);
-		ft_print_state(philo, LEFT);
+				ft_print_state(philo, LEFT);
 	}
 	return (true);
 }
@@ -74,18 +93,22 @@ void	ft_eat(t_philo *philo)
 {
 	int	current_full;
 
-	mtx_set_int(philo->mtdata->meal_mutex, &philo->meals_eaten, philo->meals_eaten + 1);
+    mtx_set_int(MEAL_MUTEX, &philo->meals_eaten, philo->meals_eaten + 1);
 
-	if (mtx_get_int(philo->mtdata->meal_mutex, philo->meals_eaten) == philo->rdonly->num_meals)
-	{
-		current_full = mtx_get_int(philo->mtdata->meal_mutex, philo->mtdata->philos_full);
-		mtx_set_int(philo->mtdata->meal_mutex, &philo->mtdata->philos_full, current_full + 1);
-	}
+    if (mtx_get_int(MEAL_MUTEX, philo->meals_eaten) == NUM_MEALS)
+    {
+        current_full = mtx_get_int(MEAL_MUTEX, PHILOS_FULL);
+        mtx_set_int(MEAL_MUTEX, &PHILOS_FULL, current_full + 1);
+    }
 
-	ft_print_state(philo, EAT);
-	ft_precise_usleep(philo->rdonly->time_to_eat * 1000, philo);
-	philo->last_meal_time = ft_get_time_ms();
+    ft_print_state(philo, EAT);
+    ft_precise_usleep(philo->simu->params.time_to_eat * 1000, philo);
+    philo->last_meal_time = ft_get_time_ms();
+
+    if (ft_check_if_dead(philo))
+        return ;
 }
+
 
 void		ft_release_forks(t_philo *philo)
 {
@@ -108,5 +131,7 @@ void		ft_release_forks(t_philo *philo)
 void		ft_sleep(t_philo *philo)
 {
 	ft_print_state(philo, SLEEP);
-	ft_precise_usleep(philo->rdonly->time_to_sleep * 1000, philo);
+	if (ft_check_if_dead(philo))
+		return ;
+	ft_precise_usleep(philo->simu->params.time_to_sleep * 1000, philo);
 }
