@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/28 14:00:29 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:18:20 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static void ft_print_format(t_philo *philo, long long time, const char *format)
 {
 	pthread_mutex_lock(&philo->mtdata->print_mutex);
-	printf("[%lldms]\t %d %s\n", time, philo->id, format);
+	if (mtx_get_bool(philo->mtdata->death_mutex, philo->mtdata->someone_died) == false)
+		printf("[%lldms] %d %s\n", time, philo->id, format);
 	pthread_mutex_unlock(&philo->mtdata->print_mutex);
 }
 
@@ -27,24 +28,18 @@ void	ft_print_state(t_philo *philo, int state)
 	if (state == DEAD)
 	{
 		pthread_mutex_lock(&philo->mtdata->print_mutex);
-		printf(RED "[%lldms]\t %d died.\n" RESET, time, philo->id);
+		printf(RED "[%lldms] %d died\n" RESET, time, philo->id);
 		pthread_mutex_unlock(&philo->mtdata->print_mutex);
+		return;
 	}
 	if (state == THINK)
-		ft_print_format(philo, time, "is thinking.");
-	if (state == LEFT)
-		ft_print_format(philo, time, "has taken the left fork.");
-	if (state == RIGHT)
-		ft_print_format(philo, time, "has taken the right fork.");
+		ft_print_format(philo, time, "is thinking");
+	if (state == LEFT || state == RIGHT)
+		ft_print_format(philo, time, "has taken a fork");
 	if (state == EAT)
-		ft_print_format(philo, time, "is eating.");
-	if (state == ULEFT)
-		ft_print_format(philo, time, "has released the left fork.");
-	if (state == URIGHT)
-		ft_print_format(philo, time, "has released the right fork.");
+		ft_print_format(philo, time, "is eating");
 	if (state == SLEEP)
-		ft_print_format(philo, time, "is sleeping.");
-
+		ft_print_format(philo, time, "is sleeping");
 }
 
 void	ft_print_params(t_rdonly params)
@@ -70,6 +65,17 @@ void	ft_print_philos(t_simu simu)
 		printf("r fork : %p, l fork : %p)\n",
 				simu.philos[i].right_fork, simu.philos[i].left_fork);
 		i++;
+	}
+}
+
+void	ft_print_start_stop(t_simu *simu, bool choice)
+{
+	if (choice == true)
+		printf(GREEN "[0ms] Simulation Starts.\n" RESET);
+	else
+	{
+		printf(GREEN "[%lldms] Simulation Ended.\n\n" RESET,
+		ft_get_time_ms() - simu->rdonly.start_time);
 	}
 }
 

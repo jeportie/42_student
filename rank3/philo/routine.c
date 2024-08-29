@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/28 13:56:28 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:59:57 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ void	*ft_routine(void *arg)
 	current_init = mtx_get_int(philo->mtdata->init_mutex, philo->mtdata->init_philos);
 	mtx_set_int(philo->mtdata->init_mutex, &philo->mtdata->init_philos, current_init + 1);
 	while (!mtx_get_bool(philo->mtdata->start_mutex, philo->mtdata->start))
-		ft_precise_usleep(10, philo);
+		ft_precise_usleep(100, philo->simu);
 
 	philo->last_meal_time = ft_get_time_ms();
 	while (1)
 	{
+		if (ft_check_if_dead(philo))
+			break;
 		ft_print_state(philo, THINK);
 		ft_pick_up_forks(philo);
 		ft_eat(philo);
@@ -74,8 +76,9 @@ void	ft_eat(t_philo *philo)
 {
 	int	current_full;
 
+	ft_precise_usleep(philo->rdonly->time_to_eat * 1000, philo->simu);
+	philo->last_meal_time = ft_get_time_ms();
 	mtx_set_int(philo->mtdata->meal_mutex, &philo->meals_eaten, philo->meals_eaten + 1);
-
 	if (mtx_get_int(philo->mtdata->meal_mutex, philo->meals_eaten) == philo->rdonly->num_meals)
 	{
 		current_full = mtx_get_int(philo->mtdata->meal_mutex, philo->mtdata->philos_full);
@@ -83,8 +86,6 @@ void	ft_eat(t_philo *philo)
 	}
 
 	ft_print_state(philo, EAT);
-	ft_precise_usleep(philo->rdonly->time_to_eat * 1000, philo);
-	philo->last_meal_time = ft_get_time_ms();
 }
 
 void		ft_release_forks(t_philo *philo)
@@ -92,21 +93,17 @@ void		ft_release_forks(t_philo *philo)
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_unlock(philo->right_fork);
-		ft_print_state(philo, URIGHT);
 		pthread_mutex_unlock(philo->left_fork);
-		ft_print_state(philo, ULEFT);
 	}
 	else
 	{
 		pthread_mutex_unlock(philo->left_fork);
-		ft_print_state(philo, ULEFT);
 		pthread_mutex_unlock(philo->right_fork);
-		ft_print_state(philo, URIGHT);
 	}
 }
 
 void		ft_sleep(t_philo *philo)
 {
 	ft_print_state(philo, SLEEP);
-	ft_precise_usleep(philo->rdonly->time_to_sleep * 1000, philo);
+	ft_precise_usleep(philo->rdonly->time_to_sleep * 1000, philo->simu);
 }

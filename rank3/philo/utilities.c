@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:28:50 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/28 11:44:10 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/29 12:30:01 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static long long ft_get_elapsed_time_us(t_timeval start, t_timeval end)
 	return (end.tv_sec - start.tv_sec) * 1000000L + (end.tv_usec - start.tv_usec);
 }
 
-void	ft_precise_usleep(long long usec, t_philo *philo)
+void	ft_precise_usleep(long long usec, t_simu *simu)
 {
 	t_timeval	start;
 	t_timeval	current;
@@ -55,9 +55,9 @@ void	ft_precise_usleep(long long usec, t_philo *philo)
 
 	while (elapsed < usec)
 	{
-		if (mtx_get_bool(philo->mtdata->death_mutex, philo->mtdata->someone_died) == true)
+		if (mtx_get_bool(simu->mtdata.death_mutex, simu->mtdata.someone_died) == true)
 			break;
-		if (mtx_get_int(philo->mtdata->end_mutex, philo->mtdata->end) == philo->rdonly->num_philo)
+		if (mtx_get_int(simu->mtdata.end_mutex, simu->mtdata.end) == simu->rdonly.num_philo)
 			break;
 		gettimeofday(&current, NULL);
 		elapsed = ft_get_elapsed_time_us(start, current);
@@ -73,16 +73,7 @@ void	ft_free_philos(t_simu *simu)
 {
 	int	i;
 
-	if (simu->philos)
-	{
-		i = 0;
-		while (i < simu->rdonly.num_philo)
-		{
-			if (simu->philos[i].thread)
-				pthread_join(simu->philos[i].thread, NULL);
-			i++;
-		}
-	}
+	// Destroy and free forks
 	if (simu->forks)
 	{
 		i = 0;
@@ -91,11 +82,18 @@ void	ft_free_philos(t_simu *simu)
 			pthread_mutex_destroy(&simu->forks[i]);
 			i++;
 		}
-	}
-	if (simu->philos)
-		free(simu->philos);
-	if (simu->forks)
 		free(simu->forks);
+		simu->forks = NULL; // Set pointer to NULL after freeing
+	}
+
+	// Free philosopher structures
+	if (simu->philos)
+	{
+		free(simu->philos);
+		simu->philos = NULL; // Set pointer to NULL after freeing
+	}
+
+	// Destroy remaining mutexes
 	pthread_mutex_destroy(&simu->mtdata.print_mutex);
 	pthread_mutex_destroy(&simu->mtdata.death_mutex);
 	pthread_mutex_destroy(&simu->mtdata.meal_mutex);

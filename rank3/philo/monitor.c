@@ -6,13 +6,13 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/28 14:08:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/29 16:03:41 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
  * TODO
- * voir comment utiliser ft_check_if_dead dans notre monitor_routine
+ * PROBLEME : LA SIMU S'ARRETE PAS APRES END = num_philos 
  */
 
 #include "include/philo.h"
@@ -36,8 +36,35 @@ bool	ft_check_if_dead(t_philo *philo)
 void	*ft_monitor_routine(void *arg)
 {
 	t_monitor	*mon;
+	int			current_init;
+	int			i;
 
 	mon = (t_monitor *)arg;
+	if (!mon)
+		return (NULL);
 
+	current_init = mtx_get_int(mon->simu->mtdata.init_mutex, mon->simu->mtdata.init_philos);
+	mtx_set_int(mon->simu->mtdata.init_mutex, &mon->simu->mtdata.init_philos, current_init + 1);
+
+	while (!mtx_get_bool(mon->simu->mtdata.start_mutex, mon->simu->mtdata.start))
+		ft_precise_usleep(100, mon->simu);
+
+	while (!mtx_get_bool(mon->mtdata->death_mutex, mon->mtdata->someone_died))
+	{
+		i = 0;
+		while (i < mon->rdonly->num_philo)
+		{
+			if (ft_check_if_dead(&mon->simu->philos[i]))
+				break;
+			i++;
+		}
+		if (mtx_get_int(mon->mtdata->end_mutex, mon->mtdata->end) == mon->rdonly->num_philo)
+			break;
+		ft_precise_usleep(100, mon->simu);
+	}
+
+	// Stop all threads after a death has been detected
+	ft_stop_threads(mon->simu);
 	return (NULL);
 }
+
