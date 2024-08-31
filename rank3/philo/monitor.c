@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/29 16:03:41 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/30 13:20:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	*ft_monitor_routine(void *arg)
 	while (!mtx_get_bool(mon->mtdata->death_mutex, mon->mtdata->someone_died))
 	{
 		i = 0;
+
 		while (i < mon->rdonly->num_philo)
 		{
 			if (ft_check_if_dead(&mon->simu->philos[i]))
@@ -59,12 +60,16 @@ void	*ft_monitor_routine(void *arg)
 			i++;
 		}
 		if (mtx_get_int(mon->mtdata->end_mutex, mon->mtdata->end) == mon->rdonly->num_philo)
+		{
+			printf("break ok\n");
 			break;
+		}
 		ft_precise_usleep(100, mon->simu);
 	}
 
 	// Stop all threads after a death has been detected
 	ft_stop_threads(mon->simu);
+	printf("monitor stop threads ok\n");
 	return (NULL);
 }
 

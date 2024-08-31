@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:51:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/29 12:52:01 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/08/30 13:26:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,13 @@ bool	ft_start_simulation(t_simu *simu)
 
 	while (mtx_get_int(simu->mtdata.end_mutex, simu->mtdata.end) != simu->rdonly.num_philo
 			|| mtx_get_bool(simu->mtdata.death_mutex, simu->mtdata.someone_died) == false)
-		usleep(100);
+	{
+		usleep(10000);
+		printf("stuck...");
+	}
 
 	if(mtx_get_bool(simu->mtdata.death_mutex, simu->mtdata.someone_died) == false)
 		ft_stop_threads(simu);
+	printf("return ok\n");
 	return (true);
 }

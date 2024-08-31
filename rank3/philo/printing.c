@@ -40,6 +40,8 @@ void	ft_print_state(t_philo *philo, int state)
 		ft_print_format(philo, time, "is eating");
 	if (state == SLEEP)
 		ft_print_format(philo, time, "is sleeping");
+	if (state == STOP)
+		ft_print_format(philo, time, RED "thread stop" RESET);
 }
 
 void	ft_print_params(t_rdonly params)

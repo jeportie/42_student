@@ -33,6 +33,7 @@
 # define RIGHT 3
 # define EAT 4
 # define SLEEP 5
+# define STOP 6
 
 typedef struct timeval	t_timeval;
 typedef struct s_simu t_simu;

@@ -36,10 +36,13 @@ void	*ft_routine(void *arg)
 		ft_pick_up_forks(philo);
 		ft_eat(philo);
 		ft_release_forks(philo);
+		if (philo->meals_eaten == philo->rdonly->num_meals)
+			break;
 		ft_sleep(philo);
 	}
 	current_end = mtx_get_int(philo->mtdata->end_mutex, philo->mtdata->end);
 	mtx_set_int(philo->mtdata->end_mutex, &philo->mtdata->end, current_end + 1);
+	ft_print_state(philo, STOP);
 	return (NULL);
 }
 
