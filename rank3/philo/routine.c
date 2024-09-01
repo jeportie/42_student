@@ -6,28 +6,39 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/29 15:59:57 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/01 19:49:48 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo.h"
 
+void ft_wait_for_start(t_mtx *mutex, bool *start)
+{
+    pthread_mutex_lock(mutex);
+    while (!(*start)) 
+	{
+        pthread_mutex_unlock(mutex);  // Allow other threads to acquire the lock
+        usleep(1000);                 // Sleep briefly
+        pthread_mutex_lock(mutex);    // Re-lock to check the condition again
+    }
+    pthread_mutex_unlock(mutex);
+}
+
+
 void	*ft_routine(void *arg)
 {
 	t_philo	*philo;
 	int		current_end;
-	int		current_init;
 
 	philo = (t_philo *)arg;
 	if (!philo)
 		return (NULL);
 
-	current_init = mtx_get_int(philo->mtdata->init_mutex, philo->mtdata->init_philos);
-	mtx_set_int(philo->mtdata->init_mutex, &philo->mtdata->init_philos, current_init + 1);
-	while (!mtx_get_bool(philo->mtdata->start_mutex, philo->mtdata->start))
-		ft_precise_usleep(100, philo->simu);
-
 	philo->last_meal_time = ft_get_time_ms();
+
+	mtx_increment_int(&philo->mtdata->init_mutex, &philo->mtdata->init_philos);
+	ft_wait_for_start(&philo->mtdata->start_mutex, &philo->mtdata->start);
+
 	while (1)
 	{
 		if (ft_check_if_dead(philo))
@@ -40,9 +51,9 @@ void	*ft_routine(void *arg)
 			break;
 		ft_sleep(philo);
 	}
-	current_end = mtx_get_int(philo->mtdata->end_mutex, philo->mtdata->end);
-	mtx_set_int(philo->mtdata->end_mutex, &philo->mtdata->end, current_end + 1);
-	ft_print_state(philo, STOP);
+	current_end = mtx_get_int(philo->mtdata->end_mutex, philo->mtdata->end_philos);
+	mtx_set_int(philo->mtdata->end_mutex, &philo->mtdata->end_philos, current_end + 1);
+//	ft_print_state(philo, STOP);
 	return (NULL);
 }
 
@@ -80,7 +91,7 @@ void	ft_eat(t_philo *philo)
 	int	current_full;
 
 	ft_precise_usleep(philo->rdonly->time_to_eat * 1000, philo->simu);
-	philo->last_meal_time = ft_get_time_ms();
+	mtx_set_longlong(philo->mtdata->init_mutex, &philo->last_meal_time, ft_get_time_ms());
 	mtx_set_int(philo->mtdata->meal_mutex, &philo->meals_eaten, philo->meals_eaten + 1);
 	if (mtx_get_int(philo->mtdata->meal_mutex, philo->meals_eaten) == philo->rdonly->num_meals)
 	{

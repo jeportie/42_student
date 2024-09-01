@@ -48,6 +48,18 @@ void	mtx_set_int(t_mtx mutex, int *dest, int value)
 	pthread_mutex_unlock(&mutex);
 }
 
+int mtx_increment_int(t_mtx *mutex, int *dest)
+{
+    int new_value;
+
+    pthread_mutex_lock(mutex);
+    *dest += 1;
+    new_value = *dest;
+    pthread_mutex_unlock(mutex);
+    return new_value;
+}
+
+
 long long	mtx_get_longlong(t_mtx mutex, long long value)
 {
 	long long	ret;

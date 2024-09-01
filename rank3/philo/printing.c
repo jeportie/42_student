@@ -15,7 +15,7 @@
 static void ft_print_format(t_philo *philo, long long time, const char *format)
 {
 	pthread_mutex_lock(&philo->mtdata->print_mutex);
-	if (mtx_get_bool(philo->mtdata->death_mutex, philo->mtdata->someone_died) == false)
+	if (mtx_get_bool(philo->mtdata->death_mutex, philo->mtdata->stop) == false)
 		printf("[%lldms] %d %s\n", time, philo->id, format);
 	pthread_mutex_unlock(&philo->mtdata->print_mutex);
 }

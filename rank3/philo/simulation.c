@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:51:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/30 13:26:16 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/01 11:20:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,12 @@ bool	ft_start_simulation(t_simu *simu)
 	simu->rdonly.start_time = ft_get_time_ms();
 	mtx_set_bool(simu->mtdata.start_mutex, &simu->mtdata.start, true);
 
-	while (mtx_get_int(simu->mtdata.end_mutex, simu->mtdata.end) != simu->rdonly.num_philo
-			|| mtx_get_bool(simu->mtdata.death_mutex, simu->mtdata.someone_died) == false)
+	while (mtx_get_bool(simu->mtdata.death_mutex, simu->mtdata.stop) == false)
 	{
-		usleep(10000);
-		printf("stuck...");
+		usleep(100);
+//		printf("parent thread looping...\n");
 	}
 
-	if(mtx_get_bool(simu->mtdata.death_mutex, simu->mtdata.someone_died) == false)
-		ft_stop_threads(simu);
-	printf("return ok\n");
+//	printf("return ok\n");
 	return (true);
 }

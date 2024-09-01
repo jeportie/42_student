@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/29 15:22:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/01 11:35:59 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,15 @@ typedef struct s_rdonly
 typedef struct s_shared
 {
 	t_mtx		print_mutex;
-	bool		someone_died;
-	t_mtx		death_mutex;
 	int			philos_full;
 	t_mtx		meal_mutex;
 	int			init_philos;
 	t_mtx		init_mutex;
 	bool		start;
 	t_mtx		start_mutex;
-	int			end;
+	bool		stop;
+	t_mtx		death_mutex;
+	int			end_philos;
 	t_mtx		end_mutex;
 }				t_shared;
 
@@ -119,6 +119,7 @@ void		ft_release_forks(t_philo *philo);
 /*Monitoring thread*/
 bool		ft_check_if_dead(t_philo *philo);
 void		*ft_monitor_routine(void *arg);
+void		ft_wait_for_start(t_mtx *mutex, bool *start);
 
 /*Simulation*/
 void		ft_stop_threads(t_simu *simu);
@@ -129,6 +130,7 @@ bool		mtx_get_bool(t_mtx mutex, bool value);
 void		mtx_set_bool(t_mtx mutex, bool *dest, bool value);
 int			mtx_get_int(t_mtx mutex, int value);
 void		mtx_set_int(t_mtx mutex, int *dest, int value);
+int			mtx_increment_int(t_mtx *mutex, int *dest);
 long long	mtx_get_longlong(t_mtx mutex, long long value);
 void		mtx_set_longlong(t_mtx mutex, long long *dest, long long value);
 

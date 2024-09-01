@@ -55,9 +55,9 @@ void	ft_precise_usleep(long long usec, t_simu *simu)
 
 	while (elapsed < usec)
 	{
-		if (mtx_get_bool(simu->mtdata.death_mutex, simu->mtdata.someone_died) == true)
+		if (mtx_get_bool(simu->mtdata.death_mutex, simu->mtdata.stop) == true)
 			break;
-		if (mtx_get_int(simu->mtdata.end_mutex, simu->mtdata.end) == simu->rdonly.num_philo)
+		if (mtx_get_bool(simu->mtdata.end_mutex, simu->mtdata.stop) == true)
 			break;
 		gettimeofday(&current, NULL);
 		elapsed = ft_get_elapsed_time_us(start, current);
