@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:28:50 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/02 08:29:36 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/02 12:54:53 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,24 @@ void	ft_precise_usleep(long long usec, t_simu *simu)
 		else if (rem > 0)
 			usleep(rem);
 	}
+}
+
+void	ft_stop_threads(t_simu *simu)
+{
+	int	i;
+
+	if (simu->philos)
+	{
+		i = 0;
+		while (i < simu->rdonly.num_philo)
+		{
+			if (simu->philos[i].thread)
+				pthread_join(simu->philos[i].thread, NULL);
+			i++;
+		}
+	}
+	if (simu->monitor.thread)
+		pthread_join(simu->monitor.thread, NULL);
 }
 
 void	ft_free_philos(t_simu *simu)

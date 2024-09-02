@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/02 11:36:49 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:13:20 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	*ft_monitor(void *arg)
 	if (!mon)
 		return (NULL);
 	mtx_increment_int(&mon->mtdata->init_mutex, &mon->mtdata->init_philos);
-	ft_wait_for_start(&mon->mtdata->start_mutex, &mon->mtdata->start);
+	ft_wait_for_start(mon->simu, &mon->mtdata->start_mutex, &mon->mtdata->start);
 
 	while (!mtx_get_bool(mon->mtdata->death_mutex, mon->mtdata->stop))
 	{
 		if (!ft_mon_routine(mon))
 			break ;
 	}
-	ft_stop_threads(mon->simu);
+//	ft_stop_threads(mon->simu);
 	return (NULL);
 }

@@ -6,24 +6,23 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/02 11:31:42 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:10:58 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo.h"
 
-void	ft_wait_for_start(t_mtx *mutex, bool *start)
+void	ft_wait_for_start(t_simu *simu, t_mtx *mutex, bool *start)
 {
 	pthread_mutex_lock(mutex);
 	while (!(*start))
 	{
 		pthread_mutex_unlock(mutex);
-		usleep(100);
+		ft_precise_usleep(100, simu);
 		pthread_mutex_lock(mutex);
 	}
 	pthread_mutex_unlock(mutex);
 }
-
 
 void	*ft_routine(void *arg)
 {
@@ -34,7 +33,7 @@ void	*ft_routine(void *arg)
 		return (NULL);
 	philo->last_meal_time = ft_get_time_ms();
 	mtx_increment_int(&philo->mtdata->init_mutex, &philo->mtdata->init_philos);
-	ft_wait_for_start(&philo->mtdata->start_mutex, &philo->mtdata->start);
+	ft_wait_for_start(philo->simu, &philo->mtdata->start_mutex, &philo->mtdata->start);
 	while (1)
 	{
 		if (ft_check_if_dead(philo))

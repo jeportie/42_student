@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/02 09:02:11 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/02 13:07:52 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void		ft_release_forks(t_philo *philo);
 /*Monitoring thread*/
 bool		ft_check_if_dead(t_philo *philo);
 void		*ft_monitor(void *arg);
-void		ft_wait_for_start(t_mtx *mutex, bool *start);
+void		ft_wait_for_start(t_simu *simu, t_mtx *mutex, bool *start);
 
 /*Simulation*/
 void		ft_stop_threads(t_simu *simu);
