@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/29 12:05:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/02 08:24:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,8 @@ bool	ft_init_threads(t_simu *simu)
 		}
 		i++;
 	}
-	if (pthread_create(&simu->monitor.thread, NULL, ft_monitor_routine, &simu->monitor) != 0)
+	if (pthread_create(&simu->monitor.thread, NULL, ft_monitor, &simu->monitor)
+		!= 0)
 	{
 		ft_perror("Thread creation failed.\n");
 		ft_join_remaining_threads(i, simu);

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/01 11:35:59 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/02 09:02:11 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@
 # define STOP 6
 
 typedef struct timeval	t_timeval;
-typedef struct s_simu t_simu;
-typedef struct s_rdonly t_rdonly;
-typedef struct s_shared t_shared;
+typedef struct s_simu	t_simu;
+typedef struct s_rdonly	t_rdonly;
+typedef struct s_shared	t_shared;
 typedef pthread_mutex_t	t_mtx;
 
 typedef struct s_philo
@@ -118,7 +118,7 @@ void		ft_release_forks(t_philo *philo);
 
 /*Monitoring thread*/
 bool		ft_check_if_dead(t_philo *philo);
-void		*ft_monitor_routine(void *arg);
+void		*ft_monitor(void *arg);
 void		ft_wait_for_start(t_mtx *mutex, bool *start);
 
 /*Simulation*/
@@ -130,9 +130,9 @@ bool		mtx_get_bool(t_mtx mutex, bool value);
 void		mtx_set_bool(t_mtx mutex, bool *dest, bool value);
 int			mtx_get_int(t_mtx mutex, int value);
 void		mtx_set_int(t_mtx mutex, int *dest, int value);
-int			mtx_increment_int(t_mtx *mutex, int *dest);
-long long	mtx_get_longlong(t_mtx mutex, long long value);
-void		mtx_set_longlong(t_mtx mutex, long long *dest, long long value);
+void		mtx_increment_int(t_mtx *mutex, int *dest);
+long long	mtx_get_llong(t_mtx mutex, long long value);
+void		mtx_set_llong(t_mtx mutex, long long *dest, long long value);
 
 /*Utilities*/
 void		ft_perror(char *str);

@@ -6,13 +6,13 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/29 15:18:20 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/02 08:58:39 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo.h"
 
-static void ft_print_format(t_philo *philo, long long time, const char *format)
+void	ft_print_format(t_philo *philo, long long time, const char *format)
 {
 	pthread_mutex_lock(&philo->mtdata->print_mutex);
 	if (mtx_get_bool(philo->mtdata->death_mutex, philo->mtdata->stop) == false)
@@ -22,7 +22,7 @@ static void ft_print_format(t_philo *philo, long long time, const char *format)
 
 void	ft_print_state(t_philo *philo, int state)
 {
-	long long time;
+	long long	time;
 
 	time = ft_get_time_ms() - philo->rdonly->start_time;
 	if (state == DEAD)
@@ -30,7 +30,7 @@ void	ft_print_state(t_philo *philo, int state)
 		pthread_mutex_lock(&philo->mtdata->print_mutex);
 		printf(RED "[%lldms] %d died\n" RESET, time, philo->id);
 		pthread_mutex_unlock(&philo->mtdata->print_mutex);
-		return;
+		return ;
 	}
 	if (state == THINK)
 		ft_print_format(philo, time, "is thinking");
@@ -65,7 +65,7 @@ void	ft_print_philos(t_simu simu)
 		printf("id : %d\n", i + 1);
 		printf("thread id: %lu\n", (unsigned long)simu.philos[i].thread);
 		printf("r fork : %p, l fork : %p)\n",
-				simu.philos[i].right_fork, simu.philos[i].left_fork);
+			simu.philos[i].right_fork, simu.philos[i].left_fork);
 		i++;
 	}
 }
@@ -77,7 +77,7 @@ void	ft_print_start_stop(t_simu *simu, bool choice)
 	else
 	{
 		printf(GREEN "[%lldms] Simulation Ended.\n\n" RESET,
-		ft_get_time_ms() - simu->rdonly.start_time);
+			ft_get_time_ms() - simu->rdonly.start_time);
 	}
 }
 

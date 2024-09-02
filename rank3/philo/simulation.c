@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:51:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/01 11:20:43 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/02 11:20:00 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,30 @@ bool	ft_start_simulation(t_simu *simu)
 		ft_free_philos(simu);
 		return (false);
 	}
+
+	pthread_mutex_lock(&simu->mtdata.init_mutex);
+	while (simu->mtdata.init_philos != simu->rdonly.num_philo + 1)
+	{
+		pthread_mutex_unlock(&simu->mtdata.init_mutex);
+		usleep(1000);
+		pthread_mutex_lock(&simu->mtdata.init_mutex);
+	}
+	pthread_mutex_unlock(&simu->mtdata.init_mutex); 
+
 	ft_print_start_stop(simu, true);
-
-	while (mtx_get_int(simu->mtdata.init_mutex, simu->mtdata.init_philos)
-		!= simu->rdonly.num_philo + 1)
-		usleep(100);
-
 	simu->rdonly.start_time = ft_get_time_ms();
 	mtx_set_bool(simu->mtdata.start_mutex, &simu->mtdata.start, true);
 
-	while (mtx_get_bool(simu->mtdata.death_mutex, simu->mtdata.stop) == false)
+	while (1)
 	{
+		pthread_mutex_lock(&simu->mtdata.death_mutex);
+		if (simu->mtdata.stop == true)
+		{
+			pthread_mutex_unlock(&simu->mtdata.death_mutex);
+			break ;
+		}
+		pthread_mutex_unlock(&simu->mtdata.death_mutex);
 		usleep(100);
-//		printf("parent thread looping...\n");
 	}
-
-//	printf("return ok\n");
 	return (true);
 }

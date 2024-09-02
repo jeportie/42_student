@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:35:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/08/29 12:52:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/02 09:00:56 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
  * TODO
  * Implementer monitor pour voir quand philo meurt
  * Regler pb de freeze qui arrive avant que la simu commemce
- * Trouver moyen de laisser lock printf apres que someonedied (peut etre en coupant la simu puis en printant)
- */ 
+ * Trouver moyen de laisser lock printf apres que someonedied 
+ * (peut etre en coupant la simu puis en printant)
+ */
 
 int	main(int ac, char **av)
 {
@@ -33,7 +34,6 @@ int	main(int ac, char **av)
 	}
 	ft_init_monitor(&simu);
 	ft_start_simulation(&simu);
-
 	ft_print_start_stop(&simu, false);
 	ft_free_philos(&simu);
 	return (0);
