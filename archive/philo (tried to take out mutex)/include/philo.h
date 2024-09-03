@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/03 14:30:42 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/03 14:11:43 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,20 @@ typedef struct s_shared
 	int			philos_full;
 	t_mtx		meal_mutex;
 
-	int			init_philos;
-	t_mtx		init_mutex;
-	bool		start;
-	t_mtx		start_mutex;
+//	int			init_philos;
+//	t_mtx		init_mutex;
+//	bool		start;
+//	t_mtx		start_mutex;
 	
-	bool		stop;
-	t_mtx		death_mutex;
-	int			end_philos;
-	t_mtx		end_mutex;
+//	bool		stop;
+//	t_mtx		death_mutex;
+//	int			end_philos;
+//	t_mtx		end_mutex;
+
+	bool		action_flag;
+	int			wait_flag;
+	t_mtx		action_mutex;
+	t_mtx		wait_mutex;
 }				t_shared;
 
 typedef struct s_simu
@@ -113,7 +118,7 @@ bool		ft_init_threads(t_simu *simu);
 /*Philosopher Threads*/
 void		*ft_routine(void *arg);
 void		ft_think(t_philo *philo);
-bool		ft_pick_up_forks(t_philo *philo);
+void		ft_pick_up_forks(t_philo *philo);
 void		ft_eat(t_philo *philo);
 void		ft_sleep(t_philo *philo);
 void		ft_release_forks(t_philo *philo);
