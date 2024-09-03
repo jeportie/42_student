@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/02 13:10:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/03 10:25:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ void	*ft_routine(void *arg)
 	philo = (t_philo *)arg;
 	if (!philo)
 		return (NULL);
-	philo->last_meal_time = ft_get_time_ms();
+
 	mtx_increment_int(&philo->mtdata->init_mutex, &philo->mtdata->init_philos);
 	ft_wait_for_start(philo->simu, &philo->mtdata->start_mutex, &philo->mtdata->start);
+	philo->last_meal_time = ft_get_time_ms();
 	while (1)
 	{
 		if (ft_check_if_dead(philo))
 			break ;
 		ft_print_state(philo, THINK);
-		ft_pick_up_forks(philo);
+
 		ft_eat(philo);
-		ft_release_forks(philo);
 		if (philo->meals_eaten == philo->rdonly->num_meals)
 			break ;
 		ft_sleep(philo);
@@ -84,16 +84,16 @@ void	ft_eat(t_philo *philo)
 	t_mtx	*meal_mtx;
 	t_mtx	*init_mtx;
 
+//	ft_pick_up_forks(philo);
 	meal_mtx = &philo->mtdata->meal_mutex;
 	init_mtx = &philo->mtdata->init_mutex;
+	philo->meals_eaten++;
 	ft_precise_usleep(philo->rdonly->time_to_eat * 1000, philo->simu);
-	mtx_set_llong(*init_mtx, &philo->last_meal_time, ft_get_time_ms());
-	mtx_set_int(*meal_mtx, &philo->meals_eaten, philo->meals_eaten + 1);
-	if (mtx_get_int(*meal_mtx, philo->meals_eaten) == philo->rdonly->num_meals)
-	{
+	philo->last_meal_time = ft_get_time_ms();
+	if (philo->meals_eaten == philo->rdonly->num_meals)
 		mtx_increment_int(meal_mtx, &philo->mtdata->philos_full);
-	}
 	ft_print_state(philo, EAT);
+//	ft_release_forks(philo);
 }
 
 void	ft_release_forks(t_philo *philo)

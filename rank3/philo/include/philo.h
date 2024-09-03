@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/02 13:07:52 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/03 08:54:19 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,12 @@ typedef struct s_shared
 	t_mtx		print_mutex;
 	int			philos_full;
 	t_mtx		meal_mutex;
+
 	int			init_philos;
 	t_mtx		init_mutex;
 	bool		start;
 	t_mtx		start_mutex;
+	
 	bool		stop;
 	t_mtx		death_mutex;
 	int			end_philos;
@@ -123,7 +125,7 @@ void		ft_wait_for_start(t_simu *simu, t_mtx *mutex, bool *start);
 
 /*Simulation*/
 void		ft_stop_threads(t_simu *simu);
-bool		ft_start_simulation(t_simu *simu);
+void		ft_start_simulation(t_simu *simu);
 
 /*Getters/Setters*/
 bool		mtx_get_bool(t_mtx mutex, bool value);

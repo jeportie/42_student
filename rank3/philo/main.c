@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:35:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/02 09:00:56 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/03 09:02:15 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
  * Trouver moyen de laisser lock printf apres que someonedied 
  * (peut etre en coupant la simu puis en printant)
  */
+
+bool	ft_safe_thread_init(t_simu *simu)
+{
+	if (!ft_init_threads(simu))
+	{
+		ft_stop_threads(simu);
+		ft_free_philos(simu);
+		ft_perror("Thread init failed.\n");
+		return (false);
+	}
+	return (true);
+}
 
 int	main(int ac, char **av)
 {
@@ -33,6 +45,9 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	ft_init_monitor(&simu);
+	if (!ft_safe_thread_init(&simu))
+		return (1);
+
 	ft_start_simulation(&simu);
 	ft_print_start_stop(&simu, false);
 	ft_free_philos(&simu);
