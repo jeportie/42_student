@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/04 09:54:56 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:14:54 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef pthread_mutex_t	t_mtx;
  * TODO:
  * Mettre mutex dans philo pour actualiser last_meal_time
  * entre un philo et le mon
+ *
+ *
  */
 
 typedef struct s_philo

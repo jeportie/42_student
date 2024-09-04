@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/04 11:32:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:06:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_wait_for_start(t_mtx *mutex, bool *start)
 void	*ft_routine(void *arg)
 {
 	t_philo	*philo;
+	bool	dead_flag;
 
 	philo = (t_philo *)arg;
 	if (!philo)
@@ -41,7 +42,11 @@ void	*ft_routine(void *arg)
 
 	while (1)
 	{
-		if (ft_check_if_dead(philo))
+		pthread_mutex_lock(&philo->mtdata->death_mutex);
+		dead_flag = philo->mtdata->stop;
+		pthread_mutex_unlock(&philo->mtdata->death_mutex);
+
+		if (dead_flag == true)
 			break ;
 		ft_print_state(philo, THINK);
 
@@ -56,11 +61,17 @@ void	*ft_routine(void *arg)
 
 bool	ft_pick_up_forks(t_philo *philo)
 {
+	bool	dead_flag;
+
+	pthread_mutex_lock(&philo->mtdata->death_mutex);
+	dead_flag = philo->mtdata->stop;
+	pthread_mutex_unlock(&philo->mtdata->death_mutex);
+
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->left_fork);
 		ft_print_state(philo, LEFT);
-		if (ft_check_if_dead(philo))
+		if (dead_flag == true)
 		{
 			pthread_mutex_unlock(philo->left_fork);
 			return (false);
@@ -72,9 +83,9 @@ bool	ft_pick_up_forks(t_philo *philo)
 	{
 		pthread_mutex_lock(philo->right_fork);
 		ft_print_state(philo, RIGHT);
-		if (ft_check_if_dead(philo))
+		if (dead_flag == true)
 		{
-			pthread_mutex_unlock(philo->left_fork);
+			pthread_mutex_unlock(philo->right_fork);
 			return (false);
 		}
 		pthread_mutex_lock(philo->left_fork);

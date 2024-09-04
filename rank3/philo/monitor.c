@@ -6,12 +6,14 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/04 10:48:46 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:27:03 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
  * TODO
+ * Probleme avec compteur -> des fois fais mourrir un philo avant meme quil
+ * pense
  */
 
 #include "include/philo.h"
