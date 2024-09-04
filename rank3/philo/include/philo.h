@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/03 14:30:42 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/04 09:54:56 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,18 @@ typedef struct s_rdonly	t_rdonly;
 typedef struct s_shared	t_shared;
 typedef pthread_mutex_t	t_mtx;
 
+/*
+ * TODO:
+ * Mettre mutex dans philo pour actualiser last_meal_time
+ * entre un philo et le mon
+ */
+
 typedef struct s_philo
 {
 	int				id;
 	pthread_t		thread;
 	long long		last_meal_time;
+	t_mtx			time_mutex;
 	int				meals_eaten;
 	t_mtx			*right_fork;
 	t_mtx			*left_fork;
@@ -75,6 +82,7 @@ typedef struct s_rdonly
 typedef struct s_shared
 {
 	t_mtx		print_mutex;
+
 	int			philos_full;
 	t_mtx		meal_mutex;
 

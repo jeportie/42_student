@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/02 08:24:22 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/04 09:56:57 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@ bool	ft_init_philos(t_simu *simu)
 	while (i < simu->rdonly.num_philo)
 	{
 		memset(&philos[i], 0, sizeof(t_philo));
+		if (pthread_mutex_init(&philos->time_mutex, NULL) != 0)
+		{
+			ft_perror("Mutex init failed.\n");
+			return (false);
+		}
 		philos[i].id = i + 1;
 		philos[i].left_fork = &simu->forks[i];
 		philos[i].right_fork = &simu->forks[(i + 1) % simu->rdonly.num_philo];

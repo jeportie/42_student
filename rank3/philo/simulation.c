@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:51:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/03 14:29:06 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:59:54 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,14 @@ static void	ft_wait_threads_to_start(t_simu *simu)
 static void	ft_wait_threads_to_stop(t_simu *simu)
 
 {
-	while (1)
+	pthread_mutex_lock(&simu->mtdata.death_mutex);
+	while (simu->mtdata.stop == false)
 	{
-		pthread_mutex_lock(&simu->mtdata.death_mutex);
-		if (simu->mtdata.stop == true)
-		{
-			pthread_mutex_unlock(&simu->mtdata.death_mutex);
-			break ;
-		}
 		pthread_mutex_unlock(&simu->mtdata.death_mutex);
 		ft_precise_usleep(100);
+		pthread_mutex_lock(&simu->mtdata.death_mutex);
 	}
+	pthread_mutex_unlock(&simu->mtdata.death_mutex);
 }
 
 void	ft_start_simulation(t_simu *simu)

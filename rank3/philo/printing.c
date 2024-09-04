@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/02 08:58:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:03:14 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 
 void	ft_print_format(t_philo *philo, long long time, const char *format)
 {
+	pthread_mutex_lock(&philo->mtdata->death_mutex);
+	if (philo->mtdata->stop == true)
+	{
+		pthread_mutex_unlock(&philo->mtdata->death_mutex);
+		return ;
+	}
+	pthread_mutex_unlock(&philo->mtdata->death_mutex);
+
 	pthread_mutex_lock(&philo->mtdata->print_mutex);
-	if (mtx_get_bool(philo->mtdata->death_mutex, philo->mtdata->stop) == false)
-		printf("[%lldms] %d %s\n", time, philo->id, format);
+	printf("[%lldms] %d %s\n", time, philo->id, format);
 	pthread_mutex_unlock(&philo->mtdata->print_mutex);
 }
 

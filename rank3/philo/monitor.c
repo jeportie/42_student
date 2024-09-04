@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/03 14:31:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:48:46 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,21 @@ bool	ft_check_if_dead(t_philo *philo)
 	long long	time;
 	long long	last_meal;
 
-	last_meal = mtx_get_llong(philo->mtdata->init_mutex, philo->last_meal_time);
-	if (mtx_get_bool(philo->mtdata->death_mutex, philo->mtdata->stop))
+	pthread_mutex_lock(&philo->time_mutex);
+	last_meal = philo->last_meal_time;
+	pthread_mutex_unlock(&philo->time_mutex);
+
+	pthread_mutex_lock(&philo->mtdata->death_mutex);
+	if (philo->mtdata->stop == true)
 		return (true);
+	pthread_mutex_unlock(&philo->mtdata->death_mutex);
+
 	time = ft_get_time_ms() - last_meal;
 	if (time >= philo->rdonly->time_to_die)
 	{
-		mtx_set_bool(philo->mtdata->death_mutex, &philo->mtdata->stop, true);
+		pthread_mutex_lock(&philo->mtdata->death_mutex);
+		philo->mtdata->stop = true;
+		pthread_mutex_unlock(&philo->mtdata->death_mutex);
 		ft_print_state(philo, DEAD);
 		return (true);
 	}
@@ -37,6 +45,7 @@ bool	ft_check_if_dead(t_philo *philo)
 static bool	ft_mon_routine(t_monitor *mon)
 {
 	int	i;
+	int	wait_philos;
 
 	i = 0;
 	while (i < mon->rdonly->num_philo)
@@ -45,8 +54,11 @@ static bool	ft_mon_routine(t_monitor *mon)
 			return (false);
 		i++;
 	}
-	if (mtx_get_int(mon->mtdata->end_mutex, mon->mtdata->end_philos)
-		== mon->rdonly->num_philo)
+	pthread_mutex_lock(&mon->mtdata->end_mutex);
+	wait_philos = mon->mtdata->end_philos;
+	pthread_mutex_unlock(&mon->mtdata->end_mutex);
+
+	if (wait_philos	== mon->rdonly->num_philo)
 	{
 		pthread_mutex_lock(&mon->mtdata->death_mutex);
 		mon->mtdata->stop = true;

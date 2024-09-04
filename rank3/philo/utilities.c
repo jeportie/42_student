@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:28:50 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/03 14:28:47 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/04 10:58:57 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	ft_free_philos(t_simu *simu)
 		i = 0;
 		while (i < simu->rdonly.num_philo)
 		{
+			pthread_mutex_destroy(&simu->philos[i].time_mutex);
 			pthread_mutex_destroy(&simu->forks[i]);
 			i++;
 		}
