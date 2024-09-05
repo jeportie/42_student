@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/05 16:10:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:59:26 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,6 @@ void	*ft_routine(void *arg)
 			break ;
 		ft_sleep(philo);
 	}
-	pthread_mutex_lock(&philo->left_fork->lock_mutex);
-	if (philo->left_fork->is_locked == true)
-		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
-	pthread_mutex_unlock(&philo->left_fork->lock_mutex);
-
-	pthread_mutex_lock(&philo->right_fork->lock_mutex);
-	if (philo->right_fork->is_locked == true)
-		pthread_mutex_unlock(&philo->right_fork->fork_mutex);
-	pthread_mutex_unlock(&philo->right_fork->lock_mutex);
-
 	mtx_increment_int(&philo->mtdata->end_mutex, &philo->mtdata->end_count);
 	return (NULL);
 }
@@ -82,57 +72,48 @@ bool	ft_pick_up_forks(t_philo *philo)
 
 	if (philo->id % 2 == 0)
 	{
-		pthread_mutex_lock(&philo->left_fork->lock_mutex);
-		philo->left_fork->is_locked = true;
-		pthread_mutex_unlock(&philo->left_fork->lock_mutex);
-
 		pthread_mutex_lock(&philo->left_fork->fork_mutex);
+		philo->left_fork->is_locked = true;
 		ft_print_state(philo, LEFT);
 
 		pthread_mutex_lock(&philo->mtdata->stop_mutex);
 		dead_flag = philo->mtdata->stop_flag;
 		pthread_mutex_unlock(&philo->mtdata->stop_mutex);
+
 		if (dead_flag)
 		{
-			pthread_mutex_unlock(&philo->left_fork->fork_mutex);
-
-			pthread_mutex_lock(&philo->left_fork->lock_mutex);
 			philo->left_fork->is_locked = false;
-			pthread_mutex_unlock(&philo->left_fork->lock_mutex);
+			pthread_mutex_unlock(&philo->left_fork->fork_mutex);
 			return (false);
 		}
-
-		pthread_mutex_lock(&philo->right_fork->lock_mutex);
-		philo->right_fork->is_locked = true;
-		pthread_mutex_unlock(&philo->right_fork->lock_mutex);
-
 		pthread_mutex_lock(&philo->right_fork->fork_mutex);
+		philo->right_fork->is_locked = true;
 		ft_print_state(philo, RIGHT);
 	}
 	else
 	{
-		pthread_mutex_lock(&philo->right_fork->lock_mutex);
-		philo->right_fork->is_locked = true;
-		pthread_mutex_unlock(&philo->right_fork->lock_mutex);
 		pthread_mutex_lock(&philo->right_fork->fork_mutex);
-		ft_print_state(philo, RIGHT);
-
 		pthread_mutex_lock(&philo->mtdata->stop_mutex);
 		dead_flag = philo->mtdata->stop_flag;
 		pthread_mutex_unlock(&philo->mtdata->stop_mutex);
 		if (dead_flag)
 		{
 			pthread_mutex_unlock(&philo->right_fork->fork_mutex);
-			pthread_mutex_lock(&philo->right_fork->lock_mutex);
-			philo->right_fork->is_locked = false;
-			pthread_mutex_unlock(&philo->right_fork->lock_mutex);
 			return (false);
 		}
-
-		pthread_mutex_lock(&philo->left_fork->lock_mutex);
-		philo->left_fork->is_locked = true;
-		pthread_mutex_unlock(&philo->left_fork->lock_mutex);
+		philo->right_fork->is_locked = true;
+		ft_print_state(philo, RIGHT);
+		pthread_mutex_lock(&philo->mtdata->stop_mutex);
+		dead_flag = philo->mtdata->stop_flag;
+		pthread_mutex_unlock(&philo->mtdata->stop_mutex);
+		if (dead_flag)
+		{
+			philo->right_fork->is_locked = false;
+			pthread_mutex_unlock(&philo->right_fork->fork_mutex);
+			return (false);
+		}
 		pthread_mutex_lock(&philo->left_fork->fork_mutex);
+		philo->left_fork->is_locked = true;
 		ft_print_state(philo, LEFT);
 	}
 
@@ -161,37 +142,29 @@ void	ft_release_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
-		pthread_mutex_lock(&philo->right_fork->lock_mutex);
 		if (philo->right_fork->is_locked == true)
 		{
 			philo->right_fork->is_locked = false;
 			pthread_mutex_unlock(&philo->right_fork->fork_mutex);
 		}
-		pthread_mutex_unlock(&philo->right_fork->lock_mutex);
-		pthread_mutex_lock(&philo->left_fork->lock_mutex);
 		if (philo->left_fork->is_locked == true)
 		{
 			philo->left_fork->is_locked = false;
 			pthread_mutex_unlock(&philo->left_fork->fork_mutex);
 		}
-		pthread_mutex_unlock(&philo->left_fork->lock_mutex);
 	}
 	else
 	{
-		pthread_mutex_lock(&philo->left_fork->lock_mutex);
 		if (philo->left_fork->is_locked == true)
 		{
 			philo->left_fork->is_locked = false;
 			pthread_mutex_unlock(&philo->left_fork->fork_mutex);
 		}
-		pthread_mutex_unlock(&philo->left_fork->lock_mutex);
-		pthread_mutex_lock(&philo->right_fork->lock_mutex);
 		if (philo->right_fork->is_locked == true)
 		{
 			philo->right_fork->is_locked = false;
 			pthread_mutex_unlock(&philo->right_fork->fork_mutex);
 		}
-		pthread_mutex_unlock(&philo->right_fork->lock_mutex);
 	}
 }
 

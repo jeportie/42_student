@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:51:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/04 13:40:39 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:40:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,27 @@
 
 static void	ft_wait_threads_to_start(t_simu *simu)
 {
-	pthread_mutex_lock(&simu->mtdata.init_mutex);
-	while (simu->mtdata.init_philos != simu->rdonly.num_philo + 1)
+	pthread_mutex_lock(&simu->mtdata.go_mutex);
+	while (simu->mtdata.go_count != simu->rdonly.num_philo + 1)
 	{
-		pthread_mutex_unlock(&simu->mtdata.init_mutex);
+		pthread_mutex_unlock(&simu->mtdata.go_mutex);
 		ft_precise_usleep(100);
-		pthread_mutex_lock(&simu->mtdata.init_mutex);
+		pthread_mutex_lock(&simu->mtdata.go_mutex);
 	}
-	pthread_mutex_unlock(&simu->mtdata.init_mutex);
+	pthread_mutex_unlock(&simu->mtdata.go_mutex);
 }
 
 static void	ft_wait_threads_to_stop(t_simu *simu)
 
 {
-	pthread_mutex_lock(&simu->mtdata.death_mutex);
-	while (simu->mtdata.stop == false)
+	pthread_mutex_lock(&simu->mtdata.stop_mutex);
+	while (simu->mtdata.stop_flag == false)
 	{
-		pthread_mutex_unlock(&simu->mtdata.death_mutex);
+		pthread_mutex_unlock(&simu->mtdata.stop_mutex);
 		ft_precise_usleep(100);
-		pthread_mutex_lock(&simu->mtdata.death_mutex);
+		pthread_mutex_lock(&simu->mtdata.stop_mutex);
 	}
-	pthread_mutex_unlock(&simu->mtdata.death_mutex);
+	pthread_mutex_unlock(&simu->mtdata.stop_mutex);
 }
 
 void	ft_start_simulation(t_simu *simu)
@@ -48,9 +48,10 @@ void	ft_start_simulation(t_simu *simu)
 	ft_print_start_stop(simu, true);
 
 	pthread_mutex_lock(&simu->mtdata.start_mutex);
-	simu->mtdata.start = true;
+	simu->mtdata.start_flag = true;
 	pthread_mutex_unlock(&simu->mtdata.start_mutex);
 
 	ft_wait_threads_to_stop(simu);
 	ft_stop_threads(simu);
+	ft_print_start_stop(simu, false);
 }

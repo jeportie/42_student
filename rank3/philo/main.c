@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:35:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/03 09:02:15 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:44:37 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,29 @@ bool	ft_safe_thread_init(t_simu *simu)
 	return (true);
 }
 
+bool	ft_safe_simulation_init(t_simu *simu, int ac, char **av)
+{
+	if (!ft_init_mtdata(simu))
+		return (false);
+	if (!ft_init_rdonly(simu, ac, av) || !ft_init_forks(simu)
+		|| !ft_init_philos(simu))
+	{
+		ft_free_philos(simu);
+		return (false);
+	}
+	ft_init_monitor(simu);
+	if (!ft_safe_thread_init(simu))
+		return (false);
+	return (true);
+}
+
 int	main(int ac, char **av)
 {
 	t_simu		simu;
 
-	if (!ft_init_mtdata(&simu))
-		return (1);
-	if (!ft_init_rdonly(&simu, ac, av) || !ft_init_forks(&simu)
-		|| !ft_init_philos(&simu))
-	{
-		ft_free_philos(&simu);
-		return (1);
-	}
-	ft_init_monitor(&simu);
-	if (!ft_safe_thread_init(&simu))
-		return (1);
-
+	if (!ft_safe_simulation_init(&simu, ac, av))
+		return (-1);
 	ft_start_simulation(&simu);
-	ft_print_start_stop(&simu, false);
 	ft_free_philos(&simu);
 	return (0);
 }

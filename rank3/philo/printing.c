@@ -14,13 +14,13 @@
 
 void	ft_print_format(t_philo *philo, long long time, const char *format)
 {
-	pthread_mutex_lock(&philo->mtdata->death_mutex);
-	if (philo->mtdata->stop == true)
+	pthread_mutex_lock(&philo->mtdata->stop_mutex);
+	if (philo->mtdata->stop_flag == true)
 	{
-		pthread_mutex_unlock(&philo->mtdata->death_mutex);
+		pthread_mutex_unlock(&philo->mtdata->stop_mutex);
 		return ;
 	}
-	pthread_mutex_unlock(&philo->mtdata->death_mutex);
+	pthread_mutex_unlock(&philo->mtdata->stop_mutex);
 
 	pthread_mutex_lock(&philo->mtdata->print_mutex);
 	printf("[%lldms] %d %s\n", time, philo->id, format);

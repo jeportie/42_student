@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/04 09:56:57 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:35:37 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 bool	ft_init_mtdata(t_simu *simu)
 {
-	t_shared	mtdata;
+	t_sync	mtdata;
 
 	memset(&mtdata, 0, sizeof(mtdata));
 	if (pthread_mutex_init(&mtdata.start_mutex, NULL) != 0
 		||pthread_mutex_init(&mtdata.print_mutex, NULL) != 0
-		||pthread_mutex_init(&mtdata.init_mutex, NULL) != 0
-		||pthread_mutex_init(&mtdata.death_mutex, NULL) != 0
+		||pthread_mutex_init(&mtdata.go_mutex, NULL) != 0
+		||pthread_mutex_init(&mtdata.stop_mutex, NULL) != 0
 		|| pthread_mutex_init(&mtdata.meal_mutex, NULL) != 0
 		|| pthread_mutex_init(&mtdata.end_mutex, NULL) != 0)
 	{
@@ -89,7 +89,7 @@ bool	ft_init_philos(t_simu *simu)
 	return (true);
 }
 
-bool	ft_init_monitor(t_simu *simu)
+void	ft_init_monitor(t_simu *simu)
 {
 	t_monitor	mon;
 
@@ -98,22 +98,21 @@ bool	ft_init_monitor(t_simu *simu)
 	mon.mtdata = &simu->mtdata;
 	mon.simu = simu;
 	simu->monitor = mon;
-	return (true);
 }
 
 static void	ft_free_remaining_forks(int i, t_simu *simu)
 {
 	while (i--)
-		pthread_mutex_destroy(&simu->forks[i]);
+		pthread_mutex_destroy(&simu->forks[i].fork_mutex);
 	free(simu->forks);
 }
 
 bool	ft_init_forks(t_simu *simu)
 {
 	int		i;
-	t_mtx	*forks;
+	t_forks	*forks;
 
-	forks = (t_mtx *)malloc(sizeof(t_mtx) * simu->rdonly.num_philo);
+	forks = (t_forks *)malloc(sizeof(t_forks) * simu->rdonly.num_philo);
 	if (!forks)
 	{
 		ft_perror("Memory Allocation failed to create t_philo *philos.\n");
@@ -122,7 +121,9 @@ bool	ft_init_forks(t_simu *simu)
 	i = 0;
 	while (i < simu->rdonly.num_philo)
 	{
-		if (pthread_mutex_init(&forks[i], NULL) != 0)
+		forks[i].is_locked = false;
+		if (pthread_mutex_init(&forks[i].fork_mutex, NULL) != 0
+			|| pthread_mutex_init(&forks[i].lock_mutex, NULL) != 0)
 		{
 			ft_perror("Mutex init failed.\n");
 			ft_free_remaining_forks(i, simu);

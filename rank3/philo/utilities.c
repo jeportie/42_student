@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:28:50 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/04 10:58:57 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/05 11:59:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ void	ft_free_philos(t_simu *simu)
 		while (i < simu->rdonly.num_philo)
 		{
 			pthread_mutex_destroy(&simu->philos[i].time_mutex);
-			pthread_mutex_destroy(&simu->forks[i]);
+			pthread_mutex_destroy(&simu->forks[i].fork_mutex);
+			pthread_mutex_destroy(&simu->forks[i].lock_mutex);
 			i++;
 		}
 		free(simu->forks);
@@ -109,9 +110,9 @@ void	ft_free_philos(t_simu *simu)
 		simu->philos = NULL;
 	}
 	pthread_mutex_destroy(&simu->mtdata.print_mutex);
-	pthread_mutex_destroy(&simu->mtdata.death_mutex);
+	pthread_mutex_destroy(&simu->mtdata.stop_mutex);
 	pthread_mutex_destroy(&simu->mtdata.meal_mutex);
-	pthread_mutex_destroy(&simu->mtdata.init_mutex);
+	pthread_mutex_destroy(&simu->mtdata.go_mutex);
 	pthread_mutex_destroy(&simu->mtdata.end_mutex);
 	pthread_mutex_destroy(&simu->mtdata.start_mutex);
 }

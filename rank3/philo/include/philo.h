@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/04 14:14:54 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/05 13:28:42 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,15 @@
 typedef struct timeval	t_timeval;
 typedef struct s_simu	t_simu;
 typedef struct s_rdonly	t_rdonly;
-typedef struct s_shared	t_shared;
+typedef struct s_sync	t_sync;
 typedef pthread_mutex_t	t_mtx;
 
-/*
- * TODO:
- * Mettre mutex dans philo pour actualiser last_meal_time
- * entre un philo et le mon
- *
- *
- */
+typedef struct s_forks
+{
+	t_mtx	fork_mutex;
+	t_mtx	lock_mutex;
+	bool	is_locked;
+}				t_forks;
 
 typedef struct s_philo
 {
@@ -56,10 +55,10 @@ typedef struct s_philo
 	long long		last_meal_time;
 	t_mtx			time_mutex;
 	int				meals_eaten;
-	t_mtx			*right_fork;
-	t_mtx			*left_fork;
+	t_forks			*right_fork;
+	t_forks			*left_fork;
 	t_rdonly		*rdonly;
-	t_shared		*mtdata;
+	t_sync			*mtdata;
 	t_simu			*simu;
 }					t_philo;
 
@@ -67,7 +66,7 @@ typedef struct s_monitor
 {
 	pthread_t		thread;
 	t_rdonly		*rdonly;
-	t_shared		*mtdata;
+	t_sync			*mtdata;
 	t_simu			*simu;
 }					t_monitor;
 
@@ -81,30 +80,30 @@ typedef struct s_rdonly
 	long long	start_time;
 }				t_rdonly;
 
-typedef struct s_shared
+typedef struct s_sync
 {
 	t_mtx		print_mutex;
 
 	int			philos_full;
 	t_mtx		meal_mutex;
 
-	int			init_philos;
-	t_mtx		init_mutex;
-	bool		start;
+	int			go_count;
+	t_mtx		go_mutex;
+	bool		start_flag;
 	t_mtx		start_mutex;
 	
-	bool		stop;
-	t_mtx		death_mutex;
-	int			end_philos;
+	bool		stop_flag;
+	t_mtx		stop_mutex;
+	int			end_count;
 	t_mtx		end_mutex;
-}				t_shared;
+}				t_sync;
 
 typedef struct s_simu
 {
 	t_philo		*philos;
-	t_mtx		*forks;
+	t_forks		*forks;
 	t_rdonly	rdonly;
-	t_shared	mtdata;
+	t_sync		mtdata;
 	t_monitor	monitor;
 }				t_simu;
 
@@ -116,7 +115,7 @@ bool		ft_check_args(int ac, char **av);
 bool		ft_init_mtdata(t_simu *simu);
 bool		ft_init_rdonly(t_simu *simu, int ac, char **av);
 bool		ft_init_philos(t_simu *simu);
-bool		ft_init_monitor(t_simu *simu);
+void		ft_init_monitor(t_simu *simu);
 bool		ft_init_forks(t_simu *simu);
 bool		ft_init_threads(t_simu *simu);
 
