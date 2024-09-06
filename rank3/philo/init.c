@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/05 11:35:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 09:30:52 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ bool	ft_init_forks(t_simu *simu)
 	while (i < simu->rdonly.num_philo)
 	{
 		forks[i].is_locked = false;
+		forks[i].philo_id = 0;
 		if (pthread_mutex_init(&forks[i].fork_mutex, NULL) != 0
 			|| pthread_mutex_init(&forks[i].lock_mutex, NULL) != 0)
 		{

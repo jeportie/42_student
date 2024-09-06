@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/05 13:28:42 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 10:38:03 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_forks
 	t_mtx	fork_mutex;
 	t_mtx	lock_mutex;
 	bool	is_locked;
+	int		philo_id;
 }				t_forks;
 
 typedef struct s_philo
@@ -137,13 +138,13 @@ void		ft_stop_threads(t_simu *simu);
 void		ft_start_simulation(t_simu *simu);
 
 /*Getters/Setters*/
-bool		mtx_get_bool(t_mtx mutex, bool value);
-void		mtx_set_bool(t_mtx mutex, bool *dest, bool value);
-int			mtx_get_int(t_mtx mutex, int value);
-void		mtx_set_int(t_mtx mutex, int *dest, int value);
+bool		mtx_get_bool(t_mtx *mutex, bool value);
+void		mtx_set_bool(t_mtx *mutex, bool *dest, bool value);
+int			mtx_get_int(t_mtx *mutex, int value);
+void		mtx_set_int(t_mtx *mutex, int *dest, int value);
+long long	mtx_get_llong(t_mtx *mutex, long long value);
+void		mtx_set_llong(t_mtx *mutex, long long *dest, long long value);
 void		mtx_increment_int(t_mtx *mutex, int *dest);
-long long	mtx_get_llong(t_mtx mutex, long long value);
-void		mtx_set_llong(t_mtx mutex, long long *dest, long long value);
 
 /*Utilities*/
 void		ft_perror(char *str);

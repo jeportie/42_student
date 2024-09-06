@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:28:50 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/05 11:59:16 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 09:46:24 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,4 +115,16 @@ void	ft_free_philos(t_simu *simu)
 	pthread_mutex_destroy(&simu->mtdata.go_mutex);
 	pthread_mutex_destroy(&simu->mtdata.end_mutex);
 	pthread_mutex_destroy(&simu->mtdata.start_mutex);
+}
+
+void	ft_wait_for_start(t_mtx *mutex, bool *start)
+{
+	pthread_mutex_lock(mutex);
+	while (!(*start))
+	{
+		pthread_mutex_unlock(mutex);
+		ft_precise_usleep(100);
+		pthread_mutex_lock(mutex);
+	}
+	pthread_mutex_unlock(mutex);
 }
