@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/04 11:03:14 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 11:38:27 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	ft_print_format(t_philo *philo, long long time, const char *format)
 	}
 	pthread_mutex_unlock(&philo->mtdata->stop_mutex);
 
-	pthread_mutex_lock(&philo->mtdata->print_mutex);
+	pthread_mutex_lock(&philo->mtdata->print_mutex.pmutex);
 	printf("[%lldms] %d %s\n", time, philo->id, format);
-	pthread_mutex_unlock(&philo->mtdata->print_mutex);
+	pthread_mutex_unlock(&philo->mtdata->print_mutex.pmutex);
 }
 
 void	ft_print_state(t_philo *philo, int state)
@@ -34,9 +34,10 @@ void	ft_print_state(t_philo *philo, int state)
 	time = ft_get_time_ms() - philo->rdonly->start_time;
 	if (state == DEAD)
 	{
-		pthread_mutex_lock(&philo->mtdata->print_mutex);
+		pthread_mutex_lock(&philo->mtdata->print_mutex.pmutex);
 		printf(RED "[%lldms] %d died\n" RESET, time, philo->id);
-		pthread_mutex_unlock(&philo->mtdata->print_mutex);
+		philo->mtdata->print_mutex.is_locked =  true;
+//		pthread_mutex_unlock(&philo->mtdata->print_mutex);
 		return ;
 	}
 	if (state == THINK)

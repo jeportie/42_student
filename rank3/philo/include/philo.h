@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 10:38:03 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 11:48:09 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ typedef struct s_forks
 	int		philo_id;
 }				t_forks;
 
+typedef struct s_pmtx
+{
+	t_mtx	pmutex;
+	bool	is_locked;
+}				t_pmtx;
+
 typedef struct s_philo
 {
 	int				id;
@@ -83,7 +89,7 @@ typedef struct s_rdonly
 
 typedef struct s_sync
 {
-	t_mtx		print_mutex;
+	t_pmtx		print_mutex;
 
 	int			philos_full;
 	t_mtx		meal_mutex;
@@ -136,6 +142,7 @@ void		ft_wait_for_start(t_mtx *mutex, bool *start);
 /*Simulation*/
 void		ft_stop_threads(t_simu *simu);
 void		ft_start_simulation(t_simu *simu);
+void		ft_wait_threads_to_stop(t_simu *simu);
 
 /*Getters/Setters*/
 bool		mtx_get_bool(t_mtx *mutex, bool value);

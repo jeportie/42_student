@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 11:02:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 12:03:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,6 @@ void	*ft_routine(void *arg)
 			break ;
 		ft_sleep(philo);
 	}
-//	pthread_mutex_lock(&philo->left_fork->lock_mutex);
-//	if (philo->left_fork->is_locked == true && philo->left_fork->philo_id == philo->id)
-//		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
-//	pthread_mutex_unlock(&philo->left_fork->lock_mutex);
-
-//	pthread_mutex_lock(&philo->right_fork->lock_mutex);
-//	if (philo->right_fork->is_locked == true && philo->right_fork->philo_id == philo->id)
-//		pthread_mutex_unlock(&philo->right_fork->fork_mutex);
-//	pthread_mutex_unlock(&philo->right_fork->lock_mutex);
 	ft_check_remaining_locks(philo);
 	mtx_increment_int(&philo->mtdata->end_mutex, &philo->mtdata->end_count);
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/04 13:27:03 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 11:55:53 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,9 @@ void	*ft_monitor(void *arg)
 		ft_precise_usleep(100);
 	}
 	mtx_increment_int(&mon->mtdata->end_mutex, &mon->mtdata->end_count);
+	ft_wait_threads_to_stop(mon->simu);
+	ft_precise_usleep(100 * mon->rdonly->num_philo);
+//	if (mon->mtdata->print_mutex.is_locked == true)
+//		pthread_mutex_unlock(&mon->mtdata->print_mutex.pmutex);
 	return (NULL);
 }

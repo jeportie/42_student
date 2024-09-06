@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 09:30:52 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 11:32:56 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	ft_init_mtdata(t_simu *simu)
 
 	memset(&mtdata, 0, sizeof(mtdata));
 	if (pthread_mutex_init(&mtdata.start_mutex, NULL) != 0
-		||pthread_mutex_init(&mtdata.print_mutex, NULL) != 0
+		||pthread_mutex_init(&mtdata.print_mutex.pmutex, NULL) != 0
 		||pthread_mutex_init(&mtdata.go_mutex, NULL) != 0
 		||pthread_mutex_init(&mtdata.stop_mutex, NULL) != 0
 		|| pthread_mutex_init(&mtdata.meal_mutex, NULL) != 0
@@ -28,6 +28,7 @@ bool	ft_init_mtdata(t_simu *simu)
 		ft_perror("Mutex init failed.\n");
 		return (false);
 	}
+	mtdata.print_mutex.is_locked = false;
 	simu->mtdata = mtdata;
 	return (true);
 }
