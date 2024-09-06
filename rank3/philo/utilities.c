@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:28:50 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 13:17:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:24:29 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ void	ft_stop_threads(t_simu *simu)
 			i++;
 		}
 	}
-//	if (simu->monitor.thread)
-//		pthread_join(simu->monitor.thread, NULL);
 }
 
 void	ft_free_philos(t_simu *simu)

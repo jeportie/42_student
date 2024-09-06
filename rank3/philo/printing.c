@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 11:38:27 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:46:27 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	ft_print_format(t_philo *philo, long long time, const char *format)
 	pthread_mutex_unlock(&philo->mtdata->stop_mutex);
 
 	pthread_mutex_lock(&philo->mtdata->print_mutex.pmutex);
-	printf("[%lldms] %d %s\n", time, philo->id, format);
+	if (DEBBUG == true)
+		printf("[%lldms] %d %s\n", time, philo->id, format);
+	else
+		printf("%lld %d %s\n", time, philo->id, format);
 	pthread_mutex_unlock(&philo->mtdata->print_mutex.pmutex);
 }
 
@@ -36,8 +39,7 @@ void	ft_print_state(t_philo *philo, int state)
 	{
 		pthread_mutex_lock(&philo->mtdata->print_mutex.pmutex);
 		printf(RED "[%lldms] %d died\n" RESET, time, philo->id);
-		philo->mtdata->print_mutex.is_locked =  true;
-//		pthread_mutex_unlock(&philo->mtdata->print_mutex);
+		philo->mtdata->print_mutex.is_locked = true;
 		return ;
 	}
 	if (state == THINK)
@@ -56,9 +58,9 @@ void	ft_print_params(t_rdonly params)
 {
 	printf("Printing Params...\n\n");
 	printf("num_philo : %d\n", params.num_philo);
-	printf("time_to_die : %d\n", params.time_to_die);
-	printf("time_to_eat : %d\n", params.time_to_eat);
-	printf("time_to_sleep : %d\n", params.time_to_sleep);
+	printf("time_to_die : %dms\n", params.time_to_die);
+	printf("time_to_eat : %dms\n", params.time_to_eat);
+	printf("time_to_sleep : %dms\n", params.time_to_sleep);
 	printf("(optional)num_meals : %d\n", params.num_meals);
 }
 

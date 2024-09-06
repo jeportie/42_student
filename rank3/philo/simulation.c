@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:51:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 13:14:06 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:41:14 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,21 +44,19 @@ void	ft_wait_threads_to_stop(t_simu *simu)
 void	ft_start_simulation(t_simu *simu)
 {
 	ft_wait_threads_to_start(simu);
-	ft_print_start_stop(simu, true);
-
+	if (DEBBUG == true)
+		ft_print_start_stop(simu, true);
 	pthread_mutex_lock(&simu->mtdata.start_mutex);
 	simu->mtdata.start_flag = true;
 	simu->rdonly.start_time = ft_get_time_ms();
 	pthread_mutex_unlock(&simu->mtdata.start_mutex);
-
 	ft_wait_threads_to_stop(simu);
-//	if (simu->mtdata.print_mutex.is_locked == true)
-//		pthread_mutex_unlock(&simu->mtdata.print_mutex.pmutex);
 	ft_stop_threads(simu);
 	pthread_mutex_lock(&simu->mtdata.start_mutex);
 	simu->mtdata.start_flag = false;
 	pthread_mutex_unlock(&simu->mtdata.start_mutex);
 	if (simu->monitor.thread)
 		pthread_join(simu->monitor.thread, NULL);
-	ft_print_start_stop(simu, false);
+	if (DEBBUG == true)
+		ft_print_start_stop(simu, false);
 }

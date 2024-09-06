@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:35:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/05 11:44:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:32:01 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ int	main(int ac, char **av)
 
 	if (!ft_safe_simulation_init(&simu, ac, av))
 		return (-1);
+	if (DEBBUG == true)
+	{
+		ft_print_parsing(simu);
+	}
 	ft_start_simulation(&simu);
 	ft_free_philos(&simu);
 	return (0);

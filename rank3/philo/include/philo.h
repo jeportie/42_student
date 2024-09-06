@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 11:48:09 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 14:47:02 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <stdint.h>
 # include <stdbool.h>
 # include <limits.h>
+
+# define DEBBUG 0
 
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
@@ -98,7 +100,7 @@ typedef struct s_sync
 	t_mtx		go_mutex;
 	bool		start_flag;
 	t_mtx		start_mutex;
-	
+
 	bool		stop_flag;
 	t_mtx		stop_mutex;
 	int			end_count;
