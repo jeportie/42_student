@@ -6,13 +6,16 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 14:34:32 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 15:50:00 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
  * TODO:
  * Ajouter fairness system ou autre opti pour passer les tests de la correction
+ * Le point d'entree de l'opti sera au moment ou on lock le fock. Avant de 
+ * le lock, on demamde au monitor si j'ai le droit. Si j'a le droit, on lock,
+ * si j'ai pas le droit, on wait jusqua se que is_locked = true.
  */
 
 #include "include/philo.h"
@@ -64,7 +67,7 @@ void	*ft_routine(void *arg)
 
 void	ft_even_pick(t_philo *philo, bool dead_flag)
 {
-	pthread_mutex_lock(&philo->left_fork->fork_mutex);
+	pthread_mutex_lock(&philo->left_fork->fork_mutex); //NOTE: opti here
 	ft_print_state(philo, LEFT);
 	pthread_mutex_lock(&philo->left_fork->lock_mutex);
 	philo->left_fork->is_locked = true;
@@ -82,7 +85,7 @@ void	ft_even_pick(t_philo *philo, bool dead_flag)
 		pthread_mutex_unlock(&philo->left_fork->lock_mutex);
 		return ;
 	}
-	pthread_mutex_lock(&philo->right_fork->fork_mutex);
+	pthread_mutex_lock(&philo->right_fork->fork_mutex); //NOTE: opti here
 	ft_print_state(philo, RIGHT);
 	pthread_mutex_lock(&philo->right_fork->lock_mutex);
 	philo->right_fork->is_locked = true;
@@ -154,14 +157,16 @@ void	ft_eat(t_philo *philo)
 void	ft_even_release(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->right_fork->lock_mutex);
-	if (philo->right_fork->is_locked == true && philo->right_fork->philo_id == philo->id)
+	if (philo->right_fork->is_locked == true
+		&& philo->right_fork->philo_id == philo->id)
 	{
 		pthread_mutex_unlock(&philo->right_fork->fork_mutex);
 		philo->right_fork->is_locked = false;
 	}
 	pthread_mutex_unlock(&philo->right_fork->lock_mutex);
 	pthread_mutex_lock(&philo->left_fork->lock_mutex);
-	if (philo->left_fork->is_locked == true && philo->left_fork->philo_id == philo->id)
+	if (philo->left_fork->is_locked == true
+		&& philo->left_fork->philo_id == philo->id)
 	{
 		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
 		philo->left_fork->is_locked = false;
