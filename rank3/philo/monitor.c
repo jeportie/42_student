@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 11:55:53 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:16:54 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@
  */
 
 #include "include/philo.h"
+
+void	ft_wait_for_stop(t_mtx *mutex, bool *start)
+{
+	pthread_mutex_lock(mutex);
+	while ((*start) == true)
+	{
+		pthread_mutex_unlock(mutex);
+		ft_precise_usleep(100);
+		pthread_mutex_lock(mutex);
+	}
+	pthread_mutex_unlock(mutex);
+}
 
 bool	ft_check_if_dead(t_philo *philo)
 {
@@ -96,8 +108,9 @@ void	*ft_monitor(void *arg)
 	}
 	mtx_increment_int(&mon->mtdata->end_mutex, &mon->mtdata->end_count);
 	ft_wait_threads_to_stop(mon->simu);
-	ft_precise_usleep(100 * mon->rdonly->num_philo);
-//	if (mon->mtdata->print_mutex.is_locked == true)
-//		pthread_mutex_unlock(&mon->mtdata->print_mutex.pmutex);
+	ft_wait_for_stop(&mon->mtdata->start_mutex, &mon->mtdata->start_flag);
+//	ft_precise_usleep(100 * mon->rdonly->num_philo);
+	if (mon->mtdata->print_mutex.is_locked == true)
+		pthread_mutex_unlock(&mon->mtdata->print_mutex.pmutex);
 	return (NULL);
 }

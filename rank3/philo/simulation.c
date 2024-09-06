@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:51:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 11:47:52 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:14:06 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,10 @@ void	ft_start_simulation(t_simu *simu)
 //	if (simu->mtdata.print_mutex.is_locked == true)
 //		pthread_mutex_unlock(&simu->mtdata.print_mutex.pmutex);
 	ft_stop_threads(simu);
+	pthread_mutex_lock(&simu->mtdata.start_mutex);
+	simu->mtdata.start_flag = false;
+	pthread_mutex_unlock(&simu->mtdata.start_mutex);
+	if (simu->monitor.thread)
+		pthread_join(simu->monitor.thread, NULL);
 	ft_print_start_stop(simu, false);
 }
