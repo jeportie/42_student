@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/09 11:34:17 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:01:48 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ bool	ft_init_philos(t_simu *simu)
 		return (false);
 	}
 	i = 0;
-	if (!ft_init_philos(simu))
-		return (false);
 
 	while (i < simu->rdonly.num_philo)
 	{
@@ -82,8 +80,6 @@ bool	ft_init_philos(t_simu *simu)
 			return (false);
 		}
 		philos[i].id = i + 1;
-		philos[i].left_fork = &simu->forks[i];
-		philos[i].right_fork = &simu->forks[(i + 1) % simu->rdonly.num_philo];
 		philos[i].rdonly = &simu->rdonly;
 		philos[i].mtdata = &simu->mtdata;
 		philos[i].simu = simu;
@@ -127,8 +123,6 @@ bool	ft_init_forks(t_simu *simu)
 	{
 		forks[i].is_locked = false;
 		forks[i].philo_id = 0;
-		forks[i].left_philo = &simu->philos[i];
-		forks[i].right_philo = &simu->philos[(i + 1) % simu->rdonly.num_philo];
 		if (pthread_mutex_init(&forks[i].fork_mutex, NULL) != 0
 			|| pthread_mutex_init(&forks[i].lock_mutex, NULL) != 0
 			|| pthread_mutex_init(&forks[i].request_mutex, NULL) != 0)

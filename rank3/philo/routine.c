@@ -6,16 +6,15 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/09 11:29:50 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:02:40 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
  * TODO:
- * Ajouter fairness system ou autre opti pour passer les tests de la correction
- * Le point d'entree de l'opti sera au moment ou on lock le fock. Avant de 
- * le lock, on demamde au monitor si j'ai le droit. Si j'a le droit, on lock,
- * si j'ai pas le droit, on wait jusqua se que is_locked = true.
+ * Deux probleme dans fairness :
+ * pb 1 : quand un philo a assez manger il stop son thread se qui deadlock les
+ * philo a cote. 
  */
 
 #include "include/philo.h"
@@ -69,10 +68,6 @@ bool	ft_fork_request(int philo_id, t_forks *fork)
 {
 	long long	time_left;
 	long long	time_right;
-
-	printf("TEST:\n");
-	printf("left_philo id %d\n", fork->left_philo->id);
-	printf("test ok.\n");
 
 	pthread_mutex_lock(&fork->request_mutex);
 
@@ -228,6 +223,10 @@ void	ft_eat(t_philo *philo)
 	ft_precise_usleep(philo->rdonly->time_to_eat * 1000);
 	if (philo->meals_eaten == philo->rdonly->num_meals)
 		mtx_increment_int(meal_mtx, &philo->mtdata->philos_full);
+	pthread_mutex_lock(&philo->time_mutex);
+	if (philo->rdonly->num_philo > 4)
+		philo->last_meal_time = ft_get_time_ms();
+	pthread_mutex_unlock(&philo->time_mutex);
 	ft_release_forks(philo);
 }
 
