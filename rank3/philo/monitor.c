@@ -10,12 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- * TODO
- * Probleme avec compteur -> des fois fais mourrir un philo avant meme quil
- * pense
- */
-
 #include "include/philo.h"
 
 void	ft_wait_for_stop(t_mtx *mutex, bool *start)

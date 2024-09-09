@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 11:32:56 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/09 10:17:22 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,11 @@ bool	ft_init_forks(t_simu *simu)
 	{
 		forks[i].is_locked = false;
 		forks[i].philo_id = 0;
+		forks[i].left_philo = &simu->philos[i];
+		forks[i].right_philo = &simu->philos[(i + 1) % simu->rdonly.num_philo];
 		if (pthread_mutex_init(&forks[i].fork_mutex, NULL) != 0
-			|| pthread_mutex_init(&forks[i].lock_mutex, NULL) != 0)
+			|| pthread_mutex_init(&forks[i].lock_mutex, NULL) != 0
+			|| pthread_mutex_init(&forks[i].request_mutex, NULL) != 0)
 		{
 			ft_perror("Mutex init failed.\n");
 			ft_free_remaining_forks(i, simu);

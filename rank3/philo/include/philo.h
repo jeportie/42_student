@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 14:47:02 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/09 09:46:46 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdbool.h>
 # include <limits.h>
 
-# define DEBBUG 0
+# define DEBBUG 1
 
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
@@ -39,6 +39,7 @@
 
 typedef struct timeval	t_timeval;
 typedef struct s_simu	t_simu;
+typedef struct s_philo	t_philo;
 typedef struct s_rdonly	t_rdonly;
 typedef struct s_sync	t_sync;
 typedef pthread_mutex_t	t_mtx;
@@ -49,6 +50,9 @@ typedef struct s_forks
 	t_mtx	lock_mutex;
 	bool	is_locked;
 	int		philo_id;
+	t_philo	*left_philo;
+	t_philo	*right_philo;
+	t_mtx	request_mutex;
 }				t_forks;
 
 typedef struct s_pmtx

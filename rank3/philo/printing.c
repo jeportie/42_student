@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 14:46:27 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/09 08:50:44 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	ft_print_state(t_philo *philo, int state)
 	if (state == DEAD)
 	{
 		pthread_mutex_lock(&philo->mtdata->print_mutex.pmutex);
-		printf(RED "[%lldms] %d died\n" RESET, time, philo->id);
+		if (DEBBUG == true)
+			printf(RED "[%lldms] %d died\n" RESET, time, philo->id);
+		else
+			printf(RED "%lld %d died\n" RESET, time, philo->id);
 		philo->mtdata->print_mutex.is_locked = true;
 		return ;
 	}
