@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/09 13:41:21 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:29:17 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdbool.h>
 # include <limits.h>
 
-# define DEBBUG 0
+# define DEBBUG 1
 
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
@@ -68,6 +68,7 @@ typedef struct s_philo
 	long long		last_meal_time;
 	t_mtx			time_mutex;
 	int				meals_eaten;
+//	t_mtx			eat_mutex;
 	t_forks			*right_fork;
 	t_forks			*left_fork;
 	t_rdonly		*rdonly;

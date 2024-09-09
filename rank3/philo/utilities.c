@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:28:50 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 14:24:29 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:20:24 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	ft_free_philos(t_simu *simu)
 		i = 0;
 		while (i < simu->rdonly.num_philo)
 		{
-			pthread_mutex_destroy(&simu->philos[i].time_mutex);
 			pthread_mutex_destroy(&simu->forks[i].fork_mutex);
 			pthread_mutex_destroy(&simu->forks[i].lock_mutex);
 			i++;
@@ -104,6 +103,13 @@ void	ft_free_philos(t_simu *simu)
 	}
 	if (simu->philos)
 	{
+		i = 0;
+		while (i < simu->rdonly.num_philo)
+		{
+			pthread_mutex_destroy(&simu->philos[i].time_mutex);
+		//	pthread_mutex_destroy(&simu->philos[i].eat_mutex);
+			i++;
+		}
 		free(simu->philos);
 		simu->philos = NULL;
 	}

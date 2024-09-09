@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 14:27:22 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:43:37 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,16 @@ static bool	ft_mon_routine(t_monitor *mon)
 	i = 0;
 	while (i < mon->rdonly->num_philo)
 	{
+//		if (mon->simu->philos[i].meals_eaten == mon->rdonly->num_meals)
+//		{
+//			pthread_mutex_lock(&mon->mtdata->meal_mutex);
+//			if (mon->mtdata->philos_full != mon->rdonly->num_philo)
+//			{
+//				pthread_mutex_unlock(&mon->mtdata->meal_mutex);
+//				return (true);
+//			}
+//			pthread_mutex_unlock(&mon->mtdata->meal_mutex);
+//		}
 		if (ft_check_if_dead(&mon->simu->philos[i]))
 			return (false);
 		i++;

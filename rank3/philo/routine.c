@@ -6,15 +6,19 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/09 14:02:40 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:44:54 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
  * TODO:
- * Deux probleme dans fairness :
- * pb 1 : quand un philo a assez manger il stop son thread se qui deadlock les
- * philo a cote. 
+ * Plusieurs bug :
+ * 1 :	le monitor pense qu'un philo est mort apres quil a arreter de manger 
+ * 		parce quil a atteint son compteur : il faut donc arreter monitor de 
+ * 		check if dead sur les philos qui sont arriver au bouts. 
+ * 2 :	data race parce que j'utilse philo->meals eaten dans le monitor. 
+ * 		cest trop complex donc creer une variable bool flag pour refaire la
+ * 		logique
  */
 
 #include "include/philo.h"
@@ -69,6 +73,10 @@ bool	ft_fork_request(int philo_id, t_forks *fork)
 	long long	time_left;
 	long long	time_right;
 
+//	if (fork->left_philo->meals_eaten == fork->left_philo->rdonly->num_meals
+//		|| fork->right_philo->meals_eaten == fork->right_philo->rdonly->num_meals)
+//		return (true);
+
 	pthread_mutex_lock(&fork->request_mutex);
 
 	pthread_mutex_lock(&fork->left_philo->time_mutex);
@@ -78,7 +86,7 @@ bool	ft_fork_request(int philo_id, t_forks *fork)
 	pthread_mutex_lock(&fork->right_philo->time_mutex);
 	time_right = ft_get_time_ms() - fork->right_philo->last_meal_time;
 	pthread_mutex_unlock(&fork->right_philo->time_mutex);
-	
+
 	if (philo_id == fork->left_philo->id)
 	{
 		if (time_left < time_right)
@@ -119,7 +127,6 @@ void	ft_even_pick(t_philo *philo, bool dead_flag)
 	else
 	{
 		ft_precise_usleep(100);//NOTE: May not work 
-							   //(need to wait until fork is availble again)
 		pthread_mutex_lock(&philo->left_fork->fork_mutex);
 	}
 	ft_print_state(philo, LEFT);
@@ -219,7 +226,9 @@ void	ft_eat(t_philo *philo)
 	philo->last_meal_time = ft_get_time_ms();
 	pthread_mutex_unlock(&philo->time_mutex);
 	ft_print_state(philo, EAT);
+//	pthread_mutex_lock(&philo->eat_mutex);
 	philo->meals_eaten++;
+//	pthread_mutex_unlock(&philo->eat_mutex);
 	ft_precise_usleep(philo->rdonly->time_to_eat * 1000);
 	if (philo->meals_eaten == philo->rdonly->num_meals)
 		mtx_increment_int(meal_mtx, &philo->mtdata->philos_full);
