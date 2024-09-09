@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:35:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/06 14:32:01 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/09 11:33:36 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ bool	ft_safe_simulation_init(t_simu *simu, int ac, char **av)
 {
 	if (!ft_init_mtdata(simu))
 		return (false);
-	if (!ft_init_rdonly(simu, ac, av) || !ft_init_forks(simu)
-		|| !ft_init_philos(simu))
+	if (!ft_init_rdonly(simu, ac, av) || !ft_init_philos(simu))
+//		|| !ft_init_philos(simu))
 	{
 		ft_free_philos(simu);
 		return (false);
