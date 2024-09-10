@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/09 15:29:17 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 10:23:20 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ typedef struct s_philo
 	long long		last_meal_time;
 	t_mtx			time_mutex;
 	int				meals_eaten;
-//	t_mtx			eat_mutex;
+
+	bool			finish_flag;
+	t_mtx			finish_mutex;
+
 	t_forks			*right_fork;
 	t_forks			*left_fork;
 	t_rdonly		*rdonly;

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/09 15:44:54 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 11:01:24 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@ void	*ft_routine(void *arg)
 	mtx_increment_int(&philo->mtdata->go_mutex, &philo->mtdata->go_count);
 	ft_wait_for_start(&philo->mtdata->start_mutex, &philo->mtdata->start_flag);
 	mtx_set_llong(&philo->time_mutex, &philo->last_meal_time, ft_get_time_ms());
+	if (philo->rdonly->num_philo == 1)
+	{
+		pthread_mutex_lock(&philo->left_fork->fork_mutex);
+		ft_print_state(philo, LEFT);
+		ft_precise_usleep(100);
+		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
+		ft_precise_usleep(1000 * philo->rdonly->time_to_die);
+		return (NULL);
+	}	
 	while (1)
 	{
 		pthread_mutex_lock(&philo->mtdata->stop_mutex);
@@ -72,10 +81,6 @@ bool	ft_fork_request(int philo_id, t_forks *fork)
 {
 	long long	time_left;
 	long long	time_right;
-
-//	if (fork->left_philo->meals_eaten == fork->left_philo->rdonly->num_meals
-//		|| fork->right_philo->meals_eaten == fork->right_philo->rdonly->num_meals)
-//		return (true);
 
 	pthread_mutex_lock(&fork->request_mutex);
 
@@ -226,12 +231,15 @@ void	ft_eat(t_philo *philo)
 	philo->last_meal_time = ft_get_time_ms();
 	pthread_mutex_unlock(&philo->time_mutex);
 	ft_print_state(philo, EAT);
-//	pthread_mutex_lock(&philo->eat_mutex);
 	philo->meals_eaten++;
-//	pthread_mutex_unlock(&philo->eat_mutex);
 	ft_precise_usleep(philo->rdonly->time_to_eat * 1000);
 	if (philo->meals_eaten == philo->rdonly->num_meals)
+	{
+		pthread_mutex_lock(&philo->finish_mutex);
+		philo->finish_flag = true;
+		pthread_mutex_unlock(&philo->finish_mutex);
 		mtx_increment_int(meal_mtx, &philo->mtdata->philos_full);
+	}
 	pthread_mutex_lock(&philo->time_mutex);
 	if (philo->rdonly->num_philo > 4)
 		philo->last_meal_time = ft_get_time_ms();
