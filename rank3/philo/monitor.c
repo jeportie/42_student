@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 10:40:13 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:23:03 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ bool	ft_check_if_dead(t_philo *philo)
 	pthread_mutex_lock(&philo->time_mutex);
 	last_meal = philo->last_meal_time;
 	pthread_mutex_unlock(&philo->time_mutex);
+
 	pthread_mutex_lock(&philo->mtdata->stop_mutex);
 	if (philo->mtdata->stop_flag == true)
 		return (true);

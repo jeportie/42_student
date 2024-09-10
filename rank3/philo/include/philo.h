@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:17:45 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:48:12 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdbool.h>
 # include <limits.h>
 
-# define DEBBUG 1
+# define DEBBUG 0
 
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
@@ -36,6 +36,9 @@
 # define EAT 4
 # define SLEEP 5
 # define STOP 6
+
+# define EVEN 0
+# define ODD 1
 
 typedef struct timeval	t_timeval;
 typedef struct s_simu	t_simu;
@@ -143,6 +146,11 @@ bool		ft_pick_up_forks(t_philo *philo);
 void		ft_eat(t_philo *philo);
 void		ft_sleep(t_philo *philo);
 void		ft_release_forks(t_philo *philo);
+
+/*Forks MGMT*/
+bool		ft_fork_request(int philo_id, t_forks *fork);
+bool		ft_pick_up_forks(t_philo *philo);
+
 
 /*Monitoring thread*/
 bool		ft_check_if_dead(t_philo *philo);

@@ -6,9 +6,19 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 12:41:34 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:09:16 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+ * TODO:
+ * Refactoriser tout le projet et mettre a la norme
+ * Faire des notes dans chaque fichier pour expliquer
+ * Faire un UML sur draw.io et mettre toute l'architecture sur papier pour 
+ * s'entrainer
+ * Faire derniere opti si num_philo % 2 == 1 pour que ca ne DIE pas sans
+ * tricher comme on le fait maintenant en reactualisant last_meal_time.
+ */
 
 #include "include/philo.h"
 
@@ -71,141 +81,6 @@ void	*ft_routine(void *arg)
 	return (NULL);
 }
 
-void	ft_get_time(t_forks *fork, long long *time_left, long long *time_right)
-{
-	pthread_mutex_lock(&fork->left_philo->time_mutex);
-	*time_left = ft_get_time_ms() - fork->left_philo->last_meal_time;
-	pthread_mutex_unlock(&fork->left_philo->time_mutex);
-	pthread_mutex_lock(&fork->right_philo->time_mutex);
-	*time_right = ft_get_time_ms() - fork->right_philo->last_meal_time;
-	pthread_mutex_unlock(&fork->right_philo->time_mutex);
-}
-
-bool	ft_fork_request(int philo_id, t_forks *fork)
-{
-	long long	time_left;
-	long long	time_right;
-	bool		result;
-
-	result = false;
-	pthread_mutex_lock(&fork->request_mutex);
-	ft_get_time(fork, &time_left, &time_right);
-	if (philo_id == fork->left_philo->id)
-	{
-		if (time_left < time_right)
-			result = false;
-		else
-			result = true;
-	}
-	else if (philo_id == fork->right_philo->id)
-	{
-		if (time_left < time_right)
-			result = true;
-		else
-			result = false;
-	}
-	else
-		result = false;
-	pthread_mutex_unlock(&fork->request_mutex);
-	return (result);
-}
-
-void	ft_even_pick(t_philo *philo, bool dead_flag)
-{
-	if (ft_fork_request(philo->id, philo->left_fork) == true)
-		pthread_mutex_lock(&philo->left_fork->fork_mutex);
-	else
-	{
-		ft_precise_usleep(100);
-		pthread_mutex_lock(&philo->left_fork->fork_mutex);
-	}
-	ft_print_state(philo, LEFT);
-	pthread_mutex_lock(&philo->left_fork->lock_mutex);
-	philo->left_fork->is_locked = true;
-	philo->left_fork->philo_id = philo->id;
-	pthread_mutex_unlock(&philo->left_fork->lock_mutex);
-	pthread_mutex_lock(&philo->mtdata->stop_mutex);
-	dead_flag = philo->mtdata->stop_flag;
-	pthread_mutex_unlock(&philo->mtdata->stop_mutex);
-	if (dead_flag)
-	{
-		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
-		pthread_mutex_lock(&philo->left_fork->lock_mutex);
-		philo->left_fork->is_locked = false;
-		philo->left_fork->philo_id = 0;
-		pthread_mutex_unlock(&philo->left_fork->lock_mutex);
-		return ;
-	}
-	if (ft_fork_request(philo->id, philo->right_fork) == true)
-		pthread_mutex_lock(&philo->right_fork->fork_mutex);
-	else
-	{
-		ft_precise_usleep(100);
-		pthread_mutex_lock(&philo->right_fork->fork_mutex);
-	}
-	ft_print_state(philo, RIGHT);
-	pthread_mutex_lock(&philo->right_fork->lock_mutex);
-	philo->right_fork->is_locked = true;
-	philo->right_fork->philo_id = philo->id;
-	pthread_mutex_unlock(&philo->right_fork->lock_mutex);
-}
-
-void	ft_odd_pick(t_philo *philo, bool dead_flag)
-{
-	if (ft_fork_request(philo->id, philo->right_fork) == true)
-		pthread_mutex_lock(&philo->right_fork->fork_mutex);
-	else
-	{
-		ft_precise_usleep(100);
-		pthread_mutex_lock(&philo->right_fork->fork_mutex);
-	}
-	ft_print_state(philo, RIGHT);
-	pthread_mutex_lock(&philo->right_fork->lock_mutex);
-	philo->right_fork->is_locked = true;
-	philo->right_fork->philo_id = philo->id;
-	pthread_mutex_unlock(&philo->right_fork->lock_mutex);
-	pthread_mutex_lock(&philo->mtdata->stop_mutex);
-	dead_flag = philo->mtdata->stop_flag;
-	pthread_mutex_unlock(&philo->mtdata->stop_mutex);
-	if (dead_flag)
-	{
-		pthread_mutex_unlock(&philo->right_fork->fork_mutex);
-		pthread_mutex_lock(&philo->right_fork->lock_mutex);
-		philo->right_fork->is_locked = false;
-		philo->right_fork->philo_id = 0;
-		pthread_mutex_unlock(&philo->right_fork->lock_mutex);
-		return ;
-	}
-	if (ft_fork_request(philo->id, philo->left_fork) == true)
-		pthread_mutex_lock(&philo->left_fork->fork_mutex);
-	else
-	{
-		ft_precise_usleep(100);
-		pthread_mutex_lock(&philo->left_fork->fork_mutex);
-	}
-	ft_print_state(philo, LEFT);
-	pthread_mutex_lock(&philo->left_fork->lock_mutex);
-	philo->left_fork->is_locked = true;
-	philo->left_fork->philo_id = philo->id;
-	pthread_mutex_unlock(&philo->left_fork->lock_mutex);
-}
-
-bool	ft_pick_up_forks(t_philo *philo)
-{
-	bool	dead_flag;
-
-	pthread_mutex_lock(&philo->mtdata->stop_mutex);
-	dead_flag = philo->mtdata->stop_flag;
-	pthread_mutex_unlock(&philo->mtdata->stop_mutex);
-	if (dead_flag)
-		return (false);
-	if (philo->id % 2 == 0)
-		ft_even_pick(philo, dead_flag);
-	else
-		ft_odd_pick(philo, dead_flag);
-	return (true);
-}
-
 void	ft_eat(t_philo *philo)
 {
 	t_mtx	*meal_mtx;
@@ -226,7 +101,7 @@ void	ft_eat(t_philo *philo)
 		mtx_increment_int(meal_mtx, &philo->mtdata->philos_full);
 	}
 	pthread_mutex_lock(&philo->time_mutex);
-	if (philo->rdonly->num_philo > 4)
+	if (philo->rdonly->num_philo % 2 == 1)
 		philo->last_meal_time = ft_get_time_ms();
 	pthread_mutex_unlock(&philo->time_mutex);
 	ft_release_forks(philo);
