@@ -6,20 +6,9 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 11:01:24 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 12:41:34 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*
- * TODO:
- * Plusieurs bug :
- * 1 :	le monitor pense qu'un philo est mort apres quil a arreter de manger 
- * 		parce quil a atteint son compteur : il faut donc arreter monitor de 
- * 		check if dead sur les philos qui sont arriver au bouts. 
- * 2 :	data race parce que j'utilse philo->meals eaten dans le monitor. 
- * 		cest trop complex donc creer une variable bool flag pour refaire la
- * 		logique
- */
 
 #include "include/philo.h"
 
@@ -37,26 +26,10 @@ void	ft_check_remaining_locks(t_philo *philo)
 	pthread_mutex_unlock(&philo->right_fork->lock_mutex);
 }
 
-void	*ft_routine(void *arg)
+void	ft_simulation_loop(t_philo *philo)
 {
-	t_philo	*philo;
 	bool	dead_flag;
 
-	philo = (t_philo *)arg;
-	if (!philo)
-		return (NULL);
-	mtx_increment_int(&philo->mtdata->go_mutex, &philo->mtdata->go_count);
-	ft_wait_for_start(&philo->mtdata->start_mutex, &philo->mtdata->start_flag);
-	mtx_set_llong(&philo->time_mutex, &philo->last_meal_time, ft_get_time_ms());
-	if (philo->rdonly->num_philo == 1)
-	{
-		pthread_mutex_lock(&philo->left_fork->fork_mutex);
-		ft_print_state(philo, LEFT);
-		ft_precise_usleep(100);
-		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
-		ft_precise_usleep(1000 * philo->rdonly->time_to_die);
-		return (NULL);
-	}	
 	while (1)
 	{
 		pthread_mutex_lock(&philo->mtdata->stop_mutex);
@@ -70,6 +43,27 @@ void	*ft_routine(void *arg)
 			break ;
 		ft_sleep(philo);
 	}
+}
+
+void	*ft_routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	if (!philo)
+		return (NULL);
+	mtx_increment_int(&philo->mtdata->go_mutex, &philo->mtdata->go_count);
+	ft_wait_for_start(&philo->mtdata->start_mutex, &philo->mtdata->start_flag);
+	mtx_set_llong(&philo->time_mutex, &philo->last_meal_time, ft_get_time_ms());
+	if (philo->rdonly->num_philo == 1)
+	{
+		pthread_mutex_lock(&philo->left_fork->fork_mutex);
+		ft_print_state(philo, LEFT);
+		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
+		ft_precise_usleep(1000 * philo->rdonly->time_to_die);
+		return (NULL);
+	}	
+	ft_simulation_loop(philo);
 	ft_check_remaining_locks(philo);
 	mtx_increment_int(&philo->mtdata->end_mutex, &philo->mtdata->end_count);
 	if (DEBBUG == true)
@@ -77,52 +71,43 @@ void	*ft_routine(void *arg)
 	return (NULL);
 }
 
+void	ft_get_time(t_forks *fork, long long *time_left, long long *time_right)
+{
+	pthread_mutex_lock(&fork->left_philo->time_mutex);
+	*time_left = ft_get_time_ms() - fork->left_philo->last_meal_time;
+	pthread_mutex_unlock(&fork->left_philo->time_mutex);
+	pthread_mutex_lock(&fork->right_philo->time_mutex);
+	*time_right = ft_get_time_ms() - fork->right_philo->last_meal_time;
+	pthread_mutex_unlock(&fork->right_philo->time_mutex);
+}
+
 bool	ft_fork_request(int philo_id, t_forks *fork)
 {
 	long long	time_left;
 	long long	time_right;
+	bool		result;
 
+	result = false;
 	pthread_mutex_lock(&fork->request_mutex);
-
-	pthread_mutex_lock(&fork->left_philo->time_mutex);
-	time_left = ft_get_time_ms() - fork->left_philo->last_meal_time;
-	pthread_mutex_unlock(&fork->left_philo->time_mutex);
-
-	pthread_mutex_lock(&fork->right_philo->time_mutex);
-	time_right = ft_get_time_ms() - fork->right_philo->last_meal_time;
-	pthread_mutex_unlock(&fork->right_philo->time_mutex);
-
+	ft_get_time(fork, &time_left, &time_right);
 	if (philo_id == fork->left_philo->id)
 	{
 		if (time_left < time_right)
-		{
-			pthread_mutex_unlock(&fork->request_mutex);
-			return (false);
-		}
+			result = false;
 		else
-		{
-			pthread_mutex_unlock(&fork->request_mutex);
-			return (true);
-		}
+			result = true;
 	}
 	else if (philo_id == fork->right_philo->id)
 	{
 		if (time_left < time_right)
-		{
-			pthread_mutex_unlock(&fork->request_mutex);
-			return (true);
-		}
+			result = true;
 		else
-		{
-			pthread_mutex_unlock(&fork->request_mutex);
-			return (false);
-		}
+			result = false;
 	}
 	else
-	{
-		pthread_mutex_unlock(&fork->request_mutex);
-		return (false);
-	}
+		result = false;
+	pthread_mutex_unlock(&fork->request_mutex);
+	return (result);
 }
 
 void	ft_even_pick(t_philo *philo, bool dead_flag)
@@ -131,7 +116,7 @@ void	ft_even_pick(t_philo *philo, bool dead_flag)
 		pthread_mutex_lock(&philo->left_fork->fork_mutex);
 	else
 	{
-		ft_precise_usleep(100);//NOTE: May not work 
+		ft_precise_usleep(100);
 		pthread_mutex_lock(&philo->left_fork->fork_mutex);
 	}
 	ft_print_state(philo, LEFT);
