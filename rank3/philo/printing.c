@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/09 08:50:44 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:10:13 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_print_format(t_philo *philo, long long time, const char *format)
 		return ;
 	}
 	pthread_mutex_unlock(&philo->mtdata->stop_mutex);
-
 	pthread_mutex_lock(&philo->mtdata->print_mutex.pmutex);
 	if (DEBBUG == true)
 		printf("[%lldms] %d %s\n", time, philo->id, format);

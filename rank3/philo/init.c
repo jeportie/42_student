@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 10:23:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:08:30 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ bool	ft_init_philos(t_simu *simu)
 		return (false);
 	}
 	i = 0;
-
 	while (i < simu->rdonly.num_philo)
 	{
 		memset(&philos[i], 0, sizeof(t_philo));

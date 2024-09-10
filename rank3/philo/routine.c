@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 16:09:16 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:49:48 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
  * s'entrainer
  * Faire derniere opti si num_philo % 2 == 1 pour que ca ne DIE pas sans
  * tricher comme on le fait maintenant en reactualisant last_meal_time.
+ * Bug : les forks mutex ne se libere pas tout le temps donc faire une fonction
+ * qui check tout les fork qui sont encore lock par un philo et les deloc ->
+ * appler cette fonction avant de sortir de la routine de philo.
+ * Bug de parsing quand mauvais format -> segault et free en trop
  */
 
 #include "include/philo.h"
@@ -48,7 +52,9 @@ void	ft_simulation_loop(t_philo *philo)
 		if (dead_flag == true)
 			break ;
 		ft_print_state(philo, THINK);
+
 		ft_eat(philo);
+
 		if (philo->meals_eaten == philo->rdonly->num_meals)
 			break ;
 		ft_sleep(philo);
@@ -72,7 +78,7 @@ void	*ft_routine(void *arg)
 		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
 		ft_precise_usleep(1000 * philo->rdonly->time_to_die);
 		return (NULL);
-	}	
+	}
 	ft_simulation_loop(philo);
 	ft_check_remaining_locks(philo);
 	mtx_increment_int(&philo->mtdata->end_mutex, &philo->mtdata->end_count);
@@ -100,10 +106,10 @@ void	ft_eat(t_philo *philo)
 		pthread_mutex_unlock(&philo->finish_mutex);
 		mtx_increment_int(meal_mtx, &philo->mtdata->philos_full);
 	}
-	pthread_mutex_lock(&philo->time_mutex);
-	if (philo->rdonly->num_philo % 2 == 1)
-		philo->last_meal_time = ft_get_time_ms();
-	pthread_mutex_unlock(&philo->time_mutex);
+//	pthread_mutex_lock(&philo->time_mutex);
+//	if (philo->rdonly->num_philo % 2 == 1)
+//		philo->last_meal_time = ft_get_time_ms();
+//	pthread_mutex_unlock(&philo->time_mutex);
 	ft_release_forks(philo);
 }
 
@@ -121,8 +127,8 @@ void	ft_even_release(t_philo *philo)
 	if (philo->left_fork->is_locked == true
 		&& philo->left_fork->philo_id == philo->id)
 	{
-		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
 		philo->left_fork->is_locked = false;
+		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
 	}
 	pthread_mutex_unlock(&philo->left_fork->lock_mutex);
 }
@@ -130,14 +136,16 @@ void	ft_even_release(t_philo *philo)
 void	ft_odd_release(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->left_fork->lock_mutex);
-	if (philo->left_fork->is_locked == true && philo->left_fork->philo_id == philo->id)
+	if (philo->left_fork->is_locked == true
+		&& philo->left_fork->philo_id == philo->id)
 	{
 		philo->left_fork->is_locked = false;
 		pthread_mutex_unlock(&philo->left_fork->fork_mutex);
 	}
 	pthread_mutex_unlock(&philo->left_fork->lock_mutex);
 	pthread_mutex_lock(&philo->right_fork->lock_mutex);
-	if (philo->right_fork->is_locked == true && philo->right_fork->philo_id == philo->id)
+	if (philo->right_fork->is_locked == true
+		&& philo->right_fork->philo_id == philo->id)
 	{
 		philo->right_fork->is_locked = false;
 		pthread_mutex_unlock(&philo->right_fork->fork_mutex);

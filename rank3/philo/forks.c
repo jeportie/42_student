@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:42:36 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 16:22:38 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:00:14 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,49 +70,47 @@ void	ft_define_forks(t_philo *philo, t_forks **fone,
 	}
 }
 
+void	ft_actualise_forks(t_forks *fork, bool value, int id)
+{
+	pthread_mutex_lock(&fork->lock_mutex);
+	fork->is_locked = value;
+	fork->philo_id = id;
+	pthread_mutex_unlock(&fork->lock_mutex);
+}
+
+void	ft_picking_order(t_forks *fork, int id)
+{
+	if (ft_fork_request(id, fork) == true)
+		pthread_mutex_lock(&fork->fork_mutex);
+	else
+	{
+		ft_precise_usleep(100);
+		pthread_mutex_lock(&fork->fork_mutex);
+	}
+}
+
 void	ft_fork_pick(t_philo *philo, bool state)
-{	
+{
 	bool	dead_flag;
 	t_forks	*fone;
 	t_forks	*ftwo;
 
 	ft_define_forks(philo, &fone, &ftwo, state);
-	if (ft_fork_request(philo->id, fone) == true)
-		pthread_mutex_lock(&fone->fork_mutex);
-	else
-	{
-		ft_precise_usleep(100);
-		pthread_mutex_lock(&fone->fork_mutex);
-	}
+	ft_picking_order(fone, philo->id);
 	ft_print_state(philo, LEFT);
-	pthread_mutex_lock(&fone->lock_mutex);
-	fone->is_locked = true;
-	fone->philo_id = philo->id;
-	pthread_mutex_unlock(&fone->lock_mutex);
+	ft_actualise_forks(fone, true, philo->id);
 	pthread_mutex_lock(&philo->mtdata->stop_mutex);
 	dead_flag = philo->mtdata->stop_flag;
 	pthread_mutex_unlock(&philo->mtdata->stop_mutex);
 	if (dead_flag)
 	{
 		pthread_mutex_unlock(&fone->fork_mutex);
-		pthread_mutex_lock(&fone->lock_mutex);
-		fone->is_locked = false;
-		fone->philo_id = 0;
-		pthread_mutex_unlock(&fone->lock_mutex);
+		ft_actualise_forks(fone, false, 0);
 		return ;
 	}
-	if (ft_fork_request(philo->id, ftwo) == true)
-		pthread_mutex_lock(&ftwo->fork_mutex);
-	else
-	{
-		ft_precise_usleep(100);
-		pthread_mutex_lock(&ftwo->fork_mutex);
-	}
+	ft_picking_order(ftwo, philo->id);
 	ft_print_state(philo, RIGHT);
-	pthread_mutex_lock(&ftwo->lock_mutex);
-	ftwo->is_locked = true;
-	ftwo->philo_id = philo->id;
-	pthread_mutex_unlock(&ftwo->lock_mutex);
+	ft_actualise_forks(ftwo, true, philo->id);
 }
 
 bool	ft_pick_up_forks(t_philo *philo)

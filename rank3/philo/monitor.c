@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 16:23:03 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/10 21:29:20 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,17 @@ bool	ft_check_if_dead(t_philo *philo)
 		return (false);
 	}
 	pthread_mutex_unlock(&philo->finish_mutex);
-
 	pthread_mutex_lock(&philo->time_mutex);
 	last_meal = philo->last_meal_time;
 	pthread_mutex_unlock(&philo->time_mutex);
-
 	pthread_mutex_lock(&philo->mtdata->stop_mutex);
 	if (philo->mtdata->stop_flag == true)
 		return (true);
 	pthread_mutex_unlock(&philo->mtdata->stop_mutex);
-	time = ft_get_time_ms() - last_meal;
+	if (ft_get_time_ms() - philo->rdonly->start_time <= 5)
+		time = ft_get_time_ms() - philo->rdonly->start_time;
+	else
+		time = ft_get_time_ms() - last_meal;
 	if (time >= philo->rdonly->time_to_die)
 	{
 		pthread_mutex_lock(&philo->mtdata->stop_mutex);
@@ -63,6 +64,8 @@ static bool	ft_mon_routine(t_monitor *mon)
 	int	wait_philos;
 
 	i = 0;
+	mtx_increment_int(&mon->mtdata->go_mutex, &mon->mtdata->go_count);
+	ft_wait_for_start(&mon->mtdata->start_mutex, &mon->mtdata->start_flag);
 	while (i < mon->rdonly->num_philo)
 	{
 		if (ft_check_if_dead(&mon->simu->philos[i]))
