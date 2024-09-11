@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/11 13:10:34 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:48:08 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,10 @@ void		ft_init_monitor(t_simu *simu);
 bool		ft_init_forks(t_simu *simu);
 bool		ft_init_threads(t_simu *simu);
 
-/*Philosopher Routine*/
+/*Simulation*/
+void		ft_stop_threads(t_simu *simu);
+void		ft_start_simulation(t_simu *simu);
+void		ft_wait_threads_to_stop(t_simu *simu);
 void		*ft_routine(void *arg);
 
 /*Philosopher Threads*/
@@ -150,26 +153,17 @@ void		ft_sleep(t_philo *philo);
 void		ft_release_forks(t_philo *philo);
 
 /*Forks MGMT*/
+void		ft_fork_pick(t_philo *philo, bool state);
 bool		ft_fork_request(int philo_id, t_forks *fork);
 void		ft_define_forks(t_philo *philo, t_forks **fone,
 				t_forks **ftwo, bool state);
 void		ft_actualise_forks(t_forks *fork, bool value, int id);
 void		ft_release(t_philo *philo, bool state);
-void		ft_fork_pick(t_philo *philo, bool state);
 
 /*Monitoring thread*/
 bool		ft_check_if_dead(t_philo *philo);
 void		*ft_monitor(void *arg);
 void		ft_wait_for_start(t_mtx *mutex, bool *start);
-
-/*Simulation*/
-void		ft_stop_threads(t_simu *simu);
-void		ft_start_simulation(t_simu *simu);
-void		ft_wait_threads_to_stop(t_simu *simu);
-
-/*Getters/Setters*/
-void		mtx_set_llong(t_mtx *mutex, long long *dest, long long value);
-void		mtx_increment_int(t_mtx *mutex, int *dest);
 
 /*Utilities*/
 void		ft_perror(char *str);
@@ -178,6 +172,8 @@ void		ft_precise_usleep(long long usec);
 void		ft_free_philos(t_simu *simu);
 void		ft_update_meal_time(t_philo *philo);
 void		ft_wait_for_stop(t_mtx *mutex, bool *start);
+void		mtx_set_llong(t_mtx *mutex, long long *dest, long long value);
+void		mtx_increment_int(t_mtx *mutex, int *dest);
 
 /*42_ft*/
 int			ft_isspace(int c);

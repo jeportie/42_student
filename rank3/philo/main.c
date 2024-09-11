@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 17:35:24 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/11 12:35:54 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:55:14 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ void	ft_links_init(t_simu *simu)
 
 bool	ft_safe_simulation_init(t_simu *simu, int ac, char **av)
 {
-	if (!ft_init_mtdata(simu))
+	if (!ft_init_mtdata(simu) || !ft_init_rdonly(simu, ac, av))
 		return (false);
-	if (!ft_init_rdonly(simu, ac, av) || !ft_init_philos(simu)
-		|| !ft_init_forks(simu))
+	if (!ft_init_philos(simu) || !ft_init_forks(simu))
 	{
 		ft_free_philos(simu);
 		return (false);

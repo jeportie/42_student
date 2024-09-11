@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:42:36 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/11 13:05:34 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:48:29 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "include/philo.h"
 
-void	ft_picking_order(t_forks *fork, int id)
+static void	ft_picking_order(t_forks *fork, int id)
 {
 	if (ft_fork_request(id, fork) == true)
 		pthread_mutex_lock(&fork->fork_mutex);

@@ -6,21 +6,15 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/11 10:38:33 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:52:46 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
  * TODO:
- * Refactoriser tout le projet et mettre a la norme
  * Faire des notes dans chaque fichier pour expliquer
  * Faire un UML sur draw.io et mettre toute l'architecture sur papier pour 
  * s'entrainer
- * Faire derniere opti si num_philo % 2 == 1 pour que ca ne DIE pas sans
- * tricher comme on le fait maintenant en reactualisant last_meal_time.
- * Bug : les forks mutex ne se libere pas tout le temps donc faire une fonction
- * qui check tout les fork qui sont encore lock par un philo et les deloc ->
- * appler cette fonction avant de sortir de la routine de philo.
  * Bug de parsing quand mauvais format -> segault et free en trop
  */
 
