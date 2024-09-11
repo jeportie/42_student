@@ -113,18 +113,30 @@ void	ft_fork_pick(t_philo *philo, bool state)
 	ft_actualise_forks(ftwo, true, philo->id);
 }
 
-bool	ft_pick_up_forks(t_philo *philo)
+void	ft_release(t_philo *philo, bool state)
 {
-	bool	dead_flag;
+	t_forks	*fone;
+	t_forks	*ftwo;
 
-	pthread_mutex_lock(&philo->mtdata->stop_mutex);
-	dead_flag = philo->mtdata->stop_flag;
-	pthread_mutex_unlock(&philo->mtdata->stop_mutex);
-	if (dead_flag)
-		return (false);
-	if (philo->id % 2 == 0)
-		ft_fork_pick(philo, EVEN);
-	else
-		ft_fork_pick(philo, ODD);
-	return (true);
+	//NOTE: verifier si cest ok de cal l'adresse du pointeur et si 
+	//cest pas ca qui fou la merde.
+	ft_define_forks(philo, &fone, &ftwo, state);
+
+	pthread_mutex_lock(&ftwo->lock_mutex);
+	if (ftwo->is_locked == true
+		&& ftwo->philo_id == philo->id)
+	{
+		pthread_mutex_unlock(&ftwo->fork_mutex);
+		ftwo->is_locked = false;
+	}
+	pthread_mutex_unlock(&ftwo->lock_mutex);
+
+	pthread_mutex_lock(&fone->lock_mutex);
+	if (fone->is_locked == true
+		&& fone->philo_id == philo->id)
+	{
+		fone->is_locked = false;
+		pthread_mutex_unlock(&fone->fork_mutex);
+	}
+	pthread_mutex_unlock(&fone->lock_mutex);
 }

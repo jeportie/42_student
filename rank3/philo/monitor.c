@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 21:29:20 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:15:14 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ void	ft_wait_for_stop(t_mtx *mutex, bool *start)
 	pthread_mutex_unlock(mutex);
 }
 
-bool	ft_check_if_dead(t_philo *philo)
+bool	ft_check_if_already_finished(t_philo *philo)
 {
-	long long	time;
-	long long	last_meal;
-
 	pthread_mutex_lock(&philo->finish_mutex);
 	if (philo->finish_flag == true)
 	{
@@ -36,6 +33,16 @@ bool	ft_check_if_dead(t_philo *philo)
 		return (false);
 	}
 	pthread_mutex_unlock(&philo->finish_mutex);
+	return (true);
+}
+
+bool	ft_check_if_dead(t_philo *philo)
+{
+	long long	time;
+	long long	last_meal;
+
+	if (!ft_check_if_already_finished(philo))
+		return (false);
 	pthread_mutex_lock(&philo->time_mutex);
 	last_meal = philo->last_meal_time;
 	pthread_mutex_unlock(&philo->time_mutex);
@@ -86,6 +93,18 @@ static bool	ft_mon_routine(t_monitor *mon)
 	return (true);
 }
 
+bool	ft_check_end(t_monitor *mon)
+{
+	pthread_mutex_lock(&mon->mtdata->stop_mutex);
+	if (mon->mtdata->stop_flag == true)
+	{
+		pthread_mutex_unlock(&mon->mtdata->stop_mutex);
+		return (false);
+	}
+	pthread_mutex_unlock(&mon->mtdata->stop_mutex);
+	return (true);
+}
+
 void	*ft_monitor(void *arg)
 {
 	t_monitor	*mon;
@@ -95,19 +114,14 @@ void	*ft_monitor(void *arg)
 		return (NULL);
 	mtx_increment_int(&mon->mtdata->go_mutex, &mon->mtdata->go_count);
 	ft_wait_for_start(&mon->mtdata->start_mutex, &mon->mtdata->start_flag);
-	ft_precise_usleep(100);
+//	ft_precise_usleep(100);
 	while (1)
 	{
-		pthread_mutex_lock(&mon->mtdata->stop_mutex);
-		if (mon->mtdata->stop_flag == true)
-		{
-			pthread_mutex_unlock(&mon->mtdata->stop_mutex);
+		if (!ft_check_end(mon))
 			break ;
-		}
-		pthread_mutex_unlock(&mon->mtdata->stop_mutex);
 		if (!ft_mon_routine(mon))
 			break ;
-		ft_precise_usleep(100);
+	//	ft_precise_usleep(100);
 	}
 	mtx_increment_int(&mon->mtdata->end_mutex, &mon->mtdata->end_count);
 	ft_wait_threads_to_stop(mon->simu);

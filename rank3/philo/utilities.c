@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:28:50 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 20:36:42 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:13:32 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,17 @@ void	ft_stop_threads(t_simu *simu)
 	}
 }
 
-void	ft_free_philos(t_simu *simu)
+void	ft_destroy_mutex(t_simu *simu)
+{
+	pthread_mutex_destroy(&simu->mtdata.print_mutex.pmutex);
+	pthread_mutex_destroy(&simu->mtdata.stop_mutex);
+	pthread_mutex_destroy(&simu->mtdata.meal_mutex);
+	pthread_mutex_destroy(&simu->mtdata.go_mutex);
+	pthread_mutex_destroy(&simu->mtdata.end_mutex);
+	pthread_mutex_destroy(&simu->mtdata.start_mutex);
+}
+
+void	ft_free_forks(t_simu *simu)
 {
 	int	i;
 
@@ -101,6 +111,13 @@ void	ft_free_philos(t_simu *simu)
 		free(simu->forks);
 		simu->forks = NULL;
 	}
+}
+
+void	ft_free_philos(t_simu *simu)
+{
+	int	i;
+
+	ft_free_forks(simu);
 	if (simu->philos)
 	{
 		i = 0;
@@ -113,12 +130,7 @@ void	ft_free_philos(t_simu *simu)
 		free(simu->philos);
 		simu->philos = NULL;
 	}
-	pthread_mutex_destroy(&simu->mtdata.print_mutex.pmutex);
-	pthread_mutex_destroy(&simu->mtdata.stop_mutex);
-	pthread_mutex_destroy(&simu->mtdata.meal_mutex);
-	pthread_mutex_destroy(&simu->mtdata.go_mutex);
-	pthread_mutex_destroy(&simu->mtdata.end_mutex);
-	pthread_mutex_destroy(&simu->mtdata.start_mutex);
+	ft_destroy_mutex(simu);
 }
 
 void	ft_wait_for_start(t_mtx *mutex, bool *start)
@@ -131,4 +143,14 @@ void	ft_wait_for_start(t_mtx *mutex, bool *start)
 		pthread_mutex_lock(mutex);
 	}
 	pthread_mutex_unlock(mutex);
+}
+
+void	ft_update_meal_time(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->time_mutex);
+	if (philo->rdonly->num_philo % 2 == 0)
+		philo->last_meal_time = ft_get_time_ms();
+	else if (philo->rdonly->num_philo % 2 == 1)
+		philo->last_meal_time = ft_get_time_ms() + (philo->rdonly->time_to_eat / 4);
+	pthread_mutex_unlock(&philo->time_mutex);
 }

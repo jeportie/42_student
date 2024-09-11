@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 13:59:42 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 21:08:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 11:32:01 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,14 @@ bool	ft_init_rdonly(t_simu *simu, int ac, char **av)
 	return (true);
 }
 
+static void	ft_link(t_simu *simu, t_philo *philo, int i)
+{
+		philo->id = i + 1;
+		philo->rdonly = &simu->rdonly;
+		philo->mtdata = &simu->mtdata;
+		philo->simu = simu;
+}
+
 bool	ft_init_philos(t_simu *simu)
 {
 	int		i;
@@ -79,10 +87,7 @@ bool	ft_init_philos(t_simu *simu)
 			ft_perror("Mutex init failed.\n");
 			return (false);
 		}
-		philos[i].id = i + 1;
-		philos[i].rdonly = &simu->rdonly;
-		philos[i].mtdata = &simu->mtdata;
-		philos[i].simu = simu;
+		ft_link(simu, &philos[i], i);
 		i++;
 	}
 	simu->philos = philos;
@@ -121,8 +126,7 @@ bool	ft_init_forks(t_simu *simu)
 	i = 0;
 	while (i < simu->rdonly.num_philo)
 	{
-		forks[i].is_locked = false;
-		forks[i].philo_id = 0;
+		memset(&forks[i], 0, sizeof(t_forks));
 		if (pthread_mutex_init(&forks[i].fork_mutex, NULL) != 0
 			|| pthread_mutex_init(&forks[i].lock_mutex, NULL) != 0
 			|| pthread_mutex_init(&forks[i].request_mutex, NULL) != 0)

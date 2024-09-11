@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 21:31:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 10:40:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,11 @@ void		ft_init_monitor(t_simu *simu);
 bool		ft_init_forks(t_simu *simu);
 bool		ft_init_threads(t_simu *simu);
 
-/*Philosopher Threads*/
+/*Philosopher Routine*/
 void		*ft_routine(void *arg);
-void		ft_think(t_philo *philo);
+
+/*Philosopher Threads*/
+void		ft_simulation_loop(t_philo *philo);
 bool		ft_pick_up_forks(t_philo *philo);
 void		ft_eat(t_philo *philo);
 void		ft_sleep(t_philo *philo);
@@ -149,8 +151,9 @@ void		ft_release_forks(t_philo *philo);
 
 /*Forks MGMT*/
 bool		ft_fork_request(int philo_id, t_forks *fork);
-bool		ft_pick_up_forks(t_philo *philo);
-void		ft_define_forks(t_philo *philo, t_forks **fone, t_forks **ftwo, bool state)
+void		ft_define_forks(t_philo *philo, t_forks **fone, t_forks **ftwo, bool state);
+void		ft_release(t_philo *philo, bool state);
+void		ft_fork_pick(t_philo *philo, bool state);
 
 /*Monitoring thread*/
 bool		ft_check_if_dead(t_philo *philo);
@@ -176,6 +179,7 @@ void		ft_perror(char *str);
 long long	ft_get_time_ms(void);
 void		ft_precise_usleep(long long usec);
 void		ft_free_philos(t_simu *simu);
+void		ft_update_meal_time(t_philo *philo);
 
 /*42_ft*/
 int			ft_isspace(int c);
