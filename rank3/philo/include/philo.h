@@ -150,7 +150,7 @@ void		ft_release_forks(t_philo *philo);
 /*Forks MGMT*/
 bool		ft_fork_request(int philo_id, t_forks *fork);
 bool		ft_pick_up_forks(t_philo *philo);
-
+void		ft_define_forks(t_philo *philo, t_forks **fone, t_forks **ftwo, bool state)
 
 /*Monitoring thread*/
 bool		ft_check_if_dead(t_philo *philo);

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 21:49:48 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 09:26:12 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,9 @@ void	ft_simulation_loop(t_philo *philo)
 		pthread_mutex_unlock(&philo->mtdata->stop_mutex);
 		if (dead_flag == true)
 			break ;
+
 		ft_print_state(philo, THINK);
-
 		ft_eat(philo);
-
 		if (philo->meals_eaten == philo->rdonly->num_meals)
 			break ;
 		ft_sleep(philo);
@@ -111,6 +110,18 @@ void	ft_eat(t_philo *philo)
 //		philo->last_meal_time = ft_get_time_ms();
 //	pthread_mutex_unlock(&philo->time_mutex);
 	ft_release_forks(philo);
+}
+
+void	ft_release(t_philo *philo, bool state)
+{
+	if (state == EVEN)
+	{
+
+	}
+	else 
+	{
+
+	}
 }
 
 void	ft_even_release(t_philo *philo)
