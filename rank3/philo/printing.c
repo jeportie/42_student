@@ -6,7 +6,7 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 09:36:12 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/10 21:10:13 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 12:41:47 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,32 +56,6 @@ void	ft_print_state(t_philo *philo, int state)
 		ft_print_format(philo, time, RED "thread stop" RESET);
 }
 
-void	ft_print_params(t_rdonly params)
-{
-	printf("Printing Params...\n\n");
-	printf("num_philo : %d\n", params.num_philo);
-	printf("time_to_die : %dms\n", params.time_to_die);
-	printf("time_to_eat : %dms\n", params.time_to_eat);
-	printf("time_to_sleep : %dms\n", params.time_to_sleep);
-	printf("(optional)num_meals : %d\n", params.num_meals);
-}
-
-void	ft_print_philos(t_simu simu)
-{
-	int	i;
-
-	i = 0;
-	while (i < simu.rdonly.num_philo)
-	{
-		printf("\nPhilo %d:\n\n", i);
-		printf("id : %d\n", i + 1);
-		printf("thread id: %lu\n", (unsigned long)simu.philos[i].thread);
-		printf("r fork : %p, l fork : %p)\n",
-			simu.philos[i].right_fork, simu.philos[i].left_fork);
-		i++;
-	}
-}
-
 void	ft_print_start_stop(t_simu *simu, bool choice)
 {
 	if (choice == true)
@@ -95,7 +69,23 @@ void	ft_print_start_stop(t_simu *simu, bool choice)
 
 void	ft_print_parsing(t_simu simu)
 {
-	ft_print_params(simu.rdonly);
-	ft_print_philos(simu);
+	int	i;
+
+	printf("Printing Params...\n\n");
+	printf("num_philo : %d\n", simu.rdonly.num_philo);
+	printf("time_to_die : %dms\n", simu.rdonly.time_to_die);
+	printf("time_to_eat : %dms\n", simu.rdonly.time_to_eat);
+	printf("time_to_sleep : %dms\n", simu.rdonly.time_to_sleep);
+	printf("(optional)num_meals : %d\n", simu.rdonly.num_meals);
 	printf("\n");
+	i = 0;
+	while (i < simu.rdonly.num_philo)
+	{
+		printf("\nPhilo %d:\n\n", i);
+		printf("id : %d\n", i + 1);
+		printf("thread id: %lu\n", (unsigned long)simu.philos[i].thread);
+		printf("r fork : %p, l fork : %p)\n",
+			simu.philos[i].right_fork, simu.philos[i].left_fork);
+		i++;
+	}
 }

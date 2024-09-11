@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/11 10:40:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/11 13:10:34 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdbool.h>
 # include <limits.h>
 
-# define DEBBUG 0
+# define DEBBUG 1
 
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
@@ -151,7 +151,9 @@ void		ft_release_forks(t_philo *philo);
 
 /*Forks MGMT*/
 bool		ft_fork_request(int philo_id, t_forks *fork);
-void		ft_define_forks(t_philo *philo, t_forks **fone, t_forks **ftwo, bool state);
+void		ft_define_forks(t_philo *philo, t_forks **fone,
+				t_forks **ftwo, bool state);
+void		ft_actualise_forks(t_forks *fork, bool value, int id);
 void		ft_release(t_philo *philo, bool state);
 void		ft_fork_pick(t_philo *philo, bool state);
 
@@ -166,11 +168,6 @@ void		ft_start_simulation(t_simu *simu);
 void		ft_wait_threads_to_stop(t_simu *simu);
 
 /*Getters/Setters*/
-bool		mtx_get_bool(t_mtx *mutex, bool value);
-void		mtx_set_bool(t_mtx *mutex, bool *dest, bool value);
-int			mtx_get_int(t_mtx *mutex, int value);
-void		mtx_set_int(t_mtx *mutex, int *dest, int value);
-long long	mtx_get_llong(t_mtx *mutex, long long value);
 void		mtx_set_llong(t_mtx *mutex, long long *dest, long long value);
 void		mtx_increment_int(t_mtx *mutex, int *dest);
 
@@ -180,6 +177,7 @@ long long	ft_get_time_ms(void);
 void		ft_precise_usleep(long long usec);
 void		ft_free_philos(t_simu *simu);
 void		ft_update_meal_time(t_philo *philo);
+void		ft_wait_for_stop(t_mtx *mutex, bool *start);
 
 /*42_ft*/
 int			ft_isspace(int c);
@@ -191,8 +189,6 @@ int			ft_atoi(const char *nptr);
 /*Printing*/
 void		ft_print_state(t_philo *philo, int state);
 void		ft_print_intro(void);
-void		ft_print_params(t_rdonly params);
-void		ft_print_philos(t_simu simu);
 void		ft_print_parsing(t_simu simu);
 void		ft_print_start_stop(t_simu *simu, bool choice);
 
