@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
 void	mtx_increment_int(t_mtx *mutex, int *dest)
 {

@@ -14,7 +14,7 @@
  * NOTE: THIS IS THE MASTER THREAD
  */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
 static void	ft_wait_threads_to_start(t_simu *simu)
 {

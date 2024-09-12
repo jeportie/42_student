@@ -22,7 +22,7 @@
  * and call pthread_lock again.
  */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
 void	ft_get_time(t_forks *fork, long long *time_left, long long *time_right)
 {

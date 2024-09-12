@@ -15,7 +15,7 @@
  * CHECK_IF_DEAD->THINK->EAT->SLEEP->CHECK_IF_FINISH.
  */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
 void	ft_simulation_loop(t_philo *philo)
 {

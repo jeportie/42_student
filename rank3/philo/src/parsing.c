@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
 static bool	ft_is_int_help(char *nptr, int i, int sign, int len)
 {

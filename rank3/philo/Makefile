@@ -6,7 +6,7 @@
 #    By: jeportie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 14:15:40 by jeportie          #+#    #+#              #
-#    Updated: 2024/09/12 15:45:16 by jeportie         ###   ########.fr        #
+#    Updated: 2024/09/12 22:16:13 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3 -pthread -v
 
 # Directories
-SRC_DIR = .
+SRC_DIR = src
 OBJ_DIR = obj
 
 # Source files
@@ -42,17 +42,33 @@ VALGRIND = -fPIC
 # Number of steps for progress bar (number of .o files)
 TOTAL_STEPS := $(words $(OBJ))
 
-# Default rule
-all: $(NAME)
+# Script URL
+SCRIPT_URL = https://github.com/jeromeDev94/make_interface.git
+
+# Default target (run-prompt is first, so it runs by default)
+run-prompt: download-script
+	./make_interface/make_prompt.sh
+
+# Target to download and make the script executable (only if not exists)
+download-script:
+	@if [ ! -f make_prompt.sh ]; then \
+		echo "Downloading script..."; \
+		git clone $(SCRIPT_URL) > .download.log 2>&1;\
+		./progress 10 .download.log; \
+		chmod +x make_interface/make_prompt.sh; \
+	fi
+
+run:
+	@./philo 5 800 200 200 7
 
 # Compilation rule for the main program
+all: $(NAME)
+
 $(NAME): $(OBJ)
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) > compile.log 2>&1
-	@echo "Log file created. Running progress.sh..."
-	@./progress.sh $(TOTAL_STEPS) compile.log
-	@echo "Progress bar completed."
-	@echo "Compilation complete."
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) > .compile.log 2>&1
+	@./progress $(TOTAL_STEPS) .compile.log
+	@echo "\nCompilation complete."
 
 # Rule to create the object directory
 $(OBJ_DIR):
@@ -60,7 +76,7 @@ $(OBJ_DIR):
 
 # Rule for compiling object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ 2>> compile.log
+	@$(CC) $(CFLAGS) -c $< -o $@ 2>> .compile.log
 
 # Valgrind rule
 val: CFLAGS += $(VALGRIND)
@@ -80,8 +96,12 @@ fclean: clean
 	@echo "Cleaning $(NAME)"
 	@rm -f $(NAME)
 
+fullclean: fclean
+	@echo "Cleaning Interface"
+	@rm -rf make_interface .download.log .compile.log
+
 # Recompile everything
 re: fclean all
 
-.PHONY: all clean fclean re val san
+.PHONY: all clean fclean re val san download-script run-prompt
 

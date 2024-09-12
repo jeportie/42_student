@@ -12,7 +12,7 @@
 
 /* NOTE: PHILOSOPHERS THREADS */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
 void	ft_check_remaining_locks(t_philo *philo)
 {

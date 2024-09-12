@@ -6,13 +6,13 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/12 11:34:37 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:51:10 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* NOTE: MONITOR THREAD */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 /*
  * NOTE:
  * This function is the monitor routine. 

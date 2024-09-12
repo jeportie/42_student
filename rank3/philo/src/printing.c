@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
 void	ft_print_format(t_philo *philo, long long time, const char *format)
 {
