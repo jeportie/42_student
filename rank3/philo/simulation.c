@@ -6,15 +6,15 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:51:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/11 14:41:32 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:46:07 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/philo.h"
-
 /*
- * NOTE: THIS IS THE MASTER THRED
+ * NOTE: THIS IS THE MASTER THREAD
  */
+
+#include "include/philo.h"
 
 static void	ft_wait_threads_to_start(t_simu *simu)
 {
@@ -40,6 +40,14 @@ void	ft_wait_threads_to_stop(t_simu *simu)
 	}
 	pthread_mutex_unlock(&simu->mtdata.stop_mutex);
 }
+
+/* NOTE:
+ * MASTER THREAD SYNC ALL THE SLAVE THREADS.
+ * 
+ * start_flag = false is used to signal the monitor thread to stop
+ * ->usefull to lock the print mutex after a philo died and to safely 
+ *  unlock it after all philo have been joined.
+ */
 
 void	ft_start_simulation(t_simu *simu)
 {
