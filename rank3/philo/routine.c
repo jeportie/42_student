@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/11 13:52:46 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:59:45 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
  * Faire un UML sur draw.io et mettre toute l'architecture sur papier pour 
  * s'entrainer
  * Bug de parsing quand mauvais format -> segault et free en trop
+ */
+
+/* NOTE:
+ * THIS IS THE PHILOSOPHERS THREADS
+ * ROUTINE FOR ALL PHILOSOPHERS.
  */
 
 #include "include/philo.h"
