@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/11 13:48:08 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:43:41 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdbool.h>
 # include <limits.h>
 
-# define DEBBUG 1
+# define DEBBUG 0
 
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
@@ -50,9 +50,11 @@ typedef pthread_mutex_t	t_mtx;
 typedef struct s_forks
 {
 	t_mtx	fork_mutex;
+
 	t_mtx	lock_mutex;
 	bool	is_locked;
 	int		philo_id;
+
 	t_philo	*left_philo;
 	t_philo	*right_philo;
 	t_mtx	request_mutex;
@@ -68,9 +70,11 @@ typedef struct s_philo
 {
 	int				id;
 	pthread_t		thread;
+
+	int				meals_eaten;
+
 	long long		last_meal_time;
 	t_mtx			time_mutex;
-	int				meals_eaten;
 
 	bool			finish_flag;
 	t_mtx			finish_mutex;
@@ -148,7 +152,7 @@ void		*ft_routine(void *arg);
 /*Philosopher Threads*/
 void		ft_simulation_loop(t_philo *philo);
 bool		ft_pick_up_forks(t_philo *philo);
-void		ft_eat(t_philo *philo);
+bool		ft_eat(t_philo *philo);
 void		ft_sleep(t_philo *philo);
 void		ft_release_forks(t_philo *philo);
 

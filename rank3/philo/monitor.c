@@ -6,9 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:00:00 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/11 14:40:28 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/12 11:34:37 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* NOTE: MONITOR THREAD */
 
 #include "include/philo.h"
 /*
@@ -93,8 +95,8 @@ void	ft_wait_for_stop(t_mtx *mutex, bool *start)
 /*
  * NOTE:
  * This function checks is the philo died. 
- * First function : used to be sure not to check
- * after a philo finished its routine
+ * First function : used to be sure not to check after a philo 
+ * 					finished its routine
  * Second function : time comparison.
  */
 
