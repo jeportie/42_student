@@ -6,7 +6,7 @@
 #    By: jeportie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 14:15:40 by jeportie          #+#    #+#              #
-#    Updated: 2024/09/13 14:07:55 by jeportie         ###   ########.fr        #
+#    Updated: 2024/09/13 15:44:57 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # Colors
@@ -29,7 +29,7 @@ OBJ_DIR = 	obj
 DEP_DIR =   obj/deps
 
 SRC_MAIN =	main.c
-SRC = 		$(addprefix src/, philo.c forks.c forks_2.c safe_init.c\
+SRC = 		$(addprefix src/, philo.c forks.c forks_2.c safe_init.c \
 	  		init.c init_2.c monitor.c parsing.c routine.c simulation.c \
 	 	 	printing.c utilities.c utilities_2.c utilities_3.c 42ft.c)
 ALL_SRC =	$(SRC_MAIN) $(SRC)
@@ -53,6 +53,8 @@ download-script:
 		git clone $(SCRIPT_URL) > .download.log 2>&1;\
 		./make_interface/progress 10 .download.log; \
 		chmod +x make_interface/make_prompt; \
+		echo "Script downloaded !"; \
+		make -s help; \
 	fi
 
 run:
@@ -66,6 +68,9 @@ valgrind:
 
 norm:
 	@norminette include/ main.c src/
+
+todo:
+	@vim .philo.todo.md
 
 all: $(NAME)
 
@@ -124,6 +129,7 @@ help:
 	@echo "$(GREEN)  fullclean      $(RESET)- Removes the interface, object files, and executable."
 	@echo "$(GREEN)  re             $(RESET)- Cleans and recompiles the project."
 	@echo "$(GREEN)  help           $(RESET)- Displays this help message."
+	@echo "$(GREEN)  todo           $(RESET)- Displays the project todo list."
 	@echo "$(GREEN)  run-prompt     $(RESET)- Starts a custom Make prompt interface."
 	@echo ""
 	@echo "$(BOLD)$(YELLOW)--------------------------------------------------------------------------$(RESET)"

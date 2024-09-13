@@ -6,11 +6,11 @@
 /*   By: jeportie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:06:30 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/13 14:06:30 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:54:30 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
 bool	ft_safe_thread_init(t_simu *simu)
 {
