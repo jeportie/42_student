@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/12 11:43:41 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:07:20 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ bool		ft_is_int(char *nptr);
 bool		ft_check_args(int ac, char **av);
 
 /*Init*/
+bool		ft_safe_simulation_init(t_simu *simu, int ac, char **av);
 bool		ft_init_mtdata(t_simu *simu);
 bool		ft_init_rdonly(t_simu *simu, int ac, char **av);
 bool		ft_init_philos(t_simu *simu);
