@@ -6,7 +6,7 @@
 #    By: jeportie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 14:15:40 by jeportie          #+#    #+#              #
-#    Updated: 2024/09/13 22:57:48 by jeportie         ###   ########.fr        #
+#    Updated: 2024/09/13 23:19:56 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # Colors
@@ -104,7 +104,13 @@ $(OBJ_DIR)/main.o: main.c | $(OBJ_DIR)
 
 # Thread sanitizer rule
 san: CFLAGS += $(SANITIZE)
+san: CC = clang
 san: re
+
+# Thread sanitizer rule
+default: CFLAGS -= $(SANITIZE)
+default: CC = cc
+default: re
 
 # Clean object files
 clean:
@@ -132,10 +138,10 @@ help:
 	@echo "  Make> [target]"
 	@echo ""
 	@echo "$(BOLD)$(BLUE)Available targets (++ = takes args after target):$(RESET)"
-	@echo "$(GREEN)  make           $(RESET)- Download and enter in the make prompt."
 	@echo "$(GREEN)  norm           $(RESET)- Runs norminette on the source files."
 	@echo "$(GREEN)  all            $(RESET)- Compiles the philo project."
-	@echo "$(GREEN)  san            $(RESET)- Compiles with thread sanitizer enabled. $(RED)!DO NOT USE VALGRIND.$(RESET)"
+	@echo "$(GREEN)  san            $(RESET)- Clang compiles with thread sanitizer enabled. $(RED)!DO NOT USE VALGRIND.$(RESET)"
+	@echo "$(GREEN)  default        $(RESET)- Unable sanitizer thread and compiles with cc (Valgrind OK)"
 	@echo "$(GREEN)  run ++         $(RESET)- Executes the compiled philo program with optional arguments."
 	@echo "$(GREEN)  helgrind ++    $(RESET)- Runs Valgrind's Helgrind tool for thread debugging."
 	@echo "$(GREEN)  valgrind ++    $(RESET)- Runs Valgrind's leak-check for memory leaks debugging."
@@ -148,7 +154,7 @@ help:
 	@echo "$(GREEN)  todo           $(RESET)- Displays the project todo list."
 	@echo "$(GREEN)  run-prompt     $(RESET)- Starts a custom Make prompt interface."
 	@echo ""
-	@echo "$(BOLD)$(YELLOW)--------------------------------------------------------------------------$(RESET)"
+	@echo "$(BOLD)$(YELLOW)-------------------------------------------------------------------------------$(RESET)"
 # Catch-all rule to prevent errors with undefined targets
 %:
 	@:
