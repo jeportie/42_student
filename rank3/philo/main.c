@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo.h"
+#include "include/philo.h"
 
 bool	ft_safe_thread_init(t_simu *simu)
 {

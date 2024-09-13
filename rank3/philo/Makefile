@@ -6,38 +6,27 @@
 #    By: jeportie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 14:15:40 by jeportie          #+#    #+#              #
-#    Updated: 2024/09/12 22:16:13 by jeportie         ###   ########.fr        #
+#    Updated: 2024/09/13 11:20:03 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Program name
 NAME = philo
 
-# Compiler and flags
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3 -pthread -v
+CC = 		cc
+CFLAGS = 	-Wall -Wextra -Werror -g3 -pthread -v
+SANITIZE = 	-fsanitize=thread
+VALGRIND = 	-fPIC
 
-# Directories
-SRC_DIR = src
-OBJ_DIR = obj
+SRC_DIR = 	src
+OBJ_DIR = 	obj
 
-# Source files
-SRC_MAIN = $(SRC_DIR)/main.c
-SRC = $(SRC_DIR)/philo.c $(SRC_DIR)/forks.c $(SRC_DIR)/forks_2.c \
-	  $(SRC_DIR)/init.c $(SRC_DIR)/init_2.c $(SRC_DIR)/monitor.c \
-	  $(SRC_DIR)/parsing.c $(SRC_DIR)/routine.c $(SRC_DIR)/simulation.c \
-	  $(SRC_DIR)/printing.c $(SRC_DIR)/utilities.c $(SRC_DIR)/utilities_2.c \
-	  $(SRC_DIR)/utilities_3.c $(SRC_DIR)/42ft.c
+SRC_MAIN =	main.c
+SRC = 		$(addprefix src/, philo.c forks.c forks_2.c \
+	  		init.c init_2.c monitor.c parsing.c routine.c simulation.c \
+	 	 	printing.c utilities.c utilities_2.c utilities_3.c 42ft.c)
+ALL_SRC =	$(SRC_MAIN) $(SRC)
 
-# All sources (main + others)
-ALL_SRC = $(SRC_MAIN) $(SRC)
-
-# Object files
-OBJ = $(ALL_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-
-# Sanitize and Valgrind flags
-SANITIZE = -fsanitize=thread
-VALGRIND = -fPIC
+OBJ = 		$(ALL_SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # Number of steps for progress bar (number of .o files)
 TOTAL_STEPS := $(words $(OBJ))
@@ -47,38 +36,37 @@ SCRIPT_URL = https://github.com/jeromeDev94/make_interface.git
 
 # Default target (run-prompt is first, so it runs by default)
 run-prompt: download-script
-	./make_interface/make_prompt.sh
+	@./make_interface/make_prompt
 
-# Target to download and make the script executable (only if not exists)
 download-script:
-	@if [ ! -f make_prompt.sh ]; then \
+	@if [ ! -f make_interface/make_prompt ]; then \
 		echo "Downloading script..."; \
 		git clone $(SCRIPT_URL) > .download.log 2>&1;\
-		./progress 10 .download.log; \
-		chmod +x make_interface/make_prompt.sh; \
+		./make_interface/progress 10 .download.log; \
+		chmod +x make_interface/make_prompt; \
 	fi
 
+# 'run' target now captures arguments passed after 'run'
 run:
-	@./philo 5 800 200 200 7
+	@./philo $(filter-out $@,$(MAKECMDGOALS))
 
-# Compilation rule for the main program
+norm:
+	@norminette include/ main.c src/
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Compiling..."
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME) > .compile.log 2>&1
-	@./progress $(TOTAL_STEPS) .compile.log
-	@echo "\nCompilation complete."
+	@./make_interface/progress $(TOTAL_STEPS) .compile.log
+	@echo "Compilation complete."
 
-# Rule to create the object directory
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-# Rule for compiling object files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@ 2>> .compile.log
 
-# Valgrind rule
 val: CFLAGS += $(VALGRIND)
 val: re
 
@@ -103,5 +91,8 @@ fullclean: fclean
 # Recompile everything
 re: fclean all
 
-.PHONY: all clean fclean re val san download-script run-prompt
+# Catch-all rule to prevent errors with undefined targets
+%:
+	@:
 
+.PHONY: all clean fclean re val san download-script run-prompt run

@@ -69,7 +69,6 @@ static void	ft_picking_order(t_forks *fork, int id)
 		pthread_mutex_lock(&fork->fork_mutex);
 	else
 	{
-
 		ft_precise_usleep(100);
 		pthread_mutex_lock(&fork->fork_mutex);
 	}
