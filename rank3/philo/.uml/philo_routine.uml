@@ -1,0 +1,35 @@
+@startuml
+skinparam monochrome true
+skinparam defaultTextAlignment center
+
+title Philosopher Routine Execution Flow
+
+|Philosopher Routine|
+
+start
+
+partition "Routine Initialization" {
+    :Increment `go_count`;
+    :Wait for `start_flag` to be true;
+    :Set `last_meal_time` to current time;
+    if (One philosopher case?) then (yes)
+        :Take left fork;
+        :Sleep for `time_to_die`;
+        stop
+    endif
+}
+
+partition "Simulation Loop" {
+    :Run `ft_simulation_loop`;
+}
+
+partition "End Routine" {
+    :Check for remaining locks;
+    :Increment `end_count`;
+    if (DEBUG == true) then (yes)
+        :Print state STOP;
+    endif
+}
+
+stop
+@enduml

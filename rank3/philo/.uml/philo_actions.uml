@@ -1,0 +1,91 @@
+@startuml
+title Philosopher Simulation Loop Execution Flow
+
+|Philosopher Simulation Loop|
+
+partition "Simulation Loop" {
+    while (1) is (true)
+        :Lock `stop_mutex` and check `stop_flag`;
+        if (Philosopher is dead?) then (yes)
+            :Break simulation loop;
+            stop
+        endif
+        :Print state THINK;
+        if (!Eat) then (no)
+            :Break simulation loop;
+            stop
+        endif
+        :Sleep for `time_to_sleep`;
+    endwhile
+}
+stop
+
+partition "Fork Request Logic" {
+    :Lock `request_mutex`;
+    :Get the time left for both philosophers competing for the fork (`ft_get_time`);
+    
+    if (Philosopher has less time left?) then (yes)
+        :Allow request;
+    else
+        :Deny request;
+        :Sleep for a short time;
+    endif
+    :Unlock `request_mutex`;
+}
+stop
+
+start
+partition "Fork Pick Logic" {
+    :Define forks (`ft_define_forks`);
+    :Pick the first fork (`ft_picking_order`);
+    :Print state LEFT;
+    :Update fork state (`ft_actualise_forks`);
+    
+    :Check `stop_flag`;
+    if (Philosopher is dead?) then (yes)
+        :Unlock first fork;
+        :Reset fork state;
+        stop
+    endif
+
+    :Pick the second fork (`ft_picking_order`);
+    :Print state RIGHT;
+    :Update fork state (`ft_actualise_forks`);
+}
+
+partition "Eating Routine" {
+    :Check if `stop_flag` is true;
+    if (Philosopher is dead?) then (yes)
+        stop
+    endif
+    :Pick up forks (EVEN/ODD);
+    :Print state EAT;
+    :Increment `meals_eaten`;
+    :Update last meal time;
+    :Sleep for `time_to_eat`;
+
+    if (Philosopher reached meal limit?) then (yes)
+        :Set `finish_flag` to true;
+        :Increment `philos_full`;
+        stop
+    endif
+    :Release forks (EVEN/ODD);
+}
+
+partition "Fork Release Logic" {
+    :Release forks in reverse order;
+    :Check if fork is locked;
+    if (Fork is locked by this philosopher?) then (yes)
+        :Unlock the fork;
+        :Reset fork state (`ft_actualise_forks`);
+    endif
+    :Repeat for both forks;
+}
+
+partition "Sleep Routine" {
+    :Print state SLEEP;
+    :Sleep for `time_to_sleep`;
+}
+
+stop
+@enduml

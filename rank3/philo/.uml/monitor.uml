@@ -1,0 +1,48 @@
+@startuml
+skinparam monochrome false
+skinparam defaultTextAlignment center
+
+title Monitor Thread Execution Flow
+
+|Monitor Routine|
+
+start
+
+partition "Initialization Phase" {
+    :Increment `go_count`;
+    :Wait for `start_flag` to be true;
+}
+
+partition "Monitoring Loop" {
+    while (1) is (true)
+        :Check if a philosopher is dead;
+        if (Philosopher is dead?) then (yes)
+            :Set `stop_flag` to true;
+			-> Philosopher Died;
+        endif
+
+        :Check if all philosophers have ended their routine;
+        if (All philosophers done?) then (yes)
+            :Set `stop_flag` to true;
+            -> All Philosophers Done;
+        endif
+
+        :Sleep for 100 microseconds;
+    endwhile
+}
+
+partition "Termination Phase" {
+    :Increment `end_count`;
+    :Wait for all philosophers to stop;
+
+    if (Multiple philosophers?) then (yes)
+        :Wait for `start_flag` to be false;
+    endif
+
+    if (Print mutex is locked?) then (yes)
+        :Unlock print mutex;
+    endif
+}
+
+stop
+@enduml

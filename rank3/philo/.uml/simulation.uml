@@ -1,0 +1,58 @@
+@startuml
+skinparam monochrome true
+skinparam defaultTextAlignment center
+
+title Master Thread Execution Flow
+
+|Simulation Routine|
+
+start
+
+partition "Wait for Threads to Start" {
+    :Lock `go_mutex`;
+    while (go_count != num_philo + 1)
+        :Unlock `go_mutex`;
+        :Sleep for 100 microseconds;
+        :Lock `go_mutex`;
+    endwhile
+    :Unlock `go_mutex`;
+}
+
+partition "Start Simulation" {
+    if (DEBUG == true) then (yes)
+        :Print simulation start;
+    endif
+
+    :Lock `start_mutex`;
+    :Set `start_flag` to true;
+    :Set `start_time` to current time;
+    :Unlock `start_mutex`;
+}
+
+partition "Wait for Threads to Stop" {
+    :Lock `stop_mutex`;
+    while (stop_flag == false)
+        :Unlock `stop_mutex`;
+        :Sleep for 100 microseconds;
+        :Lock `stop_mutex`;
+    endwhile
+    :Unlock `stop_mutex`;
+}
+
+partition "Stop Simulation" {
+    :Stop all threads;
+    :Lock `start_mutex`;
+    :Set `start_flag` to false;
+    :Unlock `start_mutex`;
+
+    if (monitor.thread exists) then (yes)
+        :Join monitor thread;
+    endif
+
+    if (DEBUG == true) then (yes)
+        :Print simulation stop;
+    endif
+}
+
+stop
+@enduml

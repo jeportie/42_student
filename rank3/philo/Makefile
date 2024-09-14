@@ -6,7 +6,7 @@
 #    By: jeportie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 14:15:40 by jeportie          #+#    #+#              #
-#    Updated: 2024/09/13 23:19:56 by jeportie         ###   ########.fr        #
+#    Updated: 2024/09/14 18:54:05 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # Colors
@@ -80,6 +80,9 @@ create-cal:
 calendar: create-cal
 	vim -c "let g:calendar_cache_directory=expand('./.calendar/')"  -c ":Calendar" .calendar/$(NAME).calendar -c ":bd .calendar/philo.calendar" 
 
+uml:
+	@./make_interface/interactive_select 
+
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_DIR)/main.o
@@ -149,10 +152,11 @@ help:
 	@echo "$(GREEN)  fclean         $(RESET)- Removes object files and the executable."
 	@echo "$(GREEN)  fullclean      $(RESET)- Removes the interface, object files, and executable."
 	@echo "$(GREEN)  re             $(RESET)- Cleans and recompiles the project."
-	@echo "$(GREEN)  help           $(RESET)- Displays this help message."
+	@echo "$(GREEN)  uml            $(RESET)- Enter in the UML schematics menu of the projects."
 	@echo "$(GREEN)  calendar       $(RESET)- Displays the project calendar."
 	@echo "$(GREEN)  todo           $(RESET)- Displays the project todo list."
 	@echo "$(GREEN)  run-prompt     $(RESET)- Starts a custom Make prompt interface."
+	@echo "$(GREEN)  help           $(RESET)- Displays this help message."
 	@echo ""
 	@echo "$(BOLD)$(YELLOW)-------------------------------------------------------------------------------$(RESET)"
 # Catch-all rule to prevent errors with undefined targets
