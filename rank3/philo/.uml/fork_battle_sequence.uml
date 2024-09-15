@@ -1,0 +1,119 @@
+
+           ┌─┐                     ┌─┐
+           ║"│                     ║"│
+           └┬┘                     └┬┘
+           ┌┼┐                     ┌┼┐
+            │                       │                ┌────┐          ┌────┐          ┌─────┐          ┌─────┐
+           ┌┴┐                     ┌┴┐               │Fork│          │Fork│          │Mutex│          │Mutex│
+      Philosopher1            Philosopher2           └─┬──┘          └─┬──┘          └──┬──┘          └──┬──┘
+           │                       │     Request left fork             │                │                │
+           │ ──────────────────────────────────────────────────────────────────────────>│                │
+           │                       │                   │               │                │                │
+           │                       │                   │              Lock              │                │
+           │                       │                   │ <──────────────────────────────│                │
+           │                       │                   │               │                │                │
+           │             Left fork acquired            │               │                │                │
+           │ <──────────────────────────────────────────               │                │                │
+           │                       │                   │               │                │                │
+           │                       │             Request right fork    │                │                │
+           │ ───────────────────────────────────────────────────────────────────────────────────────────>│
+           │                       │                   │               │                │                │
+           │                       │                   │               │              Lock               │
+           │                       │                   │               │ <───────────────────────────────│
+           │                       │                   │               │                │                │
+           │                    Right fork acquired    │               │                │                │
+           │ <──────────────────────────────────────────────────────────                │                │
+           │                       │                   │               │                │                │
+           │────┐                  │                   │               │                │                │
+           │    │ Eat              │                   │               │                │                │
+           │<───┘                  │                   │               │                │                │
+           │                       │                   │               │                │                │
+           │                       │     Release left fork             │                │                │
+           │ ──────────────────────────────────────────────────────────────────────────>│                │
+           │                       │                   │               │                │                │
+           │                       │                   │             Unlock             │                │
+           │                       │                   │ ──────────────────────────────>│                │
+           │                       │                   │               │                │                │
+           │                       │             Release right fork    │                │                │
+           │ ───────────────────────────────────────────────────────────────────────────────────────────>│
+           │                       │                   │               │                │                │
+           │                       │                   │               │             Unlock              │
+           │                       │                   │               │ ───────────────────────────────>│
+           │                       │                   │               │                │                │
+           │                       │                   │     Request right fork         │                │
+           │                       │ ───────────────────────────────────────────────────────────────────>│
+           │                       │                   │               │                │                │
+           │                       │                   │               │              Lock               │
+           │                       │                   │               │ <───────────────────────────────│
+           │                       │                   │               │                │                │
+           │                       │        Right fork acquired        │                │                │
+           │                       │ <──────────────────────────────────                │                │
+           │                       │                   │               │                │                │
+           │                       │                 Request left fork │                │                │
+           │                       │ ──────────────────────────────────────────────────>│                │
+           │                       │                   │               │                │                │
+           │                       │                   │              Lock              │                │
+           │                       │                   │ <──────────────────────────────│                │
+           │                       │                   │               │                │                │
+           │                       │ Left fork acquired│               │                │                │
+           │                       │ <──────────────────               │                │                │
+           │                       │                   │               │                │                │
+           │                       │────┐              │               │                │                │
+           │                       │    │ Eat          │               │                │                │
+           │                       │<───┘              │               │                │                │
+           │                       │                   │               │                │                │
+           │                       │                   │     Release right fork         │                │
+           │                       │ ───────────────────────────────────────────────────────────────────>│
+           │                       │                   │               │                │                │
+           │                       │                   │               │             Unlock              │
+           │                       │                   │               │ ───────────────────────────────>│
+           │                       │                   │               │                │                │
+           │                       │                 Release left fork │                │                │
+           │                       │ ──────────────────────────────────────────────────>│                │
+           │                       │                   │               │                │                │
+           │                       │                   │             Unlock             │                │
+           │                       │                   │ ──────────────────────────────>│                │
+      Philosopher1            Philosopher2           ┌─┴──┐          ┌─┴──┐          ┌──┴──┐          ┌──┴──┐
+           ┌─┐                     ┌─┐               │Fork│          │Fork│          │Mutex│          │Mutex│
+           ║"│                     ║"│               └────┘          └────┘          └─────┘          └─────┘
+           └┬┘                     └┬┘
+           ┌┼┐                     ┌┼┐
+            │                       │
+           ┌┴┐                     ┌┴┐
+
+@startuml
+actor Philosopher1
+actor Philosopher2
+entity Fork as fork1
+entity Fork as fork2
+entity Mutex as mutex1
+entity Mutex as mutex2
+
+Philosopher1 -> mutex1: Request left fork
+mutex1 -> fork1: Lock
+fork1 -> Philosopher1: Left fork acquired
+
+Philosopher1 -> mutex2: Request right fork
+mutex2 -> fork2: Lock
+fork2 -> Philosopher1: Right fork acquired
+
+Philosopher1 -> Philosopher1: Eat
+Philosopher1 -> mutex1: Release left fork
+fork1 -> mutex1: Unlock
+Philosopher1 -> mutex2: Release right fork
+fork2 -> mutex2: Unlock
+
+Philosopher2 -> mutex2: Request right fork
+mutex2 -> fork2: Lock
+fork2 -> Philosopher2: Right fork acquired
+
+Philosopher2 -> mutex1: Request left fork
+mutex1 -> fork1: Lock
+fork1 -> Philosopher2: Left fork acquired
+
+Philosopher2 -> Philosopher2: Eat
+Philosopher2 -> mutex2: Release right fork
+fork2 -> mutex2: Unlock
+Philosopher2 -> mutex1: Release left fork
+fork1 -> mutex1: Unlock
+@enduml
