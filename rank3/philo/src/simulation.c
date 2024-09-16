@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:51:38 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/12 13:46:07 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/16 09:17:17 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_wait_threads_to_stop(t_simu *simu)
 void	ft_start_simulation(t_simu *simu)
 {
 	ft_wait_threads_to_start(simu);
-	if (DEBBUG == true)
+	if (DEBUG == true)
 		ft_print_start_stop(simu, true);
 	pthread_mutex_lock(&simu->mtdata.start_mutex);
 	simu->mtdata.start_flag = true;
@@ -65,6 +65,6 @@ void	ft_start_simulation(t_simu *simu)
 	pthread_mutex_unlock(&simu->mtdata.start_mutex);
 	if (simu->monitor.thread)
 		pthread_join(simu->monitor.thread, NULL);
-	if (DEBBUG == true)
+	if (DEBUG == true)
 		ft_print_start_stop(simu, false);
 }

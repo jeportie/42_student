@@ -6,71 +6,96 @@
 #    By: jeportie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 14:15:40 by jeportie          #+#    #+#              #
-#    Updated: 2024/09/15 20:50:52 by jeportie         ###   ########.fr        #
+#    Updated: 2024/09/16 12:43:01 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-# Colors
+
+NAME = philo
+
+### BEGIN AUTO GENERATED FILES ###
+# List of source files:
+SRC = \
+  src/42ft.c \
+  src/forks_2.c \
+  src/init.c \
+  src/init_2.c \
+  src/parsing.c \
+  src/utilities.c \
+  src/utilities_2.c \
+  src/utilities_3.c \
+  src/forks.c \
+  src/monitor.c \
+  src/safe_init.c \
+  src/actions.c \
+  src/simulation.c \
+  src/routine.c \
+  src/printing.c 
+### END AUTO GENERATED FILES ###
+
+CC = 		cc
+CFLAGS = 	-Wall -Wextra -Werror -pthread --verbose
+LIBS = 
+VFLAGS = 	-g3 -fPIC 
+SANITIZE = 	-g3 -fPIC -fsanitize=thread
+
+DEPFLAGS =  -MMD -MP
+INCLUDES = 
+
+SRC_DIR = 	src
+OBJ_DIR = 	obj
+LIB_DIR =	
+
+# Object and Dependency Files
+OBJ = 		$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+DEPS = 		$(OBJ:.o=.d)
+
+# Extra
 RESET   = \033[0m
 GREEN   = \033[32m
 BLUE    = \033[34m
 YELLOW  = \033[33m
 RED     = \033[31m
 BOLD    = \033[1m
-
-NAME = philo
-
-CC = 		cc
-CFLAGS = 	-Wall -Wextra -Werror -g3 -pthread -fPIC -v
-SANITIZE = 	-fsanitize=thread
-DEPFLAGS =  -MMD -MP
-
-SRC_DIR = 	src
-OBJ_DIR = 	obj
-
-### BEGIN AUTO GENERATED FILES ###
-# List of source files:
-SRC = \
-  src/routine.c \
-  src/utilities_3.c \
-  src/safe_init.c \
-  src/simulation.c \
-  src/forks.c \
-  src/init_2.c \
-  src/monitor.c \
-  src/actions.c \
-  src/printing.c \
-  src/utilities_2.c \
-  src/parsing.c \
-  src/forks_2.c \
-  src/utilities.c \
-  src/init.c \
-  src/42ft.c 
-### END AUTO GENERATED FILES ###
-
-# Object files excluding main.c
-OBJ = 		$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-# Dependency files excluding main.c
-DEPS = 		$(OBJ:.o=.d)
-
-# Number of steps for progress bar (number of .o files)
 TOTAL_STEPS := $(words $(OBJ))
-
-# Script URL
 SCRIPT_URL = https://github.com/jeromeDev94/make_interface.git
 
-# Default target (run-prompt is first, so it runs by default)
+# Default target
 run-prompt: download-script
 	@./make_interface/make_prompt
 
-download-script:
-	@if [ ! -d make_interface ]; then \
-		echo "Downloading make_interface script..."; \
-		git clone $(SCRIPT_URL) > .download.log 2>&1;\
-		./make_interface/progress 10 .download.log; \
-		chmod +x make_interface/make_prompt; \
-		echo "Script downloaded !"; \
-		make -s help; \
-	fi
+all: $(NAME)
+
+$(NAME): $(OBJ) $(OBJ_DIR)/main.o
+	echo "Compiling..."
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIB_DIR) $(OBJ) $(OBJ_DIR)/main.o -o $(NAME) $(LIB) > .compile.log 2>&1
+	./make_interface/progress $(TOTAL_STEPS) .compile.log
+	echo "Compilation complete."
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(DEPFLAGS) $(INCLUDES) -c $< -o $@ 2>> .compile.log
+
+$(OBJ_DIR)/main.o: main.c | $(OBJ_DIR)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@ 2>> .compile.log
+
+-include $(DEPS)
+
+clean:
+	@echo "Cleaning object files"
+	@rm -rf $(OBJ_DIR)
+
+fclean: clean
+	@echo "Cleaning $(NAME)"
+	@rm -f $(NAME)
+
+fullclean: fclean
+	@echo "Cleaning Interface"
+	@rm -rf make_interface .download.log .compile.log
+
+# Recompile everything
+re: fclean all
 
 run:
 	@./$(NAME) $(filter-out $@,$(MAKECMDGOALS))
@@ -80,6 +105,22 @@ helgrind:
 
 valgrind:
 	@valgrind --leak-check=full --track-origins=yes ./$(NAME) $(filter-out $@,$(MAKECMDGOALS))
+
+# Thread sanitizer rule
+san: CFLAGS += $(SANITIZE)
+san: CFLAGS -= $(VFLAGS)
+san: CC = clang
+san: re
+
+val: CFLAGS -= $(SANITIZE)
+val: CFLAGS += $(VFLAGS) 
+val: CC = cc
+val: re
+
+default: CFLAGS -= $(SANITIZE)
+default: CFLAGS -= $(VFLAGS)
+default: CC = cc
+default: re
 
 norm:
 	@norminette include/ main.c src/
@@ -102,55 +143,25 @@ uml:
 update:
 	./make_interface/update_makefile.sh
 
-
-all: $(NAME)
-
-$(NAME): $(OBJ) $(OBJ_DIR)/main.o
-	echo "Compiling..."
-	$(CC) $(CFLAGS) $(OBJ) $(OBJ_DIR)/main.o -o $(NAME) > .compile.log 2>&1
-	./make_interface/progress $(TOTAL_STEPS) .compile.log
-	echo "Compilation complete."
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-# Generate object files and corresponding .d files for SRC
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@ 2>> .compile.log
-
-# Handle main.c separately
-$(OBJ_DIR)/main.o: main.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ 2>> .compile.log
-
-# Include dependency files after object files are generated
--include $(DEPS)
-
-# Thread sanitizer rule
-san: CFLAGS += $(SANITIZE)
-san: CC = clang
-san: re
-
-# Thread sanitizer rule
-default: CFLAGS -= $(SANITIZE)
-default: CC = cc
-default: re
-
-# Clean object files
-clean:
-	@echo "Cleaning object files"
-	@rm -rf $(OBJ_DIR)
-
-# Full clean (objects and executable)
-fclean: clean
-	@echo "Cleaning $(NAME)"
-	@rm -f $(NAME)
-
-fullclean: fclean
-	@echo "Cleaning Interface"
-	@rm -rf make_interface .download.log .compile.log
-
-# Recompile everything
-re: fclean all
+debug:
+	@echo "Searching for '# define DEBUG' in headers..."
+	@grep -Hn '# define DEBUG' include/*.h || echo "No DEBUG flag found."
+	@if grep -q '# define DEBUG' include/*.h; then \
+		read -p "Do you want to turn DEBUG on (1) or off (0)? " debug_value; \
+		if [ $$debug_value -eq 1 ]; then \
+			echo "Setting DEBUG to $$debug_value..."; \
+			sed -i 's/# define DEBUG.*/# define DEBUG 1 /' include/*.h; \
+			echo "DEBUG flag updated to $$debug_value."; \
+		elif [ $$debug_value -eq 0 ]; then \
+			echo "Setting DEBUG to $$debug_value..."; \
+			sed -i 's/# define DEBUG.*/# define DEBUG 0 /' include/*.h; \
+			echo "DEBUG flag updated to $$debug_value."; \
+		else \
+			echo "Invalid input. Please enter 0 or 1."; \
+		fi \
+	else \
+		echo "No '# define DEBUG' found in headers."; \
+	fi
 
 help:
 	@echo "$(BOLD)$(YELLOW)------------------- $(NAME) project Makefile (42 school) ----------------------$(RESET)"
@@ -168,6 +179,7 @@ help:
 	@echo "$(GREEN)  run ++         $(RESET)- Executes the compiled $(NAME) program with optional arguments."
 	@echo "$(GREEN)  helgrind ++    $(RESET)- Runs Valgrind's Helgrind tool for thread debugging."
 	@echo "$(GREEN)  valgrind ++    $(RESET)- Runs Valgrind's leak-check for memory leaks debugging."
+	@echo "$(GREEN)  debug          $(RESET)- Set the DEBUG flag in the project .h file(s)."
 	@echo "$(GREEN)  clean          $(RESET)- Removes object files."
 	@echo "$(GREEN)  fclean         $(RESET)- Removes object files and the executable."
 	@echo "$(GREEN)  fullclean      $(RESET)- Removes the interface, object files, and executable."
@@ -180,6 +192,17 @@ help:
 	@echo "$(GREEN)  help           $(RESET)- Displays this help message."
 	@echo ""
 	@echo "$(BOLD)$(YELLOW)-------------------------------------------------------------------------------$(RESET)"
+
+download-script:
+	@if [ ! -d make_interface ]; then \
+		echo "Downloading make_interface script..."; \
+		git clone $(SCRIPT_URL) > .download.log 2>&1;\
+		./make_interface/progress 10 .download.log; \
+		chmod +x make_interface/make_prompt; \
+		echo "Script downloaded !"; \
+		make -s help; \
+	fi
+
 # Catch-all rule to prevent errors with undefined targets
 %:
 	@:

@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:06:41 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/12 13:59:58 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/16 09:18:36 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	*ft_routine(void *arg)
 	ft_simulation_loop(philo);
 	ft_check_remaining_locks(philo);
 	mtx_increment_int(&philo->mtdata->end_mutex, &philo->mtdata->end_count);
-	if (DEBBUG == true)
+	if (DEBUG == true)
 		ft_print_state(philo, STOP);
 	return (NULL);
 }

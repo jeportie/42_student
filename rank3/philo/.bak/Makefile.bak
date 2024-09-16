@@ -6,7 +6,7 @@
 #    By: jeportie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 14:15:40 by jeportie          #+#    #+#              #
-#    Updated: 2024/09/15 20:50:52 by jeportie         ###   ########.fr        #
+#    Updated: 2024/09/16 09:59:43 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # Colors
@@ -32,10 +32,6 @@ OBJ_DIR = 	obj
 SRC =
 ### END AUTO GENERATED FILES ###
 
-#SRC = 		$(addprefix src/, philo.c forks.c forks_2.c safe_init.c \
-	  		init.c init_2.c monitor.c parsing.c routine.c simulation.c \
-	 	 	printing.c utilities.c utilities_2.c utilities_3.c 42ft.c)
-
 # Object files excluding main.c
 OBJ = 		$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # Dependency files excluding main.c
@@ -53,7 +49,7 @@ run-prompt: download-script
 
 download-script:
 	@if [ ! -d make_interface ]; then \
-		echo "Downloading script..."; \
+		echo "Downloading make_interface script..."; \
 		git clone $(SCRIPT_URL) > .download.log 2>&1;\
 		./make_interface/progress 10 .download.log; \
 		chmod +x make_interface/make_prompt; \
@@ -62,19 +58,19 @@ download-script:
 	fi
 
 run:
-	@./philo $(filter-out $@,$(MAKECMDGOALS))
+	@./$(NAME) $(filter-out $@,$(MAKECMDGOALS))
 
 helgrind:
-	@valgrind --tool=helgrind --history-level=full ./philo $(filter-out $@,$(MAKECMDGOALS))
+	@valgrind --tool=helgrind --history-level=full ./$(NAME) $(filter-out $@,$(MAKECMDGOALS))
 
 valgrind:
-	@valgrind --leak-check=full --track-origins=yes ./philo $(filter-out $@,$(MAKECMDGOALS))
+	@valgrind --leak-check=full --track-origins=yes ./$(NAME) $(filter-out $@,$(MAKECMDGOALS))
 
 norm:
 	@norminette include/ main.c src/
 
 todo:
-	@vim .philo.todo.md
+	@vim .$(NAME).todo.md
 
 create-cal:
 	@if [ ! -d .calendar ]; then \
@@ -83,7 +79,7 @@ create-cal:
 	fi
 
 calendar: create-cal
-	vim -c "let g:calendar_cache_directory=expand('./.calendar/')"  -c ":Calendar" .calendar/$(NAME).calendar -c ":bd .calendar/philo.calendar" 
+	vim -c "let g:calendar_cache_directory=expand('./.calendar/')"  -c ":Calendar" .calendar/$(NAME).calendar -c ":bd .calendar/$(NAME).calendar" 
 
 uml:
 	@./make_interface/interactive_select 
@@ -124,6 +120,27 @@ default: CFLAGS -= $(SANITIZE)
 default: CC = cc
 default: re
 
+# Debug rule to toggle the DEBUG flag in header files located in /include
+debug:
+	@echo "Searching for '# define DEBUG' in headers..."
+	@grep -Hn '# define DEBUG' include/*.h || echo "No DEBUG flag found."
+	@if grep -q '# define DEBUG' include/*.h; then \
+		read -p "Do you want to turn DEBUG on (1) or off (0)? " debug_value; \
+		if [ $$debug_value -eq 1 ]; then \
+			echo "Setting DEBUG to $$debug_value..."; \
+			sed -i 's/# define DEBUG.*/# define DEBUG 1 /' include/*.h; \
+			echo "DEBUG flag updated to $$debug_value."; \
+		elif [ $$debug_value -eq 0 ]; then \
+			echo "Setting DEBUG to $$debug_value..."; \
+			sed -i 's/# define DEBUG.*/# define DEBUG 0 /' include/*.h; \
+			echo "DEBUG flag updated to $$debug_value."; \
+		else \
+			echo "Invalid input. Please enter 0 or 1."; \
+		fi \
+	else \
+		echo "No '# define DEBUG' found in headers."; \
+	fi
+
 # Clean object files
 clean:
 	@echo "Cleaning object files"
@@ -142,7 +159,7 @@ fullclean: fclean
 re: fclean all
 
 help:
-	@echo "$(BOLD)$(YELLOW)------------------- Philosopher project Makefile (42 school) -------------------$(RESET)"
+	@echo "$(BOLD)$(YELLOW)------------------- $(NAME) project Makefile (42 school) ----------------------$(RESET)"
 	@echo ""
 	@echo "Welcome to the 42 School Make Interface - 42MI"
 	@echo ""
@@ -151,16 +168,18 @@ help:
 	@echo ""
 	@echo "$(BOLD)$(BLUE)Available targets (++ = takes args after target):$(RESET)"
 	@echo "$(GREEN)  norm           $(RESET)- Runs norminette on the source files."
-	@echo "$(GREEN)  all            $(RESET)- Compiles the philo project."
+	@echo "$(GREEN)  all            $(RESET)- Compiles the $(NAME) project."
 	@echo "$(GREEN)  san            $(RESET)- Clang compiles with thread sanitizer enabled. $(RED)!DO NOT USE VALGRIND.$(RESET)"
 	@echo "$(GREEN)  default        $(RESET)- Unable sanitizer thread and compiles with cc (Valgrind OK)"
-	@echo "$(GREEN)  run ++         $(RESET)- Executes the compiled philo program with optional arguments."
+	@echo "$(GREEN)  run ++         $(RESET)- Executes the compiled $(NAME) program with optional arguments."
 	@echo "$(GREEN)  helgrind ++    $(RESET)- Runs Valgrind's Helgrind tool for thread debugging."
 	@echo "$(GREEN)  valgrind ++    $(RESET)- Runs Valgrind's leak-check for memory leaks debugging."
+	@echo "$(GREEN)  debug          $(RESET)- Set the DEBUG flag in the project .h file(s)."
 	@echo "$(GREEN)  clean          $(RESET)- Removes object files."
 	@echo "$(GREEN)  fclean         $(RESET)- Removes object files and the executable."
 	@echo "$(GREEN)  fullclean      $(RESET)- Removes the interface, object files, and executable."
 	@echo "$(GREEN)  re             $(RESET)- Cleans and recompiles the project."
+	@echo "$(GREEN)  update         $(RESET)- Update the .c source files list in Makefile."
 	@echo "$(GREEN)  uml            $(RESET)- Enter in the UML schematics menu of the projects."
 	@echo "$(GREEN)  calendar       $(RESET)- Displays the project calendar."
 	@echo "$(GREEN)  todo           $(RESET)- Displays the project todo list."

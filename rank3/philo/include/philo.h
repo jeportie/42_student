@@ -6,7 +6,7 @@
 /*   By: jeportie <jeportie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:23:49 by jeportie          #+#    #+#             */
-/*   Updated: 2024/09/13 14:07:20 by jeportie         ###   ########.fr       */
+/*   Updated: 2024/09/16 09:06:21 by jeportie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <stdbool.h>
 # include <limits.h>
 
-# define DEBBUG 0
+# define DEBUG 0 
 
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
