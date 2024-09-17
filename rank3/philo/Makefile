@@ -6,7 +6,7 @@
 #    By: jeportie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 14:15:40 by jeportie          #+#    #+#              #
-#    Updated: 2024/09/16 12:43:01 by jeportie         ###   ########.fr        #
+#    Updated: 2024/09/16 16:38:46 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,19 @@ SRC = \
   src/printing.c 
 ### END AUTO GENERATED FILES ###
 
+# **************************************************************************** #
+#                               Compiler & Flags                               #
+# **************************************************************************** #
+
 CC = 		cc
 CFLAGS = 	-Wall -Wextra -Werror -pthread --verbose
 LIBS = 
 VFLAGS = 	-g3 -fPIC 
 SANITIZE = 	-g3 -fPIC -fsanitize=thread
+VALG =		valgrind --leak-check=full --show-leak-kinds=all \
+			--track-origins=yes --error-exitcode=1
+HELG =      valgrind --tool=helgrind --history-level=full \
+			--track-lockorders=yes --show-below-main=yes --free-is-write=yes
 
 DEPFLAGS =  -MMD -MP
 INCLUDES = 
@@ -45,30 +53,47 @@ SRC_DIR = 	src
 OBJ_DIR = 	obj
 LIB_DIR =	
 
+# **************************************************************************** #
+#                                 Files                                        #
+# **************************************************************************** #
+
 # Object and Dependency Files
 OBJ = 		$(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 DEPS = 		$(OBJ:.o=.d)
 
-# Extra
+# **************************************************************************** #
+#                                 Colors                                       #
+# **************************************************************************** #
+
 RESET   = \033[0m
 GREEN   = \033[32m
 BLUE    = \033[34m
 YELLOW  = \033[33m
 RED     = \033[31m
 BOLD    = \033[1m
+
+# **************************************************************************** #
+#                           Other Variables                                    #
+# **************************************************************************** #
+
 TOTAL_STEPS := $(words $(OBJ))
 SCRIPT_URL = https://github.com/jeromeDev94/make_interface.git
 
+# **************************************************************************** #
+#                                Main Rules                                    #
+# **************************************************************************** #
+
 # Default target
 run-prompt: download-script
-	@./make_interface/make_prompt
+	@./make_interface/exec/make_prompt
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_DIR)/main.o
 	echo "Compiling..."
-	$(CC) $(CFLAGS) $(INCLUDES) $(LIB_DIR) $(OBJ) $(OBJ_DIR)/main.o -o $(NAME) $(LIB) > .compile.log 2>&1
-	./make_interface/progress $(TOTAL_STEPS) .compile.log
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIB_DIR) $(OBJ) $(OBJ_DIR)/main.o -o \
+		$(NAME) $(LIB) > .compile.log 2>&1
+	./make_interface/exec/progress $(TOTAL_STEPS) .compile.log
 	echo "Compilation complete."
 
 $(OBJ_DIR):
@@ -82,6 +107,10 @@ $(OBJ_DIR)/main.o: main.c | $(OBJ_DIR)
 
 -include $(DEPS)
 
+# **************************************************************************** #
+#                                Clean-up                                      #
+# **************************************************************************** #
+
 clean:
 	@echo "Cleaning object files"
 	@rm -rf $(OBJ_DIR)
@@ -94,17 +123,20 @@ fullclean: fclean
 	@echo "Cleaning Interface"
 	@rm -rf make_interface .download.log .compile.log
 
-# Recompile everything
+# **************************************************************************** #
+#                                Other Rules                                   #
+# **************************************************************************** #
+
 re: fclean all
 
 run:
 	@./$(NAME) $(filter-out $@,$(MAKECMDGOALS))
 
 helgrind:
-	@valgrind --tool=helgrind --history-level=full ./$(NAME) $(filter-out $@,$(MAKECMDGOALS))
+	@$(HELG) ./$(NAME) $(filter-out $@,$(MAKECMDGOALS))
 
 valgrind:
-	@valgrind --leak-check=full --track-origins=yes ./$(NAME) $(filter-out $@,$(MAKECMDGOALS))
+	@$(VALG) ./$(NAME) $(filter-out $@,$(MAKECMDGOALS))
 
 # Thread sanitizer rule
 san: CFLAGS += $(SANITIZE)
@@ -122,6 +154,10 @@ default: CFLAGS -= $(VFLAGS)
 default: CC = cc
 default: re
 
+# **************************************************************************** #
+#                               Utility Rules                                  #
+# **************************************************************************** #
+
 norm:
 	@norminette include/ main.c src/
 
@@ -135,13 +171,19 @@ create-cal:
 	fi
 
 calendar: create-cal
-	vim -c "let g:calendar_cache_directory=expand('./.calendar/')"  -c ":Calendar" .calendar/$(NAME).calendar -c ":bd .calendar/$(NAME).calendar" 
+	vim -c "let g:calendar_cache_directory=expand('./.calendar/')" \
+		-c ":Calendar" .calendar/$(NAME).calendar \
+		-c ":bd .calendar/$(NAME).calendar" 
 
 uml:
 	@./make_interface/interactive_select 
 
+build:
+	@./make_interface/config/build
+	make update
+
 update:
-	./make_interface/update_makefile.sh
+	@./make_interfacei/exec/update_makefile.sh
 
 debug:
 	@echo "Searching for '# define DEBUG' in headers..."
@@ -164,7 +206,7 @@ debug:
 	fi
 
 help:
-	@echo "$(BOLD)$(YELLOW)------------------- $(NAME) project Makefile (42 school) ----------------------$(RESET)"
+	@echo "$(BOLD)$(YELLOW)------------------- $(NAME) project Makefile (42 school) ---------------------------------$(RESET)"
 	@echo ""
 	@echo "Welcome to the 42 School Make Interface - 42MI"
 	@echo ""
@@ -174,6 +216,7 @@ help:
 	@echo "$(BOLD)$(BLUE)Available targets (++ = takes args after target):$(RESET)"
 	@echo "$(GREEN)  norm           $(RESET)- Runs norminette on the source files."
 	@echo "$(GREEN)  all            $(RESET)- Compiles the $(NAME) project."
+	@echo "$(GREEN)  val            $(RESET)- Compiles the $(NAME) project with valgrind compilation flags."
 	@echo "$(GREEN)  san            $(RESET)- Clang compiles with thread sanitizer enabled. $(RED)!DO NOT USE VALGRIND.$(RESET)"
 	@echo "$(GREEN)  default        $(RESET)- Unable sanitizer thread and compiles with cc (Valgrind OK)"
 	@echo "$(GREEN)  run ++         $(RESET)- Executes the compiled $(NAME) program with optional arguments."
@@ -184,6 +227,7 @@ help:
 	@echo "$(GREEN)  fclean         $(RESET)- Removes object files and the executable."
 	@echo "$(GREEN)  fullclean      $(RESET)- Removes the interface, object files, and executable."
 	@echo "$(GREEN)  re             $(RESET)- Cleans and recompiles the project."
+	@echo "$(GREEN)  build          $(RESET)- Run the Makefile builder script."
 	@echo "$(GREEN)  update         $(RESET)- Update the .c source files list in Makefile."
 	@echo "$(GREEN)  uml            $(RESET)- Enter in the UML schematics menu of the projects."
 	@echo "$(GREEN)  calendar       $(RESET)- Displays the project calendar."
@@ -191,14 +235,14 @@ help:
 	@echo "$(GREEN)  run-prompt     $(RESET)- Starts a custom Make prompt interface."
 	@echo "$(GREEN)  help           $(RESET)- Displays this help message."
 	@echo ""
-	@echo "$(BOLD)$(YELLOW)-------------------------------------------------------------------------------$(RESET)"
+	@echo "$(BOLD)$(YELLOW)-----------------------------------------------------------------------------------------$(RESET)"
 
 download-script:
 	@if [ ! -d make_interface ]; then \
 		echo "Downloading make_interface script..."; \
 		git clone $(SCRIPT_URL) > .download.log 2>&1;\
 		./make_interface/progress 10 .download.log; \
-		chmod +x make_interface/make_prompt; \
+		chmod +x make_interface/exec/make_prompt; \
 		echo "Script downloaded !"; \
 		make -s help; \
 	fi
@@ -207,4 +251,5 @@ download-script:
 %:
 	@:
 
-.PHONY: all clean fclean re val san download-script run-prompt run norm valgrind helgrind
+### PHONY TARGETS ###
+.PHONY: all clean fclean re val san download-script run-prompt run norm valgrind helgrind todo calendar debug
