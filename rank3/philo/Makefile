@@ -6,7 +6,7 @@
 #    By: jeportie <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 14:15:40 by jeportie          #+#    #+#              #
-#    Updated: 2024/09/19 13:18:54 by jeportie         ###   ########.fr        #
+#    Updated: 2024/09/19 13:26:54 by jeportie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -254,7 +254,7 @@ download-script:
 	@if [ ! -d make_interface ]; then \
 		echo "Downloading make_interface script..."; \
 		git clone $(SCRIPT_URL) > .download.log 2>&1;\
-		./make_interface/progress 10 .download.log; \
+		./make_interface/exec/progress 10 .download.log; \
 		chmod +x make_interface/exec/make_prompt; \
 		echo "Script downloaded !"; \
 		make -s help; \
