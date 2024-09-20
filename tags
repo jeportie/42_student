@@ -1,0 +1,1789 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ARG_CONST_STRING	rank0/libft/libft_tester/src/libftest.h	/^	ARG_CONST_STRING,$/;"	e	enum:__anon1
+ARG_CONST_VOID	rank0/libft/libft_tester/src/libftest.h	/^	ARG_CONST_VOID,$/;"	e	enum:__anon1
+ARG_INT	rank0/libft/libft_tester/src/libftest.h	/^	ARG_INT,$/;"	e	enum:__anon1
+ARG_SIZE_T	rank0/libft/libft_tester/src/libftest.h	/^	ARG_SIZE_T,$/;"	e	enum:__anon1
+ARG_STRING	rank0/libft/libft_tester/src/libftest.h	/^	ARG_STRING,$/;"	e	enum:__anon1
+ARG_UNKNOWN	rank0/libft/libft_tester/src/libftest.h	/^	ARG_UNKNOWN = -1$/;"	e	enum:__anon1
+BLUE	rank3/philo/Makefile	/^BLUE    = \\033[34m$/;"	m
+BOLD	rank3/philo/Makefile	/^BOLD    = \\033[1m$/;"	m
+BONUS	rank1/get_next_line/tester/Makefile	/^BONUS = get_next_line_utils_bonus.c get_next_line_bonus.c$/;"	m
+BONUS	rank2/push_swap/Makefile	/^BONUS =			checker$/;"	m
+BONUS_OBJ	rank0/libft/Makefile	/^BONUS_OBJ = $(BONUS_SRC:.c=.o)$/;"	m
+BONUS_OBJ	rank1/printf/libft/Makefile	/^BONUS_OBJ = $(BONUS_SRC:.c=.o)$/;"	m
+BONUS_OBJ	rank2/pipex/libft/Makefile	/^BONUS_OBJ = $(BONUS_SRC:.c=.o)$/;"	m
+BONUS_OBJ	rank2/push_swap/Makefile	/^BONUS_OBJ = 	$(addprefix $(OBJ_DIR)\/, $(SRC_BONUS:bonus\/%.c=bonus\/%.o))$/;"	m
+BONUS_OBJ	rank2/push_swap/libft/Makefile	/^BONUS_OBJ = $(BONUS_SRC:.c=.o)$/;"	m
+BONUS_OBJ	rank2/so_long/libft/Makefile	/^BONUS_OBJ = $(BONUS_SRC:.c=.o)$/;"	m
+BONUS_SRC	rank0/libft/Makefile	/^BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \\$/;"	m
+BONUS_SRC	rank1/printf/libft/Makefile	/^BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \\$/;"	m
+BONUS_SRC	rank2/pipex/libft/Makefile	/^BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \\$/;"	m
+BONUS_SRC	rank2/push_swap/libft/Makefile	/^BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \\$/;"	m
+BONUS_SRC	rank2/so_long/libft/Makefile	/^BONUS_SRC = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \\$/;"	m
+BUFFER_SIZE	rank1/get_next_line/get_next_line.h	17;"	d
+BUFFER_SIZE	rank1/get_next_line/get_next_line_bonus.h	17;"	d
+BUFFER_SIZE	rank1/printf/include/ft_printf.h	20;"	d
+BUFFER_SIZE	rank2/pipex/include/libft.h	27;"	d
+BUFFER_SIZE	rank2/push_swap/include/libft.h	27;"	d
+BUFFER_SIZE	rank2/so_long/include/libft.h	27;"	d
+CC	rank0/filemanip/Makefile	/^CC = gcc$/;"	m
+CC	rank0/libft/Makefile	/^CC = gcc$/;"	m
+CC	rank0/libft/libft_tester/src/Makefile	/^CC = gcc$/;"	m
+CC	rank1/get_next_line/tester/Makefile	/^CC = gcc$/;"	m
+CC	rank1/printf/Makefile	/^CC = cc$/;"	m
+CC	rank1/printf/libft/Makefile	/^CC = gcc$/;"	m
+CC	rank2/pipex/Makefile	/^CC = 			cc$/;"	m
+CC	rank2/pipex/libft/Makefile	/^CC = gcc$/;"	m
+CC	rank2/push_swap/Makefile	/^CC = 			cc$/;"	m
+CC	rank2/push_swap/libft/Makefile	/^CC = gcc$/;"	m
+CC	rank2/so_long/Makefile	/^CC = 			cc$/;"	m
+CC	rank2/so_long/libft/Makefile	/^CC = gcc$/;"	m
+CC	rank2/so_long/minilibx/Makefile.mk	/^	CC = clang$/;"	m
+CC	rank2/so_long/minilibx/Makefile.mk	/^CC	= gcc$/;"	m
+CC	rank2/so_long/minilibx/test/Makefile.mk	/^	CC	= gcc$/;"	m
+CC	rank2/so_long/minilibx/test/Makefile.mk	/^	CC = clang$/;"	m
+CC	rank3/philo/Makefile	/^CC = 		cc$/;"	m
+CC	rank3/philo/Makefile	/^default: CC = cc$/;"	m
+CC	rank3/philo/Makefile	/^san: CC = clang$/;"	m
+CC	rank3/philo/Makefile	/^val: CC = cc$/;"	m
+CFLAGS	rank0/filemanip/Makefile	/^CFLAGS = -Wall -Wextra -Werror -I libft_project_Nov23\/libft$/;"	m
+CFLAGS	rank0/libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+CFLAGS	rank0/libft/libft_tester/src/Makefile	/^CFLAGS = -Wall -Werror -Wextra -I ..\/lib -L..\/lib -lft -lfmanip -lbsd$/;"	m
+CFLAGS	rank1/get_next_line/tester/Makefile	/^CFLAGS = -Wall -Wextra -Werror -I. -g3$/;"	m
+CFLAGS	rank1/printf/Makefile	/^CFLAGS = -Wall -Wextra -Werror -I.\/include$/;"	m
+CFLAGS	rank1/printf/libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+CFLAGS	rank2/pipex/Makefile	/^CFLAGS = 		-Wall -Wextra -g3 -Iinclude -Ilibft$/;"	m
+CFLAGS	rank2/pipex/libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+CFLAGS	rank2/push_swap/Makefile	/^CFLAGS = 		-Wall -Wextra -Werror -g3 -Iinclude -Ilibft$/;"	m
+CFLAGS	rank2/push_swap/libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+CFLAGS	rank2/so_long/Makefile	/^CFLAGS = 		-Wall -Wextra -Werror -g3 -Iinclude -Ilibft -Iminilibx$/;"	m
+CFLAGS	rank2/so_long/libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+CFLAGS	rank2/so_long/minilibx/Makefile.mk	/^CFLAGS	= -O3 -I$(INC)$/;"	m
+CFLAGS	rank2/so_long/minilibx/test/Makefile.mk	/^CFLAGS= -I$(INC) -O3 -I.. -g$/;"	m
+CFLAGS	rank3/philo/Makefile	/^CFLAGS = 	-Wall -Wextra -Werror -pthread$/;"	m
+CHILD	rank2/pipex/include/pipex.h	29;"	d
+COPYMODE	rank2/pipex/include/pipex.h	27;"	d
+DEAD	archive/philo (copy)/include/philo.h	46;"	d
+DEAD	archive/philo (tried to take out mutex)/include/philo.h	30;"	d
+DEAD	rank3/philo/include/philo.h	32;"	d
+DEAD_MUTEX	archive/philo (copy)/include/philo.h	30;"	d
+DEBUG	rank3/philo/include/philo.h	26;"	d
+DEPFLAGS	rank3/philo/Makefile	/^DEPFLAGS =  -MMD -MP$/;"	m
+DEPS	rank3/philo/Makefile	/^DEPS = 		$(OBJ:.o=.d)$/;"	m
+DirectoryOfThisScript	rank3/philo/ycm_extra_conf.py	/^def DirectoryOfThisScript():$/;"	f
+EAT	archive/philo (copy)/include/philo.h	50;"	d
+EAT	archive/philo (tried to take out mutex)/include/philo.h	34;"	d
+EAT	rank3/philo/include/philo.h	36;"	d
+END	archive/philo (copy)/include/philo.h	40;"	d
+END_MUTEX	archive/philo (copy)/include/philo.h	34;"	d
+ENOCHAR	rank2/so_long/include/so_long.h	/^	ENOCHAR = 100,$/;"	e	enum:e_ErrorCode
+ENOCOL	rank2/so_long/include/so_long.h	/^	ENOCOL,$/;"	e	enum:e_ErrorCode
+ENODOOR	rank2/so_long/include/so_long.h	/^	ENODOOR,$/;"	e	enum:e_ErrorCode
+ENOEXIT	rank2/so_long/include/so_long.h	/^	ENOEXIT,$/;"	e	enum:e_ErrorCode
+ENOEXIT2	rank2/so_long/include/so_long.h	/^	ENOEXIT2,$/;"	e	enum:e_ErrorCode
+ENOFORMAT	rank2/so_long/include/so_long.h	/^	ENOFORMAT,$/;"	e	enum:e_ErrorCode
+ENOINIT	rank2/so_long/include/so_long.h	/^	ENOINIT,$/;"	e	enum:e_ErrorCode
+ENOLIST	rank2/so_long/include/so_long.h	/^	ENOLIST,$/;"	e	enum:e_ErrorCode
+ENOPATH	rank2/so_long/include/so_long.h	/^	ENOPATH,$/;"	e	enum:e_ErrorCode
+ENORECT	rank2/so_long/include/so_long.h	/^	ENORECT,$/;"	e	enum:e_ErrorCode
+ENOSTART	rank2/so_long/include/so_long.h	/^	ENOSTART,$/;"	e	enum:e_ErrorCode
+ENOSTART2	rank2/so_long/include/so_long.h	/^	ENOSTART2,$/;"	e	enum:e_ErrorCode
+ENOTILE	rank2/so_long/include/so_long.h	/^	ENOTILE,$/;"	e	enum:e_ErrorCode
+ENOWALLS	rank2/so_long/include/so_long.h	/^	ENOWALLS,$/;"	e	enum:e_ErrorCode
+ENOWIN	rank2/so_long/include/so_long.h	/^	ENOWIN$/;"	e	enum:e_ErrorCode
+ENV_DISPLAY	rank2/so_long/minilibx/mlx_int.h	43;"	d
+ERNOFORMAT	rank1/printf/include/ft_printf.h	/^	ERNOFORMAT,$/;"	e	enum:e_error
+ERNOFORMAT	rank2/pipex/include/libft.h	/^	ERNOFORMAT,$/;"	e	enum:e_error
+ERNOFORMAT	rank2/push_swap/include/libft.h	/^	ERNOFORMAT,$/;"	e	enum:e_error
+ERNOFORMAT	rank2/so_long/include/libft.h	/^	ERNOFORMAT,$/;"	e	enum:e_error
+ERNOMEM	rank1/printf/include/ft_printf.h	/^	ERNOMEM,$/;"	e	enum:e_error
+ERNOMEM	rank2/pipex/include/libft.h	/^	ERNOMEM,$/;"	e	enum:e_error
+ERNOMEM	rank2/push_swap/include/libft.h	/^	ERNOMEM,$/;"	e	enum:e_error
+ERNOMEM	rank2/so_long/include/libft.h	/^	ERNOMEM,$/;"	e	enum:e_error
+ERNOWRITE	rank1/printf/include/ft_printf.h	/^	ERNOWRITE,$/;"	e	enum:e_error
+ERNOWRITE	rank2/pipex/include/libft.h	/^	ERNOWRITE,$/;"	e	enum:e_error
+ERNOWRITE	rank2/push_swap/include/libft.h	/^	ERNOWRITE,$/;"	e	enum:e_error
+ERNOWRITE	rank2/so_long/include/libft.h	/^	ERNOWRITE,$/;"	e	enum:e_error
+ERROR	rank2/pipex/include/libft.h	30;"	d
+ERROR	rank2/pipex/include/pipex.h	28;"	d
+ERROR	rank2/push_swap/include/libft.h	30;"	d
+ERROR	rank2/so_long/include/libft.h	30;"	d
+ERR_NO_TRUECOLOR	rank2/so_long/minilibx/mlx_int.h	45;"	d
+EVEN	rank3/philo/include/philo.h	40;"	d
+EVENTS	rank2/so_long/Makefile	/^EVENTS = 		$(addprefix src\/events_src\/, \\$/;"	m
+EXEC	rank2/pipex/Makefile	/^EXEC = 		$(addprefix src\/exec_src\/, ft_fork_and_exec.c ft_process.c)$/;"	m
+EXEC_DIR	rank1/printf/Makefile	/^EXEC_DIR = exec$/;"	m
+EXEC_DIR	rank2/pipex/Makefile	/^EXEC_DIR = 		exec$/;"	m
+EXEC_DIR	rank2/so_long/Makefile	/^EXEC_DIR = 		exec$/;"	m
+FILEMANIP_H	rank0/filemanip/libfmanip.h	14;"	d
+FILEMANIP_H	rank0/libft/libft_tester/lib/libfmanip.h	14;"	d
+FLINE_BUFFER_SIZE	rank0/filemanip/libfmanip.h	16;"	d
+FLINE_BUFFER_SIZE	rank0/libft/libft_tester/lib/libfmanip.h	16;"	d
+FLINE_BUFFER_SIZE	rank0/libft/libft_tester/src/libftest.h	16;"	d
+FT_PRINTF_H	rank1/printf/include/ft_printf.h	14;"	d
+FlagsForFile	rank3/philo/ycm_extra_conf.py	/^def FlagsForFile(filename):$/;"	f
+GAME_BORDER	rank2/so_long/include/so_long.h	31;"	d
+GARBAGE	rank2/so_long/Makefile	/^GARBAGE	=		$(addprefix src\/gc_src\/, \\$/;"	m
+GET_NEXT_LINE_BONUS_H	rank1/get_next_line/get_next_line_bonus.h	14;"	d
+GET_NEXT_LINE_H	rank1/get_next_line/get_next_line.h	14;"	d
+GREEN	archive/philo (copy)/include/philo.h	43;"	d
+GREEN	archive/philo (tried to take out mutex)/include/philo.h	27;"	d
+GREEN	rank3/philo/Makefile	/^GREEN   = \\033[32m$/;"	m
+GREEN	rank3/philo/include/philo.h	29;"	d
+HELG	rank3/philo/Makefile	/^HELG =      valgrind --tool=helgrind --history-level=full \\$/;"	m
+IM1_SX	rank2/so_long/minilibx/test/main.c	7;"	d	file:
+IM1_SY	rank2/so_long/minilibx/test/main.c	8;"	d	file:
+IM3_SX	rank2/so_long/minilibx/test/main.c	9;"	d	file:
+IM3_SY	rank2/so_long/minilibx/test/main.c	10;"	d	file:
+INC	rank2/so_long/minilibx/Makefile.mk	/^INC	=%%%%$/;"	m
+INC	rank2/so_long/minilibx/test/Makefile.mk	/^INC=%%%%$/;"	m
+INCLIB	rank2/so_long/minilibx/test/Makefile.mk	/^INCLIB=$(INC)\/..\/lib$/;"	m
+INCLUDES	rank3/philo/Makefile	/^INCLUDES = $/;"	m
+INIT	rank2/pipex/Makefile	/^INIT = 		$(addprefix src\/init_src\/, ft_init_pipex.c \\$/;"	m
+INIT_MUTEX	archive/philo (copy)/include/philo.h	32;"	d
+INIT_PHILOS	archive/philo (copy)/include/philo.h	38;"	d
+LEFT	archive/philo (copy)/include/philo.h	48;"	d
+LEFT	archive/philo (tried to take out mutex)/include/philo.h	32;"	d
+LEFT	rank3/philo/include/philo.h	34;"	d
+LFLAGS	rank2/so_long/minilibx/test/Makefile.mk	/^LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm$/;"	m
+LIBC	rank0/libft/libft_tester/src/libftest.h	17;"	d
+LIBFT	rank0/libft/libft_tester/src/libftest.h	18;"	d
+LIBFTEST_H	rank0/libft/libft_tester/src/libftest.h	14;"	d
+LIBFT_DIR	rank2/pipex/Makefile	/^LIBFT_DIR = 	libft$/;"	m
+LIBFT_DIR	rank2/push_swap/Makefile	/^LIBFT_DIR = 	libft$/;"	m
+LIBFT_DIR	rank2/so_long/Makefile	/^LIBFT_DIR = 	libft$/;"	m
+LIBFT_H	rank0/libft/libft.h	14;"	d
+LIBFT_H	rank0/libft/libft_tester/lib/libft.h	14;"	d
+LIBFT_H	rank1/printf/include/libft.h	14;"	d
+LIBFT_H	rank2/pipex/include/libft.h	14;"	d
+LIBFT_H	rank2/push_swap/include/libft.h	14;"	d
+LIBFT_H	rank2/so_long/include/libft.h	14;"	d
+LIBFT_SRC	rank1/printf/Makefile	/^LIBFT_SRC = $(addprefix libft\/, ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c \\$/;"	m
+LIBS	rank2/pipex/Makefile	/^LIBS = 			-L$(LIBFT_DIR) -lft$/;"	m
+LIBS	rank2/push_swap/Makefile	/^LIBS = 			-L$(LIBFT_DIR) -lft$/;"	m
+LIBS	rank2/so_long/Makefile	/^LIBS = 			-L$(MINILIBX_DIR) -lmlx -L$(LIBFT_DIR) -lft -lXext -lX11 -ldl -lglfw -pthread -lm$/;"	m
+LIBS	rank3/philo/Makefile	/^LIBS = $/;"	m
+LIB_DIR	rank3/philo/Makefile	/^LIB_DIR =	$/;"	m
+LOADED	rank2/so_long/include/so_long.h	34;"	d
+LOCALHOST	rank2/so_long/minilibx/mlx_int.h	44;"	d
+MAIN_OBJ	rank2/push_swap/Makefile	/^MAIN_OBJ = 		$(addprefix $(OBJ_DIR)\/, $(SRC_MAIN:%.c=%.o))$/;"	m
+MAP_PARSER	rank2/so_long/Makefile	/^MAP_PARSER =	$(addprefix src\/map_parser_src\/, \\$/;"	m
+MAP_RENDER	rank2/so_long/Makefile	/^MAP_RENDER = 	$(addprefix src\/map_render_src\/, \\$/;"	m
+MAP_TILE_SIZE	rank2/so_long/include/so_long.h	30;"	d
+MAX_COMMANDS	rank2/pipex/include/pipex.h	26;"	d
+MEAL_MUTEX	archive/philo (copy)/include/philo.h	31;"	d
+MINILIBX_DIR	rank2/so_long/Makefile	/^MINILIBX_DIR = 	minilibx$/;"	m
+MLX_H	rank2/so_long/include/mlx.h	32;"	d
+MLX_H	rank2/so_long/minilibx/mlx.h	32;"	d
+MLX_INT_H	rank2/so_long/minilibx/mlx_int.h	19;"	d
+MLX_MAX_EVENT	rank2/so_long/minilibx/mlx_int.h	40;"	d
+MLX_TYPE_SHM	rank2/so_long/minilibx/mlx_int.h	37;"	d
+MLX_TYPE_SHM_PIXMAP	rank2/so_long/minilibx/mlx_int.h	36;"	d
+MLX_TYPE_XIMAGE	rank2/so_long/minilibx/mlx_int.h	38;"	d
+MakeRelativePathsAbsolute	rank3/philo/ycm_extra_conf.py	/^def MakeRelativePathsAbsolute(flags, working_directory):$/;"	f
+NAME	rank0/filemanip/Makefile	/^NAME = libfmanip.a$/;"	m
+NAME	rank0/libft/Makefile	/^NAME = libft.a$/;"	m
+NAME	rank0/libft/libft_tester/src/Makefile	/^NAME = libftest.a$/;"	m
+NAME	rank1/get_next_line/tester/Makefile	/^NAME = libgnl.a$/;"	m
+NAME	rank1/printf/Makefile	/^NAME = libftprintf.a$/;"	m
+NAME	rank1/printf/libft/Makefile	/^NAME = libft.a$/;"	m
+NAME	rank2/pipex/Makefile	/^NAME = 			pipex.a$/;"	m
+NAME	rank2/pipex/libft/Makefile	/^NAME = libft.a$/;"	m
+NAME	rank2/push_swap/Makefile	/^NAME = 			push_swap$/;"	m
+NAME	rank2/push_swap/libft/Makefile	/^NAME = libft.a$/;"	m
+NAME	rank2/so_long/Makefile	/^NAME = 			so_long.a$/;"	m
+NAME	rank2/so_long/libft/Makefile	/^NAME = libft.a$/;"	m
+NAME	rank2/so_long/minilibx/Makefile.mk	/^NAME		= libmlx.a$/;"	m
+NAME	rank2/so_long/minilibx/test/Makefile.mk	/^NAME= mlx-test$/;"	m
+NAME	rank3/philo/Makefile	/^NAME = philo$/;"	m
+NAME_UNAME	rank2/so_long/minilibx/Makefile.mk	/^NAME_UNAME	= libmlx_$(UNAME).a$/;"	m
+NOERR	rank1/printf/include/ft_printf.h	/^	NOERR,$/;"	e	enum:e_error
+NOERR	rank2/pipex/include/libft.h	/^	NOERR,$/;"	e	enum:e_error
+NOERR	rank2/push_swap/include/libft.h	/^	NOERR,$/;"	e	enum:e_error
+NOERR	rank2/so_long/include/libft.h	/^	NOERR,$/;"	e	enum:e_error
+NO_TILE	rank2/so_long/include/so_long.h	33;"	d
+NO_WIN	rank2/so_long/include/so_long.h	32;"	d
+NUM_MEALS	archive/philo (copy)/include/philo.h	28;"	d
+NUM_PHILOS	archive/philo (copy)/include/philo.h	27;"	d
+OBJ	rank0/filemanip/Makefile	/^OBJ = $(SRC:.c=.o)$/;"	m
+OBJ	rank0/libft/Makefile	/^OBJ = $(SRC:.c=.o)$/;"	m
+OBJ	rank0/libft/libft_tester/src/Makefile	/^OBJ = $(SRC:.c=.o)$/;"	m
+OBJ	rank1/get_next_line/tester/Makefile	/^OBJ = $(SRC:.c=.o)$/;"	m
+OBJ	rank1/printf/Makefile	/^OBJ = $(OBJ_SRC) $(OBJ_LIBFT)$/;"	m
+OBJ	rank1/printf/libft/Makefile	/^OBJ = $(SRC:.c=.o)$/;"	m
+OBJ	rank2/pipex/Makefile	/^OBJ =			$(OBJ_INIT) $(OBJ_EXEC)$/;"	m
+OBJ	rank2/pipex/libft/Makefile	/^OBJ = $(SRC:.c=.o)$/;"	m
+OBJ	rank2/push_swap/Makefile	/^OBJ =			$(addprefix $(OBJ_DIR)\/, $(SRC:src\/%.c=src\/%.o))$/;"	m
+OBJ	rank2/push_swap/libft/Makefile	/^OBJ = $(SRC:.c=.o)$/;"	m
+OBJ	rank2/so_long/Makefile	/^OBJ =			$(OBJ_MAP_PARSE) $(OBJ_MAP_REND) $(OBJ_UTILITIES) $(OBJ_TILESET) \\$/;"	m
+OBJ	rank2/so_long/libft/Makefile	/^OBJ = $(SRC:.c=.o)$/;"	m
+OBJ	rank2/so_long/minilibx/Makefile.mk	/^OBJ	= $(addprefix $(OBJ_DIR)\/,$(SRC:%.c=%.o))$/;"	m
+OBJ	rank2/so_long/minilibx/test/Makefile.mk	/^OBJ = $(SRC:%.c=%.o)$/;"	m
+OBJ	rank3/philo/Makefile	/^OBJ = 		$(SRC:$(SRC_DIR)\/%.c=$(OBJ_DIR)\/%.o)$/;"	m
+OBJB	rank1/get_next_line/tester/Makefile	/^OBJB = $(BONUS:.c=.o)$/;"	m
+OBJ_DIR	rank1/printf/Makefile	/^OBJ_DIR = obj$/;"	m
+OBJ_DIR	rank2/pipex/Makefile	/^OBJ_DIR = 		obj$/;"	m
+OBJ_DIR	rank2/push_swap/Makefile	/^OBJ_DIR = 		obj$/;"	m
+OBJ_DIR	rank2/so_long/Makefile	/^OBJ_DIR = 		obj$/;"	m
+OBJ_DIR	rank2/so_long/minilibx/Makefile.mk	/^OBJ_DIR = obj$/;"	m
+OBJ_DIR	rank3/philo/Makefile	/^OBJ_DIR = 	obj$/;"	m
+OBJ_EVENTS	rank2/so_long/Makefile	/^OBJ_EVENTS	=	$(EVENTS:src\/events_src\/%.c=$(OBJ_DIR)\/events_src_%.o)$/;"	m
+OBJ_EXEC	rank2/pipex/Makefile	/^OBJ_EXEC	  =	$(EXEC:src\/exec_src\/%.c=$(OBJ_DIR)\/exec_src_%.o)$/;"	m
+OBJ_GARBAGE	rank2/so_long/Makefile	/^OBJ_GARBAGE	=	$(GARBAGE:src\/gc_src\/%.c=$(OBJ_DIR)\/gc_src_%.o)$/;"	m
+OBJ_INIT	rank2/pipex/Makefile	/^OBJ_INIT	  =	$(INIT:src\/init_src\/%.c=$(OBJ_DIR)\/init_src_%.o)$/;"	m
+OBJ_LIBFT	rank1/printf/Makefile	/^OBJ_LIBFT = $(LIBFT_SRC:libft\/%.c=$(OBJ_DIR)\/%.o)$/;"	m
+OBJ_MAP_PARSE	rank2/so_long/Makefile	/^OBJ_MAP_PARSE =	$(MAP_PARSER:src\/map_parser_src\/%.c=$(OBJ_DIR)\/map_parser_src_%.o)$/;"	m
+OBJ_MAP_REND	rank2/so_long/Makefile	/^OBJ_MAP_REND  =	$(MAP_RENDER:src\/map_render_src\/%.c=$(OBJ_DIR)\/map_render_src_%.o)$/;"	m
+OBJ_SRC	rank1/printf/Makefile	/^OBJ_SRC = $(SRC:src\/%.c=$(OBJ_DIR)\/%.o)$/;"	m
+OBJ_TILESET	rank2/so_long/Makefile	/^OBJ_TILESET	=	$(TILESET_PARS:src\/tileset_parser_src\/%.c=$(OBJ_DIR)\/tileset_parser_src_%.o)$/;"	m
+OBJ_UTILITIES	rank2/so_long/Makefile	/^OBJ_UTILITIES =	$(UTILITIES:src\/utilities_src\/%.c=$(OBJ_DIR)\/utilities_src_%.o)$/;"	m
+ODD	rank3/philo/include/philo.h	41;"	d
+OUTPUT_DIR	rank1/printf/Makefile	/^OUTPUT_DIR = outputs$/;"	m
+OUTPUT_DIR	rank2/pipex/Makefile	/^OUTPUT_DIR = 	outputs$/;"	m
+OUTPUT_DIR	rank2/so_long/Makefile	/^OUTPUT_DIR = 	outputs$/;"	m
+PHILOS_FULL	archive/philo (copy)/include/philo.h	37;"	d
+PHILO_H	archive/philo (copy)/include/philo.h	14;"	d
+PHILO_H	archive/philo (tried to take out mutex)/include/philo.h	14;"	d
+PHILO_H	rank3/philo/include/philo.h	14;"	d
+PIPEX_H	rank2/pipex/include/pipex.h	14;"	d
+PUSH_SWAP_H	rank2/push_swap/include/push_swap.h	14;"	d
+RED	archive/philo (copy)/include/philo.h	42;"	d
+RED	archive/philo (tried to take out mutex)/include/philo.h	26;"	d
+RED	rank3/philo/Makefile	/^RED     = \\033[31m$/;"	m
+RED	rank3/philo/include/philo.h	28;"	d
+RESET	archive/philo (copy)/include/philo.h	44;"	d
+RESET	archive/philo (tried to take out mutex)/include/philo.h	28;"	d
+RESET	rank3/philo/Makefile	/^RESET   = \\033[0m$/;"	m
+RESET	rank3/philo/include/philo.h	30;"	d
+RETURN	rank2/so_long/minilibx/mlx_xpm.c	17;"	d	file:
+RETURN_INT	rank0/libft/libft_tester/src/libftest.h	/^	RETURN_INT,$/;"	e	enum:__anon2
+RETURN_SIZE_T	rank0/libft/libft_tester/src/libftest.h	/^	RETURN_SIZE_T,$/;"	e	enum:__anon2
+RETURN_STR	rank0/libft/libft_tester/src/libftest.h	/^	RETURN_STR,$/;"	e	enum:__anon2
+RETURN_VOID	rank0/libft/libft_tester/src/libftest.h	/^	RETURN_VOID$/;"	e	enum:__anon2
+RIGHT	archive/philo (copy)/include/philo.h	49;"	d
+RIGHT	archive/philo (tried to take out mutex)/include/philo.h	33;"	d
+RIGHT	rank3/philo/include/philo.h	35;"	d
+SANITIZE	rank3/philo/Makefile	/^SANITIZE = 	-g3 -fPIC -fsanitize=thread$/;"	m
+SCRIPT_URL	rank3/philo/Makefile	/^SCRIPT_URL = https:\/\/github.com\/jeromeDev94\/make_interface.git$/;"	m
+SEGFAULT	rank0/libft/libft_tester/src/libftest.h	/^	SEGFAULT = -666$/;"	e	enum:__anon3
+SLEEP	archive/philo (copy)/include/philo.h	53;"	d
+SLEEP	archive/philo (tried to take out mutex)/include/philo.h	35;"	d
+SLEEP	rank3/philo/include/philo.h	37;"	d
+SOMEONE_DIED	archive/philo (copy)/include/philo.h	36;"	d
+SO_LONG_H	rank2/so_long/include/so_long.h	14;"	d
+SRC	rank0/filemanip/Makefile	/^SRC = ft_count_flines.c ft_fclose.c ft_filesize.c ft_flines_to_str.c \\$/;"	m
+SRC	rank0/libft/Makefile	/^SRC = ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \\$/;"	m
+SRC	rank0/libft/libft_tester/src/Makefile	/^SRC = ft_call_and_exec_cft.c ft_call_func_int.c ft_call_func_size_t.c \\$/;"	m
+SRC	rank1/get_next_line/tester/Makefile	/^SRC = get_next_line_utils.c get_next_line.c$/;"	m
+SRC	rank1/printf/Makefile	/^SRC = $(addprefix src\/, ft_apply_precision.c ft_handle_char.c ft_handle_pointer.c ft_nbr_len.c \\$/;"	m
+SRC	rank1/printf/libft/Makefile	/^SRC = ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \\$/;"	m
+SRC	rank2/pipex/libft/Makefile	/^SRC = 	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \\$/;"	m
+SRC	rank2/push_swap/Makefile	/^SRC = 			$(addprefix src\/, ft_lst_utils.c ft_check_errors.c ft_push_moves.c \\$/;"	m
+SRC	rank2/push_swap/libft/Makefile	/^SRC = 	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \\$/;"	m
+SRC	rank2/so_long/libft/Makefile	/^SRC = 	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \\$/;"	m
+SRC	rank2/so_long/minilibx/Makefile.mk	/^SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put.c mlx_loop.c \\$/;"	m
+SRC	rank2/so_long/minilibx/test/Makefile.mk	/^SRC = main.c$/;"	m
+SRC	rank3/philo/Makefile	/^SRC = \\$/;"	m
+SRC_BONUS	rank2/push_swap/Makefile	/^SRC_BONUS = 	$(addprefix bonus\/, ft_main_checker.c ft_checker_moves.c \\$/;"	m
+SRC_DIR	rank3/philo/Makefile	/^SRC_DIR = 	src$/;"	m
+SRC_MAIN	rank2/push_swap/Makefile	/^SRC_MAIN = 		main.c$/;"	m
+START	archive/philo (copy)/include/philo.h	39;"	d
+START_MUTEX	archive/philo (copy)/include/philo.h	33;"	d
+START_TIME	archive/philo (copy)/include/philo.h	26;"	d
+STOP	archive/philo (tried to take out mutex)/include/philo.h	36;"	d
+STOP	rank3/philo/include/philo.h	38;"	d
+TEST	rank1/printf/include/ft_printf.h	21;"	d
+TEST_FLAGS	rank1/printf/Makefile	/^TEST_FLAGS = -w -I.\/include$/;"	m
+THINK	archive/philo (copy)/include/philo.h	47;"	d
+THINK	archive/philo (tried to take out mutex)/include/philo.h	31;"	d
+THINK	rank3/philo/include/philo.h	33;"	d
+TILESET_PARS	rank2/so_long/Makefile	/^TILESET_PARS = 	$(addprefix src\/tileset_parser_src\/, \\$/;"	m
+TOTAL_STEPS	rank3/philo/Makefile	/^TOTAL_STEPS := $(words $(OBJ))$/;"	m
+ULEFT	archive/philo (copy)/include/philo.h	51;"	d
+UNAME	rank2/so_long/minilibx/Makefile.mk	/^UNAME = $(shell uname)$/;"	m
+UNAME	rank2/so_long/minilibx/test/Makefile.mk	/^UNAME := $(shell uname)$/;"	m
+URIGHT	archive/philo (copy)/include/philo.h	52;"	d
+UTILITIES	rank2/so_long/Makefile	/^UTILITIES = 	$(addprefix src\/utilities_src\/, \\$/;"	m
+VALG	rank3/philo/Makefile	/^VALG =		valgrind --leak-check=full --show-leak-kinds=all \\$/;"	m
+VALGRIND	rank2/pipex/Makefile	/^VALGRIND = 		valgrind --track-origins=yes --leak-check=full #--track-fds=yes \\$/;"	m
+VALGRIND	rank2/so_long/Makefile	/^VALGRIND = 		valgrind \\$/;"	m
+VERBOSE	rank3/philo/Makefile	/^VERBOSE ?= @$/;"	m
+VERBOSE	rank3/philo/Makefile	/^classic: VERBOSE =$/;"	m
+VFLAGS	rank3/philo/Makefile	/^VFLAGS = 	-g3 -fPIC $/;"	m
+WARN_SHM_ATTACH	rank2/so_long/minilibx/mlx_int.h	46;"	d
+WIN1_SX	rank2/so_long/minilibx/test/main.c	5;"	d	file:
+WIN1_SY	rank2/so_long/minilibx/test/main.c	6;"	d	file:
+X_ShmAttach	rank2/so_long/minilibx/mlx_new_image.c	20;"	d	file:
+YELLOW	rank3/philo/Makefile	/^YELLOW  = \\033[33m$/;"	m
+action_flag	archive/philo (tried to take out mutex)/include/philo.h	/^	bool		action_flag;$/;"	m	struct:s_shared
+action_mutex	archive/philo (tried to take out mutex)/include/philo.h	/^	t_mtx		action_mutex;$/;"	m	struct:s_shared
+arg_types	rank0/libft/libft_tester/src/libftest.h	/^	t_arg			*arg_types;$/;"	m	struct:s_funcmap_size_t
+arg_types	rank0/libft/libft_tester/src/libftest.h	/^	t_arg		*arg_types;$/;"	m	struct:s_funcmap_int
+arg_types	rank0/libft/libft_tester/src/libftest.h	/^	t_arg		*arg_types;$/;"	m	struct:s_funcmap_str
+args	rank2/pipex/include/pipex.h	/^	char	**args;$/;"	m	struct:s_command
+argt_int	rank0/libft/libft_tester/src/libftest_globals.c	/^t_arg argt_int[] = {ARG_INT};$/;"	v
+argt_si	rank0/libft/libft_tester/src/libftest_globals.c	/^t_arg argt_si[] = {ARG_CONST_STRING, ARG_INT};$/;"	v
+argt_ssz	rank0/libft/libft_tester/src/libftest_globals.c	/^t_arg argt_ssz[] = {ARG_CONST_STRING, ARG_CONST_STRING, ARG_SIZE_T};$/;"	v
+argt_str	rank0/libft/libft_tester/src/libftest_globals.c	/^t_arg argt_str[] = {ARG_STRING};$/;"	v
+argt_vvz	rank0/libft/libft_tester/src/libftest_globals.c	/^t_arg argt_vvz[] = {ARG_CONST_VOID, ARG_CONST_VOID, ARG_SIZE_T};$/;"	v
+at_exit	rank2/so_long/minilibx/test/run_tests.sh	/^at_exit() {$/;"	f
+bpp	rank2/so_long/include/so_long.h	/^	int		bpp;$/;"	m	struct:s_img
+bpp	rank2/so_long/minilibx/mlx_int.h	/^	int				bpp;$/;"	m	struct:s_img
+bpp1	rank2/so_long/minilibx/test/main.c	/^int	bpp1;$/;"	v
+bpp2	rank2/so_long/minilibx/test/main.c	/^int	bpp2;$/;"	v
+bpp3	rank2/so_long/minilibx/test/main.c	/^int	bpp3;$/;"	v
+bpp4	rank2/so_long/minilibx/test/main.c	/^int	bpp4;$/;"	v
+buf_fd	rank2/pipex/include/libft.h	/^	int		buf_fd;$/;"	m	struct:s_buffer
+buf_fd	rank2/push_swap/include/libft.h	/^	int		buf_fd;$/;"	m	struct:s_buffer
+buf_fd	rank2/so_long/include/libft.h	/^	int		buf_fd;$/;"	m	struct:s_buffer
+buf_last	rank1/printf/include/ft_printf.h	/^	char	buf_last;$/;"	m	struct:s_buffer
+buf_last	rank2/pipex/include/libft.h	/^	char	buf_last;$/;"	m	struct:s_buffer
+buf_last	rank2/push_swap/include/libft.h	/^	char	buf_last;$/;"	m	struct:s_buffer
+buf_last	rank2/so_long/include/libft.h	/^	char	buf_last;$/;"	m	struct:s_buffer
+buffer	rank1/printf/include/ft_printf.h	/^	char	*buffer;$/;"	m	struct:s_buffer
+buffer	rank2/pipex/include/libft.h	/^	char	*buffer;$/;"	m	struct:s_buffer
+buffer	rank2/push_swap/include/libft.h	/^	char	*buffer;$/;"	m	struct:s_buffer
+buffer	rank2/so_long/include/libft.h	/^	char	*buffer;$/;"	m	struct:s_buffer
+buffer	rank2/so_long/include/so_long.h	/^	t_img		*buffer;$/;"	m	struct:s_game
+c_count	rank2/so_long/include/so_long.h	/^	int		c_count;$/;"	m	struct:s_map
+calendar_cache_directory	rank3/philo/Makefile	/^	vim -c "let g:calendar_cache_directory=expand('.\/.calendar\/')" \\$/;"	m
+check_fd	rank2/so_long/src/map_parser_src/ft_read_map.c	/^static void	check_fd(t_game *game, int fd)$/;"	f	file:
+check_malloc	rank2/so_long/src/utilities_src/ft_init_game.c	/^void	check_malloc(void *ptr)$/;"	f
+clean	rank2/so_long/minilibx/configure	/^clean(){$/;"	f
+cmap	rank2/so_long/minilibx/mlx_int.h	/^	Colormap	cmap;$/;"	m	struct:s_xvar
+cmd	rank2/pipex/include/pipex.h	/^	char	*cmd;$/;"	m	struct:s_command
+col	rank2/so_long/minilibx/mlx_int.h	/^	int		col;$/;"	m	struct:s_xpm_col
+color	rank2/so_long/minilibx/mlx_int.h	/^	int		color;$/;"	m	struct:s_col_name
+color_map_1	rank2/so_long/minilibx/test/main.c	/^int	color_map_1(void *win,int w,int h)$/;"	f
+color_map_2	rank2/so_long/minilibx/test/main.c	/^int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type)$/;"	f
+commands	rank2/pipex/include/pipex.h	/^	t_command	commands[MAX_COMMANDS];$/;"	m	struct:s_pipex
+compilation_database_folder	rank3/philo/ycm_extra_conf.py	/^compilation_database_folder = ''$/;"	v
+content	rank0/libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
+content	rank0/libft/libft_tester/lib/libft.h	/^	void			*content;$/;"	m	struct:s_list
+content	rank1/printf/include/libft.h	/^	void			*content;$/;"	m	struct:s_list
+content	rank2/pipex/include/libft.h	/^	void			*content;$/;"	m	struct:s_list
+content	rank2/push_swap/include/libft.h	/^	void			*content;$/;"	m	struct:s_list
+content	rank2/so_long/include/libft.h	/^	void			*content;$/;"	m	struct:s_list
+data	rank2/so_long/minilibx/mlx_int.h	/^	char			*data;$/;"	m	struct:s_img
+data1	rank2/so_long/minilibx/test/main.c	/^char	*data1;$/;"	v
+data2	rank2/so_long/minilibx/test/main.c	/^char	*data2;$/;"	v
+data3	rank2/so_long/minilibx/test/main.c	/^char	*data3;$/;"	v
+data4	rank2/so_long/minilibx/test/main.c	/^char	*data4;$/;"	v
+death_mutex	archive/philo (copy)/include/philo.h	/^	t_mtx		death_mutex;$/;"	m	struct:s_simu
+decrgb	rank2/so_long/minilibx/mlx_int.h	/^	int			decrgb[6];$/;"	m	struct:s_xvar
+depth	rank2/so_long/minilibx/mlx_int.h	/^	int			depth;$/;"	m	struct:s_xvar
+description	rank0/libft/libft_tester/src/libftest.h	/^	char				*description;$/;"	m	struct:s_tstlst
+display	rank2/so_long/minilibx/mlx_int.h	/^	Display		*display;$/;"	m	struct:s_xvar
+do_flush	rank2/so_long/minilibx/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar
+e_ErrorCode	rank2/so_long/include/so_long.h	/^typedef enum e_ErrorCode$/;"	g
+e_count	rank2/so_long/include/so_long.h	/^	int		e_count;$/;"	m	struct:s_map
+e_error	rank1/printf/include/ft_printf.h	/^typedef enum e_error$/;"	g
+e_error	rank2/pipex/include/libft.h	/^typedef enum e_error$/;"	g
+e_error	rank2/push_swap/include/libft.h	/^typedef enum e_error$/;"	g
+e_error	rank2/so_long/include/libft.h	/^typedef enum e_error$/;"	g
+end	archive/philo (copy)/include/philo.h	/^	int			end;$/;"	m	struct:s_simu
+end_count	rank3/philo/include/philo.h	/^	int			end_count;$/;"	m	struct:s_sync
+end_loop	rank2/so_long/minilibx/mlx_int.h	/^	int 		end_loop;$/;"	m	struct:s_xvar
+end_mutex	archive/philo (copy)/include/philo.h	/^	t_mtx		end_mutex;$/;"	m	struct:s_simu
+end_mutex	rank3/philo/include/philo.h	/^	t_mtx		end_mutex;$/;"	m	struct:s_sync
+endian	rank2/so_long/include/so_long.h	/^	int		endian;$/;"	m	struct:s_img
+endian1	rank2/so_long/minilibx/test/main.c	/^int	endian1;$/;"	v
+endian2	rank2/so_long/minilibx/test/main.c	/^int	endian2;$/;"	v
+endian3	rank2/so_long/minilibx/test/main.c	/^int	endian3;$/;"	v
+endian4	rank2/so_long/minilibx/test/main.c	/^int	endian4;$/;"	v
+error	rank1/printf/include/ft_printf.h	/^	int			error;$/;"	m	struct:s_format_spec
+error	rank1/printf/include/ft_printf.h	/^	int		error;$/;"	m	struct:s_buffer
+error	rank2/pipex/include/libft.h	/^	int			error;$/;"	m	struct:s_format_spec
+error	rank2/pipex/include/libft.h	/^	int		error;$/;"	m	struct:s_buffer
+error	rank2/push_swap/include/libft.h	/^	int			error;$/;"	m	struct:s_format_spec
+error	rank2/push_swap/include/libft.h	/^	int		error;$/;"	m	struct:s_buffer
+error	rank2/so_long/include/libft.h	/^	int			error;$/;"	m	struct:s_format_spec
+error	rank2/so_long/include/libft.h	/^	int		error;$/;"	m	struct:s_buffer
+expose_hook	rank2/so_long/minilibx/mlx_int.h	/^	int					(*expose_hook)();$/;"	m	struct:s_win_list
+expose_param	rank2/so_long/minilibx/mlx_int.h	/^	void				*expose_param;$/;"	m	struct:s_win_list
+expose_win1	rank2/so_long/minilibx/test/main.c	/^int	expose_win1(void *p)$/;"	f
+expose_win2	rank2/so_long/minilibx/test/main.c	/^int	expose_win2(void *p)$/;"	f
+fd	rank2/pipex/include/libft.h	/^	int					fd;$/;"	m	struct:s_gc_node
+fd	rank2/push_swap/include/libft.h	/^	int					fd;$/;"	m	struct:s_gc_node
+fd	rank2/so_long/include/libft.h	/^	int					fd;$/;"	m	struct:s_gc_node
+finish_flag	rank3/philo/include/philo.h	/^	bool			finish_flag;$/;"	m	struct:s_philo
+finish_mutex	rank3/philo/include/philo.h	/^	t_mtx			finish_mutex;$/;"	m	struct:s_philo
+flag_hash	rank1/printf/include/ft_printf.h	/^	int			flag_hash;$/;"	m	struct:s_format_spec
+flag_hash	rank2/pipex/include/libft.h	/^	int			flag_hash;$/;"	m	struct:s_format_spec
+flag_hash	rank2/push_swap/include/libft.h	/^	int			flag_hash;$/;"	m	struct:s_format_spec
+flag_hash	rank2/so_long/include/libft.h	/^	int			flag_hash;$/;"	m	struct:s_format_spec
+flag_minus	rank1/printf/include/ft_printf.h	/^	int			flag_minus;$/;"	m	struct:s_format_spec
+flag_minus	rank2/pipex/include/libft.h	/^	int			flag_minus;$/;"	m	struct:s_format_spec
+flag_minus	rank2/push_swap/include/libft.h	/^	int			flag_minus;$/;"	m	struct:s_format_spec
+flag_minus	rank2/so_long/include/libft.h	/^	int			flag_minus;$/;"	m	struct:s_format_spec
+flag_plus	rank1/printf/include/ft_printf.h	/^	int			flag_plus;$/;"	m	struct:s_format_spec
+flag_plus	rank2/pipex/include/libft.h	/^	int			flag_plus;$/;"	m	struct:s_format_spec
+flag_plus	rank2/push_swap/include/libft.h	/^	int			flag_plus;$/;"	m	struct:s_format_spec
+flag_plus	rank2/so_long/include/libft.h	/^	int			flag_plus;$/;"	m	struct:s_format_spec
+flag_space	rank1/printf/include/ft_printf.h	/^	int			flag_space;$/;"	m	struct:s_format_spec
+flag_space	rank2/pipex/include/libft.h	/^	int			flag_space;$/;"	m	struct:s_format_spec
+flag_space	rank2/push_swap/include/libft.h	/^	int			flag_space;$/;"	m	struct:s_format_spec
+flag_space	rank2/so_long/include/libft.h	/^	int			flag_space;$/;"	m	struct:s_format_spec
+flag_zero	rank1/printf/include/ft_printf.h	/^	int			flag_zero;$/;"	m	struct:s_format_spec
+flag_zero	rank2/pipex/include/libft.h	/^	int			flag_zero;$/;"	m	struct:s_format_spec
+flag_zero	rank2/push_swap/include/libft.h	/^	int			flag_zero;$/;"	m	struct:s_format_spec
+flag_zero	rank2/so_long/include/libft.h	/^	int			flag_zero;$/;"	m	struct:s_format_spec
+flags	rank3/philo/ycm_extra_conf.py	/^flags = [$/;"	v
+fork_mutex	rank3/philo/include/philo.h	/^	t_mtx	fork_mutex;$/;"	m	struct:s_forks
+forks	archive/philo (copy)/include/philo.h	/^	t_mtx		*forks;$/;"	m	struct:s_simu
+forks	archive/philo (tried to take out mutex)/include/philo.h	/^	t_mtx		*forks;$/;"	m	struct:s_simu
+forks	rank3/philo/include/philo.h	/^	t_forks		*forks;$/;"	m	struct:s_simu
+format	rank2/so_long/minilibx/mlx_int.h	/^	int				format;$/;"	m	struct:s_img
+ft_actualise_forks	rank3/philo/src/forks_2.c	/^void	ft_actualise_forks(t_forks *fork, bool value, int id)$/;"	f
+ft_allocate_map	rank2/so_long/src/map_parser_src/ft_read_map.c	/^static void	ft_allocate_map(t_game *game)$/;"	f	file:
+ft_apply_precision	rank1/printf/src/ft_apply_precision.c	/^void	ft_apply_precision(t_format_spec spec, char **formatted_content)$/;"	f
+ft_apply_precision	rank2/pipex/libft/ft_apply_precision.c	/^void	ft_apply_precision(t_format_spec spec, char **formatted_content)$/;"	f
+ft_apply_precision	rank2/push_swap/libft/ft_apply_precision.c	/^void	ft_apply_precision(t_format_spec spec, char **formatted_content)$/;"	f
+ft_apply_precision	rank2/so_long/libft/ft_apply_precision.c	/^void	ft_apply_precision(t_format_spec spec, char **formatted_content)$/;"	f
+ft_apply_width	rank1/printf/src/ft_apply_width.c	/^void	ft_apply_width(t_format_spec spec, t_buffer *buf_info, int content_len)$/;"	f
+ft_apply_width	rank2/pipex/libft/ft_apply_width.c	/^void	ft_apply_width(t_format_spec spec, t_buffer *buf_info, int content_len)$/;"	f
+ft_apply_width	rank2/push_swap/libft/ft_apply_width.c	/^void	ft_apply_width(t_format_spec spec, t_buffer *buf_info, int content_len)$/;"	f
+ft_apply_width	rank2/so_long/libft/ft_apply_width.c	/^void	ft_apply_width(t_format_spec spec, t_buffer *buf_info, int content_len)$/;"	f
+ft_assign_cost_in_a	rank2/push_swap/src/ft_sort_b.c	/^void	ft_assign_cost_in_a(t_stack **a)$/;"	f
+ft_assign_segment	rank2/push_swap/src/ft_define_segment.c	/^void	ft_assign_segment(t_stack **a, int pivot[3])$/;"	f
+ft_atoi	archive/philo (copy)/42ft.c	/^int	ft_atoi(const char *nptr)$/;"	f
+ft_atoi	archive/philo (tried to take out mutex)/42ft.c	/^int	ft_atoi(const char *nptr)$/;"	f
+ft_atoi	rank0/libft/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f
+ft_atoi	rank1/printf/libft/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f
+ft_atoi	rank2/pipex/libft/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f
+ft_atoi	rank2/push_swap/libft/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f
+ft_atoi	rank2/so_long/libft/ft_atoi.c	/^int	ft_atoi(const char *nptr)$/;"	f
+ft_atoi	rank3/philo/src/42ft.c	/^int	ft_atoi(const char *nptr)$/;"	f
+ft_atol	rank2/pipex/libft/ft_atol.c	/^long	ft_atol(const char *nptr)$/;"	f
+ft_atol	rank2/push_swap/libft/ft_atol.c	/^long	ft_atol(const char *nptr)$/;"	f
+ft_atol	rank2/so_long/libft/ft_atol.c	/^long	ft_atol(const char *nptr)$/;"	f
+ft_b_and_target_to_top	rank2/push_swap/src/ft_sort_a.c	/^void	ft_b_and_target_to_top(t_stack **b, t_stack *cheapest, t_stack **a)$/;"	f
+ft_before_last	rank2/push_swap/src/ft_lst_utils.c	/^t_stack	*ft_before_last(t_stack *lst)$/;"	f
+ft_blend_images	rank2/so_long/src/utilities_src/ft_blend_images.c	/^void	ft_blend_images(t_img *src, t_img *dest)$/;"	f
+ft_both_to_top	rank2/push_swap/src/ft_sort_a.c	/^void	ft_both_to_top(t_stack **b, t_stack *cheapest, t_stack **a, int cost_b)$/;"	f
+ft_buffer_add	rank1/printf/src/ft_buffer_add.c	/^void	ft_buffer_add(t_buffer *buf_info, char c)$/;"	f
+ft_buffer_add	rank2/pipex/libft/ft_buffer_add.c	/^void	ft_buffer_add(t_buffer *buf_info, char c)$/;"	f
+ft_buffer_add	rank2/push_swap/libft/ft_buffer_add.c	/^void	ft_buffer_add(t_buffer *buf_info, char c)$/;"	f
+ft_buffer_add	rank2/so_long/libft/ft_buffer_add.c	/^void	ft_buffer_add(t_buffer *buf_info, char c)$/;"	f
+ft_buffer_flush	rank1/printf/src/ft_buffer_flush.c	/^int	ft_buffer_flush(t_buffer *buf_info)$/;"	f
+ft_buffer_flush	rank2/pipex/libft/ft_buffer_flush.c	/^int	ft_buffer_flush(t_buffer *buf_info)$/;"	f
+ft_buffer_flush	rank2/push_swap/libft/ft_buffer_flush.c	/^int	ft_buffer_flush(t_buffer *buf_info)$/;"	f
+ft_buffer_flush	rank2/so_long/libft/ft_buffer_flush.c	/^int	ft_buffer_flush(t_buffer *buf_info)$/;"	f
+ft_bzero	rank0/libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
+ft_bzero	rank1/printf/libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
+ft_bzero	rank2/pipex/libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
+ft_bzero	rank2/push_swap/libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
+ft_bzero	rank2/so_long/libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
+ft_calculate_node_cost	rank2/push_swap/src/ft_calcul_cost.c	/^int	ft_calculate_node_cost(t_stack *node, int stack_length)$/;"	f
+ft_call_and_exec_cft	rank0/libft/libft_tester/src/ft_call_and_exec_cft.c	/^int	ft_call_and_exec_cft(const char *name, int arg, int lib)$/;"	f
+ft_call_func_int	rank0/libft/libft_tester/src/ft_call_func_int.c	/^func_int ft_call_func_int(const char *name, int lib)$/;"	f
+ft_call_func_size_t	rank0/libft/libft_tester/src/ft_call_func_size_t.c	/^func_size_t ft_call_func_size_t(const char *name, int lib)$/;"	f
+ft_call_func_str	rank0/libft/libft_tester/src/ft_call_func_str.c	/^func_str ft_call_func_str(const char *name, int lib)$/;"	f
+ft_calloc	rank0/libft/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f
+ft_calloc	rank1/printf/libft/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f
+ft_calloc	rank2/pipex/libft/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f
+ft_calloc	rank2/push_swap/libft/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f
+ft_calloc	rank2/so_long/libft/ft_calloc.c	/^void	*ft_calloc(size_t nmemb, size_t size)$/;"	f
+ft_check_args	archive/philo (copy)/parsing.c	/^bool	ft_check_args(int ac, char **av)$/;"	f
+ft_check_args	archive/philo (tried to take out mutex)/parsing.c	/^bool	ft_check_args(int ac, char **av)$/;"	f
+ft_check_args	rank3/philo/src/parsing.c	/^bool	ft_check_args(int ac, char **av)$/;"	f
+ft_check_char	rank2/so_long/src/map_parser_src/ft_check_char.c	/^void	ft_check_char(t_game *game, int x, int y)$/;"	f
+ft_check_cmd_path	rank2/pipex/src/init_src/ft_parse_cmd.c	/^static void	ft_check_cmd_path(t_command *command, char *cmd_path, char **args,$/;"	f	file:
+ft_check_door	rank2/so_long/src/map_parser_src/ft_check_door.c	/^void	ft_check_door(t_game *game)$/;"	f
+ft_check_dup_and_sort	rank2/push_swap/src/ft_init_stack.c	/^void	ft_check_dup_and_sort(t_stack **a, t_stack **b)$/;"	f
+ft_check_duplicate_in_stack	rank2/push_swap/src/ft_check_errors.c	/^int	ft_check_duplicate_in_stack(t_stack *stack)$/;"	f
+ft_check_empty_args	rank2/push_swap/src/ft_parse.c	/^void	ft_check_empty_args(int ac, char **av)$/;"	f
+ft_check_exit	rank2/so_long/src/events_src/ft_check_exit.c	/^void	ft_check_exit(t_game *game, int new_y, int new_x)$/;"	f
+ft_check_fd	rank2/pipex/libft/ft_check_fd.c	/^void	ft_check_fd(int fd, const char *error_message)$/;"	f
+ft_check_fd	rank2/push_swap/libft/ft_check_fd.c	/^void	ft_check_fd(int fd, const char *error_message)$/;"	f
+ft_check_fd	rank2/so_long/libft/ft_check_fd.c	/^void	ft_check_fd(int fd, const char *error_message)$/;"	f
+ft_check_fill	rank2/so_long/src/map_parser_src/ft_check_fill.c	/^void	ft_check_fill(t_game *game)$/;"	f
+ft_check_flush	rank2/pipex/libft/ft_printf.c	/^void	ft_check_flush(t_buffer *buf_info)$/;"	f
+ft_check_flush	rank2/push_swap/libft/ft_printf.c	/^void	ft_check_flush(t_buffer *buf_info)$/;"	f
+ft_check_flush	rank2/so_long/libft/ft_printf.c	/^void	ft_check_flush(t_buffer *buf_info)$/;"	f
+ft_check_format	rank1/printf/src/ft_check_format.c	/^int	ft_check_format(t_format_spec *spec)$/;"	f
+ft_check_format	rank2/pipex/libft/ft_check_format.c	/^int	ft_check_format(t_format_spec *spec)$/;"	f
+ft_check_format	rank2/push_swap/libft/ft_check_format.c	/^int	ft_check_format(t_format_spec *spec)$/;"	f
+ft_check_format	rank2/so_long/libft/ft_check_format.c	/^int	ft_check_format(t_format_spec *spec)$/;"	f
+ft_check_if_already_finished	rank3/philo/src/monitor.c	/^bool	ft_check_if_already_finished(t_philo *philo)$/;"	f
+ft_check_if_dead	archive/philo (copy)/dead.c	/^bool	ft_check_if_dead(t_philo *philo)$/;"	f
+ft_check_if_dead	archive/philo (tried to take out mutex)/monitor.c	/^bool	ft_check_if_dead(t_philo *philo)$/;"	f
+ft_check_if_dead	rank3/philo/src/monitor.c	/^bool	ft_check_if_dead(t_philo *philo)$/;"	f
+ft_check_malloc	rank2/pipex/libft/ft_check_malloc.c	/^void	ft_check_malloc(void *ptr, const char *error_message)$/;"	f
+ft_check_malloc	rank2/push_swap/libft/ft_check_malloc.c	/^void	ft_check_malloc(void *ptr, const char *error_message)$/;"	f
+ft_check_malloc	rank2/so_long/libft/ft_check_malloc.c	/^void	ft_check_malloc(void *ptr, const char *error_message)$/;"	f
+ft_check_map	rank2/so_long/src/map_parser_src/ft_check_map.c	/^void	ft_check_map(t_game *game)$/;"	f
+ft_check_pid	rank2/pipex/libft/ft_check_pid.c	/^void	ft_check_pid(int pid)$/;"	f
+ft_check_pid	rank2/push_swap/libft/ft_check_pid.c	/^void	ft_check_pid(int pid)$/;"	f
+ft_check_pid	rank2/so_long/libft/ft_check_pid.c	/^void	ft_check_pid(int pid)$/;"	f
+ft_check_rectangle	rank2/so_long/src/map_parser_src/ft_chek_rectangle.c	/^void	ft_check_rectangle(t_game *game)$/;"	f
+ft_check_remaining_locks	rank3/philo/src/routine.c	/^void	ft_check_remaining_locks(t_philo *philo)$/;"	f
+ft_check_tilelist	rank2/so_long/src/tileset_parser_src/ft_check_tilelist.c	/^bool	ft_check_tilelist(t_game *game, char *filename)$/;"	f
+ft_check_wall	rank2/so_long/src/map_parser_src/ft_check_wall.c	/^void	ft_check_wall(t_game *game)$/;"	f
+ft_checker	rank2/push_swap/bonus/ft_checker.c	/^void	ft_checker(t_stack **a, t_stack **b, char **line)$/;"	f
+ft_checker_map	rank2/so_long/src/map_parser_src/ft_check_map.c	/^static void	ft_checker_map(t_game *game)$/;"	f	file:
+ft_child_process	rank2/pipex/src/exec_src/ft_process.c	/^static void	ft_child_process(t_pipex *pipex, int i, char **envp)$/;"	f	file:
+ft_clear_buffer	rank2/so_long/src/map_render_src/ft_clear_buffer.c	/^void	ft_clear_buffer(t_game *game, char *img_data, int bpp, int size_line)$/;"	f
+ft_close_game	rank2/so_long/src/utilities_src/ft_display_controls.c	/^int	ft_close_game(t_game *game)$/;"	f
+ft_close_window	rank2/so_long/src/utilities_src/ft_display_controls.c	/^int	ft_close_window(t_game *game)$/;"	f
+ft_concat_path	rank2/pipex/libft/ft_find_cmd_path.c	/^static char	*ft_concat_path(char **paths, const char *cmd)$/;"	f	file:
+ft_concat_path	rank2/push_swap/libft/ft_find_cmd_path.c	/^static char	*ft_concat_path(char **paths, const char *cmd)$/;"	f	file:
+ft_concat_path	rank2/so_long/libft/ft_find_cmd_path.c	/^static char	*ft_concat_path(char **paths, const char *cmd)$/;"	f	file:
+ft_convert_spec	rank1/printf/src/ft_printf.c	/^static int	ft_convert_spec(t_format_spec spec, va_list args,$/;"	f	file:
+ft_convert_spec	rank2/pipex/libft/ft_printf.c	/^static int	ft_convert_spec(t_format_spec spec, va_list args,$/;"	f	file:
+ft_convert_spec	rank2/push_swap/libft/ft_printf.c	/^static int	ft_convert_spec(t_format_spec spec, va_list args,$/;"	f	file:
+ft_convert_spec	rank2/so_long/libft/ft_printf.c	/^static int	ft_convert_spec(t_format_spec spec, va_list args,$/;"	f	file:
+ft_count_collectibles	rank2/so_long/src/map_parser_src/ft_count_collectibles.c	/^int	ft_count_collectibles(t_game *game)$/;"	f
+ft_count_flines	rank0/filemanip/ft_count_flines.c	/^int	ft_count_flines(const char *filepath)$/;"	f
+ft_count_lines	rank2/so_long/src/utilities_src/ft_count_lines.c	/^int	ft_count_lines(char *filename)$/;"	f
+ft_count_values	rank0/libft/libft_tester/src/ft_free_node.c	/^static int	ft_count_values(char **values)$/;"	f	file:
+ft_count_values	rank0/libft/libft_tester/src/ft_parse_line_to_test.c	/^static int	ft_count_values(char **values)$/;"	f	file:
+ft_count_words	rank0/libft/ft_split.c	/^static size_t	ft_count_words(char *str, char c)$/;"	f	file:
+ft_count_words	rank1/printf/libft/ft_split.c	/^static size_t	ft_count_words(char *str, char c)$/;"	f	file:
+ft_count_words	rank2/pipex/libft/ft_split.c	/^size_t	ft_count_words(char *str, char c)$/;"	f
+ft_count_words	rank2/push_swap/libft/ft_split.c	/^size_t	ft_count_words(char *str, char c)$/;"	f
+ft_count_words	rank2/so_long/libft/ft_split.c	/^static size_t	ft_count_words(char *str, char c)$/;"	f	file:
+ft_define_forks	rank3/philo/src/forks_2.c	/^void	ft_define_forks(t_philo *philo, t_forks **fone,$/;"	f
+ft_destroy_mutex	rank3/philo/src/utilities_2.c	/^void	ft_destroy_mutex(t_simu *simu)$/;"	f
+ft_display_controls	rank2/so_long/src/utilities_src/ft_display_controls.c	/^int	ft_display_controls(int keysym, t_game *game)$/;"	f
+ft_double_rotate	rank2/push_swap/src/ft_multi_rotate.c	/^void	ft_double_rotate(t_stack **a, t_stack **b, int count,$/;"	f
+ft_duplicate_map	rank2/so_long/src/map_parser_src/ft_check_fill.c	/^static char	**ft_duplicate_map(t_map *map)$/;"	f	file:
+ft_duplicate_values	rank0/libft/libft_tester/src/ft_testlst_new.c	/^static char **ft_duplicate_values(char **values, int num_values)$/;"	f	file:
+ft_eat	archive/philo (copy)/routine.c	/^void	ft_eat(t_philo *philo)$/;"	f
+ft_eat	archive/philo (tried to take out mutex)/routine.c	/^void	ft_eat(t_philo *philo)$/;"	f
+ft_eat	rank3/philo/src/actions.c	/^bool	ft_eat(t_philo *philo)$/;"	f
+ft_error_checker	rank2/push_swap/bonus/ft_checker_utils.c	/^void	ft_error_checker(t_stack **a, t_stack **b, char **line)$/;"	f
+ft_exec_pid	rank2/pipex/src/exec_src/ft_process.c	/^void	ft_exec_pid(t_pipex *pipex, char **envp, int pid, int i)$/;"	f
+ft_exit_device	rank2/so_long/src/utilities_src/ft_exit_failure.c	/^static void	ft_exit_device(t_game *game)$/;"	f	file:
+ft_exit_failure	rank2/so_long/src/utilities_src/ft_exit_failure.c	/^void	ft_exit_failure(t_game *game, int errnum)$/;"	f
+ft_exit_tiles	rank2/so_long/src/utilities_src/ft_exit_failure.c	/^static void	ft_exit_tiles(t_game *game)$/;"	f	file:
+ft_extract	rank0/libft/ft_split.c	/^static char	*ft_extract(const char **s, char c, char **tab, size_t i)$/;"	f	file:
+ft_extract	rank1/printf/libft/ft_split.c	/^static char	*ft_extract(const char **s, char c, char **tab, size_t i)$/;"	f	file:
+ft_extract	rank2/pipex/libft/ft_split.c	/^static char	*ft_extract(const char **s, char c, char **tab, size_t i)$/;"	f	file:
+ft_extract	rank2/push_swap/libft/ft_split.c	/^static char	*ft_extract(const char **s, char c, char **tab, size_t i)$/;"	f	file:
+ft_extract	rank2/so_long/libft/ft_split.c	/^static char	*ft_extract(const char **s, char c, char **tab, size_t i)$/;"	f	file:
+ft_extract_by_pixels	rank2/so_long/src/tileset_parser_src/ft_parse_tileset.c	/^static void	ft_extract_by_pixels(t_img *frame, t_img *tileset, int x, int y)$/;"	f	file:
+ft_extract_frame	rank2/so_long/src/tileset_parser_src/ft_parse_tileset.c	/^static void	ft_extract_frame(t_game *game, t_tile *tile)$/;"	f	file:
+ft_extract_line	rank1/get_next_line/get_next_line.c	/^char	*ft_extract_line(char *static_buffer)$/;"	f
+ft_extract_line	rank1/get_next_line/get_next_line_bonus.c	/^char	*ft_extract_line(char *buffer)$/;"	f
+ft_extract_line	rank2/pipex/libft/get_next_line.c	/^char	*ft_extract_line(char *buffer)$/;"	f
+ft_extract_line	rank2/push_swap/libft/get_next_line.c	/^char	*ft_extract_line(char *buffer)$/;"	f
+ft_extract_line	rank2/so_long/libft/get_next_line.c	/^char	*ft_extract_line(char *buffer)$/;"	f
+ft_extract_split	rank2/so_long/src/tileset_parser_src/ft_parse_tileset.c	/^static void	ft_extract_split(char **parts, t_tile *tile)$/;"	f	file:
+ft_fclose	rank0/filemanip/ft_fclose.c	/^int	ft_fclose(int fd)$/;"	f
+ft_filesize	rank0/filemanip/ft_filesize.c	/^size_t	ft_filesize(const char *filepath)$/;"	f
+ft_fill_arr	rank2/push_swap/src/ft_define_segment.c	/^void	ft_fill_arr(t_stack *stack, int **arr)$/;"	f
+ft_fill_base	rank1/printf/src/ft_ulltoa_base.c	/^static char	*ft_fill_base(unsigned long long nbr, int size, char *base,$/;"	f	file:
+ft_fill_base	rank1/printf/src/ft_utoa_base.c	/^static char	*ft_fill_base(unsigned int nbr, int size, char *base, char *res)$/;"	f	file:
+ft_fill_base	rank2/pipex/libft/ft_ulltoa_base.c	/^static char	*ft_fill_base(unsigned long long nbr, int size, char *base,$/;"	f	file:
+ft_fill_base	rank2/pipex/libft/ft_utoa_base.c	/^static char	*ft_fill_base(unsigned int nbr, int size, char *base, char *res)$/;"	f	file:
+ft_fill_base	rank2/push_swap/libft/ft_ulltoa_base.c	/^static char	*ft_fill_base(unsigned long long nbr, int size, char *base,$/;"	f	file:
+ft_fill_base	rank2/push_swap/libft/ft_utoa_base.c	/^static char	*ft_fill_base(unsigned int nbr, int size, char *base, char *res)$/;"	f	file:
+ft_fill_base	rank2/so_long/libft/ft_ulltoa_base.c	/^static char	*ft_fill_base(unsigned long long nbr, int size, char *base,$/;"	f	file:
+ft_fill_base	rank2/so_long/libft/ft_utoa_base.c	/^static char	*ft_fill_base(unsigned int nbr, int size, char *base, char *res)$/;"	f	file:
+ft_find_cheapest	rank2/push_swap/src/ft_calcul_cost.c	/^t_stack	*ft_find_cheapest(t_stack *a)$/;"	f
+ft_find_cmd_path	rank2/pipex/libft/ft_find_cmd_path.c	/^char	*ft_find_cmd_path(char **envp, const char *cmd)$/;"	f
+ft_find_cmd_path	rank2/push_swap/libft/ft_find_cmd_path.c	/^char	*ft_find_cmd_path(char **envp, const char *cmd)$/;"	f
+ft_find_cmd_path	rank2/so_long/libft/ft_find_cmd_path.c	/^char	*ft_find_cmd_path(char **envp, const char *cmd)$/;"	f
+ft_find_end	rank1/printf/src/ft_parse_format.c	/^static char	*ft_find_end(const char *start, t_format_spec *spec)$/;"	f	file:
+ft_find_end	rank2/pipex/libft/ft_parse_format.c	/^static char	*ft_find_end(const char *start, t_format_spec *spec)$/;"	f	file:
+ft_find_end	rank2/push_swap/libft/ft_parse_format.c	/^static char	*ft_find_end(const char *start, t_format_spec *spec)$/;"	f	file:
+ft_find_end	rank2/so_long/libft/ft_parse_format.c	/^static char	*ft_find_end(const char *start, t_format_spec *spec)$/;"	f	file:
+ft_find_ftparam_type	rank0/libft/libft_tester/src/ft_find_ftparam_type.c	/^t_arg	*ft_find_ftparam_type(const char *name)$/;"	f
+ft_find_ftreturn_type	rank0/libft/libft_tester/src/ft_find_ftreturn_type.c	/^t_return	ft_find_ftreturn_type(const char *name)$/;"	f
+ft_find_max	rank2/push_swap/src/ft_sort_utils.c	/^t_stack	*ft_find_max(t_stack *lst)$/;"	f
+ft_find_min	rank2/push_swap/src/ft_sort_utils.c	/^t_stack	*ft_find_min(t_stack *lst)$/;"	f
+ft_find_pivots	rank2/push_swap/src/ft_define_segment.c	/^int	*ft_find_pivots(t_stack *stack, int size, int *pivots)$/;"	f
+ft_find_target_b_in_a	rank2/push_swap/src/ft_sort_a.c	/^void	ft_find_target_b_in_a(t_stack *b, t_stack *a)$/;"	f
+ft_flines_to_str	rank0/filemanip/ft_flines_to_str.c	/^char	**ft_flines_to_str(const char *filepath)$/;"	f
+ft_flood_fill	rank2/so_long/src/utilities_src/ft_flood_fill.c	/^void	ft_flood_fill(t_game *game, int x, int y)$/;"	f
+ft_fopen	rank0/filemanip/ft_fopen.c	/^int	ft_fopen(const char *file_path, int option)$/;"	f
+ft_fork_and_exec	rank2/pipex/src/exec_src/ft_fork_and_exec.c	/^void	ft_fork_and_exec(t_pipex *pipex, char **envp)$/;"	f
+ft_fork_pick	rank3/philo/src/forks.c	/^void	ft_fork_pick(t_philo *philo, bool state)$/;"	f
+ft_fork_request	rank3/philo/src/forks.c	/^bool	ft_fork_request(int philo_id, t_forks *fork)$/;"	f
+ft_fread	rank0/filemanip/ft_fread.c	/^char	*ft_fread(int fd, size_t len)$/;"	f
+ft_free_content	rank0/libft/libft_tester/src/ft_testlst_new.c	/^static void ft_free_content(char *s1, char **test_values, int num_values, $/;"	f	file:
+ft_free_forks	rank3/philo/src/utilities_2.c	/^void	ft_free_forks(t_simu *simu)$/;"	f
+ft_free_memory	rank0/libft/ft_split.c	/^static void	ft_free_memory(char **tab, size_t i)$/;"	f	file:
+ft_free_memory	rank0/libft/libft_tester/src/ft_free_memory.c	/^void	ft_free_memory(char **tab, size_t i)$/;"	f
+ft_free_memory	rank1/printf/libft/ft_split.c	/^static void	ft_free_memory(char **tab, size_t i)$/;"	f	file:
+ft_free_memory	rank2/pipex/libft/ft_split.c	/^static void	ft_free_memory(char **tab, size_t i)$/;"	f	file:
+ft_free_memory	rank2/push_swap/libft/ft_split.c	/^static void	ft_free_memory(char **tab, size_t i)$/;"	f	file:
+ft_free_memory	rank2/so_long/libft/ft_split.c	/^static void	ft_free_memory(char **tab, size_t i)$/;"	f	file:
+ft_free_node	rank0/libft/libft_tester/src/ft_free_node.c	/^void		ft_free_node(void *node)$/;"	f
+ft_free_philos	archive/philo (copy)/utilities.c	/^void	ft_free_philos(t_simu *simu)$/;"	f
+ft_free_philos	archive/philo (tried to take out mutex)/utilities.c	/^void	ft_free_philos(t_simu *simu)$/;"	f
+ft_free_philos	rank3/philo/src/utilities_2.c	/^void	ft_free_philos(t_simu *simu)$/;"	f
+ft_free_remaining_forks	archive/philo (copy)/init.c	/^static void	ft_free_remaining_forks(int i, t_simu *simu)$/;"	f	file:
+ft_free_remaining_forks	archive/philo (tried to take out mutex)/init.c	/^static void	ft_free_remaining_forks(int i, t_simu *simu)$/;"	f	file:
+ft_free_remaining_forks	rank3/philo/src/init_2.c	/^static void	ft_free_remaining_forks(int i, t_simu *simu)$/;"	f	file:
+ft_free_split	rank2/push_swap/libft/ft_free_split.c	/^void	ft_free_split(char **split, int size)$/;"	f
+ft_free_stack	rank2/push_swap/src/ft_init_stack.c	/^void	ft_free_stack(t_stack **lst)$/;"	f
+ft_free_values	rank0/libft/libft_tester/src/ft_testlst_delone.c	/^static void ft_free_values(char **values)$/;"	f	file:
+ft_func	rank0/libft/libft_tester/src/libftest.h	/^	func_str	ft_func;$/;"	m	struct:s_funcmap_str
+ft_func	rank0/libft/libft_tester/src/libftest.h	/^    func_int	ft_func;$/;"	m	struct:s_funcmap_int
+ft_func	rank0/libft/libft_tester/src/libftest.h	/^    func_size_t		ft_func;$/;"	m	struct:s_funcmap_size_t
+ft_get_cheapest	rank2/push_swap/src/ft_calcul_cost.c	/^void	ft_get_cheapest(t_stack **a)$/;"	f
+ft_get_cheapest_by_segment	rank2/push_swap/src/ft_sort_b.c	/^void	ft_get_cheapest_by_segment(t_stack **a, int seg)$/;"	f
+ft_get_elapsed_time_us	archive/philo (copy)/utilities.c	/^static long long ft_get_elapsed_time_us(t_timeval start, t_timeval end)$/;"	f	file:
+ft_get_elapsed_time_us	archive/philo (tried to take out mutex)/utilities.c	/^static long long	ft_get_elapsed_time_us(t_timeval start, t_timeval end)$/;"	f	file:
+ft_get_elapsed_time_us	rank3/philo/src/utilities.c	/^static long long	ft_get_elapsed_time_us(t_timeval start, t_timeval end)$/;"	f	file:
+ft_get_tile	rank2/so_long/src/map_render_src/ft_get_tile.c	/^t_tile	*ft_get_tile(t_game *game, const char *filename)$/;"	f
+ft_get_tile	rank2/so_long/src/tileset_parser_src/ft_get_tile.c	/^t_tile	*ft_get_tile(t_game *game, const char *filename)$/;"	f
+ft_get_time	rank3/philo/src/forks.c	/^void	ft_get_time(t_forks *fork, long long *time_left, long long *time_right)$/;"	f
+ft_get_time_ms	archive/philo (copy)/utilities.c	/^long long	ft_get_time_ms(void)$/;"	f
+ft_get_time_ms	archive/philo (tried to take out mutex)/utilities.c	/^long long	ft_get_time_ms(void)$/;"	f
+ft_get_time_ms	rank3/philo/src/utilities.c	/^long long	ft_get_time_ms(void)$/;"	f
+ft_getenv	rank2/pipex/libft/ft_getenv.c	/^char	*ft_getenv(char **envp, const char *name)$/;"	f
+ft_getenv	rank2/push_swap/libft/ft_getenv.c	/^char	*ft_getenv(char **envp, const char *name)$/;"	f
+ft_getenv	rank2/so_long/libft/ft_getenv.c	/^char	*ft_getenv(char **envp, const char *name)$/;"	f
+ft_handle_char	rank1/printf/src/ft_handle_char.c	/^void	ft_handle_char(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_char	rank2/pipex/libft/ft_handle_char.c	/^void	ft_handle_char(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_char	rank2/push_swap/libft/ft_handle_char.c	/^void	ft_handle_char(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_char	rank2/so_long/libft/ft_handle_char.c	/^void	ft_handle_char(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_hash_flag	rank1/printf/src/ft_handle_hash_flag.c	/^void	ft_handle_hash_flag(t_format_spec spec, int content, t_buffer *buf_info)$/;"	f
+ft_handle_hash_flag	rank2/pipex/libft/ft_handle_hash_flag.c	/^void	ft_handle_hash_flag(t_format_spec spec, int content, t_buffer *buf_info)$/;"	f
+ft_handle_hash_flag	rank2/push_swap/libft/ft_handle_hash_flag.c	/^void	ft_handle_hash_flag(t_format_spec spec, int content, t_buffer *buf_info)$/;"	f
+ft_handle_hash_flag	rank2/so_long/libft/ft_handle_hash_flag.c	/^void	ft_handle_hash_flag(t_format_spec spec, int content, t_buffer *buf_info)$/;"	f
+ft_handle_hexadecimal	rank1/printf/src/ft_handle_hexadecimal.c	/^int	ft_handle_hexadecimal(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_hexadecimal	rank2/pipex/libft/ft_handle_hexadecimal.c	/^int	ft_handle_hexadecimal(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_hexadecimal	rank2/push_swap/libft/ft_handle_hexadecimal.c	/^int	ft_handle_hexadecimal(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_hexadecimal	rank2/so_long/libft/ft_handle_hexadecimal.c	/^int	ft_handle_hexadecimal(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_int	rank1/printf/src/ft_handle_int.c	/^int	ft_handle_int(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_int	rank2/pipex/libft/ft_handle_int.c	/^int	ft_handle_int(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_int	rank2/push_swap/libft/ft_handle_int.c	/^int	ft_handle_int(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_int	rank2/so_long/libft/ft_handle_int.c	/^int	ft_handle_int(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_plus_flag	rank1/printf/src/ft_handle_plus_flag.c	/^void	ft_handle_plus_flag(t_format_spec spec, int content, t_buffer *buf_info)$/;"	f
+ft_handle_plus_flag	rank2/pipex/libft/ft_handle_plus_flag.c	/^void	ft_handle_plus_flag(t_format_spec spec, int content, t_buffer *buf_info)$/;"	f
+ft_handle_plus_flag	rank2/push_swap/libft/ft_handle_plus_flag.c	/^void	ft_handle_plus_flag(t_format_spec spec, int content, t_buffer *buf_info)$/;"	f
+ft_handle_plus_flag	rank2/so_long/libft/ft_handle_plus_flag.c	/^void	ft_handle_plus_flag(t_format_spec spec, int content, t_buffer *buf_info)$/;"	f
+ft_handle_pointer	rank1/printf/src/ft_handle_pointer.c	/^int	ft_handle_pointer(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_pointer	rank2/pipex/libft/ft_handle_pointer.c	/^int	ft_handle_pointer(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_pointer	rank2/push_swap/libft/ft_handle_pointer.c	/^int	ft_handle_pointer(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_pointer	rank2/so_long/libft/ft_handle_pointer.c	/^int	ft_handle_pointer(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_space_flag	rank1/printf/src/ft_handle_space_flag.c	/^void	ft_handle_space_flag(t_format_spec spec, int content,$/;"	f
+ft_handle_space_flag	rank2/pipex/libft/ft_handle_space_flag.c	/^void	ft_handle_space_flag(t_format_spec spec, int content,$/;"	f
+ft_handle_space_flag	rank2/push_swap/libft/ft_handle_space_flag.c	/^void	ft_handle_space_flag(t_format_spec spec, int content,$/;"	f
+ft_handle_space_flag	rank2/so_long/libft/ft_handle_space_flag.c	/^void	ft_handle_space_flag(t_format_spec spec, int content,$/;"	f
+ft_handle_string	rank1/printf/src/ft_handle_string.c	/^void	ft_handle_string(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_string	rank2/pipex/libft/ft_handle_string.c	/^void	ft_handle_string(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_string	rank2/push_swap/libft/ft_handle_string.c	/^void	ft_handle_string(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_handle_string	rank2/so_long/libft/ft_handle_string.c	/^void	ft_handle_string(t_format_spec spec, va_list args, t_buffer *buf_info)$/;"	f
+ft_helper	rank2/so_long/src/events_src/ft_check_exit.c	/^static void	ft_helper(t_game *game)$/;"	f	file:
+ft_helper	rank2/so_long/src/events_src/ft_update_goblin_position.c	/^static void	ft_helper(t_game *game, int opt)$/;"	f	file:
+ft_helper	rank2/so_long/src/map_parser_src/ft_check_char.c	/^static void	ft_helper(t_game *game, int x, int y)$/;"	f	file:
+ft_here_doc_mode	rank2/pipex/src/init_src/ft_here_doc_mode.c	/^void	ft_here_doc_mode(t_pipex *pipex, int argc, char **argv, char **envp)$/;"	f
+ft_in_heredoc	rank2/pipex/src/init_src/ft_here_doc_mode.c	/^static void	ft_in_heredoc(int temp_fd, char *limiter)$/;"	f	file:
+ft_index_in_stack	rank2/push_swap/src/ft_sort.c	/^void	ft_index_in_stack(t_stack **lst)$/;"	f
+ft_init_b	rank2/push_swap/src/ft_utils.c	/^t_stack	*ft_init_b(void)$/;"	f
+ft_init_forks	archive/philo (copy)/init.c	/^bool	ft_init_forks(t_simu *simu)$/;"	f
+ft_init_forks	archive/philo (tried to take out mutex)/init.c	/^bool	ft_init_forks(t_simu *simu)$/;"	f
+ft_init_forks	rank3/philo/src/init_2.c	/^bool	ft_init_forks(t_simu *simu)$/;"	f
+ft_init_game	rank2/so_long/src/utilities_src/ft_init_game.c	/^void	ft_init_game(t_game *game, char *mapfile)$/;"	f
+ft_init_map	rank2/so_long/src/map_parser_src/ft_check_map.c	/^static void	ft_init_map(t_game *game)$/;"	f	file:
+ft_init_monitor	archive/philo (tried to take out mutex)/init.c	/^bool	ft_init_monitor(t_simu *simu)$/;"	f
+ft_init_monitor	rank3/philo/src/init.c	/^void	ft_init_monitor(t_simu *simu)$/;"	f
+ft_init_mtdata	archive/philo (tried to take out mutex)/init.c	/^bool	ft_init_mtdata(t_simu *simu)$/;"	f
+ft_init_mtdata	rank3/philo/src/init.c	/^bool	ft_init_mtdata(t_simu *simu)$/;"	f
+ft_init_objects	rank2/so_long/src/utilities_src/ft_init_game.c	/^static void	ft_init_objects(t_game *game)$/;"	f	file:
+ft_init_params	archive/philo (copy)/init.c	/^bool	ft_init_params(t_simu *simu, int ac, char **av)$/;"	f
+ft_init_philos	archive/philo (copy)/init.c	/^bool	ft_init_philos(t_simu *simu)$/;"	f
+ft_init_philos	archive/philo (tried to take out mutex)/init.c	/^bool	ft_init_philos(t_simu *simu)$/;"	f
+ft_init_philos	rank3/philo/src/init.c	/^bool	ft_init_philos(t_simu *simu)$/;"	f
+ft_init_pipex	rank2/pipex/src/init_src/ft_init_pipex.c	/^void	ft_init_pipex(t_pipex *pipex, int argc, char **argv, char **envp)$/;"	f
+ft_init_player_anim	rank2/so_long/src/events_src/ft_init_player_anim.c	/^void	ft_init_player_anim(t_game *game)$/;"	f
+ft_init_rdonly	archive/philo (tried to take out mutex)/init.c	/^bool	ft_init_rdonly(t_simu *simu, int ac, char **av)$/;"	f
+ft_init_rdonly	rank3/philo/src/init.c	/^bool	ft_init_rdonly(t_simu *simu, int ac, char **av)$/;"	f
+ft_init_simu	archive/philo (copy)/init.c	/^bool	ft_init_simu(t_simu *simu)$/;"	f
+ft_init_stack	rank2/push_swap/src/ft_init_stack.c	/^void	ft_init_stack(t_stack **stack_a, char *joined_args)$/;"	f
+ft_init_threads	archive/philo (copy)/init.c	/^bool	ft_init_threads(t_simu *simu)$/;"	f
+ft_init_threads	archive/philo (tried to take out mutex)/init.c	/^bool	ft_init_threads(t_simu *simu)$/;"	f
+ft_init_threads	rank3/philo/src/init_2.c	/^bool	ft_init_threads(t_simu *simu)$/;"	f
+ft_intlen	rank0/libft/ft_itoa.c	/^static size_t	ft_intlen(long n)$/;"	f	file:
+ft_intlen	rank1/printf/libft/ft_itoa.c	/^static size_t	ft_intlen(long n)$/;"	f	file:
+ft_intlen	rank2/pipex/libft/ft_itoa.c	/^static size_t	ft_intlen(long n)$/;"	f	file:
+ft_intlen	rank2/push_swap/libft/ft_itoa.c	/^static size_t	ft_intlen(long n)$/;"	f	file:
+ft_intlen	rank2/so_long/libft/ft_itoa.c	/^static size_t	ft_intlen(long n)$/;"	f	file:
+ft_inttest_for_int	rank0/libft/libft_tester/src/ft_inttest_for_int.c	/^void ft_inttest_for_int(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)$/;"	f
+ft_inttest_for_ssz	rank0/libft/libft_tester/src/ft_inttest_for_ssz.c	/^void ft_inttest_for_ssz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)$/;"	f
+ft_inttest_for_str	rank0/libft/libft_tester/src/ft_inttest_for_str.c	/^void ft_inttest_for_str(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)$/;"	f
+ft_inttest_for_vvz	rank0/libft/libft_tester/src/ft_inttest_for_vvz.c	/^void ft_inttest_for_vvz(int (*libc_func)(), int (*ft_func)(), t_tstlst *lst)$/;"	f
+ft_inttester_int	rank0/libft/libft_tester/src/ft_inttester_int.c	/^int  ft_inttester_int(int (*f)(), int value)$/;"	f
+ft_inttester_ssz	rank0/libft/libft_tester/src/ft_inttester_ssz.c	/^int  ft_inttester_ssz(int (*f)(), char *value1, char *value2, size_t value3)$/;"	f
+ft_inttester_str	rank0/libft/libft_tester/src/ft_inttester_str.c	/^int  ft_inttester_str(int (*f)(), char *value)$/;"	f
+ft_inttester_vvz	rank0/libft/libft_tester/src/ft_inttester_vvz.c	/^int  ft_inttester_vvz(int (*f)(), void *value1, void *value2, size_t value3)$/;"	f
+ft_is_int	archive/philo (copy)/parsing.c	/^bool	ft_is_int(char *nptr)$/;"	f
+ft_is_int	archive/philo (tried to take out mutex)/parsing.c	/^bool	ft_is_int(char *nptr)$/;"	f
+ft_is_int	rank3/philo/src/parsing.c	/^bool	ft_is_int(char *nptr)$/;"	f
+ft_is_int_help	archive/philo (copy)/parsing.c	/^static bool	ft_is_int_help(char *nptr, int i, int sign, int len)$/;"	f	file:
+ft_is_int_help	archive/philo (tried to take out mutex)/parsing.c	/^static bool	ft_is_int_help(char *nptr, int i, int sign, int len)$/;"	f	file:
+ft_is_int_help	rank3/philo/src/parsing.c	/^static bool	ft_is_int_help(char *nptr, int i, int sign, int len)$/;"	f	file:
+ft_is_not_int	rank2/push_swap/src/ft_check_errors.c	/^int	ft_is_not_int(t_stack *stack)$/;"	f
+ft_is_sorted	rank2/push_swap/src/ft_sort_utils.c	/^int	ft_is_sorted(t_stack *lst)$/;"	f
+ft_is_sorted_b	rank2/push_swap/src/ft_sort_utils.c	/^int	ft_is_sorted_b(t_stack *lst)$/;"	f
+ft_is_valid_number_string	rank2/push_swap/src/ft_check_errors.c	/^int	ft_is_valid_number_string(char *str)$/;"	f
+ft_isalnum	rank0/libft/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	f
+ft_isalnum	rank1/printf/libft/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	f
+ft_isalnum	rank2/pipex/libft/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	f
+ft_isalnum	rank2/push_swap/libft/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	f
+ft_isalnum	rank2/so_long/libft/ft_isalnum.c	/^int	ft_isalnum(int c)$/;"	f
+ft_isalpha	rank0/libft/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f
+ft_isalpha	rank1/printf/libft/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f
+ft_isalpha	rank2/pipex/libft/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f
+ft_isalpha	rank2/push_swap/libft/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f
+ft_isalpha	rank2/so_long/libft/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f
+ft_isascii	rank0/libft/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f
+ft_isascii	rank1/printf/libft/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f
+ft_isascii	rank2/pipex/libft/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f
+ft_isascii	rank2/push_swap/libft/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f
+ft_isascii	rank2/so_long/libft/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f
+ft_isconvert_spec	rank1/printf/src/ft_isconvert_spec.c	/^int	ft_isconvert_spec(char c)$/;"	f
+ft_isconvert_spec	rank2/pipex/libft/ft_isconvert_spec.c	/^int	ft_isconvert_spec(char c)$/;"	f
+ft_isconvert_spec	rank2/push_swap/libft/ft_isconvert_spec.c	/^int	ft_isconvert_spec(char c)$/;"	f
+ft_isconvert_spec	rank2/so_long/libft/ft_isconvert_spec.c	/^int	ft_isconvert_spec(char c)$/;"	f
+ft_isdigit	archive/philo (copy)/42ft.c	/^int	ft_isdigit(int c)$/;"	f
+ft_isdigit	archive/philo (tried to take out mutex)/42ft.c	/^int	ft_isdigit(int c)$/;"	f
+ft_isdigit	rank0/libft/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f
+ft_isdigit	rank1/printf/libft/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f
+ft_isdigit	rank2/pipex/libft/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f
+ft_isdigit	rank2/push_swap/libft/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f
+ft_isdigit	rank2/so_long/libft/ft_isdigit.c	/^int	ft_isdigit(int c)$/;"	f
+ft_isdigit	rank3/philo/src/42ft.c	/^int	ft_isdigit(int c)$/;"	f
+ft_isflag	rank1/printf/src/ft_isflag.c	/^int	ft_isflag(char c)$/;"	f
+ft_isflag	rank2/pipex/libft/ft_isflag.c	/^int	ft_isflag(char c)$/;"	f
+ft_isflag	rank2/push_swap/libft/ft_isflag.c	/^int	ft_isflag(char c)$/;"	f
+ft_isflag	rank2/so_long/libft/ft_isflag.c	/^int	ft_isflag(char c)$/;"	f
+ft_isprint	rank0/libft/ft_isprint.c	/^int	ft_isprint(int c)$/;"	f
+ft_isprint	rank1/printf/libft/ft_isprint.c	/^int	ft_isprint(int c)$/;"	f
+ft_isprint	rank2/pipex/libft/ft_isprint.c	/^int	ft_isprint(int c)$/;"	f
+ft_isprint	rank2/push_swap/libft/ft_isprint.c	/^int	ft_isprint(int c)$/;"	f
+ft_isprint	rank2/so_long/libft/ft_isprint.c	/^int	ft_isprint(int c)$/;"	f
+ft_issign	archive/philo (copy)/42ft.c	/^int	ft_issign(int c, int *sign)$/;"	f
+ft_issign	archive/philo (tried to take out mutex)/42ft.c	/^int	ft_issign(int c, int *sign)$/;"	f
+ft_issign	rank0/libft/ft_atoi.c	/^static int	ft_issign(int c, int *sign)$/;"	f	file:
+ft_issign	rank1/printf/libft/ft_atoi.c	/^static int	ft_issign(int c, int *sign)$/;"	f	file:
+ft_issign	rank2/pipex/libft/ft_atoi.c	/^static int	ft_issign(int c, int *sign)$/;"	f	file:
+ft_issign	rank2/pipex/libft/ft_atol.c	/^static int	ft_issign(int c, int *sign)$/;"	f	file:
+ft_issign	rank2/push_swap/libft/ft_atoi.c	/^static int	ft_issign(int c, int *sign)$/;"	f	file:
+ft_issign	rank2/push_swap/libft/ft_atol.c	/^static int	ft_issign(int c, int *sign)$/;"	f	file:
+ft_issign	rank2/so_long/libft/ft_atoi.c	/^static int	ft_issign(int c, int *sign)$/;"	f	file:
+ft_issign	rank2/so_long/libft/ft_atol.c	/^static int	ft_issign(int c, int *sign)$/;"	f	file:
+ft_issign	rank3/philo/src/42ft.c	/^int	ft_issign(int c, int *sign)$/;"	f
+ft_isspace	archive/philo (copy)/42ft.c	/^int	ft_isspace(int c)$/;"	f
+ft_isspace	archive/philo (tried to take out mutex)/42ft.c	/^int	ft_isspace(int c)$/;"	f
+ft_isspace	rank0/libft/ft_atoi.c	/^static int	ft_isspace(int c)$/;"	f	file:
+ft_isspace	rank1/printf/libft/ft_atoi.c	/^static int	ft_isspace(int c)$/;"	f	file:
+ft_isspace	rank2/pipex/libft/ft_atoi.c	/^static int	ft_isspace(int c)$/;"	f	file:
+ft_isspace	rank2/pipex/libft/ft_atol.c	/^static int	ft_isspace(int c)$/;"	f	file:
+ft_isspace	rank2/push_swap/libft/ft_atoi.c	/^static int	ft_isspace(int c)$/;"	f	file:
+ft_isspace	rank2/push_swap/libft/ft_atol.c	/^static int	ft_isspace(int c)$/;"	f	file:
+ft_isspace	rank2/so_long/libft/ft_atoi.c	/^static int	ft_isspace(int c)$/;"	f	file:
+ft_isspace	rank2/so_long/libft/ft_atol.c	/^static int	ft_isspace(int c)$/;"	f	file:
+ft_isspace	rank3/philo/src/42ft.c	/^int	ft_isspace(int c)$/;"	f
+ft_itoa	rank0/libft/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	f
+ft_itoa	rank1/printf/libft/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	f
+ft_itoa	rank2/pipex/libft/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	f
+ft_itoa	rank2/push_swap/libft/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	f
+ft_itoa	rank2/so_long/libft/ft_itoa.c	/^char	*ft_itoa(int n)$/;"	f
+ft_join_arguments	rank2/push_swap/src/ft_parse.c	/^char	*ft_join_arguments(int ac, char **av)$/;"	f
+ft_join_remaining_threads	archive/philo (copy)/init.c	/^static void	ft_join_remaining_threads(int i, t_simu *simu)$/;"	f	file:
+ft_join_remaining_threads	archive/philo (tried to take out mutex)/init.c	/^static void	ft_join_remaining_threads(int i, t_simu *simu)$/;"	f	file:
+ft_join_remaining_threads	rank3/philo/src/init_2.c	/^static void	ft_join_remaining_threads(int i, t_simu *simu)$/;"	f	file:
+ft_last_sort	rank2/push_swap/src/ft_sort.c	/^void	ft_last_sort(t_stack **a)$/;"	f
+ft_link	rank3/philo/src/init.c	/^static void	ft_link(t_simu *simu, t_philo *philo, int i)$/;"	f	file:
+ft_links_init	rank3/philo/src/safe_init.c	/^void	ft_links_init(t_simu *simu)$/;"	f
+ft_load_tests	rank0/libft/libft_tester/src/ft_load_tests.c	/^t_tstlst	*ft_load_tests(const char *filepath)$/;"	f
+ft_load_tileset	rank2/so_long/src/tileset_parser_src/ft_load_tileset.c	/^void	ft_load_tileset(t_game *game, const char *path)$/;"	f
+ft_lstadd_back	rank0/libft/ft_lstadd_back.c	/^void	ft_lstadd_back(t_list **lst, t_list *new)$/;"	f
+ft_lstadd_back	rank1/printf/libft/ft_lstadd_back.c	/^void	ft_lstadd_back(t_list **lst, t_list *new)$/;"	f
+ft_lstadd_back	rank2/pipex/libft/ft_lstadd_back.c	/^void	ft_lstadd_back(t_list **lst, t_list *New)$/;"	f
+ft_lstadd_back	rank2/push_swap/libft/ft_lstadd_back.c	/^void	ft_lstadd_back(t_list **lst, t_list *New)$/;"	f
+ft_lstadd_back	rank2/so_long/libft/ft_lstadd_back.c	/^void	ft_lstadd_back(t_list **lst, t_list *New)$/;"	f
+ft_lstadd_front	rank0/libft/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list **lst, t_list *new)$/;"	f
+ft_lstadd_front	rank1/printf/libft/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list **lst, t_list *new)$/;"	f
+ft_lstadd_front	rank2/pipex/libft/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list **lst, t_list *New)$/;"	f
+ft_lstadd_front	rank2/push_swap/libft/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list **lst, t_list *New)$/;"	f
+ft_lstadd_front	rank2/so_long/libft/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list **lst, t_list *New)$/;"	f
+ft_lstclear	rank0/libft/ft_lstclear.c	/^void	ft_lstclear(t_list **lst, void (*del)(void *))$/;"	f
+ft_lstclear	rank1/printf/libft/ft_lstclear.c	/^void	ft_lstclear(t_list **lst, void (*del)(void *))$/;"	f
+ft_lstclear	rank2/pipex/libft/ft_lstclear.c	/^void	ft_lstclear(t_list **lst, void (*del)(void *))$/;"	f
+ft_lstclear	rank2/push_swap/libft/ft_lstclear.c	/^void	ft_lstclear(t_list **lst, void (*del)(void *))$/;"	f
+ft_lstclear	rank2/so_long/libft/ft_lstclear.c	/^void	ft_lstclear(t_list **lst, void (*del)(void *))$/;"	f
+ft_lstdelone	rank0/libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void *))$/;"	f
+ft_lstdelone	rank1/printf/libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void *))$/;"	f
+ft_lstdelone	rank2/pipex/libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void *))$/;"	f
+ft_lstdelone	rank2/push_swap/libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void *))$/;"	f
+ft_lstdelone	rank2/so_long/libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void *))$/;"	f
+ft_lstiter	rank0/libft/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/;"	f
+ft_lstiter	rank1/printf/libft/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/;"	f
+ft_lstiter	rank2/pipex/libft/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/;"	f
+ft_lstiter	rank2/push_swap/libft/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/;"	f
+ft_lstiter	rank2/so_long/libft/ft_lstiter.c	/^void	ft_lstiter(t_list *lst, void (*f)(void *))$/;"	f
+ft_lstlast	rank0/libft/ft_lstlast.c	/^t_list	*ft_lstlast(t_list *lst)$/;"	f
+ft_lstlast	rank1/printf/libft/ft_lstlast.c	/^t_list	*ft_lstlast(t_list *lst)$/;"	f
+ft_lstlast	rank2/pipex/libft/ft_lstlast.c	/^t_list	*ft_lstlast(t_list *lst)$/;"	f
+ft_lstlast	rank2/push_swap/libft/ft_lstlast.c	/^t_list	*ft_lstlast(t_list *lst)$/;"	f
+ft_lstlast	rank2/so_long/libft/ft_lstlast.c	/^t_list	*ft_lstlast(t_list *lst)$/;"	f
+ft_lstmap	rank0/libft/ft_lstmap.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))$/;"	f
+ft_lstmap	rank1/printf/libft/ft_lstmap.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))$/;"	f
+ft_lstmap	rank2/pipex/libft/ft_lstmap.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))$/;"	f
+ft_lstmap	rank2/push_swap/libft/ft_lstmap.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))$/;"	f
+ft_lstmap	rank2/so_long/libft/ft_lstmap.c	/^t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))$/;"	f
+ft_lstnew	rank0/libft/ft_lstnew.c	/^t_list	*ft_lstnew(void *content)$/;"	f
+ft_lstnew	rank1/printf/libft/ft_lstnew.c	/^t_list	*ft_lstnew(void *content)$/;"	f
+ft_lstnew	rank2/pipex/libft/ft_lstnew.c	/^t_list	*ft_lstnew(void *content)$/;"	f
+ft_lstnew	rank2/push_swap/libft/ft_lstnew.c	/^t_list	*ft_lstnew(void *content)$/;"	f
+ft_lstnew	rank2/so_long/libft/ft_lstnew.c	/^t_list	*ft_lstnew(void *content)$/;"	f
+ft_lstsize	rank0/libft/ft_lstsize.c	/^int	ft_lstsize(t_list *lst)$/;"	f
+ft_lstsize	rank1/printf/libft/ft_lstsize.c	/^int	ft_lstsize(t_list *lst)$/;"	f
+ft_lstsize	rank2/pipex/libft/ft_lstsize.c	/^int	ft_lstsize(t_list *lst)$/;"	f
+ft_lstsize	rank2/push_swap/libft/ft_lstsize.c	/^int	ft_lstsize(t_list *lst)$/;"	f
+ft_lstsize	rank2/so_long/libft/ft_lstsize.c	/^int	ft_lstsize(t_list *lst)$/;"	f
+ft_manage_split	rank2/so_long/src/tileset_parser_src/ft_parse_tileset.c	/^static void	ft_manage_split(t_game *game, t_tile **tiles, char *line, int fd)$/;"	f	file:
+ft_max	rank2/push_swap/libft/ft_min_max.c	/^int	ft_max(int cost_a, int cost_b)$/;"	f
+ft_memchr	rank0/libft/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/;"	f
+ft_memchr	rank1/printf/libft/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/;"	f
+ft_memchr	rank2/pipex/libft/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/;"	f
+ft_memchr	rank2/push_swap/libft/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/;"	f
+ft_memchr	rank2/so_long/libft/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/;"	f
+ft_memcmp	rank0/libft/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	f
+ft_memcmp	rank1/printf/libft/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	f
+ft_memcmp	rank2/pipex/libft/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	f
+ft_memcmp	rank2/push_swap/libft/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	f
+ft_memcmp	rank2/so_long/libft/ft_memcmp.c	/^int	ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	f
+ft_memcpy	rank0/libft/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f
+ft_memcpy	rank1/get_next_line/get_next_line_utils.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f
+ft_memcpy	rank1/get_next_line/get_next_line_utils_bonus.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f
+ft_memcpy	rank1/printf/libft/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f
+ft_memcpy	rank2/pipex/libft/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f
+ft_memcpy	rank2/push_swap/libft/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f
+ft_memcpy	rank2/so_long/libft/ft_memcpy.c	/^void	*ft_memcpy(void *dest, const void *src, size_t n)$/;"	f
+ft_memmove	rank0/libft/ft_memmove.c	/^void	*ft_memmove(void *dest, const void *src, size_t n)$/;"	f
+ft_memmove	rank1/printf/libft/ft_memmove.c	/^void	*ft_memmove(void *dest, const void *src, size_t n)$/;"	f
+ft_memmove	rank2/pipex/libft/ft_memmove.c	/^void	*ft_memmove(void *dest, const void *src, size_t n)$/;"	f
+ft_memmove	rank2/push_swap/libft/ft_memmove.c	/^void	*ft_memmove(void *dest, const void *src, size_t n)$/;"	f
+ft_memmove	rank2/so_long/libft/ft_memmove.c	/^void	*ft_memmove(void *dest, const void *src, size_t n)$/;"	f
+ft_memset	rank0/libft/ft_memset.c	/^void	*ft_memset(void *s, int c, size_t n)$/;"	f
+ft_memset	rank1/get_next_line/get_next_line_utils.c	/^void	*ft_memset(void *s, int c, size_t n)$/;"	f
+ft_memset	rank1/get_next_line/get_next_line_utils_bonus.c	/^void	*ft_memset(void *s, int c, size_t n)$/;"	f
+ft_memset	rank1/printf/libft/ft_memset.c	/^void	*ft_memset(void *s, int c, size_t n)$/;"	f
+ft_memset	rank2/pipex/libft/ft_memset.c	/^void	*ft_memset(void *s, int c, size_t n)$/;"	f
+ft_memset	rank2/push_swap/libft/ft_memset.c	/^void	*ft_memset(void *s, int c, size_t n)$/;"	f
+ft_memset	rank2/so_long/libft/ft_memset.c	/^void	*ft_memset(void *s, int c, size_t n)$/;"	f
+ft_mid_stack	rank2/push_swap/src/ft_lst_utils.c	/^int	ft_mid_stack(t_stack *lst)$/;"	f
+ft_min	rank2/push_swap/libft/ft_min_max.c	/^int	ft_min(int cost_a, int cost_b)$/;"	f
+ft_mon_routine	archive/philo (tried to take out mutex)/monitor.c	/^static bool	ft_mon_routine(t_monitor *mon)$/;"	f	file:
+ft_mon_routine	rank3/philo/src/monitor.c	/^static bool	ft_mon_routine(t_monitor *mon)$/;"	f	file:
+ft_monitor	archive/philo (tried to take out mutex)/monitor.c	/^void	*ft_monitor(void *arg)$/;"	f
+ft_monitor	rank3/philo/src/monitor.c	/^void	*ft_monitor(void *arg)$/;"	f
+ft_move	rank2/so_long/src/events_src/ft_player_anim.c	/^static int	ft_move(t_game *game, int y_offset, int x_offset)$/;"	f	file:
+ft_move_orc	rank2/so_long/src/events_src/ft_player_anim.c	/^void	ft_move_orc(t_game *game)$/;"	f
+ft_move_player	rank2/so_long/src/events_src/ft_move_player.c	/^void	ft_move_player(int keysym, t_game *game)$/;"	f
+ft_nbr_len	rank1/printf/src/ft_nbr_len.c	/^int	ft_nbr_len(unsigned long long nbr, int base_len)$/;"	f
+ft_nbr_len	rank2/pipex/libft/ft_nbr_len.c	/^int	ft_nbr_len(unsigned long long nbr, int base_len)$/;"	f
+ft_nbr_len	rank2/push_swap/libft/ft_nbr_len.c	/^int	ft_nbr_len(unsigned long long nbr, int base_len)$/;"	f
+ft_nbr_len	rank2/so_long/libft/ft_nbr_len.c	/^int	ft_nbr_len(unsigned long long nbr, int base_len)$/;"	f
+ft_new_str	rank1/printf/src/ft_apply_precision.c	/^static int	ft_new_str(char **new_str, t_format_spec *spec, int total_len,$/;"	f	file:
+ft_new_str	rank2/pipex/libft/ft_apply_precision.c	/^static int	ft_new_str(char **new_str, t_format_spec *spec, int total_len,$/;"	f	file:
+ft_new_str	rank2/push_swap/libft/ft_apply_precision.c	/^static int	ft_new_str(char **new_str, t_format_spec *spec, int total_len,$/;"	f	file:
+ft_new_str	rank2/so_long/libft/ft_apply_precision.c	/^static int	ft_new_str(char **new_str, t_format_spec *spec, int total_len,$/;"	f	file:
+ft_node_to_top	rank2/push_swap/src/ft_sort_b.c	/^void	ft_node_to_top(t_stack **a, t_stack *node)$/;"	f
+ft_one_philo_case	rank3/philo/src/routine.c	/^static bool	ft_one_philo_case(t_philo *philo)$/;"	f	file:
+ft_parent_process	rank2/pipex/src/exec_src/ft_process.c	/^static void	ft_parent_process(t_pipex *pipex, int i)$/;"	f	file:
+ft_parse_cmd	rank2/pipex/src/init_src/ft_parse_cmd.c	/^void	ft_parse_cmd(t_command *command, char *cmd_str, char **envp)$/;"	f
+ft_parse_flags	rank1/printf/src/ft_parse_flags.c	/^void	ft_parse_flags(const char *format, t_format_spec *spec)$/;"	f
+ft_parse_flags	rank2/pipex/libft/ft_parse_flags.c	/^void	ft_parse_flags(const char *format, t_format_spec *spec)$/;"	f
+ft_parse_flags	rank2/push_swap/libft/ft_parse_flags.c	/^void	ft_parse_flags(const char *format, t_format_spec *spec)$/;"	f
+ft_parse_flags	rank2/so_long/libft/ft_parse_flags.c	/^void	ft_parse_flags(const char *format, t_format_spec *spec)$/;"	f
+ft_parse_format	rank1/printf/src/ft_parse_format.c	/^t_format_spec	ft_parse_format(const char **format)$/;"	f
+ft_parse_format	rank2/pipex/libft/ft_parse_format.c	/^t_format_spec	ft_parse_format(const char **format)$/;"	f
+ft_parse_format	rank2/push_swap/libft/ft_parse_format.c	/^t_format_spec	ft_parse_format(const char **format)$/;"	f
+ft_parse_format	rank2/so_long/libft/ft_parse_format.c	/^t_format_spec	ft_parse_format(const char **format)$/;"	f
+ft_parse_line_to_test	rank0/libft/libft_tester/src/ft_parse_line_to_test.c	/^t_tstlst	*ft_parse_line_to_test(const char *line)$/;"	f
+ft_parse_map	rank2/so_long/src/map_parser_src/ft_parse_map.c	/^void	ft_parse_map(t_game *game, char *filename)$/;"	f
+ft_parse_precision	rank1/printf/src/ft_parse_flags.c	/^static void	ft_parse_precision(const char *format, t_format_spec *spec,$/;"	f	file:
+ft_parse_precision	rank2/pipex/libft/ft_parse_flags.c	/^static void	ft_parse_precision(const char *format, t_format_spec *spec,$/;"	f	file:
+ft_parse_precision	rank2/push_swap/libft/ft_parse_flags.c	/^static void	ft_parse_precision(const char *format, t_format_spec *spec,$/;"	f	file:
+ft_parse_precision	rank2/so_long/libft/ft_parse_flags.c	/^static void	ft_parse_precision(const char *format, t_format_spec *spec,$/;"	f	file:
+ft_parse_tileset	rank2/so_long/src/tileset_parser_src/ft_parse_tileset.c	/^void	ft_parse_tileset(t_game *game, char *filename)$/;"	f
+ft_parse_width	rank1/printf/src/ft_parse_flags.c	/^static void	ft_parse_width(const char *format, t_format_spec *spec, size_t *i)$/;"	f	file:
+ft_parse_width	rank2/pipex/libft/ft_parse_flags.c	/^static void	ft_parse_width(const char *format, t_format_spec *spec, size_t *i)$/;"	f	file:
+ft_parse_width	rank2/push_swap/libft/ft_parse_flags.c	/^static void	ft_parse_width(const char *format, t_format_spec *spec, size_t *i)$/;"	f	file:
+ft_parse_width	rank2/so_long/libft/ft_parse_flags.c	/^static void	ft_parse_width(const char *format, t_format_spec *spec, size_t *i)$/;"	f	file:
+ft_partition	rank2/push_swap/src/ft_define_segment.c	/^static int	ft_partition(int *arr, int low, int high)$/;"	f	file:
+ft_perror	archive/philo (copy)/utilities.c	/^void	ft_perror(char *str)$/;"	f
+ft_perror	archive/philo (tried to take out mutex)/utilities.c	/^void	ft_perror(char *str)$/;"	f
+ft_perror	rank3/philo/src/utilities_2.c	/^void	ft_perror(char *str)$/;"	f
+ft_pick_up_forks	archive/philo (copy)/routine.c	/^bool	ft_pick_up_forks(t_philo *philo)$/;"	f
+ft_pick_up_forks	archive/philo (tried to take out mutex)/routine.c	/^void	ft_pick_up_forks(t_philo *philo)$/;"	f
+ft_pick_up_forks	rank3/philo/src/actions.c	/^bool	ft_pick_up_forks(t_philo *philo)$/;"	f
+ft_picking_order	rank3/philo/src/forks.c	/^static void	ft_picking_order(t_forks *fork, int id)$/;"	f	file:
+ft_player_anim	rank2/so_long/src/events_src/ft_player_anim.c	/^int	ft_player_anim(t_game *game)$/;"	f
+ft_precise_usleep	archive/philo (copy)/utilities.c	/^void	ft_precise_usleep(long long usec, t_philo *philo)$/;"	f
+ft_precise_usleep	archive/philo (tried to take out mutex)/utilities.c	/^void	ft_precise_usleep(long long usec)$/;"	f
+ft_precise_usleep	rank3/philo/src/utilities.c	/^void	ft_precise_usleep(long long usec)$/;"	f
+ft_prep_main	rank2/push_swap/bonus/ft_checker_utils.c	/^void	ft_prep_main(int ac, char **av, t_stack **a, t_stack **b)$/;"	f
+ft_prep_stack_a	rank2/push_swap/src/ft_sort_b.c	/^void	ft_prep_stack_a(t_stack **a)$/;"	f
+ft_prep_stack_b	rank2/push_swap/src/ft_sort_a.c	/^void	ft_prep_stack_b(t_stack **b, t_stack **a)$/;"	f
+ft_prepare_hex_content	rank1/printf/src/ft_handle_hexadecimal.c	/^static int	ft_prepare_hex_content(t_format_spec spec, unsigned int content,$/;"	f	file:
+ft_prepare_hex_content	rank2/pipex/libft/ft_handle_hexadecimal.c	/^static int	ft_prepare_hex_content(t_format_spec spec, unsigned int content,$/;"	f	file:
+ft_prepare_hex_content	rank2/push_swap/libft/ft_handle_hexadecimal.c	/^static int	ft_prepare_hex_content(t_format_spec spec, unsigned int content,$/;"	f	file:
+ft_prepare_hex_content	rank2/so_long/libft/ft_handle_hexadecimal.c	/^static int	ft_prepare_hex_content(t_format_spec spec, unsigned int content,$/;"	f	file:
+ft_prepare_int	rank1/printf/src/ft_handle_int.c	/^static int	ft_prepare_int(t_format_spec spec, long long content,$/;"	f	file:
+ft_prepare_int	rank2/pipex/libft/ft_handle_int.c	/^static int	ft_prepare_int(t_format_spec spec, long long content,$/;"	f	file:
+ft_prepare_int	rank2/push_swap/libft/ft_handle_int.c	/^static int	ft_prepare_int(t_format_spec spec, long long content,$/;"	f	file:
+ft_prepare_int	rank2/so_long/libft/ft_handle_int.c	/^static int	ft_prepare_int(t_format_spec spec, long long content,$/;"	f	file:
+ft_prepare_pointer	rank1/printf/src/ft_handle_pointer.c	/^static int	ft_prepare_pointer(char **adresse, t_buffer *buf_info, void *ptr)$/;"	f	file:
+ft_prepare_pointer	rank2/pipex/libft/ft_handle_pointer.c	/^static int	ft_prepare_pointer(char **adresse, t_buffer *buf_info, void *ptr)$/;"	f	file:
+ft_prepare_pointer	rank2/push_swap/libft/ft_handle_pointer.c	/^static int	ft_prepare_pointer(char **adresse, t_buffer *buf_info, void *ptr)$/;"	f	file:
+ft_prepare_pointer	rank2/so_long/libft/ft_handle_pointer.c	/^static int	ft_prepare_pointer(char **adresse, t_buffer *buf_info, void *ptr)$/;"	f	file:
+ft_print_error	rank2/push_swap/src/ft_check_errors.c	/^void	ft_print_error(t_stack **stack)$/;"	f
+ft_print_format	archive/philo (copy)/printing.c	/^static void ft_print_format(t_philo *philo, long long time, const char *format)$/;"	f	file:
+ft_print_format	archive/philo (tried to take out mutex)/printing.c	/^void	ft_print_format(t_philo *philo, long long time, const char *format)$/;"	f
+ft_print_format	rank3/philo/src/printing.c	/^void	ft_print_format(t_philo *philo, long long time, const char *format)$/;"	f
+ft_print_params	archive/philo (copy)/printing.c	/^void	ft_print_params(t_params params)$/;"	f
+ft_print_params	archive/philo (tried to take out mutex)/printing.c	/^void	ft_print_params(t_rdonly params)$/;"	f
+ft_print_parsing	archive/philo (copy)/printing.c	/^void	ft_print_parsing(t_simu simu)$/;"	f
+ft_print_parsing	archive/philo (tried to take out mutex)/printing.c	/^void	ft_print_parsing(t_simu simu)$/;"	f
+ft_print_parsing	rank3/philo/src/printing.c	/^void	ft_print_parsing(t_simu simu)$/;"	f
+ft_print_philos	archive/philo (copy)/printing.c	/^void	ft_print_philos(t_simu simu)$/;"	f
+ft_print_philos	archive/philo (tried to take out mutex)/printing.c	/^void	ft_print_philos(t_simu simu)$/;"	f
+ft_print_stack	rank2/push_swap/src/ft_utils.c	/^void	ft_print_stack(t_stack *stack)$/;"	f
+ft_print_start_stop	archive/philo (tried to take out mutex)/printing.c	/^void	ft_print_start_stop(t_simu *simu, bool choice)$/;"	f
+ft_print_start_stop	rank3/philo/src/printing.c	/^void	ft_print_start_stop(t_simu *simu, bool choice)$/;"	f
+ft_print_state	archive/philo (copy)/printing.c	/^void	ft_print_state(t_philo *philo, int state)$/;"	f
+ft_print_state	archive/philo (tried to take out mutex)/printing.c	/^void	ft_print_state(t_philo *philo, int state)$/;"	f
+ft_print_state	rank3/philo/src/printing.c	/^void	ft_print_state(t_philo *philo, int state)$/;"	f
+ft_printf	rank1/printf/src/ft_printf.c	/^int	ft_printf(const char *format, ...)$/;"	f
+ft_printf	rank2/pipex/libft/ft_printf.c	/^int	ft_printf(const char *format, ...)$/;"	f
+ft_printf	rank2/push_swap/libft/ft_printf.c	/^int	ft_printf(const char *format, ...)$/;"	f
+ft_printf	rank2/so_long/libft/ft_printf.c	/^int	ft_printf(const char *format, ...)$/;"	f
+ft_printf_fd	rank2/pipex/libft/ft_printf.c	/^int	ft_printf_fd(int fd, const char *format, ...)$/;"	f
+ft_printf_fd	rank2/push_swap/libft/ft_printf.c	/^int	ft_printf_fd(int fd, const char *format, ...)$/;"	f
+ft_printf_fd	rank2/so_long/libft/ft_printf.c	/^int	ft_printf_fd(int fd, const char *format, ...)$/;"	f
+ft_process_format_specifier	rank1/printf/src/ft_printf.c	/^static int	ft_process_format_specifier(const char **format, va_list args,$/;"	f	file:
+ft_process_format_specifier	rank2/pipex/libft/ft_printf.c	/^static int	ft_process_format_specifier(const char **format, va_list args,$/;"	f	file:
+ft_process_format_specifier	rank2/push_swap/libft/ft_printf.c	/^static int	ft_process_format_specifier(const char **format, va_list args,$/;"	f	file:
+ft_process_format_specifier	rank2/so_long/libft/ft_printf.c	/^static int	ft_process_format_specifier(const char **format, va_list args,$/;"	f	file:
+ft_process_formatted_hex	rank1/printf/src/ft_handle_hexadecimal.c	/^static void	ft_process_formatted_hex(t_format_spec spec, unsigned int content,$/;"	f	file:
+ft_process_formatted_hex	rank2/pipex/libft/ft_handle_hexadecimal.c	/^static void	ft_process_formatted_hex(t_format_spec spec, unsigned int content,$/;"	f	file:
+ft_process_formatted_hex	rank2/push_swap/libft/ft_handle_hexadecimal.c	/^static void	ft_process_formatted_hex(t_format_spec spec, unsigned int content,$/;"	f	file:
+ft_process_formatted_hex	rank2/so_long/libft/ft_handle_hexadecimal.c	/^static void	ft_process_formatted_hex(t_format_spec spec, unsigned int content,$/;"	f	file:
+ft_process_int	rank1/printf/src/ft_handle_int.c	/^static void	ft_process_int(t_format_spec spec, long long content,$/;"	f	file:
+ft_process_int	rank2/pipex/libft/ft_handle_int.c	/^static void	ft_process_int(t_format_spec spec, long long content,$/;"	f	file:
+ft_process_int	rank2/push_swap/libft/ft_handle_int.c	/^static void	ft_process_int(t_format_spec spec, long long content,$/;"	f	file:
+ft_process_int	rank2/so_long/libft/ft_handle_int.c	/^static void	ft_process_int(t_format_spec spec, long long content,$/;"	f	file:
+ft_process_pointer	rank1/printf/src/ft_handle_pointer.c	/^static void	ft_process_pointer(t_format_spec spec, char *adresse,$/;"	f	file:
+ft_process_pointer	rank2/pipex/libft/ft_handle_pointer.c	/^static void	ft_process_pointer(t_format_spec spec, char *adresse,$/;"	f	file:
+ft_process_pointer	rank2/push_swap/libft/ft_handle_pointer.c	/^static void	ft_process_pointer(t_format_spec spec, char *adresse,$/;"	f	file:
+ft_process_pointer	rank2/so_long/libft/ft_handle_pointer.c	/^static void	ft_process_pointer(t_format_spec spec, char *adresse,$/;"	f	file:
+ft_psh_flags	rank1/printf/src/ft_parse_flags.c	/^static void	ft_psh_flags(const char *format, t_format_spec *spec, size_t *i)$/;"	f	file:
+ft_psh_flags	rank2/pipex/libft/ft_parse_flags.c	/^static void	ft_psh_flags(const char *format, t_format_spec *spec, size_t *i)$/;"	f	file:
+ft_psh_flags	rank2/push_swap/libft/ft_parse_flags.c	/^static void	ft_psh_flags(const char *format, t_format_spec *spec, size_t *i)$/;"	f	file:
+ft_psh_flags	rank2/so_long/libft/ft_parse_flags.c	/^static void	ft_psh_flags(const char *format, t_format_spec *spec, size_t *i)$/;"	f	file:
+ft_push_move	rank2/push_swap/bonus/ft_checker_moves.c	/^static void	ft_push_move(t_stack **a, t_stack **b, char **line)$/;"	f	file:
+ft_push_top_to_stack	rank2/push_swap/src/ft_push_moves.c	/^void	ft_push_top_to_stack(t_stack **src, t_stack **dst)$/;"	f
+ft_put_tile_to_buffer	rank2/so_long/src/map_render_src/ft_put_tile_to_buffer.c	/^void	ft_put_tile_to_buffer(t_game *game, const char *tilename, int y, int x)$/;"	f
+ft_putchar_fd	rank0/libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	f
+ft_putchar_fd	rank1/printf/libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	f
+ft_putchar_fd	rank2/pipex/libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	f
+ft_putchar_fd	rank2/push_swap/libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	f
+ft_putchar_fd	rank2/so_long/libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	f
+ft_putendl_fd	rank0/libft/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/;"	f
+ft_putendl_fd	rank1/printf/libft/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/;"	f
+ft_putendl_fd	rank2/pipex/libft/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/;"	f
+ft_putendl_fd	rank2/push_swap/libft/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/;"	f
+ft_putendl_fd	rank2/so_long/libft/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/;"	f
+ft_putnbr_fd	rank0/libft/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	f
+ft_putnbr_fd	rank1/printf/libft/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	f
+ft_putnbr_fd	rank2/pipex/libft/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	f
+ft_putnbr_fd	rank2/push_swap/libft/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	f
+ft_putnbr_fd	rank2/so_long/libft/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	f
+ft_putstr_fd	rank0/libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/;"	f
+ft_putstr_fd	rank1/printf/libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/;"	f
+ft_putstr_fd	rank2/pipex/libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/;"	f
+ft_putstr_fd	rank2/push_swap/libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/;"	f
+ft_putstr_fd	rank2/so_long/libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/;"	f
+ft_quick_select	rank2/push_swap/src/ft_define_segment.c	/^static int	ft_quick_select(int *arr, int low, int high, int k)$/;"	f	file:
+ft_read_and_exec_move	rank2/push_swap/bonus/ft_checker_moves.c	/^void	ft_read_and_exec_move(t_stack **a, t_stack **b, char **line)$/;"	f
+ft_read_buffer	rank1/get_next_line/get_next_line_bonus.c	/^char	*ft_read_buffer(int fd, char *buffer)$/;"	f
+ft_read_buffer	rank2/pipex/libft/get_next_line.c	/^char	*ft_read_buffer(int fd, char *buffer)$/;"	f
+ft_read_buffer	rank2/push_swap/libft/get_next_line.c	/^char	*ft_read_buffer(int fd, char *buffer)$/;"	f
+ft_read_buffer	rank2/so_long/libft/get_next_line.c	/^char	*ft_read_buffer(int fd, char *buffer)$/;"	f
+ft_read_buffer_to_static	rank1/get_next_line/get_next_line.c	/^char	*ft_read_buffer_to_static(int fd, char *static_buffer)$/;"	f
+ft_read_map	rank2/so_long/src/map_parser_src/ft_read_map.c	/^void	ft_read_map(char *filename, t_game *game)$/;"	f
+ft_realloc	rank1/get_next_line/get_next_line_utils.c	/^void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)$/;"	f
+ft_realloc	rank1/get_next_line/get_next_line_utils_bonus.c	/^void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)$/;"	f
+ft_realloc	rank2/pipex/libft/ft_realloc.c	/^void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)$/;"	f
+ft_realloc	rank2/push_swap/libft/ft_realloc.c	/^void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)$/;"	f
+ft_realloc	rank2/so_long/libft/ft_realloc.c	/^void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)$/;"	f
+ft_redirect_input	rank2/pipex/src/exec_src/ft_process.c	/^void	ft_redirect_input(int in_fd)$/;"	f
+ft_redirect_output	rank2/pipex/src/exec_src/ft_process.c	/^void	ft_redirect_output(int out_fd)$/;"	f
+ft_release	rank3/philo/src/forks.c	/^void	ft_release(t_philo *philo, bool state)$/;"	f
+ft_release_forks	archive/philo (copy)/routine.c	/^void		ft_release_forks(t_philo *philo)$/;"	f
+ft_release_forks	archive/philo (tried to take out mutex)/routine.c	/^void	ft_release_forks(t_philo *philo)$/;"	f
+ft_release_forks	rank3/philo/src/actions.c	/^void	ft_release_forks(t_philo *philo)$/;"	f
+ft_render_game	rank2/so_long/src/map_render_src/ft_render_game.c	/^void	ft_render_game(t_game *game)$/;"	f
+ft_render_goblin_anim	rank2/so_long/src/events_src/ft_render_goblin_anim.c	/^void	ft_render_goblin_anim(t_game *game)$/;"	f
+ft_render_info	rank2/so_long/src/events_src/ft_render_info.c	/^void	ft_render_info(t_game *game)$/;"	f
+ft_render_map	rank2/so_long/src/map_render_src/ft_render_map.c	/^void	ft_render_map(t_game *game)$/;"	f
+ft_render_obj	rank2/so_long/src/map_render_src/ft_render_obj.c	/^void	ft_render_obj(t_game *game)$/;"	f
+ft_render_orc_anim	rank2/so_long/src/events_src/ft_render_goblin_anim.c	/^void	ft_render_orc_anim(t_game *game)$/;"	f
+ft_render_player	rank2/so_long/src/map_render_src/ft_render_player.c	/^void	ft_render_player(t_game *game)$/;"	f
+ft_render_player_anim	rank2/so_long/src/events_src/ft_render_player_anim.c	/^void	ft_render_player_anim(t_game *game)$/;"	f
+ft_render_true	rank2/so_long/src/events_src/ft_update_player_move.c	/^static void	ft_render_true(t_game *game)$/;"	f	file:
+ft_rev_rot_move	rank2/push_swap/bonus/ft_checker_moves.c	/^static void	ft_rev_rot_move(t_stack **a, t_stack **b, char **line)$/;"	f	file:
+ft_rev_rotate	rank2/push_swap/src/ft_rev_rotate_moves.c	/^void	ft_rev_rotate(t_stack **top)$/;"	f
+ft_rotate	rank2/push_swap/src/ft_rotate_moves.c	/^void	ft_rotate(t_stack **top)$/;"	f
+ft_rotate_move	rank2/push_swap/bonus/ft_checker_moves.c	/^static void	ft_rotate_move(t_stack **a, t_stack **b, char **line)$/;"	f	file:
+ft_routine	archive/philo (copy)/routine.c	/^void	*ft_routine(void *arg)$/;"	f
+ft_routine	archive/philo (tried to take out mutex)/routine.c	/^void	*ft_routine(void *arg)$/;"	f
+ft_routine	rank3/philo/src/routine.c	/^void	*ft_routine(void *arg)$/;"	f
+ft_run_test	rank0/libft/libft_tester/src/ft_run_test.c	/^int	ft_run_test(const char *func_name)$/;"	f
+ft_safe_simulation_init	rank3/philo/src/safe_init.c	/^bool	ft_safe_simulation_init(t_simu *simu, int ac, char **av)$/;"	f
+ft_safe_thread_init	archive/philo (tried to take out mutex)/main.c	/^bool	ft_safe_thread_init(t_simu *simu)$/;"	f
+ft_safe_thread_init	rank3/philo/src/safe_init.c	/^bool	ft_safe_thread_init(t_simu *simu)$/;"	f
+ft_set_cheapest_to_null	rank2/push_swap/src/ft_utils.c	/^void	ft_set_cheapest_to_null(t_stack **lst)$/;"	f
+ft_simulation_loop	rank3/philo/src/actions.c	/^void	ft_simulation_loop(t_philo *philo)$/;"	f
+ft_single_rotate	rank2/push_swap/src/ft_multi_rotate.c	/^void	ft_single_rotate(t_stack **stack, int count, void (*move)(t_stack **))$/;"	f
+ft_sizettest_for_ssz	rank0/libft/libft_tester/src/ft_sizettest_for_ssz.c	/^void ft_sizettest_for_ssz(size_t (*libc_func)(), size_t (*ft_func)(), t_tstlst *lst)$/;"	f
+ft_sizettest_for_str	rank0/libft/libft_tester/src/ft_sizettest_for_str.c	/^void ft_sizettest_for_str(size_t (*libc_func)(), size_t (*ft_func)(), t_tstlst *lst)$/;"	f
+ft_sizettester_ssz	rank0/libft/libft_tester/src/ft_sizettester_ssz.c	/^size_t  ft_sizettester_ssz(size_t (*f)(), char *value1, char *value2, size_t value3)$/;"	f
+ft_sizettester_str	rank0/libft/libft_tester/src/ft_sizettester_str.c	/^size_t  ft_sizettester_str(size_t (*f)(), char *value)$/;"	f
+ft_sleep	archive/philo (copy)/routine.c	/^void		ft_sleep(t_philo *philo)$/;"	f
+ft_sleep	archive/philo (tried to take out mutex)/routine.c	/^void	ft_sleep(t_philo *philo)$/;"	f
+ft_sleep	rank3/philo/src/actions.c	/^void	ft_sleep(t_philo *philo)$/;"	f
+ft_sort_a	rank2/push_swap/src/ft_sort_a.c	/^void	ft_sort_a(t_stack **a, t_stack **b)$/;"	f
+ft_sort_b	rank2/push_swap/src/ft_sort_b.c	/^void	ft_sort_b(t_stack **a, t_stack **b)$/;"	f
+ft_sort_stack	rank2/push_swap/src/ft_sort.c	/^void	ft_sort_stack(t_stack **a, t_stack **b)$/;"	f
+ft_sort_three_a	rank2/push_swap/src/ft_sort_utils.c	/^void	ft_sort_three_a(t_stack **lst)$/;"	f
+ft_split	rank0/libft/ft_split.c	/^char	**ft_split(char const *s, char c)$/;"	f
+ft_split	rank1/printf/libft/ft_split.c	/^char	**ft_split(char const *s, char c)$/;"	f
+ft_split	rank2/pipex/libft/ft_split.c	/^char	**ft_split(char const *s, char c)$/;"	f
+ft_split	rank2/push_swap/libft/ft_split.c	/^char	**ft_split(char const *s, char c)$/;"	f
+ft_split	rank2/so_long/libft/ft_split.c	/^char	**ft_split(char const *s, char c)$/;"	f
+ft_stack_size	rank2/push_swap/src/ft_init_stack.c	/^int	ft_stack_size(t_stack *lst)$/;"	f
+ft_stackadd_back	rank2/push_swap/src/ft_lst_utils.c	/^void	ft_stackadd_back(t_stack **lst, t_stack *New)$/;"	f
+ft_stacklast	rank2/push_swap/src/ft_lst_utils.c	/^t_stack	*ft_stacklast(t_stack *lst)$/;"	f
+ft_stacknew	rank2/push_swap/src/ft_lst_utils.c	/^t_stack	*ft_stacknew(long nb)$/;"	f
+ft_start_display	rank2/so_long/src/utilities_src/ft_start_display.c	/^void	ft_start_display(t_game *game, char *title)$/;"	f
+ft_start_simulation	archive/philo (tried to take out mutex)/simulation.c	/^void	ft_start_simulation(t_simu *simu)$/;"	f
+ft_start_simulation	rank3/philo/src/simulation.c	/^void	ft_start_simulation(t_simu *simu)$/;"	f
+ft_stop_threads	archive/philo (tried to take out mutex)/utilities.c	/^void	ft_stop_threads(t_simu *simu)$/;"	f
+ft_stop_threads	rank3/philo/src/utilities_2.c	/^void	ft_stop_threads(t_simu *simu)$/;"	f
+ft_strchr	rank0/libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
+ft_strchr	rank1/get_next_line/get_next_line_utils.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
+ft_strchr	rank1/get_next_line/get_next_line_utils_bonus.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
+ft_strchr	rank1/printf/libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
+ft_strchr	rank2/pipex/libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
+ft_strchr	rank2/push_swap/libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
+ft_strchr	rank2/so_long/libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
+ft_strdup	rank0/libft/ft_strdup.c	/^char	*ft_strdup(const char *s)$/;"	f
+ft_strdup	rank1/printf/libft/ft_strdup.c	/^char	*ft_strdup(const char *s)$/;"	f
+ft_strdup	rank2/pipex/libft/ft_strdup.c	/^char	*ft_strdup(const char *s)$/;"	f
+ft_strdup	rank2/push_swap/libft/ft_strdup.c	/^char	*ft_strdup(const char *s)$/;"	f
+ft_strdup	rank2/so_long/libft/ft_strdup.c	/^char	*ft_strdup(const char *s)$/;"	f
+ft_striteri	rank0/libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char*))$/;"	f
+ft_striteri	rank1/printf/libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char*))$/;"	f
+ft_striteri	rank2/pipex/libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char*))$/;"	f
+ft_striteri	rank2/push_swap/libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char*))$/;"	f
+ft_striteri	rank2/so_long/libft/ft_striteri.c	/^void	ft_striteri(char *s, void (*f)(unsigned int, char*))$/;"	f
+ft_strjoin	rank0/libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f
+ft_strjoin	rank1/printf/libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f
+ft_strjoin	rank2/pipex/libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f
+ft_strjoin	rank2/push_swap/libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f
+ft_strjoin	rank2/so_long/libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f
+ft_strjoin_free	rank2/pipex/libft/ft_strjoin.c	/^char	*ft_strjoin_free(char *s1, const char *s2)$/;"	f
+ft_strjoin_free	rank2/push_swap/libft/ft_strjoin.c	/^char	*ft_strjoin_free(char *s1, const char *s2)$/;"	f
+ft_strjoin_free	rank2/so_long/libft/ft_strjoin.c	/^char	*ft_strjoin_free(char *s1, const char *s2)$/;"	f
+ft_strjoin_gnl	rank1/get_next_line/get_next_line.c	/^char	*ft_strjoin_gnl(char const *s1, char const *s2)$/;"	f
+ft_strjoin_gnl	rank1/get_next_line/get_next_line_bonus.c	/^char	*ft_strjoin_gnl(char const *s1, char const *s2)$/;"	f
+ft_strjoin_gnl	rank2/pipex/libft/get_next_line.c	/^char	*ft_strjoin_gnl(char const *s1, char const *s2)$/;"	f
+ft_strjoin_gnl	rank2/push_swap/libft/get_next_line.c	/^char	*ft_strjoin_gnl(char const *s1, char const *s2)$/;"	f
+ft_strjoin_gnl	rank2/so_long/libft/get_next_line.c	/^char	*ft_strjoin_gnl(char const *s1, char const *s2)$/;"	f
+ft_strlcat	rank0/libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size_t size)$/;"	f
+ft_strlcat	rank1/printf/libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size_t size)$/;"	f
+ft_strlcat	rank2/pipex/libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size_t size)$/;"	f
+ft_strlcat	rank2/push_swap/libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size_t size)$/;"	f
+ft_strlcat	rank2/so_long/libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size_t size)$/;"	f
+ft_strlcpy	rank0/libft/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dst, const char *src, size_t size)$/;"	f
+ft_strlcpy	rank1/printf/libft/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dst, const char *src, size_t size)$/;"	f
+ft_strlcpy	rank2/pipex/libft/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dst, const char *src, size_t size)$/;"	f
+ft_strlcpy	rank2/push_swap/libft/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dst, const char *src, size_t size)$/;"	f
+ft_strlcpy	rank2/so_long/libft/ft_strlcpy.c	/^size_t	ft_strlcpy(char *dst, const char *src, size_t size)$/;"	f
+ft_strlen	rank0/libft/ft_strlen.c	/^size_t	ft_strlen(const char *s)$/;"	f
+ft_strlen	rank1/get_next_line/get_next_line_utils.c	/^size_t	ft_strlen(const char *s)$/;"	f
+ft_strlen	rank1/get_next_line/get_next_line_utils_bonus.c	/^size_t	ft_strlen(const char *s)$/;"	f
+ft_strlen	rank1/printf/libft/ft_strlen.c	/^size_t	ft_strlen(const char *s)$/;"	f
+ft_strlen	rank2/pipex/libft/ft_strlen.c	/^size_t	ft_strlen(const char *s)$/;"	f
+ft_strlen	rank2/push_swap/libft/ft_strlen.c	/^size_t	ft_strlen(const char *s)$/;"	f
+ft_strlen	rank2/so_long/libft/ft_strlen.c	/^size_t	ft_strlen(const char *s)$/;"	f
+ft_strmapi	rank0/libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))$/;"	f
+ft_strmapi	rank1/printf/libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))$/;"	f
+ft_strmapi	rank2/pipex/libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))$/;"	f
+ft_strmapi	rank2/push_swap/libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))$/;"	f
+ft_strmapi	rank2/so_long/libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))$/;"	f
+ft_strncmp	archive/philo (copy)/42ft.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
+ft_strncmp	archive/philo (tried to take out mutex)/42ft.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
+ft_strncmp	rank0/libft/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
+ft_strncmp	rank1/printf/libft/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
+ft_strncmp	rank2/pipex/libft/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
+ft_strncmp	rank2/push_swap/libft/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
+ft_strncmp	rank2/so_long/libft/ft_strncmp.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
+ft_strncmp	rank3/philo/src/42ft.c	/^int	ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
+ft_strnstr	rank0/libft/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char *needle, size_t len)$/;"	f
+ft_strnstr	rank1/printf/libft/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char *needle, size_t len)$/;"	f
+ft_strnstr	rank2/pipex/libft/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char *needle, size_t len)$/;"	f
+ft_strnstr	rank2/push_swap/libft/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char *needle, size_t len)$/;"	f
+ft_strnstr	rank2/so_long/libft/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char *needle, size_t len)$/;"	f
+ft_strrchr	rank0/libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f
+ft_strrchr	rank1/printf/libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f
+ft_strrchr	rank2/pipex/libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f
+ft_strrchr	rank2/push_swap/libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f
+ft_strrchr	rank2/so_long/libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f
+ft_strtest_for_si	rank0/libft/libft_tester/src/ft_strtest_for_si.c	/^void ft_strtest_for_si(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst)$/;"	f
+ft_strtest_for_ssz	rank0/libft/libft_tester/src/ft_strtest_for_ssz.c	/^void ft_strtest_for_ssz(char *(*libc_func)(), char *(*ft_func)(), t_tstlst *lst)$/;"	f
+ft_strtest_for_str	rank0/libft/libft_tester/src/ft_strtest_for_str.c	/^void ft_strtest_for_str(func_str libc_func, func_str ft_func, t_tstlst *lst)$/;"	f
+ft_strtester_si	rank0/libft/libft_tester/src/ft_strtester_si.c	/^char *ft_strtester_si(char *(*f)(), char *value1, int value2)$/;"	f
+ft_strtester_ssz	rank0/libft/libft_tester/src/ft_strtester_ssz.c	/^char	*ft_strtester_ssz(char *(*f)(), char *value1, char *value2, size_t value3)$/;"	f
+ft_strtester_str	rank0/libft/libft_tester/src/ft_strtester_str.c	/^char *ft_strtester_str(char *(*f)(), char *value)$/;"	f
+ft_strtoupper	rank0/filemanip/ft_strtoupper.c	/^void ft_strtoupper(char *str)$/;"	f
+ft_strtrim	rank0/libft/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/;"	f
+ft_strtrim	rank1/printf/libft/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/;"	f
+ft_strtrim	rank2/pipex/libft/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/;"	f
+ft_strtrim	rank2/push_swap/libft/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/;"	f
+ft_strtrim	rank2/so_long/libft/ft_strtrim.c	/^char	*ft_strtrim(char const *s1, char const *set)$/;"	f
+ft_substr	rank0/libft/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f
+ft_substr	rank1/printf/libft/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f
+ft_substr	rank2/pipex/libft/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f
+ft_substr	rank2/push_swap/libft/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f
+ft_substr	rank2/so_long/libft/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f
+ft_substr_len	rank0/libft/ft_split.c	/^static size_t	ft_substr_len(char *str, char c)$/;"	f	file:
+ft_substr_len	rank1/printf/libft/ft_split.c	/^static size_t	ft_substr_len(char *str, char c)$/;"	f	file:
+ft_substr_len	rank2/pipex/libft/ft_split.c	/^static size_t	ft_substr_len(char *str, char c)$/;"	f	file:
+ft_substr_len	rank2/push_swap/libft/ft_split.c	/^static size_t	ft_substr_len(char *str, char c)$/;"	f	file:
+ft_substr_len	rank2/so_long/libft/ft_split.c	/^static size_t	ft_substr_len(char *str, char c)$/;"	f	file:
+ft_swap	rank2/push_swap/libft/ft_swap.c	/^void	ft_swap(int *a, int *b)$/;"	f
+ft_swap_elements	rank2/push_swap/src/ft_swap_moves.c	/^void	ft_swap_elements(t_stack **top)$/;"	f
+ft_swap_move	rank2/push_swap/bonus/ft_checker_moves.c	/^static void	ft_swap_move(t_stack **a, t_stack **b, char **line)$/;"	f	file:
+ft_target_cost	rank2/push_swap/src/ft_calcul_cost.c	/^void	ft_target_cost(t_stack **a, t_stack **b)$/;"	f
+ft_testfile_option_format	rank0/libft/libft_tester/src/ft_testfile_option_format.c	/^char	*ft_testfile_option_format(char *s)$/;"	f
+ft_testlst_add_back	rank0/libft/libft_tester/src/ft_testlst_add_back.c	/^void	ft_testlst_add_back(t_tstlst **lst, t_tstlst *new)$/;"	f
+ft_testlst_clear	rank0/libft/libft_tester/src/ft_testlst_clear.c	/^void	ft_testlst_clear(t_tstlst **lst, void (*del)(void *))$/;"	f
+ft_testlst_delone	rank0/libft/libft_tester/src/ft_testlst_delone.c	/^void	ft_testlst_delone(t_tstlst *lst, void (*del)(void *))$/;"	f
+ft_testlst_new	rank0/libft/libft_tester/src/ft_testlst_new.c	/^t_tstlst	*ft_testlst_new(char *title, char **values, int num_values, $/;"	f
+ft_tolower	rank0/libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
+ft_tolower	rank1/printf/libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
+ft_tolower	rank2/pipex/libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
+ft_tolower	rank2/push_swap/libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
+ft_tolower	rank2/so_long/libft/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
+ft_total_cost	rank2/push_swap/src/ft_calcul_cost.c	/^void	ft_total_cost(t_stack *a, t_stack *b)$/;"	f
+ft_toupper	rank0/libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
+ft_toupper	rank1/printf/libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
+ft_toupper	rank2/pipex/libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
+ft_toupper	rank2/push_swap/libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
+ft_toupper	rank2/so_long/libft/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
+ft_tstlst_last	rank0/libft/libft_tester/src/ft_testlst_add_back.c	/^static t_tstlst	*ft_tstlst_last(t_tstlst *lst)$/;"	f	file:
+ft_ulltoa_base	rank1/printf/src/ft_ulltoa_base.c	/^char	*ft_ulltoa_base(unsigned long long nbr, char *base)$/;"	f
+ft_ulltoa_base	rank2/pipex/libft/ft_ulltoa_base.c	/^char	*ft_ulltoa_base(unsigned long long nbr, char *base)$/;"	f
+ft_ulltoa_base	rank2/push_swap/libft/ft_ulltoa_base.c	/^char	*ft_ulltoa_base(unsigned long long nbr, char *base)$/;"	f
+ft_ulltoa_base	rank2/so_long/libft/ft_ulltoa_base.c	/^char	*ft_ulltoa_base(unsigned long long nbr, char *base)$/;"	f
+ft_update_buffer	rank1/get_next_line/get_next_line_bonus.c	/^char	*ft_update_buffer(char *buffer)$/;"	f
+ft_update_buffer	rank2/pipex/libft/get_next_line.c	/^char	*ft_update_buffer(char *buffer)$/;"	f
+ft_update_buffer	rank2/push_swap/libft/get_next_line.c	/^char	*ft_update_buffer(char *buffer)$/;"	f
+ft_update_buffer	rank2/so_long/libft/get_next_line.c	/^char	*ft_update_buffer(char *buffer)$/;"	f
+ft_update_goblin_move	rank2/so_long/src/events_src/ft_update_goblin_move.c	/^void	ft_update_goblin_move(t_game *game, const char *tilename, bool render)$/;"	f
+ft_update_goblin_position	rank2/so_long/src/events_src/ft_update_goblin_position.c	/^void	ft_update_goblin_position(t_game *game)$/;"	f
+ft_update_meal_time	rank3/philo/src/utilities.c	/^void	ft_update_meal_time(t_philo *philo)$/;"	f
+ft_update_orc_move	rank2/so_long/src/events_src/ft_update_goblin_move.c	/^void	ft_update_orc_move(t_game *game, const char *tilename, bool render)$/;"	f
+ft_update_orc_position	rank2/so_long/src/events_src/ft_player_anim.c	/^void	ft_update_orc_position(t_game *game)$/;"	f
+ft_update_player_move	rank2/so_long/src/events_src/ft_update_player_move.c	/^void	ft_update_player_move(t_game *game, const char *tilename, bool render)$/;"	f
+ft_update_pos	rank2/so_long/src/map_parser_src/ft_check_char.c	/^static void	ft_update_pos(t_player *type, int x, int y)$/;"	f	file:
+ft_update_position	rank2/so_long/src/events_src/ft_update_position.c	/^void	ft_update_position(int keysym, int *y, int *x)$/;"	f
+ft_update_static_buffer	rank1/get_next_line/get_next_line.c	/^char	*ft_update_static_buffer(char *static_buffer)$/;"	f
+ft_utoa_base	rank1/printf/src/ft_utoa_base.c	/^char	*ft_utoa_base(unsigned int nbr, char *base)$/;"	f
+ft_utoa_base	rank2/pipex/libft/ft_utoa_base.c	/^char	*ft_utoa_base(unsigned int nbr, char *base)$/;"	f
+ft_utoa_base	rank2/push_swap/libft/ft_utoa_base.c	/^char	*ft_utoa_base(unsigned int nbr, char *base)$/;"	f
+ft_utoa_base	rank2/so_long/libft/ft_utoa_base.c	/^char	*ft_utoa_base(unsigned int nbr, char *base)$/;"	f
+ft_validate_and_init_stack	rank2/push_swap/src/ft_init_stack.c	/^void	ft_validate_and_init_stack(t_stack **a, char *joined_args)$/;"	f
+ft_wait_for_children	rank2/pipex/src/exec_src/ft_fork_and_exec.c	/^static void	ft_wait_for_children(int num_commands)$/;"	f	file:
+ft_wait_for_start	archive/philo (tried to take out mutex)/routine.c	/^void	ft_wait_for_start(t_mtx *mutex, bool *start)$/;"	f
+ft_wait_for_start	rank3/philo/src/utilities.c	/^void	ft_wait_for_start(t_mtx *mutex, bool *start)$/;"	f
+ft_wait_for_stop	rank3/philo/src/monitor.c	/^void	ft_wait_for_stop(t_mtx *mutex, bool *start)$/;"	f
+ft_wait_threads_to_start	archive/philo (tried to take out mutex)/simulation.c	/^static void	ft_wait_threads_to_start(t_simu *simu)$/;"	f	file:
+ft_wait_threads_to_start	rank3/philo/src/simulation.c	/^static void	ft_wait_threads_to_start(t_simu *simu)$/;"	f	file:
+ft_wait_threads_to_stop	archive/philo (tried to take out mutex)/simulation.c	/^static void	ft_wait_threads_to_stop(t_simu *simu)$/;"	f	file:
+ft_wait_threads_to_stop	rank3/philo/src/simulation.c	/^void	ft_wait_threads_to_stop(t_simu *simu)$/;"	f
+ft_write_goblin	rank2/so_long/src/events_src/ft_update_goblin_position.c	/^static void	ft_write_goblin(t_game *game, int opt)$/;"	f	file:
+ft_zero_minus_flags	rank1/printf/src/ft_parse_flags.c	/^static void	ft_zero_minus_flags(const char *format, t_format_spec *spec,$/;"	f	file:
+ft_zero_minus_flags	rank2/pipex/libft/ft_parse_flags.c	/^static void	ft_zero_minus_flags(const char *format, t_format_spec *spec,$/;"	f	file:
+ft_zero_minus_flags	rank2/push_swap/libft/ft_parse_flags.c	/^static void	ft_zero_minus_flags(const char *format, t_format_spec *spec,$/;"	f	file:
+ft_zero_minus_flags	rank2/so_long/libft/ft_parse_flags.c	/^static void	ft_zero_minus_flags(const char *format, t_format_spec *spec,$/;"	f	file:
+func_int	rank0/libft/libft_tester/src/libftest.h	/^typedef int		(*func_int)();$/;"	t
+func_size_t	rank0/libft/libft_tester/src/libftest.h	/^typedef	size_t	(*func_size_t)();$/;"	t
+func_str	rank0/libft/libft_tester/src/libftest.h	/^typedef char	*(*func_str)();$/;"	t
+g_error_messages	rank2/so_long/src/utilities_src/ft_exit_failure.c	/^const char	*g_error_messages[] = {$/;"	v
+g_func_map_int	rank0/libft/libft_tester/src/libftest_globals.c	/^t_funcmap_int g_func_map_int[] =$/;"	v
+g_func_map_size_t	rank0/libft/libft_tester/src/libftest_globals.c	/^t_funcmap_size_t g_func_map_size_t[] =$/;"	v
+g_func_map_str	rank0/libft/libft_tester/src/libftest_globals.c	/^t_funcmap_str g_func_map_str[] =$/;"	v
+g_garbage_collector	rank2/pipex/libft/gc_globals.c	/^t_gc	g_garbage_collector = {NULL};$/;"	v
+g_garbage_collector	rank2/push_swap/libft/gc_globals.c	/^t_gc	g_garbage_collector = {NULL};$/;"	v
+g_garbage_collector	rank2/so_long/libft/gc_globals.c	/^t_gc	g_garbage_collector = {NULL};$/;"	v
+g_perror	rank1/printf/src/ft_printf_globals.c	/^const char	*g_perror[] = {$/;"	v
+g_perror	rank2/pipex/libft/ft_printf_globals.c	/^const char	*g_perror[] = {$/;"	v
+g_perror	rank2/push_swap/libft/ft_printf_globals.c	/^const char	*g_perror[] = {$/;"	v
+g_perror	rank2/so_long/libft/ft_printf_globals.c	/^const char	*g_perror[] = {$/;"	v
+gc	rank2/so_long/minilibx/mlx_int.h	/^	GC					gc;$/;"	m	struct:s_win_list
+gc	rank2/so_long/minilibx/mlx_int.h	/^	GC				gc;$/;"	m	struct:s_img
+gc_cleanup	rank2/pipex/libft/gc_cleanup.c	/^void	gc_cleanup(void)$/;"	f
+gc_cleanup	rank2/push_swap/libft/gc_cleanup.c	/^void	gc_cleanup(void)$/;"	f
+gc_cleanup	rank2/so_long/libft/gc_cleanup.c	/^void	gc_cleanup(void)$/;"	f
+gc_collect	rank2/pipex/libft/gc_collect.c	/^void	gc_collect(void)$/;"	f
+gc_collect	rank2/push_swap/libft/gc_collect.c	/^void	gc_collect(void)$/;"	f
+gc_collect	rank2/so_long/libft/gc_collect.c	/^void	gc_collect(void)$/;"	f
+gc_delete_node	rank2/pipex/libft/gc_collect.c	/^static void	gc_delete_node(t_gc_node **prev, t_gc_node **current)$/;"	f	file:
+gc_delete_node	rank2/push_swap/libft/gc_collect.c	/^static void	gc_delete_node(t_gc_node **prev, t_gc_node **current)$/;"	f	file:
+gc_delete_node	rank2/so_long/libft/gc_collect.c	/^static void	gc_delete_node(t_gc_node **prev, t_gc_node **current)$/;"	f	file:
+gc_destroy_tiles	rank2/so_long/src/gc_src/ft_clean_tiles.c	/^void	gc_destroy_tiles(t_game *game)$/;"	f
+gc_destroy_tileset	rank2/so_long/src/gc_src/ft_clean_tiles.c	/^void	gc_destroy_tileset(t_game *game)$/;"	f
+gc_fd_register	rank2/pipex/libft/gc_fd_register.c	/^void	gc_fd_register(int fd)$/;"	f
+gc_fd_register	rank2/push_swap/libft/gc_fd_register.c	/^void	gc_fd_register(int fd)$/;"	f
+gc_fd_register	rank2/so_long/libft/gc_fd_register.c	/^void	gc_fd_register(int fd)$/;"	f
+gc_lock	rank2/pipex/libft/gc_mark_lock.c	/^void	gc_lock(void *ptr)$/;"	f
+gc_lock	rank2/push_swap/libft/gc_mark_lock.c	/^void	gc_lock(void *ptr)$/;"	f
+gc_lock	rank2/so_long/libft/gc_mark_lock.c	/^void	gc_lock(void *ptr)$/;"	f
+gc_malloc	rank2/pipex/libft/gc_malloc.c	/^void	*gc_malloc(size_t size)$/;"	f
+gc_malloc	rank2/push_swap/libft/gc_malloc.c	/^void	*gc_malloc(size_t size)$/;"	f
+gc_malloc	rank2/so_long/libft/gc_malloc.c	/^void	*gc_malloc(size_t size)$/;"	f
+gc_mark	rank2/pipex/libft/gc_mark_lock.c	/^void	gc_mark(void *ptr)$/;"	f
+gc_mark	rank2/push_swap/libft/gc_mark_lock.c	/^void	gc_mark(void *ptr)$/;"	f
+gc_mark	rank2/so_long/libft/gc_mark_lock.c	/^void	gc_mark(void *ptr)$/;"	f
+gc_nest_lock	rank2/pipex/libft/gc_mark_lock.c	/^void	gc_nest_lock(void *ptr)$/;"	f
+gc_nest_lock	rank2/push_swap/libft/gc_mark_lock.c	/^void	gc_nest_lock(void *ptr)$/;"	f
+gc_nest_lock	rank2/so_long/libft/gc_mark_lock.c	/^void	gc_nest_lock(void *ptr)$/;"	f
+gc_nest_register	rank2/pipex/libft/gc_nest_register.c	/^void	gc_nest_register(void *ptr)$/;"	f
+gc_nest_register	rank2/push_swap/libft/gc_nest_register.c	/^void	gc_nest_register(void *ptr)$/;"	f
+gc_nest_register	rank2/so_long/libft/gc_nest_register.c	/^void	gc_nest_register(void *ptr)$/;"	f
+gc_register	rank2/pipex/libft/gc_register.c	/^void	gc_register(void *ptr)$/;"	f
+gc_register	rank2/push_swap/libft/gc_register.c	/^void	gc_register(void *ptr)$/;"	f
+gc_register	rank2/so_long/libft/gc_register.c	/^void	gc_register(void *ptr)$/;"	f
+gc_strjoin	rank2/pipex/libft/ft_strjoin.c	/^char	*gc_strjoin(char const *s1, char const *s2)$/;"	f
+gc_strjoin	rank2/push_swap/libft/ft_strjoin.c	/^char	*gc_strjoin(char const *s1, char const *s2)$/;"	f
+gc_strjoin	rank2/so_long/libft/ft_strjoin.c	/^char	*gc_strjoin(char const *s1, char const *s2)$/;"	f
+gc_temp_file_register	rank2/pipex/libft/gc_register.c	/^void	gc_temp_file_register(const char *filename)$/;"	f
+gc_temp_file_register	rank2/push_swap/libft/gc_register.c	/^void	gc_temp_file_register(const char *filename)$/;"	f
+gc_temp_file_register	rank2/so_long/libft/gc_register.c	/^void	gc_temp_file_register(const char *filename)$/;"	f
+gc_unlock	rank2/pipex/libft/gc_mark_lock.c	/^void	gc_unlock(void *ptr)$/;"	f
+gc_unlock	rank2/push_swap/libft/gc_mark_lock.c	/^void	gc_unlock(void *ptr)$/;"	f
+gc_unlock	rank2/so_long/libft/gc_mark_lock.c	/^void	gc_unlock(void *ptr)$/;"	f
+gere_mouse	rank2/so_long/minilibx/test/new_win.c	/^int gere_mouse(int x,int y,int button,void*toto)$/;"	f
+get_next_line	rank1/get_next_line/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f
+get_next_line	rank1/get_next_line/get_next_line_bonus.c	/^char	*get_next_line(int fd)$/;"	f
+get_next_line	rank2/pipex/libft/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f
+get_next_line	rank2/push_swap/libft/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f
+get_next_line	rank2/so_long/libft/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f
+get_xlib_include_path	rank2/so_long/minilibx/configure	/^get_xlib_include_path(){$/;"	f
+go_count	rank3/philo/include/philo.h	/^	int			go_count;$/;"	m	struct:s_sync
+go_mutex	rank3/philo/include/philo.h	/^	t_mtx		go_mutex;$/;"	m	struct:s_sync
+goblin	rank2/so_long/include/so_long.h	/^	t_player	*goblin;$/;"	m	struct:s_game
+head	rank2/pipex/include/libft.h	/^	t_gc_node	*head;$/;"	m	struct:s_garbage_collector
+head	rank2/push_swap/include/libft.h	/^	t_gc_node	*head;$/;"	m	struct:s_garbage_collector
+head	rank2/so_long/include/libft.h	/^	t_gc_node	*head;$/;"	m	struct:s_garbage_collector
+height	rank2/so_long/include/so_long.h	/^	int		height;$/;"	m	struct:s_img
+height	rank2/so_long/include/so_long.h	/^	int		height;$/;"	m	struct:s_map
+height	rank2/so_long/include/so_long.h	/^	int		height;$/;"	m	struct:s_tile
+height	rank2/so_long/minilibx/mlx_int.h	/^	int				height;$/;"	m	struct:s_img
+hook	rank2/so_long/minilibx/mlx_int.h	/^	int		(*hook)();$/;"	m	struct:s_event_list
+hooks	rank2/so_long/minilibx/mlx_int.h	/^	t_event_list		hooks[MLX_MAX_EVENT];$/;"	m	struct:s_win_list
+id	archive/philo (copy)/include/philo.h	/^	int				id;$/;"	m	struct:s_philo
+id	archive/philo (tried to take out mutex)/include/philo.h	/^	int				id;$/;"	m	struct:s_philo
+id	rank3/philo/include/philo.h	/^	int				id;$/;"	m	struct:s_philo
+im1	rank2/so_long/minilibx/test/main.c	/^void    *im1;$/;"	v
+im2	rank2/so_long/minilibx/test/main.c	/^void	*im2;$/;"	v
+im3	rank2/so_long/minilibx/test/main.c	/^void	*im3;$/;"	v
+im4	rank2/so_long/minilibx/test/main.c	/^void	*im4;$/;"	v
+image	rank2/so_long/minilibx/mlx_int.h	/^	XImage			*image;$/;"	m	struct:s_img
+img	rank2/so_long/include/so_long.h	/^	t_img	*img;$/;"	m	struct:s_tile
+img_data	rank2/so_long/include/so_long.h	/^	char	*img_data;$/;"	m	struct:s_img
+img_ptr	rank2/so_long/include/so_long.h	/^	void	*img_ptr;$/;"	m	struct:s_img
+in_fd	rank2/pipex/include/pipex.h	/^	int		in_fd;$/;"	m	struct:s_command
+index	rank1/printf/include/ft_printf.h	/^	int		index;$/;"	m	struct:s_buffer
+index	rank2/pipex/include/libft.h	/^	int		index;$/;"	m	struct:s_buffer
+index	rank2/push_swap/include/libft.h	/^	int		index;$/;"	m	struct:s_buffer
+index	rank2/push_swap/include/push_swap.h	/^	int				index;$/;"	m	struct:s_stack
+index	rank2/so_long/include/libft.h	/^	int		index;$/;"	m	struct:s_buffer
+init_mutex	archive/philo (copy)/include/philo.h	/^	t_mtx		init_mutex;$/;"	m	struct:s_simu
+init_philos	archive/philo (copy)/include/philo.h	/^	int			init_philos;$/;"	m	struct:s_simu
+input_file	rank2/pipex/include/pipex.h	/^	char		*input_file;$/;"	m	struct:s_pipex
+is_array	rank2/pipex/include/libft.h	/^	bool				is_array;$/;"	m	struct:s_gc_node
+is_array	rank2/push_swap/include/libft.h	/^	bool				is_array;$/;"	m	struct:s_gc_node
+is_array	rank2/so_long/include/libft.h	/^	bool				is_array;$/;"	m	struct:s_gc_node
+is_cheapest	rank2/push_swap/include/push_swap.h	/^	int				is_cheapest;$/;"	m	struct:s_stack
+is_in_top	rank2/push_swap/include/push_swap.h	/^	int				is_in_top;$/;"	m	struct:s_stack
+is_locked	rank2/pipex/include/libft.h	/^	bool				is_locked;$/;"	m	struct:s_gc_node
+is_locked	rank2/push_swap/include/libft.h	/^	bool				is_locked;$/;"	m	struct:s_gc_node
+is_locked	rank2/so_long/include/libft.h	/^	bool				is_locked;$/;"	m	struct:s_gc_node
+is_locked	rank3/philo/include/philo.h	/^	bool	is_locked;$/;"	m	struct:s_forks
+is_locked	rank3/philo/include/philo.h	/^	bool	is_locked;$/;"	m	struct:s_pmtx
+is_marked	rank2/pipex/include/libft.h	/^	bool				is_marked;$/;"	m	struct:s_gc_node
+is_marked	rank2/push_swap/include/libft.h	/^	bool				is_marked;$/;"	m	struct:s_gc_node
+is_marked	rank2/so_long/include/libft.h	/^	bool				is_marked;$/;"	m	struct:s_gc_node
+key_hook	rank2/so_long/minilibx/mlx_int.h	/^	int					(*key_hook)();$/;"	m	struct:s_win_list
+key_param	rank2/so_long/minilibx/mlx_int.h	/^	void				*key_param;$/;"	m	struct:s_win_list
+key_win1	rank2/so_long/minilibx/test/main.c	/^int	key_win1(int key,void *p)$/;"	f
+key_win2	rank2/so_long/minilibx/test/main.c	/^int	key_win2(int key,void *p)$/;"	f
+key_win3	rank2/so_long/minilibx/test/main.c	/^int	key_win3(int key,void *p)$/;"	f
+last_meal_time	archive/philo (copy)/include/philo.h	/^	long long		last_meal_time;$/;"	m	struct:s_philo
+last_meal_time	archive/philo (tried to take out mutex)/include/philo.h	/^	long long		last_meal_time;$/;"	m	struct:s_philo
+last_meal_time	rank3/philo/include/philo.h	/^	long long		last_meal_time;$/;"	m	struct:s_philo
+left_fork	archive/philo (copy)/include/philo.h	/^	t_mtx			*left_fork;$/;"	m	struct:s_philo
+left_fork	archive/philo (tried to take out mutex)/include/philo.h	/^	t_mtx			*left_fork;$/;"	m	struct:s_philo
+left_fork	rank3/philo/include/philo.h	/^	t_forks			*left_fork;$/;"	m	struct:s_philo
+left_philo	rank3/philo/include/philo.h	/^	t_philo	*left_philo;$/;"	m	struct:s_forks
+libc_func	rank0/libft/libft_tester/src/libftest.h	/^	func_str	libc_func;$/;"	m	struct:s_funcmap_str
+libc_func	rank0/libft/libft_tester/src/libftest.h	/^    func_int	libc_func;$/;"	m	struct:s_funcmap_int
+libc_func	rank0/libft/libft_tester/src/libftest.h	/^    func_size_t		libc_func;$/;"	m	struct:s_funcmap_size_t
+local_endian	rank2/so_long/minilibx/test/main.c	/^int	local_endian;$/;"	v
+lock_mutex	rank3/philo/include/philo.h	/^	t_mtx	lock_mutex;$/;"	m	struct:s_forks
+log_error	rank2/so_long/minilibx/configure	/^log_error(){$/;"	f
+log_error	rank2/so_long/minilibx/test/run_tests.sh	/^log_error(){$/;"	f
+log_info	rank2/so_long/minilibx/configure	/^log_info(){$/;"	f
+log_info	rank2/so_long/minilibx/test/run_tests.sh	/^log_info(){$/;"	f
+logging	rank2/so_long/minilibx/configure	/^logging(){$/;"	f
+logging	rank2/so_long/minilibx/test/run_tests.sh	/^logging(){$/;"	f
+loop_hook	rank2/so_long/minilibx/mlx_int.h	/^	int			(*loop_hook)();$/;"	m	struct:s_xvar
+loop_param	rank2/so_long/minilibx/mlx_int.h	/^	void		*loop_param;$/;"	m	struct:s_xvar
+m	rank2/so_long/include/so_long.h	/^	bool		m;$/;"	m	struct:s_game
+main	archive/philo (copy)/main.c	/^int	main(int ac, char **av)$/;"	f
+main	archive/philo (tried to take out mutex)/main.c	/^int	main(int ac, char **av)$/;"	f
+main	rank0/libft/libft_tester/main.c	/^int	main(void)$/;"	f
+main	rank1/get_next_line/tester/main.c	/^int	main(void)$/;"	f
+main	rank1/printf/tests/main.c	/^int main(void)$/;"	f
+main	rank1/printf/tests/main_ft_printf.c	/^int main(void)$/;"	f
+main	rank1/printf/tests/main_printf.c	/^int main(void)$/;"	f
+main	rank2/pipex/main.c	/^int	main(int argc, char **argv, char **envp)$/;"	f
+main	rank2/push_swap/bonus/ft_main_checker.c	/^int	main(int ac, char **av)$/;"	f
+main	rank2/push_swap/main.c	/^int	main(int ac, char **av)$/;"	f
+main	rank2/so_long/main.c	/^int	main(int argc, char **argv)$/;"	f
+main	rank2/so_long/minilibx/test/main.c	/^int	main()$/;"	f
+main	rank2/so_long/minilibx/test/new_win.c	/^int main()$/;"	f
+main	rank2/so_long/minilibx/test/run_tests.sh	/^main(){$/;"	f
+main	rank3/philo/main.c	/^int	main(int ac, char **av)$/;"	f
+map	rank2/so_long/include/so_long.h	/^	char	**map;$/;"	m	struct:s_map
+map	rank2/so_long/include/so_long.h	/^	t_map		*map;$/;"	m	struct:s_game
+mask	rank2/so_long/minilibx/mlx_int.h	/^	int		mask;$/;"	m	struct:s_event_list
+meal_mutex	archive/philo (copy)/include/philo.h	/^	t_mtx		meal_mutex;$/;"	m	struct:s_simu
+meal_mutex	archive/philo (tried to take out mutex)/include/philo.h	/^	t_mtx		meal_mutex;$/;"	m	struct:s_shared
+meal_mutex	rank3/philo/include/philo.h	/^	t_mtx		meal_mutex;$/;"	m	struct:s_sync
+meals_eaten	archive/philo (copy)/include/philo.h	/^	int				meals_eaten;$/;"	m	struct:s_philo
+meals_eaten	archive/philo (tried to take out mutex)/include/philo.h	/^	int				meals_eaten;$/;"	m	struct:s_philo
+meals_eaten	rank3/philo/include/philo.h	/^	int				meals_eaten;$/;"	m	struct:s_philo
+mlx	rank2/so_long/minilibx/test/main.c	/^void	*mlx;$/;"	v
+mlx	rank2/so_long/minilibx/test/new_win.c	/^void *mlx;$/;"	v
+mlx_X_error	rank2/so_long/minilibx/mlx_new_image.c	/^int	mlx_X_error;$/;"	v
+mlx_clear_window	rank2/so_long/minilibx/mlx_clear_window.c	/^int		mlx_clear_window(t_xvar *xvar,t_win_list *win)$/;"	f
+mlx_col_name	rank2/so_long/minilibx/mlx_rgb.c	/^struct s_col_name mlx_col_name[] =$/;"	v	typeref:struct:s_col_name
+mlx_destroy_display	rank2/so_long/minilibx/mlx_destroy_display.c	/^int	mlx_destroy_display(t_xvar *xvar)$/;"	f
+mlx_destroy_image	rank2/so_long/minilibx/mlx_destroy_image.c	/^int	mlx_destroy_image(t_xvar *xvar, t_img *img)$/;"	f
+mlx_destroy_window	rank2/so_long/minilibx/mlx_destroy_window.c	/^int	mlx_destroy_window(t_xvar *xvar,t_win_list *win)$/;"	f
+mlx_do_key_autorepeatoff	rank2/so_long/minilibx/mlx_hook.c	/^int	mlx_do_key_autorepeatoff(t_xvar *xvar)$/;"	f
+mlx_do_key_autorepeaton	rank2/so_long/minilibx/mlx_hook.c	/^int	mlx_do_key_autorepeaton(t_xvar *xvar)$/;"	f
+mlx_do_sync	rank2/so_long/minilibx/mlx_hook.c	/^int	mlx_do_sync(t_xvar *xvar)$/;"	f
+mlx_expose_hook	rank2/so_long/minilibx/mlx_expose_hook.c	/^int		mlx_expose_hook(t_win_list *win,int (*funct)(),void *param)$/;"	f
+mlx_ext_fullscreen	rank2/so_long/minilibx/mlx_ext_randr.c	/^int			mlx_ext_fullscreen(t_xvar *xvar, t_win_list *win, int fullscreen)$/;"	f
+mlx_flush_event	rank2/so_long/minilibx/mlx_flush_event.c	/^int	mlx_flush_event(t_xvar *xvar)$/;"	f
+mlx_get_color_value	rank2/so_long/minilibx/mlx_get_color_value.c	/^int             mlx_get_color_value(t_xvar *xvar,int color)$/;"	f
+mlx_get_data_addr	rank2/so_long/minilibx/mlx_get_data_addr.c	/^char	*mlx_get_data_addr(t_img *img,int *bits_per_pixel,$/;"	f
+mlx_get_screen_size	rank2/so_long/minilibx/mlx_screen_size.c	/^int		mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey)$/;"	f
+mlx_hook	rank2/so_long/minilibx/mlx_hook.c	/^int	mlx_hook(t_win_list *win, int x_event, int x_mask, $/;"	f
+mlx_init	rank2/so_long/minilibx/mlx_init.c	/^void	*mlx_init()$/;"	f
+mlx_int_anti_resize_win	rank2/so_long/minilibx/mlx_int_anti_resize_win.c	/^int	mlx_int_anti_resize_win(t_xvar *xvar,Window win,int w,int h)$/;"	f
+mlx_int_deal_shm	rank2/so_long/minilibx/mlx_init.c	/^int		mlx_int_deal_shm(t_xvar *xvar)$/;"	f
+mlx_int_do_nothing	rank2/so_long/minilibx/mlx_int_do_nothing.c	/^int	mlx_int_do_nothing(void *param)$/;"	f
+mlx_int_egal_img	rank2/so_long/minilibx/mlx_lib_xpm.c	/^int	mlx_int_egal_img(XImage *img1,XImage *img2)$/;"	f
+mlx_int_file_get_rid_comment	rank2/so_long/minilibx/mlx_xpm.c	/^int	mlx_int_file_get_rid_comment(char *ptr, int size)$/;"	f
+mlx_int_get_col_name	rank2/so_long/minilibx/mlx_xpm.c	/^int	mlx_int_get_col_name(char *str,int size)$/;"	f
+mlx_int_get_good_color	rank2/so_long/minilibx/mlx_get_color_value.c	/^int		mlx_int_get_good_color(t_xvar *xvar,int color)$/;"	f
+mlx_int_get_line	rank2/so_long/minilibx/mlx_xpm.c	/^char	*mlx_int_get_line(char *ptr,int *pos,int size)$/;"	f
+mlx_int_get_text_rgb	rank2/so_long/minilibx/mlx_xpm.c	/^int	mlx_int_get_text_rgb(char *name, char *end)$/;"	f
+mlx_int_get_visual	rank2/so_long/minilibx/mlx_int_get_visual.c	/^int		mlx_int_get_visual(t_xvar *xvar)$/;"	f
+mlx_int_new_image	rank2/so_long/minilibx/mlx_new_image.c	/^void	*mlx_int_new_image(t_xvar *xvar,int width, int height,int format)$/;"	f
+mlx_int_new_xshm_image	rank2/so_long/minilibx/mlx_new_image.c	/^void	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format)$/;"	f
+mlx_int_param_ButtonPress	rank2/so_long/minilibx/mlx_int_param_event.c	/^int	mlx_int_param_ButtonPress(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f
+mlx_int_param_ButtonRelease	rank2/so_long/minilibx/mlx_int_param_event.c	/^int	mlx_int_param_ButtonRelease(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f
+mlx_int_param_Expose	rank2/so_long/minilibx/mlx_int_param_event.c	/^int	mlx_int_param_Expose(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f
+mlx_int_param_KeyPress	rank2/so_long/minilibx/mlx_int_param_event.c	/^int	mlx_int_param_KeyPress(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f
+mlx_int_param_KeyRelease	rank2/so_long/minilibx/mlx_int_param_event.c	/^int	mlx_int_param_KeyRelease(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f
+mlx_int_param_MotionNotify	rank2/so_long/minilibx/mlx_int_param_event.c	/^int	mlx_int_param_MotionNotify(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f
+mlx_int_param_event	rank2/so_long/minilibx/mlx_int_param_event.c	/^int	(*(mlx_int_param_event[]))() =$/;"	v
+mlx_int_param_generic	rank2/so_long/minilibx/mlx_int_param_event.c	/^int	mlx_int_param_generic(t_xvar *xvar, XEvent *ev, t_win_list *win)$/;"	f
+mlx_int_param_undef	rank2/so_long/minilibx/mlx_int_param_event.c	/^int	mlx_int_param_undef()$/;"	f
+mlx_int_parse_xpm	rank2/so_long/minilibx/mlx_xpm.c	/^void	*mlx_int_parse_xpm(t_xvar *xvar,void *info,int info_size,char *(*f)())$/;"	f
+mlx_int_rgb_conversion	rank2/so_long/minilibx/mlx_init.c	/^int		mlx_int_rgb_conversion(t_xvar *xvar)$/;"	f
+mlx_int_set_win_event_mask	rank2/so_long/minilibx/mlx_int_set_win_event_mask.c	/^int	mlx_int_set_win_event_mask(t_xvar *xvar)$/;"	f
+mlx_int_static_line	rank2/so_long/minilibx/mlx_xpm.c	/^char	*mlx_int_static_line(char **xpm_data,int *pos,int size)$/;"	f
+mlx_int_str_str	rank2/so_long/minilibx/mlx_int_str_to_wordtab.c	/^int	mlx_int_str_str(char *str,char *find,int len)$/;"	f
+mlx_int_str_str_cote	rank2/so_long/minilibx/mlx_int_str_to_wordtab.c	/^int	mlx_int_str_str_cote(char *str,char *find,int len)$/;"	f
+mlx_int_str_to_wordtab	rank2/so_long/minilibx/mlx_int_str_to_wordtab.c	/^char	**mlx_int_str_to_wordtab(char *str)$/;"	f
+mlx_int_wait_first_expose	rank2/so_long/minilibx/mlx_int_wait_first_expose.c	/^int	mlx_int_wait_first_expose(t_xvar *xvar,Window win)$/;"	f
+mlx_int_xpm_f_image	rank2/so_long/minilibx/mlx_lib_xpm.c	/^void		*mlx_int_xpm_f_image(t_xvar *xvar,int *width,int *height,$/;"	f
+mlx_int_xpm_set_pixel	rank2/so_long/minilibx/mlx_xpm.c	/^int	mlx_int_xpm_set_pixel(t_img *img, char *data, int opp, int col, int x)$/;"	f
+mlx_key_hook	rank2/so_long/minilibx/mlx_key_hook.c	/^int		mlx_key_hook(t_win_list *win,int (*funct)(),void *param)$/;"	f
+mlx_loop	rank2/so_long/minilibx/mlx_loop.c	/^int			mlx_loop(t_xvar *xvar)$/;"	f
+mlx_loop_end	rank2/so_long/minilibx/mlx_loop.c	/^int			mlx_loop_end(t_xvar *xvar)$/;"	f
+mlx_loop_hook	rank2/so_long/minilibx/mlx_loop_hook.c	/^int	mlx_loop_hook(t_xvar *xvar,int (*funct)(),void *param)$/;"	f
+mlx_mouse_get_pos	rank2/so_long/minilibx/mlx_mouse.c	/^int		mlx_mouse_get_pos(t_xvar *xvar, t_win_list *win, \\$/;"	f
+mlx_mouse_hide	rank2/so_long/minilibx/mlx_mouse.c	/^int		mlx_mouse_hide(t_xvar *xvar, t_win_list *win)$/;"	f
+mlx_mouse_hook	rank2/so_long/minilibx/mlx_mouse_hook.c	/^int		mlx_mouse_hook(t_win_list *win,int (*funct)(),void *param)$/;"	f
+mlx_mouse_move	rank2/so_long/minilibx/mlx_mouse.c	/^int		mlx_mouse_move(t_xvar *xvar, t_win_list *win, int x, int y)$/;"	f
+mlx_mouse_show	rank2/so_long/minilibx/mlx_mouse.c	/^int		mlx_mouse_show(t_xvar *xvar, t_win_list *win)$/;"	f
+mlx_new_image	rank2/so_long/minilibx/mlx_new_image.c	/^void	*mlx_new_image(t_xvar *xvar,int width, int height)$/;"	f
+mlx_new_image2	rank2/so_long/minilibx/mlx_new_image.c	/^void	*mlx_new_image2(t_xvar *xvar,int width, int height)$/;"	f
+mlx_new_window	rank2/so_long/minilibx/mlx_new_window.c	/^void	*mlx_new_window(t_xvar *xvar,int size_x,int size_y,char *title)$/;"	f
+mlx_pixel_put	rank2/so_long/minilibx/mlx_pixel_put.c	/^int		mlx_pixel_put(t_xvar *xvar,t_win_list *win,$/;"	f
+mlx_ptr	rank2/so_long/include/so_long.h	/^	void		*mlx_ptr;$/;"	m	struct:s_game
+mlx_put_image_to_window	rank2/so_long/minilibx/mlx_put_image_to_window.c	/^int	mlx_put_image_to_window(t_xvar *xvar,t_win_list *win,t_img *img,$/;"	f
+mlx_set_font	rank2/so_long/minilibx/mlx_set_font.c	/^void	mlx_set_font(t_xvar *xvar, t_win_list *win, char *name)$/;"	f
+mlx_string_put	rank2/so_long/minilibx/mlx_string_put.c	/^int		mlx_string_put(t_xvar *xvar,t_win_list *win,$/;"	f
+mlx_xpm_file_to_image	rank2/so_long/minilibx/mlx_lib_xpm.c	/^void	*mlx_xpm_file_to_image(t_xvar *xvar,char *filename,$/;"	f
+mlx_xpm_file_to_image	rank2/so_long/minilibx/mlx_xpm.c	/^void	*mlx_xpm_file_to_image(t_xvar *xvar,char *file,int *width,int *height)$/;"	f
+mlx_xpm_to_image	rank2/so_long/minilibx/mlx_lib_xpm.c	/^void	*mlx_xpm_to_image(t_xvar *xvar,char **data,int *width,int *height)$/;"	f
+mlx_xpm_to_image	rank2/so_long/minilibx/mlx_xpm.c	/^void	*mlx_xpm_to_image(t_xvar *xvar,char **xpm_data,int *width,int *height)$/;"	f
+monitor	archive/philo (tried to take out mutex)/include/philo.h	/^	t_monitor	monitor;$/;"	m	struct:s_simu
+monitor	rank3/philo/include/philo.h	/^	t_monitor	monitor;$/;"	m	struct:s_simu
+mouse_hook	rank2/so_long/minilibx/mlx_int.h	/^	int					(*mouse_hook)();$/;"	m	struct:s_win_list
+mouse_param	rank2/so_long/minilibx/mlx_int.h	/^	void				*mouse_param;$/;"	m	struct:s_win_list
+mouse_win1	rank2/so_long/minilibx/test/main.c	/^int	mouse_win1(int button,int x,int y, void *p)$/;"	f
+mouse_win2	rank2/so_long/minilibx/test/main.c	/^int	mouse_win2(int button,int x,int y, void *p)$/;"	f
+mouse_win3	rank2/so_long/minilibx/test/main.c	/^int	mouse_win3(int x,int y, void *p)$/;"	f
+moves	rank2/so_long/include/so_long.h	/^	int		moves;$/;"	m	struct:s_player
+mtdata	archive/philo (tried to take out mutex)/include/philo.h	/^	t_shared		*mtdata;$/;"	m	struct:s_monitor
+mtdata	archive/philo (tried to take out mutex)/include/philo.h	/^	t_shared		*mtdata;$/;"	m	struct:s_philo
+mtdata	archive/philo (tried to take out mutex)/include/philo.h	/^	t_shared	mtdata;$/;"	m	struct:s_simu
+mtdata	rank3/philo/include/philo.h	/^	t_sync			*mtdata;$/;"	m	struct:s_monitor
+mtdata	rank3/philo/include/philo.h	/^	t_sync			*mtdata;$/;"	m	struct:s_philo
+mtdata	rank3/philo/include/philo.h	/^	t_sync		mtdata;$/;"	m	struct:s_simu
+mtx_get_bool	archive/philo (copy)/getset.c	/^bool	mtx_get_bool(t_mtx mutex, bool value)$/;"	f
+mtx_get_bool	archive/philo (tried to take out mutex)/getset.c	/^bool	mtx_get_bool(t_mtx mutex, bool value)$/;"	f
+mtx_get_int	archive/philo (copy)/getset.c	/^int	mtx_get_int(t_mtx mutex, int value)$/;"	f
+mtx_get_int	archive/philo (tried to take out mutex)/getset.c	/^int	mtx_get_int(t_mtx mutex, int value)$/;"	f
+mtx_get_llong	archive/philo (tried to take out mutex)/getset.c	/^long long	mtx_get_llong(t_mtx mutex, long long value)$/;"	f
+mtx_get_longlong	archive/philo (copy)/getset.c	/^long long	mtx_get_longlong(t_mtx mutex, long long value)$/;"	f
+mtx_increment_int	archive/philo (tried to take out mutex)/getset.c	/^void	mtx_increment_int(t_mtx *mutex, int *dest)$/;"	f
+mtx_increment_int	rank3/philo/src/utilities_3.c	/^void	mtx_increment_int(t_mtx *mutex, int *dest)$/;"	f
+mtx_set_bool	archive/philo (copy)/getset.c	/^void	mtx_set_bool(t_mtx mutex, bool *dest, bool value)$/;"	f
+mtx_set_bool	archive/philo (tried to take out mutex)/getset.c	/^void	mtx_set_bool(t_mtx mutex, bool *dest, bool value)$/;"	f
+mtx_set_int	archive/philo (copy)/getset.c	/^void	mtx_set_int(t_mtx mutex, int *dest, int value)$/;"	f
+mtx_set_int	archive/philo (tried to take out mutex)/getset.c	/^void	mtx_set_int(t_mtx mutex, int *dest, int value)$/;"	f
+mtx_set_llong	archive/philo (tried to take out mutex)/getset.c	/^void	mtx_set_llong(t_mtx mutex, long long *dest, long long value)$/;"	f
+mtx_set_llong	rank3/philo/src/utilities_3.c	/^void	mtx_set_llong(t_mtx *mutex, long long *dest, long long value)$/;"	f
+mtx_set_longlong	archive/philo (copy)/getset.c	/^void	mtx_set_longlong(t_mtx mutex, long long *dest, long long value)$/;"	f
+n	rank2/so_long/include/so_long.h	/^	bool		n;$/;"	m	struct:s_game
+name	rank0/libft/libft_tester/src/libftest.h	/^	const char	*name;$/;"	m	struct:s_funcmap_str
+name	rank0/libft/libft_tester/src/libftest.h	/^    const char		*name;$/;"	m	struct:s_funcmap_size_t
+name	rank0/libft/libft_tester/src/libftest.h	/^    const char	*name;$/;"	m	struct:s_funcmap_int
+name	rank2/so_long/include/so_long.h	/^	char	name[50];$/;"	m	struct:s_tile
+name	rank2/so_long/minilibx/mlx_int.h	/^	char	*name;$/;"	m	struct:s_col_name
+name	rank2/so_long/minilibx/mlx_int.h	/^	int		name;$/;"	m	struct:s_xpm_col
+nb	rank2/push_swap/include/push_swap.h	/^	long			nb;$/;"	m	struct:s_stack
+nb_printed	rank1/printf/include/ft_printf.h	/^	int		nb_printed;$/;"	m	struct:s_buffer
+nb_printed	rank2/pipex/include/libft.h	/^	int		nb_printed;$/;"	m	struct:s_buffer
+nb_printed	rank2/push_swap/include/libft.h	/^	int		nb_printed;$/;"	m	struct:s_buffer
+nb_printed	rank2/so_long/include/libft.h	/^	int		nb_printed;$/;"	m	struct:s_buffer
+next	rank0/libft/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+next	rank0/libft/libft_tester/lib/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+next	rank0/libft/libft_tester/src/libftest.h	/^	struct s_tstlst		*next;$/;"	m	struct:s_tstlst	typeref:struct:s_tstlst::s_tstlst
+next	rank1/printf/include/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+next	rank2/pipex/include/libft.h	/^	struct s_gc_node	*next;$/;"	m	struct:s_gc_node	typeref:struct:s_gc_node::s_gc_node
+next	rank2/pipex/include/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+next	rank2/push_swap/include/libft.h	/^	struct s_gc_node	*next;$/;"	m	struct:s_gc_node	typeref:struct:s_gc_node::s_gc_node
+next	rank2/push_swap/include/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+next	rank2/push_swap/include/push_swap.h	/^	struct s_stack	*next;$/;"	m	struct:s_stack	typeref:struct:s_stack::s_stack
+next	rank2/so_long/include/libft.h	/^	struct s_gc_node	*next;$/;"	m	struct:s_gc_node	typeref:struct:s_gc_node::s_gc_node
+next	rank2/so_long/include/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+next	rank2/so_long/minilibx/mlx_int.h	/^	struct s_win_list	*next;$/;"	m	struct:s_win_list	typeref:struct:s_win_list::s_win_list
+num_commands	rank2/pipex/include/pipex.h	/^	int			num_commands;$/;"	m	struct:s_pipex
+num_meals	archive/philo (copy)/include/philo.h	/^	int		num_meals;$/;"	m	struct:s_params
+num_meals	archive/philo (tried to take out mutex)/include/philo.h	/^	int			num_meals;$/;"	m	struct:s_rdonly
+num_meals	rank3/philo/include/philo.h	/^	int			num_meals;$/;"	m	struct:s_rdonly
+num_philo	archive/philo (copy)/include/philo.h	/^	int		num_philo;$/;"	m	struct:s_params
+num_philo	archive/philo (tried to take out mutex)/include/philo.h	/^	int			num_philo;$/;"	m	struct:s_rdonly
+num_philo	rank3/philo/include/philo.h	/^	int			num_philo;$/;"	m	struct:s_rdonly
+offset	rank2/so_long/include/so_long.h	/^	int		offset;$/;"	m	struct:s_tile
+on_exit	rank2/so_long/include/so_long.h	/^	bool		on_exit;$/;"	m	struct:s_game
+on_exit	rank2/so_long/include/so_long.h	/^	bool	on_exit;$/;"	m	struct:s_player
+orc	rank2/so_long/include/so_long.h	/^	t_player	*orc;$/;"	m	struct:s_game
+out_fd	rank2/pipex/include/pipex.h	/^	int		out_fd;$/;"	m	struct:s_command
+output_file	rank2/pipex/include/pipex.h	/^	char		*output_file;$/;"	m	struct:s_pipex
+p_count	rank2/so_long/include/so_long.h	/^	int		p_count;$/;"	m	struct:s_map
+pa	rank2/push_swap/src/ft_push_moves.c	/^void	pa(t_stack **b, t_stack **a)$/;"	f
+param	rank2/so_long/minilibx/mlx_int.h	/^	void	*param;$/;"	m	struct:s_event_list
+params	archive/philo (copy)/include/philo.h	/^	t_params	params;$/;"	m	struct:s_simu
+parse_args	rank2/so_long/minilibx/configure	/^parse_args(){$/;"	f
+pb	rank2/push_swap/src/ft_push_moves.c	/^void	pb(t_stack **a, t_stack **b)$/;"	f
+philo_id	rank3/philo/include/philo.h	/^	int		philo_id;$/;"	m	struct:s_forks
+philos	archive/philo (copy)/include/philo.h	/^	t_philo		*philos;$/;"	m	struct:s_simu
+philos	archive/philo (tried to take out mutex)/include/philo.h	/^	t_philo		*philos;$/;"	m	struct:s_simu
+philos	rank3/philo/include/philo.h	/^	t_philo		*philos;$/;"	m	struct:s_simu
+philos_full	archive/philo (copy)/include/philo.h	/^	int			philos_full;$/;"	m	struct:s_simu
+philos_full	archive/philo (tried to take out mutex)/include/philo.h	/^	int			philos_full;$/;"	m	struct:s_shared
+philos_full	rank3/philo/include/philo.h	/^	int			philos_full;$/;"	m	struct:s_sync
+pipefd	rank2/pipex/include/pipex.h	/^	int			pipefd[2];$/;"	m	struct:s_pipex
+pix	rank2/so_long/minilibx/mlx_int.h	/^	Pixmap			pix;$/;"	m	struct:s_img
+player	rank2/so_long/include/so_long.h	/^	t_player	*player;$/;"	m	struct:s_game
+pmutex	rank3/philo/include/philo.h	/^	t_mtx	pmutex;$/;"	m	struct:s_pmtx
+precision	rank1/printf/include/ft_printf.h	/^	int			precision;$/;"	m	struct:s_format_spec
+precision	rank2/pipex/include/libft.h	/^	int			precision;$/;"	m	struct:s_format_spec
+precision	rank2/push_swap/include/libft.h	/^	int			precision;$/;"	m	struct:s_format_spec
+precision	rank2/so_long/include/libft.h	/^	int			precision;$/;"	m	struct:s_format_spec
+print_mutex	archive/philo (tried to take out mutex)/include/philo.h	/^	t_mtx		print_mutex;$/;"	m	struct:s_shared
+print_mutex	rank3/philo/include/philo.h	/^	t_pmtx		print_mutex;$/;"	m	struct:s_sync
+private_cmap	rank2/so_long/minilibx/mlx_int.h	/^	int			private_cmap;$/;"	m	struct:s_xvar
+pshm_format	rank2/so_long/minilibx/mlx_int.h	/^	int			pshm_format;$/;"	m	struct:s_xvar
+ptr	rank2/pipex/include/libft.h	/^	void				*ptr;$/;"	m	struct:s_gc_node
+ptr	rank2/push_swap/include/libft.h	/^	void				*ptr;$/;"	m	struct:s_gc_node
+ptr	rank2/so_long/include/libft.h	/^	void				*ptr;$/;"	m	struct:s_gc_node
+ra	rank2/push_swap/src/ft_rotate_moves.c	/^void	ra(t_stack **a)$/;"	f
+rb	rank2/push_swap/src/ft_rotate_moves.c	/^void	rb(t_stack **b)$/;"	f
+rdonly	archive/philo (tried to take out mutex)/include/philo.h	/^	t_rdonly		*rdonly;$/;"	m	struct:s_monitor
+rdonly	archive/philo (tried to take out mutex)/include/philo.h	/^	t_rdonly		*rdonly;$/;"	m	struct:s_philo
+rdonly	archive/philo (tried to take out mutex)/include/philo.h	/^	t_rdonly	rdonly;$/;"	m	struct:s_simu
+rdonly	rank3/philo/include/philo.h	/^	t_rdonly		*rdonly;$/;"	m	struct:s_monitor
+rdonly	rank3/philo/include/philo.h	/^	t_rdonly		*rdonly;$/;"	m	struct:s_philo
+rdonly	rank3/philo/include/philo.h	/^	t_rdonly	rdonly;$/;"	m	struct:s_simu
+request_mutex	rank3/philo/include/philo.h	/^	t_mtx	request_mutex;$/;"	m	struct:s_forks
+right_fork	archive/philo (copy)/include/philo.h	/^	t_mtx			*right_fork;$/;"	m	struct:s_philo
+right_fork	archive/philo (tried to take out mutex)/include/philo.h	/^	t_mtx			*right_fork;$/;"	m	struct:s_philo
+right_fork	rank3/philo/include/philo.h	/^	t_forks			*right_fork;$/;"	m	struct:s_philo
+right_philo	rank3/philo/include/philo.h	/^	t_philo	*right_philo;$/;"	m	struct:s_forks
+root	rank2/so_long/minilibx/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar
+rr	rank2/push_swap/src/ft_rotate_moves.c	/^void	rr(t_stack **a, t_stack **b)$/;"	f
+rra	rank2/push_swap/src/ft_rev_rotate_moves.c	/^void	rra(t_stack **a)$/;"	f
+rrb	rank2/push_swap/src/ft_rev_rotate_moves.c	/^void	rrb(t_stack **b)$/;"	f
+rrr	rank2/push_swap/src/ft_rev_rotate_moves.c	/^void	rrr(t_stack **a, t_stack **b)$/;"	f
+s_buffer	rank1/printf/include/ft_printf.h	/^typedef struct s_buffer$/;"	s
+s_buffer	rank2/pipex/include/libft.h	/^typedef struct s_buffer$/;"	s
+s_buffer	rank2/push_swap/include/libft.h	/^typedef struct s_buffer$/;"	s
+s_buffer	rank2/so_long/include/libft.h	/^typedef struct s_buffer$/;"	s
+s_col_name	rank2/so_long/minilibx/mlx_int.h	/^struct	s_col_name$/;"	s
+s_command	rank2/pipex/include/pipex.h	/^typedef struct s_command$/;"	s
+s_event_list	rank2/so_long/minilibx/mlx_int.h	/^typedef struct	s_event_list$/;"	s
+s_forks	rank3/philo/include/philo.h	/^typedef struct s_forks$/;"	s
+s_format_spec	rank1/printf/include/ft_printf.h	/^typedef struct s_format_spec$/;"	s
+s_format_spec	rank2/pipex/include/libft.h	/^typedef struct s_format_spec$/;"	s
+s_format_spec	rank2/push_swap/include/libft.h	/^typedef struct s_format_spec$/;"	s
+s_format_spec	rank2/so_long/include/libft.h	/^typedef struct s_format_spec$/;"	s
+s_funcmap_int	rank0/libft/libft_tester/src/libftest.h	/^typedef struct s_funcmap_int$/;"	s
+s_funcmap_size_t	rank0/libft/libft_tester/src/libftest.h	/^typedef struct s_funcmap_size_t$/;"	s
+s_funcmap_str	rank0/libft/libft_tester/src/libftest.h	/^typedef struct s_funcmap_str$/;"	s
+s_game	rank2/so_long/include/so_long.h	/^typedef struct s_game$/;"	s
+s_garbage_collector	rank2/pipex/include/libft.h	/^typedef struct s_garbage_collector$/;"	s
+s_garbage_collector	rank2/push_swap/include/libft.h	/^typedef struct s_garbage_collector$/;"	s
+s_garbage_collector	rank2/so_long/include/libft.h	/^typedef struct s_garbage_collector$/;"	s
+s_gc_node	rank2/pipex/include/libft.h	/^typedef struct s_gc_node$/;"	s
+s_gc_node	rank2/push_swap/include/libft.h	/^typedef struct s_gc_node$/;"	s
+s_gc_node	rank2/so_long/include/libft.h	/^typedef struct s_gc_node$/;"	s
+s_img	rank2/so_long/include/so_long.h	/^typedef struct s_img$/;"	s
+s_img	rank2/so_long/minilibx/mlx_int.h	/^typedef struct	s_img$/;"	s
+s_list	rank0/libft/libft.h	/^typedef struct s_list$/;"	s
+s_list	rank0/libft/libft_tester/lib/libft.h	/^typedef struct s_list$/;"	s
+s_list	rank1/printf/include/libft.h	/^typedef struct s_list$/;"	s
+s_list	rank2/pipex/include/libft.h	/^typedef struct s_list$/;"	s
+s_list	rank2/push_swap/include/libft.h	/^typedef struct s_list$/;"	s
+s_list	rank2/so_long/include/libft.h	/^typedef struct s_list$/;"	s
+s_map	rank2/so_long/include/so_long.h	/^typedef struct s_map$/;"	s
+s_monitor	archive/philo (tried to take out mutex)/include/philo.h	/^typedef struct s_monitor$/;"	s
+s_monitor	rank3/philo/include/philo.h	/^typedef struct s_monitor$/;"	s
+s_params	archive/philo (copy)/include/philo.h	/^typedef struct s_params$/;"	s
+s_philo	archive/philo (copy)/include/philo.h	/^typedef struct s_philo$/;"	s
+s_philo	archive/philo (tried to take out mutex)/include/philo.h	/^typedef struct s_philo$/;"	s
+s_philo	rank3/philo/include/philo.h	/^typedef struct s_philo$/;"	s
+s_pipex	rank2/pipex/include/pipex.h	/^typedef struct s_pipex$/;"	s
+s_player	rank2/so_long/include/so_long.h	/^typedef struct s_player$/;"	s
+s_pmtx	rank3/philo/include/philo.h	/^typedef struct s_pmtx$/;"	s
+s_rdonly	archive/philo (tried to take out mutex)/include/philo.h	/^typedef struct s_rdonly$/;"	s
+s_rdonly	rank3/philo/include/philo.h	/^typedef struct s_rdonly$/;"	s
+s_shared	archive/philo (tried to take out mutex)/include/philo.h	/^typedef struct s_shared$/;"	s
+s_simu	archive/philo (copy)/include/philo.h	/^typedef struct s_simu$/;"	s
+s_simu	archive/philo (tried to take out mutex)/include/philo.h	/^typedef struct s_simu$/;"	s
+s_simu	rank3/philo/include/philo.h	/^typedef struct s_simu$/;"	s
+s_stack	rank2/push_swap/include/push_swap.h	/^typedef struct s_stack$/;"	s
+s_sync	rank3/philo/include/philo.h	/^typedef struct s_sync$/;"	s
+s_tile	rank2/so_long/include/so_long.h	/^typedef struct s_tile$/;"	s
+s_tstlst	rank0/libft/libft_tester/src/libftest.h	/^typedef struct s_tstlst$/;"	s
+s_win_list	rank2/so_long/minilibx/mlx_int.h	/^typedef struct	s_win_list$/;"	s
+s_xpm_col	rank2/so_long/minilibx/mlx_int.h	/^typedef	struct	s_xpm_col$/;"	s
+s_xvar	rank2/so_long/minilibx/mlx_int.h	/^typedef struct	s_xvar$/;"	s
+sa	rank2/push_swap/src/ft_swap_moves.c	/^void	sa(t_stack **a)$/;"	f
+saved_mode	rank2/so_long/minilibx/mlx_ext_randr.c	/^RRMode	saved_mode = 0;$/;"	v
+sb	rank2/push_swap/src/ft_swap_moves.c	/^void	sb(t_stack **b)$/;"	f
+screen	rank2/so_long/minilibx/mlx_int.h	/^	int			screen;$/;"	m	struct:s_xvar
+segment	rank2/push_swap/include/push_swap.h	/^	int				segment;$/;"	m	struct:s_stack
+shm	rank2/so_long/minilibx/mlx_int.h	/^	XShmSegmentInfo	shm;$/;"	m	struct:s_img
+shm_att_pb	rank2/so_long/minilibx/mlx_new_image.c	/^int	shm_att_pb(Display *d,XErrorEvent *ev)$/;"	f
+show_help	rank2/so_long/minilibx/configure	/^show_help(){$/;"	f
+sigint_handler	rank2/so_long/minilibx/test/run_tests.sh	/^sigint_handler(){$/;"	f
+simu	archive/philo (copy)/include/philo.h	/^	t_simu			*simu;$/;"	m	struct:s_philo
+simu	archive/philo (tried to take out mutex)/include/philo.h	/^	t_simu			*simu;$/;"	m	struct:s_monitor
+simu	archive/philo (tried to take out mutex)/include/philo.h	/^	t_simu			*simu;$/;"	m	struct:s_philo
+simu	rank3/philo/include/philo.h	/^	t_simu			*simu;$/;"	m	struct:s_monitor
+simu	rank3/philo/include/philo.h	/^	t_simu			*simu;$/;"	m	struct:s_philo
+size_line	rank2/so_long/include/so_long.h	/^	int		size_line;$/;"	m	struct:s_img
+size_line	rank2/so_long/minilibx/mlx_int.h	/^	int				size_line;$/;"	m	struct:s_img
+sl1	rank2/so_long/minilibx/test/main.c	/^int	sl1;$/;"	v
+sl2	rank2/so_long/minilibx/test/main.c	/^int	sl2;$/;"	v
+sl3	rank2/so_long/minilibx/test/main.c	/^int	sl3;$/;"	v
+sl4	rank2/so_long/minilibx/test/main.c	/^int	sl4;$/;"	v
+someone_died	archive/philo (copy)/include/philo.h	/^	bool		someone_died;$/;"	m	struct:s_simu
+ss	rank2/push_swap/src/ft_swap_moves.c	/^void	ss(t_stack **a, t_stack **b)$/;"	f
+start	archive/philo (copy)/include/philo.h	/^	bool		start;$/;"	m	struct:s_simu
+start_flag	rank3/philo/include/philo.h	/^	bool		start_flag;$/;"	m	struct:s_sync
+start_mutex	archive/philo (copy)/include/philo.h	/^	t_mtx		start_mutex;$/;"	m	struct:s_simu
+start_mutex	rank3/philo/include/philo.h	/^	t_mtx		start_mutex;$/;"	m	struct:s_sync
+start_time	archive/philo (copy)/include/philo.h	/^	long long	start_time;$/;"	m	struct:s_simu
+start_time	archive/philo (tried to take out mutex)/include/philo.h	/^	long long	start_time;$/;"	m	struct:s_rdonly
+start_time	rank3/philo/include/philo.h	/^	long long	start_time;$/;"	m	struct:s_rdonly
+state	rank2/so_long/include/so_long.h	/^	int			state;$/;"	m	struct:s_game
+stop_flag	rank3/philo/include/philo.h	/^	bool		stop_flag;$/;"	m	struct:s_sync
+stop_mutex	rank3/philo/include/philo.h	/^	t_mtx		stop_mutex;$/;"	m	struct:s_sync
+strlcpy_is_not_posix	rank2/so_long/minilibx/mlx_xpm.c	/^unsigned int	strlcpy_is_not_posix(char *dest, char *src, unsigned int size)$/;"	f
+t_ErrorCode	rank2/so_long/include/so_long.h	/^}			t_ErrorCode;$/;"	t	typeref:enum:e_ErrorCode
+t_arg	rank0/libft/libft_tester/src/libftest.h	/^}	t_arg;$/;"	t	typeref:enum:__anon1
+t_buffer	rank1/printf/include/ft_printf.h	/^}			t_buffer;$/;"	t	typeref:struct:s_buffer
+t_buffer	rank2/pipex/include/libft.h	/^}			t_buffer;$/;"	t	typeref:struct:s_buffer
+t_buffer	rank2/push_swap/include/libft.h	/^}			t_buffer;$/;"	t	typeref:struct:s_buffer
+t_buffer	rank2/so_long/include/libft.h	/^}			t_buffer;$/;"	t	typeref:struct:s_buffer
+t_command	rank2/pipex/include/pipex.h	/^}				t_command;$/;"	t	typeref:struct:s_command
+t_error	rank1/printf/include/ft_printf.h	/^}	t_error;$/;"	t	typeref:enum:e_error
+t_error	rank2/pipex/include/libft.h	/^}	t_error;$/;"	t	typeref:enum:e_error
+t_error	rank2/push_swap/include/libft.h	/^}	t_error;$/;"	t	typeref:enum:e_error
+t_error	rank2/so_long/include/libft.h	/^}	t_error;$/;"	t	typeref:enum:e_error
+t_event_list	rank2/so_long/minilibx/mlx_int.h	/^}				t_event_list;$/;"	t	typeref:struct:s_event_list
+t_forks	rank3/philo/include/philo.h	/^}				t_forks;$/;"	t	typeref:struct:s_forks
+t_format_spec	rank1/printf/include/ft_printf.h	/^}				t_format_spec;$/;"	t	typeref:struct:s_format_spec
+t_format_spec	rank2/pipex/include/libft.h	/^}				t_format_spec;$/;"	t	typeref:struct:s_format_spec
+t_format_spec	rank2/push_swap/include/libft.h	/^}				t_format_spec;$/;"	t	typeref:struct:s_format_spec
+t_format_spec	rank2/so_long/include/libft.h	/^}				t_format_spec;$/;"	t	typeref:struct:s_format_spec
+t_funcmap_int	rank0/libft/libft_tester/src/libftest.h	/^} 				t_funcmap_int;$/;"	t	typeref:struct:s_funcmap_int
+t_funcmap_size_t	rank0/libft/libft_tester/src/libftest.h	/^} 					t_funcmap_size_t;$/;"	t	typeref:struct:s_funcmap_size_t
+t_funcmap_str	rank0/libft/libft_tester/src/libftest.h	/^}				t_funcmap_str;$/;"	t	typeref:struct:s_funcmap_str
+t_game	rank2/so_long/include/so_long.h	/^}				t_game;$/;"	t	typeref:struct:s_game
+t_gc	rank2/pipex/include/libft.h	/^}				t_gc;$/;"	t	typeref:struct:s_garbage_collector
+t_gc	rank2/push_swap/include/libft.h	/^}				t_gc;$/;"	t	typeref:struct:s_garbage_collector
+t_gc	rank2/so_long/include/libft.h	/^}				t_gc;$/;"	t	typeref:struct:s_garbage_collector
+t_gc_node	rank2/pipex/include/libft.h	/^}				t_gc_node;$/;"	t	typeref:struct:s_gc_node
+t_gc_node	rank2/push_swap/include/libft.h	/^}				t_gc_node;$/;"	t	typeref:struct:s_gc_node
+t_gc_node	rank2/so_long/include/libft.h	/^}				t_gc_node;$/;"	t	typeref:struct:s_gc_node
+t_img	rank2/so_long/include/so_long.h	/^}				t_img;$/;"	t	typeref:struct:s_img
+t_img	rank2/so_long/minilibx/mlx_int.h	/^}				t_img;$/;"	t	typeref:struct:s_img
+t_list	rank0/libft/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
+t_list	rank0/libft/libft_tester/lib/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
+t_list	rank1/printf/include/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
+t_list	rank2/pipex/include/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
+t_list	rank2/push_swap/include/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
+t_list	rank2/so_long/include/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
+t_map	rank2/so_long/include/so_long.h	/^}			t_map;$/;"	t	typeref:struct:s_map
+t_monitor	archive/philo (tried to take out mutex)/include/philo.h	/^}					t_monitor;$/;"	t	typeref:struct:s_monitor
+t_monitor	rank3/philo/include/philo.h	/^}					t_monitor;$/;"	t	typeref:struct:s_monitor
+t_mtx	archive/philo (copy)/include/philo.h	/^typedef pthread_mutex_t	t_mtx;$/;"	t
+t_mtx	archive/philo (tried to take out mutex)/include/philo.h	/^typedef pthread_mutex_t	t_mtx;$/;"	t
+t_mtx	rank3/philo/include/philo.h	/^typedef pthread_mutex_t	t_mtx;$/;"	t
+t_params	archive/philo (copy)/include/philo.h	/^}				t_params;$/;"	t	typeref:struct:s_params
+t_philo	archive/philo (copy)/include/philo.h	/^}					t_philo;$/;"	t	typeref:struct:s_philo
+t_philo	archive/philo (tried to take out mutex)/include/philo.h	/^}					t_philo;$/;"	t	typeref:struct:s_philo
+t_philo	rank3/philo/include/philo.h	/^typedef struct s_philo	t_philo;$/;"	t	typeref:struct:s_philo
+t_philo	rank3/philo/include/philo.h	/^}					t_philo;$/;"	t	typeref:struct:s_philo
+t_pipex	rank2/pipex/include/pipex.h	/^}				t_pipex;$/;"	t	typeref:struct:s_pipex
+t_player	rank2/so_long/include/so_long.h	/^}				t_player;$/;"	t	typeref:struct:s_player
+t_pmtx	rank3/philo/include/philo.h	/^}				t_pmtx;$/;"	t	typeref:struct:s_pmtx
+t_rdonly	archive/philo (tried to take out mutex)/include/philo.h	/^typedef struct s_rdonly	t_rdonly;$/;"	t	typeref:struct:s_rdonly
+t_rdonly	archive/philo (tried to take out mutex)/include/philo.h	/^}				t_rdonly;$/;"	t	typeref:struct:s_rdonly
+t_rdonly	rank3/philo/include/philo.h	/^typedef struct s_rdonly	t_rdonly;$/;"	t	typeref:struct:s_rdonly
+t_rdonly	rank3/philo/include/philo.h	/^}				t_rdonly;$/;"	t	typeref:struct:s_rdonly
+t_return	rank0/libft/libft_tester/src/libftest.h	/^}	t_return;$/;"	t	typeref:enum:__anon2
+t_segfault	rank0/libft/libft_tester/src/libftest.h	/^}	t_segfault;$/;"	t	typeref:enum:__anon3
+t_shared	archive/philo (tried to take out mutex)/include/philo.h	/^typedef struct s_shared	t_shared;$/;"	t	typeref:struct:s_shared
+t_shared	archive/philo (tried to take out mutex)/include/philo.h	/^}				t_shared;$/;"	t	typeref:struct:s_shared
+t_simu	archive/philo (copy)/include/philo.h	/^typedef struct s_simu	t_simu;$/;"	t	typeref:struct:s_simu
+t_simu	archive/philo (copy)/include/philo.h	/^}				t_simu;$/;"	t	typeref:struct:s_simu
+t_simu	archive/philo (tried to take out mutex)/include/philo.h	/^typedef struct s_simu	t_simu;$/;"	t	typeref:struct:s_simu
+t_simu	archive/philo (tried to take out mutex)/include/philo.h	/^}				t_simu;$/;"	t	typeref:struct:s_simu
+t_simu	rank3/philo/include/philo.h	/^typedef struct s_simu	t_simu;$/;"	t	typeref:struct:s_simu
+t_simu	rank3/philo/include/philo.h	/^}				t_simu;$/;"	t	typeref:struct:s_simu
+t_stack	rank2/push_swap/include/push_swap.h	/^}					t_stack;$/;"	t	typeref:struct:s_stack
+t_sync	rank3/philo/include/philo.h	/^typedef struct s_sync	t_sync;$/;"	t	typeref:struct:s_sync
+t_sync	rank3/philo/include/philo.h	/^}				t_sync;$/;"	t	typeref:struct:s_sync
+t_tile	rank2/so_long/include/so_long.h	/^}				t_tile;$/;"	t	typeref:struct:s_tile
+t_timeval	archive/philo (copy)/include/philo.h	/^typedef struct timeval	t_timeval;$/;"	t	typeref:struct:timeval
+t_timeval	archive/philo (tried to take out mutex)/include/philo.h	/^typedef struct timeval	t_timeval;$/;"	t	typeref:struct:timeval
+t_timeval	rank3/philo/include/philo.h	/^typedef struct timeval	t_timeval;$/;"	t	typeref:struct:timeval
+t_tstlst	rank0/libft/libft_tester/src/libftest.h	/^}						t_tstlst;$/;"	t	typeref:struct:s_tstlst
+t_win_list	rank2/so_long/minilibx/mlx_int.h	/^}				t_win_list;$/;"	t	typeref:struct:s_win_list
+t_xpm_col	rank2/so_long/minilibx/mlx_int.h	/^}				t_xpm_col;$/;"	t	typeref:struct:s_xpm_col
+t_xvar	rank2/so_long/minilibx/mlx_int.h	/^}				t_xvar;$/;"	t	typeref:struct:s_xvar
+target_cost	rank2/push_swap/include/push_swap.h	/^	int				target_cost;$/;"	m	struct:s_stack
+target_node	rank2/push_swap/include/push_swap.h	/^	struct s_stack	*target_node;$/;"	m	struct:s_stack	typeref:struct:s_stack::s_stack
+temp_file	rank2/pipex/include/libft.h	/^	char				*temp_file;$/;"	m	struct:s_gc_node
+temp_file	rank2/push_swap/include/libft.h	/^	char				*temp_file;$/;"	m	struct:s_gc_node
+temp_file	rank2/so_long/include/libft.h	/^	char				*temp_file;$/;"	m	struct:s_gc_node
+test_default_main	rank2/so_long/minilibx/test/run_tests.sh	/^test_default_main(){$/;"	f
+test_values	rank0/libft/libft_tester/src/libftest.h	/^	char				**test_values;$/;"	m	struct:s_tstlst
+thread	archive/philo (copy)/include/philo.h	/^	pthread_t		thread;$/;"	m	struct:s_philo
+thread	archive/philo (tried to take out mutex)/include/philo.h	/^	pthread_t		thread;$/;"	m	struct:s_monitor
+thread	archive/philo (tried to take out mutex)/include/philo.h	/^	pthread_t		thread;$/;"	m	struct:s_philo
+thread	rank3/philo/include/philo.h	/^	pthread_t		thread;$/;"	m	struct:s_monitor
+thread	rank3/philo/include/philo.h	/^	pthread_t		thread;$/;"	m	struct:s_philo
+tilecount	rank2/so_long/include/so_long.h	/^	int			tilecount;$/;"	m	struct:s_game
+tiles	rank2/so_long/include/so_long.h	/^	t_tile		**tiles;$/;"	m	struct:s_game
+tileset	rank2/so_long/include/so_long.h	/^	t_img		*tileset;$/;"	m	struct:s_game
+time_mutex	rank3/philo/include/philo.h	/^	t_mtx			time_mutex;$/;"	m	struct:s_philo
+time_to_die	archive/philo (copy)/include/philo.h	/^	int		time_to_die;$/;"	m	struct:s_params
+time_to_die	archive/philo (tried to take out mutex)/include/philo.h	/^	int			time_to_die;$/;"	m	struct:s_rdonly
+time_to_die	rank3/philo/include/philo.h	/^	int			time_to_die;$/;"	m	struct:s_rdonly
+time_to_eat	archive/philo (copy)/include/philo.h	/^	int		time_to_eat;$/;"	m	struct:s_params
+time_to_eat	archive/philo (tried to take out mutex)/include/philo.h	/^	int			time_to_eat;$/;"	m	struct:s_rdonly
+time_to_eat	rank3/philo/include/philo.h	/^	int			time_to_eat;$/;"	m	struct:s_rdonly
+time_to_sleep	archive/philo (copy)/include/philo.h	/^	int		time_to_sleep;$/;"	m	struct:s_params
+time_to_sleep	archive/philo (tried to take out mutex)/include/philo.h	/^	int			time_to_sleep;$/;"	m	struct:s_rdonly
+time_to_sleep	rank3/philo/include/philo.h	/^	int			time_to_sleep;$/;"	m	struct:s_rdonly
+title	rank0/libft/libft_tester/src/libftest.h	/^	char				*title;$/;"	m	struct:s_tstlst
+total_cost	rank2/push_swap/include/push_swap.h	/^	int				total_cost;$/;"	m	struct:s_stack
+type	rank1/printf/include/ft_printf.h	/^	char		type;$/;"	m	struct:s_format_spec
+type	rank2/pipex/include/libft.h	/^	char		type;$/;"	m	struct:s_format_spec
+type	rank2/push_swap/include/libft.h	/^	char		type;$/;"	m	struct:s_format_spec
+type	rank2/so_long/include/libft.h	/^	char		type;$/;"	m	struct:s_format_spec
+type	rank2/so_long/minilibx/mlx_int.h	/^	int				type;$/;"	m	struct:s_img
+use_xshm	rank2/so_long/minilibx/mlx_int.h	/^	int			use_xshm;$/;"	m	struct:s_xvar
+visual	rank2/so_long/minilibx/mlx_int.h	/^	Visual		*visual;$/;"	m	struct:s_xvar
+wait_flag	archive/philo (tried to take out mutex)/include/philo.h	/^	int			wait_flag;$/;"	m	struct:s_shared
+wait_mutex	archive/philo (tried to take out mutex)/include/philo.h	/^	t_mtx		wait_mutex;$/;"	m	struct:s_shared
+width	rank1/printf/include/ft_printf.h	/^	int			width;$/;"	m	struct:s_format_spec
+width	rank2/pipex/include/libft.h	/^	int			width;$/;"	m	struct:s_format_spec
+width	rank2/push_swap/include/libft.h	/^	int			width;$/;"	m	struct:s_format_spec
+width	rank2/so_long/include/libft.h	/^	int			width;$/;"	m	struct:s_format_spec
+width	rank2/so_long/include/so_long.h	/^	int		width;$/;"	m	struct:s_img
+width	rank2/so_long/include/so_long.h	/^	int		width;$/;"	m	struct:s_map
+width	rank2/so_long/include/so_long.h	/^	int		width;$/;"	m	struct:s_tile
+width	rank2/so_long/minilibx/mlx_int.h	/^	int				width;$/;"	m	struct:s_img
+win1	rank2/so_long/minilibx/test/main.c	/^void	*win1;$/;"	v
+win1	rank2/so_long/minilibx/test/new_win.c	/^void *win1;$/;"	v
+win2	rank2/so_long/minilibx/test/main.c	/^void    *win2;$/;"	v
+win2	rank2/so_long/minilibx/test/new_win.c	/^void *win2;$/;"	v
+win3	rank2/so_long/minilibx/test/main.c	/^void    *win3;$/;"	v
+win_count	rank2/so_long/minilibx/mlx_loop.c	/^static int	win_count(t_xvar *xvar)$/;"	f	file:
+win_list	rank2/so_long/minilibx/mlx_int.h	/^	t_win_list	*win_list;$/;"	m	struct:s_xvar
+win_ptr	rank2/so_long/include/so_long.h	/^	void		*win_ptr;$/;"	m	struct:s_game
+window	rank2/so_long/minilibx/mlx_int.h	/^	Window				window;$/;"	m	struct:s_win_list
+wm_delete_window	rank2/so_long/minilibx/mlx_int.h	/^	Atom		wm_delete_window;$/;"	m	struct:s_xvar
+wm_protocols	rank2/so_long/minilibx/mlx_int.h	/^	Atom		wm_protocols;$/;"	m	struct:s_xvar
+x	rank2/so_long/include/so_long.h	/^	int		x;$/;"	m	struct:s_player
+x	rank2/so_long/include/so_long.h	/^	int		x;$/;"	m	struct:s_tile
+xpm1_x	rank2/so_long/minilibx/test/main.c	/^int	xpm1_x;$/;"	v
+xpm1_y	rank2/so_long/minilibx/test/main.c	/^int	xpm1_y;$/;"	v
+y	rank2/so_long/include/so_long.h	/^	int		y;$/;"	m	struct:s_player
+y	rank2/so_long/include/so_long.h	/^	int		y;$/;"	m	struct:s_tile

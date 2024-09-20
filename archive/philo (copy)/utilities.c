@@ -27,7 +27,7 @@ long long	ft_get_time_ms(void)
 	t_timeval	tv;
 	long long	time;
 	int			succes;
-
+	
 	succes = gettimeofday(&tv, NULL);
 	if (succes == -1)
 	{
